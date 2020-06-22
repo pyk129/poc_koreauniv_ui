@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>SMTH</title>
+	<link rel="stylesheet" type="text/css" href="./css/common.css">
+	<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="./js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="./js/sha256.js"></script>
+	<script type="text/javascript" src="./js/util.js"></script>
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="./js/ie.js"></script>	
+	<![endif]-->
+	<script>
+		function confirmBtn() {
+
+			checkSel1 = $("input:radio[name='check01']:checked").val();
+			checkSel2 = $("input:radio[name='check02']:checked").val();
+			checkSel3 = $("input:radio[name='check03']:checked").val();
+			checkSel4 = $("input:radio[name='check04']:checked").val();
+			checkSel5 = $("input:radio[name='check05']:checked").val();
+			checkSel6 = $("input:radio[name='check06']:checked").val();
+			checkSel7 = $("input:radio[name='check07']:checked").val();
+			checkSel8 = $("input:radio[name='check08']:checked").val();
+			checkSel9 = $("input:radio[name='check09']:checked").val();
+
+			var sel2차추천여부 = 1;
+
+			var reEle = 0;
+			var reMid = 0;
+			var reHigh = 0;
+			var reEdu = 0;
+			var reMart = 0;
+			var reDepartment = 0;
+			var reSubway = 0;
+			var reHosp = 0;
+			var rePark = 0;
+
+			if (checkSel1 == 1) {
+				// 병원 O
+				reHosp = 1;
+			}
+
+			if (checkSel2 == 1) {
+				// 병원 O
+				sel2차추천여부 = 0;
+			}
+
+			if (checkSel5 == 1) {
+				reMart = 1;
+				reDepartment = 0;
+
+			} else if (checkSel5 == 2) {
+				reMart = 0;
+				reDepartment = 1;
+
+			} else {
+				reMart = 0;
+				reDepartment = 0;
+
+			}
+
+			// 학교 선택 
+			if (checkSel6 == 1) {
+				// 유딩
+				reEle = 0;
+				reMid = 0;
+				reHigh = 0;
+
+			} else if (checkSel6 == 2) {
+				// 초딩
+				reEle = 1;
+				reMid = 0;
+				reHigh = 0;
+
+			} else if (checkSel6 == 3) {
+				// 중딩
+				reEle = 0;
+				reMid = 1;
+				reHigh = 0;
+			} else {
+				// 고딩
+				reEle = 0;
+				reMid = 0;
+				reHigh = 1;
+			}
+
+			if (checkSel7 == 1) {
+				// 유딩
+				reSubway = 0;
+			} else if (checkSel7 == 2) {
+				// 유딩
+				reSubway = 0;
+			} else {
+				reSubway = 1;
+			}
+
+			if (checkSel8 == 1) {
+				// 유딩
+				reEdu = 1;
+			} else {
+				reEdu = 0;
+			}
+
+
+			if (checkSel9 == 1) {
+				// 유딩
+				rePark = 1;
+			} else {
+				rePark = 0;
+			}
+
+			location.href = 'step2.html?sel1=' + reEle + '&sel2=' + reMid + '&sel3=' + reHigh + '&sel4=' + reEdu + '&sel5=' + reMart + '&sel6=' + reDepartment + '&sel7=' + reSubway + '&sel8=' + reHosp + '&sel9=' + rePark + '%reco2nd=' + sel2차추천여부;
+
+			// model = TheModelClass(*args, **kwargs)
+			// model.load_state_dict(torch.load(PATH))
+			// model.eval()
+
+
+
+
+			// alert(checkSel1 + " " + checkSel2+ " " + checkSel3+ " " + checkSel4+ " " + checkSel5+ " " + checkSel6+ " " + checkSel7+ " " + checkSel8+ " " + checkSel9);
+			// if (checkSel1 == '0' && checkSel2 == '0' && checkSel3 == '0' &&
+			// 	checkSel4 == '0' && checkSel5 == '0' && checkSel6 == '0' &&
+			// 	checkSel7 == '0' && checkSel8 == '0' && checkSel9 == '0') {
+			// 	alert('선택된 추천 조건이 없습니다.');
+			// 	return;
+			// }
+		};
+
+	</script>
+</head>
+
+<body>
+	<div id="wrap">
+		<!-- gnb -->
+		<div id="gnb">
+		</div>
+		<!-- gnb -->
+		<div id="contents">
+			<div class="tit_area cf">
+				<h2>추천 설문 작성</h2>
+			</div>
+
+			<table class="tbl col">
+				<caption>계정 추가 표</caption>
+				<colgroup>
+					<col width="25%">
+					<col width="auto">
+				</colgroup>
+
+				<tbody>
+					<!-- <tr>
+							<th scope="row">1.나이를 입력하세요</th>
+							<td><input id="name" type="text" class="w100" placeholder="나이를 입력하세요" title="계정 이름">
+							</td>
+						</tr> -->
+
+					<tr>
+						<th scope="row">1.나이가 50대 이상이신가요?</th>
+						<td>
+							<span class="input">
+								<input type="radio" id="check0101" name="check01" checked="checked" value="1">
+								<label for="check0101">예</label>
+							</span>
+							<span class="input">
+								<input type="radio" id="check0102" name="check01" value="2">
+								<label for="check0102">아니오</label>
+							</span>
+						</td>
+					</tr>
+
+					<tr>
+						<th scope="row">2.지금 부동산을 알아보는 이유가 뭔가요?</th>
+						<td>
+							<span class="input">
+								<input type="radio" id="check0201" name="check02" checked="checked" value="1">
+								<label for="check0201">주거 목적</label>
+							</span>
+							<span class="input">
+								<input type="radio" id="check0202" name="check02" value="2">
+								<label for="check0202">주거 투자</label>
+							</span>
+							<span class="input">
+								<input type="radio" id="check0203" name="check02" value="3">
+								<label for="check0203">투자 목적</label>
+							</span>
+						</td>
+					</tr>
+
+					<tr>
+						<th scope="row">3.대출은 얼마 생각하시나요?</th>
+						<td>
+							<span class="input">
+								<input type="radio" id="check0301" name="check03" checked="checked" value="1">
+								<label for="check0301">0~5천</label>
+							</span>
+							<span class="input">
+								<input type="radio" id="check0302" name="check03" value="2">
+								<label for="check0302">5천~1억</label>
+							</span>
+							<span class="input">
+								<input type="radio" id="check0303" name="check03" value="3">
+								<label for="check0303">1억~2억</label>
+							</span>
+							<span class="input">
+								<input type="radio" id="check0304" name="check03" value="4">
+								<label for="check0304">2억 이상</label>
+							</span>
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+			<br><br>
+			<div class="tit_area cf">
+				<h2>추천 조건 선택</h2>
+			</div>
+			<!-- <div class="fr txt_area">
+					<p><span class="p_red">(<em>*</em>)</span> 2.고객님과 맞는 내용을 선택하세요/</p>
+				</div> -->
+			<div class="fr txt_area">
+				<p>
+					<span class="p_red">(<em>*</em>)
+					</span> 고객님과 맞는 내용을 선택하세요.
+				</p>
+			</div>
+			<table class="tbl col" id="detail_layout">
+				<caption>프로젝트 생성 표</caption>
+				<colgroup>
+					<col width="25%">
+					<col width="auto">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th scope="row">주된 쇼핑 방법은 무엇인가요?</th>
+						<td>
+							<span class="input">
+								<input type="radio" id="check0501" name="check05" checked="checked" value="1">
+								<label for="check0501">마트</label>
+							</span>
+							<span class="input">
+								<input type="radio" id="check0502" name="check05" value="2">
+								<label for="check0502">백화점</label>
+							</span>
+							<span class="input">
+								<input type="radio" id="check0503" name="check05" value="3">
+								<label for="check0503">온라인</label>
+							</span>
+						</td>
+					</tr>
+
+					<tr>
+						<th scope="row">자녀가 있으신가요?</th>
+						<td>
+							<span class="input">
+								<input type="radio" id="check0601" name="check06" checked="checked" value="1">
+								<label for="check0601">유치원</label>
+							</span>
+							<span class="input">
+								<input type="radio" id="check0602" name="check06" value="2">
+								<label for="check0602">초등학생</label>
+							</span>
+							<span class="input">
+								<input type="radio" id="check0603" name="check06" value="3">
+								<label for="check0603">중학생</label>
+							</span>
+							<span class="input">
+								<input type="radio" id="check0604" name="check06" value="4">
+								<label for="check0604">고등학생</label>
+							</span>
+						</td>
+					</tr>
+
+					<tr>
+						<th scope="row"> 출근은 어떻게 하시나요?</th>
+						<td>
+							<span class="input">
+								<input type="radio" id="check0701" name="check07" checked="checked" value="1">
+								<label for="check0701">자차</label>
+							</span>
+							<span class="input">
+								<input type="radio" id="check0702" name="check07" value="2">
+								<label for="check0702">도보</label>
+							</span>
+							<span class="input">
+								<input type="radio" id="check0703" name="check07" value="3">
+								<label for="check0703">대중교통</label>
+							</span>
+						</td>
+					</tr>
+
+
+					<tr>
+						<th scope="row">사교육이 필요 하신가요?</th>
+						<td>
+							<span class="input">
+								<input type="radio" id="check0801" name="check08" checked="checked" value="1">
+								<label for="check0801">네</label>
+							</span>
+							<span class="input">
+								<input type="radio" id="check0802" name="check08" value="2">
+								<label for="check0802">아니오</label>
+							</span>
+						</td>
+					</tr>
+
+					<tr>
+						<th scope="row">쾌적한 환경이 필요 하신가요?</th>
+						<td>
+							<span class="input">
+								<input type="radio" id="check0901" name="check09" checked="checked" value="1">
+								<label for="check0901">네</label>
+							</span>
+							<span class="input">
+								<input type="radio" id="check0902" name="check09" value="2">
+								<label for="check0902">아니오</label>
+							</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<br><br>
+			<div class="tit_area cf">
+				<h2>제3자 개인정보 제공동의</h2>
+			</div>
+
+			<table class="tbl col">
+				<caption>계정 추가 표</caption>
+				<colgroup>
+					<col width="25%">
+					<col width="auto">
+				</colgroup>
+
+				<tbody>
+					<tr>
+						<th scope="row">개인정보 제공동의 하시겠습니까?</th>
+						<td>
+							<span class="input">
+								<input type="radio" id="check0401" name="check04" checked="checked" value="1">
+								<label for="check0401">동의함</label>
+							</span>
+							<span class="input">
+								<input type="radio" id="check0402" name="check04" value="2">
+								<label for="check0402">동의안함</label>
+							</span>
+
+						</td>
+					</tr>
+
+			</tbody>
+		</table>
+			<div class="wrap_top cf" style="float: right;margin-top: 10px;">
+				<a id="execute_btn" href="javascript:confirmBtn();" class="btn bgblue">설문완료</a>
+			</div>
+		</div>
+
+	</div>
+	<!-- 로딩 -->
+	<div id="loading" class="loading" style="display:none;">
+		<div class="shadow"></div>
+		<img src="./images/loading.gif" class="img" />
+	</div>
+	</div>
+</div>
+	<!-- 로딩 -->
+	<script>
+		function showLoading() {
+			$(".loading").show();
+		}
+
+		function closeLoading() {
+			$(".loading").hide();
+		}
+
+		$(document).ready(function () {
+			// 메뉴 로드
+			$("#gnb").load("gnb.html", function () {
+
+			});
+		});
+
+		$("a#cancel_btn").click(function (event) {
+			history.back();
+		});
+
+
+	</script>
+</body>
+
+</html>

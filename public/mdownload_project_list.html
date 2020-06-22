@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>S APP Builder 운영관리시스템</title>
+	<link rel="stylesheet" type="text/css" href="./css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="./css/jquery-ui.css">
+	<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="./js/jquery-ui.js"></script>
+	<script type="text/javascript" src="./js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="./js/util.js"></script>
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="./js/ie.js"></script>
+	<![endif]-->
+	<script type="text/javascript">
+
+	</script>
+</head>
+
+<body>
+	<div id="wrap">
+		<!-- container -->
+		<section id="container">
+			<!-- header -->
+			<header id="headerWrap">
+				<div id="header">
+				</div>
+			</header>
+			<!-- // header -->
+			<!-- contentsWrap -->
+			<div id="contentsWrap">
+				<!-- contents -->
+				<div class="contents">
+					<ul class="list_type2" id="content_list">
+					</ul>
+				</div>
+				<!-- // contents -->
+			</div>
+			<!-- // contentsWrap -->
+		</section>
+		<!-- // container -->
+	</div>
+	<!-- 로딩 -->
+	<div id="loading" class="loading" style="display:none;">
+		<div class="shadow"></div>
+		<img src="./images/loading.gif" class="img" />
+	</div>
+	<!-- 로딩 -->
+	<script>
+		function showLoading() {
+			$(".loading").show();
+		}
+
+		function closeLoading() {
+			$(".loading").hide();
+		}
+
+		$(document).ready(function () {
+			// 메뉴 로드
+			$("div#header").load("mheader.html", function () {
+				setting_header("APP 목록");
+			});
+			load();
+		});
+
+		function load() {
+			var params = {};
+			showLoading();
+			$.post('download_project_list.do', params, function (res) {
+				closeLoading();
+				var result = res.result;
+				var message = res.message;
+				if (result == "0000") {
+					loaded = true;
+					var data = res.data;
+					var list = data.list;
+					var content_list = $('ul#content_list');
+					content_list.empty();
+					list.forEach(function (item, index) {
+						content_list.append(
+							'<li>' +
+							'   <a href="javascript:void(0)" class="cont_wrap" id="download_project_' + item.idx + '_btn" >' +
+							'       <div class="imgArea"><img src="./images/mobile/icon_sh.png" alt=""></div>' +
+							'       <div class="infoArea">' +
+							'           <p class="tit">' + item.name + '</p>' +
+							'           <p class="txt">' + item.name_platform + '</p>' +
+							'       </div>' +
+							'   </a>' +
+							'</li>');
+						$("a#download_project_" + item.idx + "_btn").click(function (event) {
+							location.href = "./mdownload_project_build_type_list.html?idx=" + item.idx;
+						});
+					});
+				} else {
+					//setTimeout(function() {
+					alert(message);
+					if (result == "0001") {
+						location.href = "./mlogin.html";
+					} else {
+						if (res.data.href) {
+							location.href = res.data.href;
+						}
+					}
+					//}, 10);
+				}
+			});
+		}
+	</script>
+</body>
+
+</html>

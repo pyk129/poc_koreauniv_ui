@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>S APP Builder 운영관리시스템</title>
+	<link rel="stylesheet" type="text/css" href="./css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="./css/jquery-ui.css">
+	<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="./js/jquery-ui.js"></script>
+	<script type="text/javascript" src="./js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="./js/util.js"></script>
+	<!--[if lt IE 9]>
+		<script type="text/javascript" src="./js/ie.js"></script>
+		<![endif]-->
+	<script type="text/javascript">
+
+	</script>
+</head>
+
+<body>
+	<div id="wrap">
+		<!-- container -->
+		<section id="container">
+			<!-- header -->
+			<header id="headerWrap">
+				<div id="header">
+				</div>
+			</header>
+			<!-- // header -->
+			<!-- contentsWrap -->
+			<div id="contentsWrap">
+				<!-- contents -->
+				<div class="contents full pb40">
+					<div class="cont_wrap">
+						<div class="imgArea"><img src="./images/mobile/icon_sh.png" alt=""></div>
+						<div class="infoArea">
+							<p class="tit f16" id="name_project"></p>
+							<p class="txt" id="name_platform"></p>
+						</div>
+					</div>
+					<div id="content_list"></div>
+				</div>
+				<!-- // contents -->
+				<div class="btn_wrap bottom">
+					<a href="javascript:void(0)" class="btn h01" id="more_btn"><span class="icon_plus mr5"></span>더보기</a>
+				</div>
+			</div>
+			<!-- // contentsWrap -->
+		</section>
+		<!-- // container -->
+	</div>
+	<!-- 로딩 -->
+	<div id="loading" class="loading" style="display:none;">
+		<div class="shadow"></div>
+		<img src="./images/loading.gif" class="img" />
+	</div>
+	<!-- 로딩 -->
+	<script>
+		function showLoading() {
+			$(".loading").show();
+		}
+
+		function closeLoading() {
+			$(".loading").hide();
+		}
+
+		$('.accordion .btn_view').attr("role", "button");
+		$(document).on('click', '.accordion .btn_view', function () {
+			if (!$(this).parents().hasClass('on')) {
+				$('.accordion').removeClass('on');
+				$('.cont_accor').slideUp();
+				$('.btn_view').find('span').text('세부내역 열기');
+
+				$(this).parents('.accordion').addClass('on');
+				$(this).siblings('.cont_accor').slideDown();
+				$(this).find('span').text('세부내역 닫기');
+			} else {
+				$('.accordion').removeClass('on');
+				$('.cont_accor').slideUp();
+				$('.btn_view').find('span').text('세부내역 열기');
+			}
+		});
+
+		var idx = getURLParameter('idx');
+		var build_type = getURLParameter('build_type');
+
+		var current_page = 1;
+		var last_page = 1;
+		var loaded = false;
+
+		$(document).ready(function () {
+
+			$("div#header").load("mheader.html", function () {
+				setting_header("앱 다운로드", true);
+			});
+
+
+			$("#more_btn").hide();
+
+			$("#more_btn").click(function(event){
+				load(current_page + 1);
+			});
+
+			load(current_page);
+
+		});
+
+		function load(page) {
+			var params = {};
+			if (isNull(page)) {
+				page = 1;
+			}
+			params.page = page;
+			params.count_per_page = 20;
+			params.idx_project = idx;
+			params.idx_build_type = build_type;
+
+			showLoading();
+			$.post('download_app_list.do', params, function (res) {
+				closeLoading();
+				var result = res.result;
+				var message = res.message;
+				if (result == "0000") {
+					loaded = true;
+					var data = res.data;
+					var list = data.list;
+
+					current_page = Number(data.page);
+					last_page = Number(data.page_count);
+
+					var content_list = $('#content_list');
+
+					if (current_page == 1 && list.length <= 0) {
+						alert('다운로드 가능한 앱이 없습니다.');
+						history.back();
+						return;
+					}
+
+					$("#name_project").text(list[0].name_project);
+					$("#name_platform").text(list[0].name_platform);
+
+					if (current_page < last_page){
+						$("#more_btn").show();
+					}
+					else {
+						$("#more_btn").hide();
+					}
+
+					list.forEach(function (item, index) {
+						var name_regist_type = item.regist_type == "1" ? "시스템" : "일반";
+						content_list.append(
+							'<div class="accordion">' +
+							'    <div class="tit_accor">' +
+							'        <p class="row">' +
+							'            <span class="tit">앱버전</span>' +
+							'            <span class="txt">' + item.version + '</span>' +
+							'        </p>' +
+							'        <p class="row">' +
+							'            <span class="tit">빌드시간</span>' +
+							'            <span class="txt">' + formatDate(new Date(item.updated_time), "yyyy-MM-dd HH:mm:ss") + '</span>' +
+							'        </p>' +
+							'        <p class="row">' +
+							'            <span class="tit">등록구분</span>' +
+							'            <span class="txt">' + name_regist_type + '</span>' +
+							'        </p>' +
+							'        <div class="btn_right">' +
+							'            <a href="javascript:void(0)" class="btn02 blue" id="download_' + item.idx + '_btn">다운로드</a>' +
+							'        </div>' +
+							'    </div>' +
+							'    <a href="javascript:void(0)" class="btn_view"><span class="blind">세부내역 열기</span></a>' +
+							'    <div class="cont_accor">' +
+							'        <p>' + item.memo + 
+							'        </p>' +
+							'    </div>' +
+							'</div>');
+
+						$("a#download_" + item.idx + "_btn").click(function (event) {
+							if (item.name_platform == "Android") { // android 
+								location.href = "./download_app_apk.do?idx=" + item.idx + "&regist_type=" + item.regist_type;
+							}
+							else { // ios
+								//location.href = "./download_app_plist.do?idx=" + item.idx + "&regist_type=" + item.regist_type;
+								//location.href = "itms-services://?action=download-manifest&url=https://localhost:8443/test/sample.plist";
+								//location.href = "https://localhost:8443/test/sample.plist";
+								var p = {};
+								p.idx = item.idx;
+								p.regist_type = item.regist_type;
+								requestPlistUrl(p);
+							}
+						});
+					});
+
+				} else {
+					//setTimeout(function() {
+					alert(message);
+					if (result == "0001") {
+						location.href = "./mlogin.html";
+					} else {
+						if (res.data.href) {
+							location.href = res.data.href;
+						}
+					}
+					//}, 10);
+				}
+			});
+		}
+
+		function requestPlistUrl(params) {
+
+			$.post('download_app_plist_url.do', params, function (res) {
+				//closeLoading();
+				var result = res.result;
+				var message = res.message;
+				if (result == "0000") {
+					loaded = true;
+					var data = res.data;
+					location.href = "itms-services://?action=download-manifest&url=" + data.href;
+					// test
+					//location.href = data.href;
+				} else {
+					//setTimeout(function() {
+					alert(message);
+					if (result == "0001") {
+						location.href = "./mlogin.html";
+					} else {
+						if (res.data.href) {
+							location.href = res.data.href;
+						}
+					}
+				}
+			})
+		}
+
+
+	</script>
+</body>
+
+</html>

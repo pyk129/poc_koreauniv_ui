@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>SMTH</title>
+	<link rel="stylesheet" type="text/css" href="./css/common.css">
+	<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="./js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="./js/sha256.js"></script>
+	<script type="text/javascript" src="./js/util.js"></script>
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="./js/ie.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div id="wrap">
+
+		<!-- gnb -->
+		<div id="gnb">
+		</div>
+		<!-- gnb -->
+		<div id="contents" style="float: left;margin: 20px;">
+			<div class="tit_area cf">
+				<h2>고대빵 님의 신용등급 4등급</h2>
+			</div>
+			<div class="wrap_top cf">
+
+				<div class="fr txt_area">
+					<p><span class="p_red">(<em>*</em>)</span> 품을 선택하시면 해당상품의 온라인 대출 조회 화면으로 이동합니다.</p>
+				</div>
+
+			</div>
+			<table class="tbl col">
+				<caption>계정 추가 표</caption>
+				<colgroup>
+					<col width="25%">
+					<col width="auto">
+				</colgroup>
+				<tbody>
+
+					<tr style="cursor:pointer;" onClick="location.href='./step5.html?key=1&name=보금자리론'">
+						<th scope="row">신한은행 </a></th>
+						<td>
+							보금자리론 3.1% (최대 1.5억원) </a>
+						</td>
+					</tr>
+
+					<tr style="cursor:pointer;" onClick="location.href='./step5.html?key=2&name=신한따뜻한 주택대출'">
+						<th scope="row">신한생명</th>
+						<td>
+							신한 따뜻한 주택대출 2.9% (최대 1.5억원)
+						</td>
+					</tr>
+
+					<tr style="cursor:pointer;" onClick="location.href='./step5.html?key=3&name=신한 좋은 주택대출'">
+						<th scope="row"> 신한저축은행 </th>
+						<td>
+							신한 좋은 주택대출 4.2% (최대 2억원)
+						</td>
+					</tr>
+				</tbody>
+
+			</table>
+
+		</div>
+	</div>
+	<!-- 로딩 -->
+	<div id="loading" class="loading" style="display:none;">
+		<div class="shadow"></div>
+		<img src="./images/loading.gif" class="img" />
+	</div>
+	</div>
+	<!-- 로딩 -->
+	<script>
+		function showLoading() {
+			// $(".loading").show();
+		}
+
+		function closeLoading() {
+			$(".loading").hide();
+		}
+
+		$(document).ready(function () {
+			// 메뉴 로드
+			$("#gnb").load("gnb.html", function () {
+				// setting_gnb("menu0102");
+			});
+		});
+
+		$("a#cancel_btn").click(function (event) {
+			history.back();
+		});
+
+
+	</script>
+</body>
+
+</html>

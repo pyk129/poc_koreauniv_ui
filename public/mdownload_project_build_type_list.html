@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>S APP Builder 운영관리시스템</title>
+	<link rel="stylesheet" type="text/css" href="./css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="./css/jquery-ui.css">
+	<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="./js/jquery-ui.js"></script>
+	<script type="text/javascript" src="./js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="./js/util.js"></script>
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="./js/ie.js"></script>
+	<![endif]-->
+	<script type="text/javascript">
+		$(function(){
+			var key = getParameterByName('key');
+			alert(key)
+			
+		});
+
+		function getParameterByName(name) {
+			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+				results = regex.exec(location.search);
+			return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+	</script>
+</head>
+
+<body>
+	<div id="wrap">
+		<!-- container -->
+		<section id="container">
+			<!-- header -->
+			<header id="headerWrap">
+				<div id="header">
+				</div>
+			</header>
+			<!-- // header -->
+			<!-- contentsWrap -->
+			<div id="contentsWrap">
+				<!-- contents -->
+				<div class="contents">
+					<ul class="list_type" id="content_list">
+					</ul>
+				</div>
+				<!-- // contents -->
+			</div>
+			<!-- // contentsWrap -->
+		</section>
+		<!-- // container -->
+	</div>
+	<!-- 로딩 -->
+	<div id="loading" class="loading" style="display:none;">
+		<div class="shadow"></div>
+		<img src="./images/loading.gif" class="img" />
+	</div>
+	<!-- 로딩 -->
+	<script>
+		function showLoading() {
+			$(".loading").show();
+		}
+
+		function closeLoading() {
+			$(".loading").hide();
+		}
+
+		$(document).ready(function () {
+			var idx = getURLParameter('idx');
+			$("div#header").load("mheader.html", function () {
+				setting_header("빌드구분 선택", true);
+			});
+
+			load(idx);
+		});
+
+		function load(idx) {
+			var params = {};
+			params.idx = idx;
+			showLoading();
+			$.post('download_project_build_type_list.do', params, function (res) {
+				closeLoading();
+				var result = res.result;
+				var message = res.message;
+				if (result == "0000") {
+					loaded = true;
+					var data = res.data;
+					var list = data.list;
+					var content_list = $('ul#content_list');
+					content_list.empty();
+					list.forEach(function (item, index) {
+						content_list.append(
+							'<li><a href="javascript:;" class="bold f20" id="download_project_build_type_' + item.idx + '_btn" >' + item.name + '</a></li>');
+
+						$("a#download_project_build_type_" + item.idx + "_btn").click(function (event) {
+							location.href = "./mdownload_app_list.html?idx=" + idx + "&build_type="+item.idx;
+						});
+					});
+				} else {
+					//setTimeout(function() {
+					alert(message);
+					if (result == "0001") {
+						location.href = "./mlogin.html";
+					} else {
+						if (res.data.href) {
+							location.href = res.data.href;
+						}
+					}
+					//}, 10);
+				}
+			});
+		}
+	</script>
+</body>
+
+</html>

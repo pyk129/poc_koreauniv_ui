@@ -1,0 +1,57 @@
+<div>
+	
+	<div class="info_area">
+		<strong class="name" id="user_name" style="float: left;margin-left: 20px;">똑똑한AI추천 SMTH</strong>
+		<strong class="name" id="user_name">고대빵</strong>
+		<a href="javascript:;" class="btn btn_log" id="logout_btn">로그아웃</a> 
+	</div>
+
+</div>
+
+<script>
+	function setting_gnb(menu, sub) {
+		
+
+		// 로그아웃 버튼 
+		$("a#logout_btn").click(function(event) {
+			var result = confirm("로그아웃 하시겠습니까?");
+			if (result) {
+				showLoading();
+				$.post('logout.do', {}, function(res) {
+					closeLoading();
+					location.href = "./";
+				});
+			}
+		});
+
+		showLoading();
+		$.post('account_session.do', {
+		}, function (res) {
+			closeLoading();
+			var result = res.result;
+			var message = res.message;
+			
+			if (result == "0000") {
+				var data = res.data;
+				
+				// 상단
+				$("strong#user_name").text(data.name);
+
+			} else {
+				setTimeout(function() {
+					alert(message);
+				}, 10);
+			}
+		});
+
+
+		if (undefined != sub && sub != ""){
+			$("#"+sub).addClass("on");
+		}
+		else if (undefined != menu && menu != ""){
+			$("#"+menu).addClass("on");
+			$("#"+menu).prop("title", "현재 선택 됨");
+		}
+
+	}
+</script>

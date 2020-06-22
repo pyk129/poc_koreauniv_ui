@@ -1,0 +1,36 @@
+<div>
+	<div class="left">
+		<a id="btn_prev" href="javascript:history.back()" class="btn_before"><span class="icon_before">이전</span></a>
+	</div>
+	<h1 class="tit" id="title"></h1>
+	<div class="right">
+		<a id="logout_btn" href="javascript:void(0)" class="btn_logout"><span class="icon_logout">로그아웃</span></a>
+	</div>
+</div>
+
+<script>
+	function setting_header(title, btn_prev) {
+		if (btn_prev){
+			$("#btn_prev").show();
+		}
+		else {
+			$("#btn_prev").hide();	
+		}
+
+
+		$("h1#title").text(title);
+
+		// 로그아웃 버튼 
+		$("a#logout_btn").click(function(event) {
+			var result = confirm("로그아웃 하시겠습니까?");
+			if (result) {
+				showLoading();
+				$.post('logout.do', {}, function(res) {
+					closeLoading();
+					location.href = "./";
+				});
+			}
+		});
+
+	}
+</script>

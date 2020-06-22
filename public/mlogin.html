@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>S APP Builder 운영관리시스템</title>
+	<link rel="stylesheet" type="text/css" href="./css/mobile.css">
+	<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="./js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="./js/sha256.js"></script>
+	<script type="text/javascript" src="./js/util.js"></script>
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="./js/ie.js"></script>
+	<![endif]-->
+</head>
+
+<body class="main">
+	<div id="wrap">
+		<!-- container -->
+		<section id="container">
+			<!-- header -->
+			<header id="headerWrap">
+				<div id="header">
+					<h1 class="tit ac"><span class="logo_invest">신한금융투자</span></h1>
+				</div>
+			</header>
+			<!-- // header -->
+			<!-- contentsWrap -->
+			<div id="contentsWrap">
+				<!-- contents -->
+				<div class="contents full2">
+					<div class="box_login">
+						<div class="inner">
+							<h2 class="title">앱설치 로그인</h2>
+							<p class="id"><input id="user_id" type="text" placeholder="ID를 입력하세요." title="ID 입력" /></p>
+							<p class="pw"><input id="password" type="password" placeholder="비밀번호를 입력하세요." title="비밀번호" /></p>
+							<div class="mt20"><a id="login_btn" href="javascript:;" class="btn_login">로그인</a></div>
+							<p id="login_error" class="error" ></p>
+						</div>
+					</div>
+				</div>
+				<!-- // contents -->
+			</div>
+			<!-- // contentsWrap -->
+		</section>
+		<!-- // container -->
+	</div>
+
+
+	<!-- 로딩 -->
+	<div id="loading" class="loading" style="display:none;">
+		<div class="shadow"></div>
+		<img src="./images/loading.gif" class="img" />
+	</div>
+	<!-- 로딩 -->
+
+	<script>
+		function showLoading() {
+			$(".loading").show();
+		}
+
+		function closeLoading() {
+			$(".loading").hide();
+		}
+
+		$(document).ready(function () {
+			var $form = $('#login_form');
+		});
+
+		$('a#login_btn').click(function (event) {
+			login()
+		});
+
+
+		function login() {
+			var user_id = $('input#user_id').val();
+			var password = $('input#password').val();
+			
+
+			if (user_id.length == 0) {
+				$("p#login_error").text('아이디를 입력해주세요');
+				return;
+			}
+
+			if (password.length == 0) {
+				$("p#login_error").text('비밀번호를 입력해주세요.');
+				return;
+			}
+
+			$("p#login_error").text('');
+
+			var sha256_password = sha256(password).toUpperCase();
+
+			showLoading();
+			$.post('login.do', {
+				user_id: user_id,
+				password: sha256_password
+			}, function (res) {
+				closeLoading();
+				var result = res.result;
+				var message = res.message;
+				if (result == "0000") {
+					
+
+					var data = res.data;
+					var login_time = data.login_time;
+					
+					setTimeout(function () {
+						alert('로그인 되었습니다.\n최근접속: ' + formatDate(new Date(login_time), 'yyyy-MM-dd HH:mm:ss'));
+						location.href = './mdownload_project_list.html';
+					}, 10);
+				} else {
+					setTimeout(function () {
+						alert(message);
+					}, 10);
+				}
+			});
+		}
+	</script>
+</body>
+
+</html>

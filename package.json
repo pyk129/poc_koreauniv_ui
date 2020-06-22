@@ -1,0 +1,24 @@
+{
+  "name": "sbuilder-proxy",
+  "version": "1.0.0",
+  "description": "Sbuilder Proxy",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "node index",
+    "debug": "node --nolazy --inspect-brk=9292 index.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.13.1",
+    "express-http-proxy": "^1.6.0",
+    "express-session": "^1.13.0",
+    "helmet": "^3.21.2",
+    "http-proxy-middleware": "^0.20.0",
+    "ipaddr": "0.0.9",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.2.1"
+  }
+}

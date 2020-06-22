@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+<title>SMTH</title>
+<link rel="stylesheet" type="text/css" href="./css/common.css">
+<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="./js/jquery.cookie.js"></script>
+<script type="text/javascript" src="./js/sha256.js"></script>
+<script type="text/javascript" src="./js/util.js"></script>
+<!--[if lt IE 9]>
+	<script type="text/javascript" src="./js/ie.js"></script>
+	<![endif]-->
+	<script>
+		function openPopup(){
+			var popupWidth = 670;
+			var popupHeight = 190
+
+			var popupX = (window.screen.width / 2) - (popupWidth / 2);
+			// 만들 팝업창 width 크기의 1/2 만큼 보정값으로 빼주었음
+
+			var popupY= (window.screen.height / 2) - (popupHeight / 2);
+			
+			window.open('popup.html', '', 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
+
+		}
+
+	</script>
+</head>
+<body class="main">
+	<div id="wrap">
+		<!-- <div class="logo_top"><strong><img src="./images/img_logo_ds.png" alt="신한DS" /></strong></div> -->
+		<div class="box_login">
+			<!-- <h1 class="logo">S.M.T.H</h1> -->
+			<p>
+				<!-- <input type="text" placeholder="아이디 입력" title="아이디 입력" id="user_id" /> -->
+			</p>
+			<p class="mt10">
+				<!-- <input type="password" placeholder="비밀번호" title="비밀번호" id ="password"/> -->
+			</p>
+			<div class="mt20"><a href="javascript:;" onclick="openPopup()" class="btn_login" id="login_btn">START</a>
+			</div>
+					</div>
+		<div class="footer">
+			<!-- <p class="copyright">Copyright ©2019. Shinhan DS Co., Ltd. All Right Reserved.</p> -->
+		</div>
+	</div>
+	
+
+	<!-- 로딩 -->
+	<div id="loading" class="loading" style="display:none;">
+		<div class="shadow"></div>
+		<img src="./images/loading.gif" class="img" />
+	</div>
+	<!-- 로딩 -->
+
+	<script>	
+		function showLoading(){
+  			$(".loading").show();
+		} 
+
+		function closeLoading(){
+  			$(".loading").hide();
+		}
+
+		$(document).ready(function() {
+			var $form = $('#login_form');
+		});
+
+		$('a#login_btn').click(function(event) {
+			login()
+		});
+
+
+		function login() {
+			var user_id = $('input#user_id').val();
+			var password = $('input#password').val();
+			var save_id = $('input#save_id').is(":checked");
+
+			if (user_id.length == 0) {
+				alert('아이디를 입력해주세요.');
+				return;
+			}
+
+			if (password.length == 0) {
+				alert('비밀번호를 입력해주세요.');
+				return;
+			}
+
+			var sha256_password = sha256(password).toUpperCase();
+
+			showLoading();
+			$.post('login.do', {
+				user_id: user_id,
+				password: sha256_password
+			}, function (res) {
+				closeLoading();
+				var result = res.result;
+				var message = res.message;
+				if (result == "0000") {
+					var data = res.data;
+					var login_time = data.login_time;
+					
+					
+					setTimeout(function() {
+						alert('로그인 되었습니다.\n최근접속: ' + formatDate(new Date(login_time), 'yyyy-MM-dd HH:mm:ss'));
+						location.href = './download_app_list.html';
+					}, 10);
+				
+
+					
+				} else {
+					setTimeout(function() {
+						alert(message);
+					}, 10);
+				}
+			});
+		}
+
+
+		
+
+
+	</script>
+</body>
+</html>

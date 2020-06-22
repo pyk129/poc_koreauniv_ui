@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>S APP Builder 운영관리시스템</title>
+	<link rel="stylesheet" type="text/css" href="./css/common.css">
+	<link rel="stylesheet" type="text/css" href="./css/jquery-ui.css">
+	<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="./js/jquery-ui.js"></script>
+	<script type="text/javascript" src="./js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="./js/util.js"></script>
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="./js/ie.js"></script>
+	<![endif]-->
+	<script type="text/javascript">
+		$(function () {
+			$('.datepicker').datepicker({
+				showOn: "button",
+				buttonImage: "./images/calendar.png",
+				buttonImageOnly: true,
+				buttonText: "Select date",
+				dateFormat: "yy-mm-dd"
+			});
+
+		});
+	</script>
+</head>
+
+<body>
+	<div id="wrap">
+		<div id="container">
+			<div id="gnb">
+			</div>
+			<div id="contents">
+				<div class="tit_area cf">
+					<h2>앱 다운로드</h2>
+				</div>
+				<div class="wrap_top cf">
+					<div class="btn_area fr">
+						<span class="txt_label">등록 기간</span>
+						<input id="from" type="text" class="datepicker" title="시작일"> <span class="vm">~</span> <input
+							id="to" type="text" class="datepicker" title="종료일">
+						<input id="keyword" type="text" placeholder="프로젝트명 검색" title="프로젝트명  검색">
+						<a id="search_btn" href="javascript:;" id="search_btn" class="btn blue">검색</a>
+					</div>
+				</div>
+				<table class="tbl">
+					<caption>앱 다운로드 표</caption>
+					<colgroup>
+						<col style="width:38px">
+						<col style="width:38px">
+						<col style="width:auto">
+						<col style="width:15%">
+						<col style="width:12%">
+						<col style="width:15%">
+						<col style="width:12%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">등록구분</th>
+							<th scope="col">등록ID</th>
+							<th scope="col">프로젝트명</th>
+							<th scope="col">빌드구분</th>
+							<th scope="col">앱버전</th>
+							<th scope="col">등록일시</th>
+							<th scope="col">다운로드</th>
+						</tr>
+					</thead>
+					<tbody id="content_list">
+					</tbody>
+				</table>
+				<div class="page">
+					<span class="prev">
+						<a id="first_page" href="javascript:;" class="first on">＜＜</a>
+						<a id="prev_page" href="javascript:;" class="on">＜</a>
+					</span>
+					<span id="page" class="on">1</span> <span class="bar">/</span> <span id="page_count">2</span>
+					<span class="next">
+						<a id="next_page" href="javascript:;" class="on">＞</a>
+						<a id="last_page" href="javascript:;" class="last on">＞＞</a>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 로딩 -->
+	<div id="loading" class="loading" style="display:none;">
+		<div class="shadow"></div>
+		<img src="./images/loading.gif" class="img" />
+	</div>
+	<!-- 로딩 -->
+	<script>
+		function showLoading() {
+			// $(".loading").show();
+		}
+
+		function closeLoading() {
+			$(".loading").hide();
+		}
+
+		var current_page = 1;
+		var last_page = 1;
+		var loaded = false;
+		var keyword_old = null;
+		var from_old = null;
+		var to_old = null;
+
+		$(document).ready(function () {
+			// 메뉴 로드
+			$("#gnb").load("gnb.html", function () {
+				setting_gnb("menu0103");
+			});
+			load(current_page);
+		});
+
+		function load(page, keyword, from, to) {
+			var params = {};
+			if (isNull(page)) {
+				page = 1;
+			}
+			params.page = page;
+			if (!isNull(keyword)) {
+				params.keyword = keyword;
+			}
+			if (!isNull(from)) {
+				params.from = from;
+			}
+			if (!isNull(to)) {
+				params.to = to;
+			}
+			params.count_per_page = 20;
+			
+			//showLoading();
+			$.post('download_list.do', params, function (res) {
+				//closeLoading();
+				var result = res.result;
+				var message = res.message;
+				if (result == "0000") {
+					loaded = true;
+					keyword_old = keyword;
+					from_old = from;
+					to_old = to;
+
+					var data = res.data;
+					var list = data.list;
+
+					var page = $('span#page');
+					page.text(String(data.page));
+					var page_count = $('span#page_count');
+					page_count.text(String(data.page_count));
+					last_page = Number(data.page_count);
+
+					var conetent_list = $('#content_list');
+					conetent_list.empty();
+					list.forEach(function (item, index) {
+						var name_regist_type = item.regist_type == "1" ? "시스템" : "일반";
+
+						conetent_list.append(
+							"<tr>" +
+							"	<td>" + name_regist_type + "</td>" +
+							"	<td>" + zeroPad(Number(item.idx), 10000000) + "</td>" +
+							"	<td>" + item.name_project + "</td>" +
+							"	<td>" + item.name_build_type + "</td>" +
+							"	<td>" + item.version + "</td>" +
+							"	<td>" + formatDate(new Date(item.updated_time), "yyyy-MM-dd HH:mm:ss") + "</td>" +
+							"	<td><a href='javascript:;' id='download_" + item.idx + "_btn' class='btn blue'>다운로드</a></td>" +
+							"</tr>"
+						);
+						$("a#download_" + item.idx + "_btn").click(function (event) {
+							if (item.name_platform == "Android") { // android 
+								location.href = "./download_app_apk.do?idx=" + item.idx + "&regist_type=" + item.regist_type;
+							}
+							else { // ios
+								location.href = "./download_app_ipa.do?idx=" + item.idx + "&regist_type=" + item.regist_type;
+							}
+						});
+					});
+				} else {
+					//setTimeout(function() {
+					alert(message);
+					if (result == "0001") {
+						location.href = "./";
+					} else {
+						if (res.data.href) {
+							location.href = res.data.href;
+						}
+					}
+					//}, 10);
+				}
+			});
+		}
+
+		$('a#search_btn').click(function (event) {
+			current_page = 1;
+			var from = $('input#from').val();
+			if (from.length > 0) {
+				if (!checkDate(from)) {
+					alert("올바른 시작일을 입력하세요.");
+				}
+			}
+			var to = $('input#to').val();
+			if (to.length > 0) {
+				if (!checkDate(from)) {
+					alert("올바른 종료일을 입력하세요.");
+				}
+			}
+			load(current_page, $('input#keyword').val(), from, to);
+		});
+
+		$('a#first_page').click(function (event) {
+			current_page = 1;
+			var from = $('input#from').val();
+			if (from.length > 0) {
+				if (!checkDate(from)) {
+					alert("올바른 시작일을 입력하세요.");
+				}
+			}
+			var to = $('input#to').val();
+			if (to.length > 0) {
+				if (!checkDate(from)) {
+					alert("올바른 종료일을 입력하세요.");
+				}
+			}
+			load(current_page, $('input#keyword').val(), from, to);
+		});
+
+		$('a#prev_page').click(function (event) {
+			if (current_page > 1) {
+				current_page--;
+				var from = $('input#from').val();
+				if (from.length > 0) {
+					if (!checkDate(from)) {
+						alert("올바른 시작일을 입력하세요.");
+					}
+				}
+				var to = $('input#to').val();
+				if (to.length > 0) {
+					if (!checkDate(from)) {
+						alert("올바른 종료일을 입력하세요.");
+					}
+				}
+				load(current_page, $('input#keyword').val(), from, to);
+			}
+		});
+
+		$('a#next_page').click(function (event) {
+			if (current_page < last_page) {
+				current_page++;
+				var from = $('input#from').val();
+				if (from.length > 0) {
+					if (!checkDate(from)) {
+						alert("올바른 시작일을 입력하세요.");
+					}
+				}
+				var to = $('input#to').val();
+				if (to.length > 0) {
+					if (!checkDate(from)) {
+						alert("올바른 종료일을 입력하세요.");
+					}
+				}
+				load(current_page, $('input#keyword').val(), from, to);
+			}
+		});
+
+		$('a#last_page').click(function (event) {
+			current_page = last_page;
+			var from = $('input#from').val();
+			if (from.length > 0) {
+				if (!checkDate(from)) {
+					alert("올바른 시작일을 입력하세요.");
+				}
+			}
+			var to = $('input#to').val();
+			if (to.length > 0) {
+				if (!checkDate(from)) {
+					alert("올바른 종료일을 입력하세요.");
+				}
+			}
+			load(last_page, $('input#keyword').val(), from, to);
+		});
+
+	</script>
+</body>
+
+</html>

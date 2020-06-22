@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>SMTH</title>
+	<link rel="stylesheet" type="text/css" href="./css/common.css">
+	<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="./js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="./js/sha256.js"></script>
+	<script type="text/javascript" src="./js/util.js"></script>
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="./js/ie.js"></script>
+	
+	<![endif]-->
+	<style>
+		div {
+			text-align: center;
+		}
+	</style>
+	<script>
+
+		function closePopup() {
+			opener.document.location.href = "step1.html"
+
+			self.close();
+		}
+
+	</script>
+</head>
+
+<body>
+	<div>
+		<!-- <br><br><h2>고대빵님의 자산현황</h2><br> -->
+
+		<img src="images/img_popup.png" /><br><br>
+		<!-- <div class="mt20"> -->
+			<!-- <a href="javascript:;" onclick="closePopup()" class="btn_login" id="login_btn"><h2></h2></a><br> -->
+		<!-- </div> -->
+		<a id="execute_btn" href="javascript:closePopup();" class="btn bgblue" style="width: 670px;height: 20px;">추천시작</a>
+	<!-- </div> -->
+	</div>
+</body>
+
+</html>

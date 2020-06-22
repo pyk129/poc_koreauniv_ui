@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>SMTH</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<style>
+		.area {
+			position: absolute;
+			background: #fff;
+			border: 1px solid #888;
+			border-radius: 3px;
+			font-size: 12px;
+			top: -5px;
+			left: 15px;
+			padding: 2px;
+		}
+
+		.info {
+			font-size: 12px;
+			padding: 5px;
+		}
+
+		.info .title {
+			font-weight: bold;
+		}
+	</style>
+
+	<script>
+
+		function showLoading() {
+			$(".loading").show();
+		}
+
+		function closeLoading() {
+			$(".loading").hide();
+		}
+
+	</script>
+	<script>
+		var color_sc_ele = '#f3e600';
+		var color_sc_mid = '#0433FF';
+		var color_sc_high = '#96ffff';
+		var color_subway = '#00F900';
+		var color_mart = '#FF9300';
+		var color_edu = '#ffc0cb';
+
+
+		$(document).ready(function () {
+			$('#idlcheck0301').css("color", '#ff0000');
+		});
+
+	</script>
+	<script>
+		function myFunction() {
+			// 
+			$('#idlcheck0301').css("color", '#ff0000');
+			showLoading();
+
+			// var data1 = {};
+			// data1.algo = '1';
+			// data1.select = {};
+			// data1.select = ['1', '0', '0', '1', '0', '1'];
+			// var d = data1;
+
+			var idxAlgo = '1'
+			if ($('input#check0102').is(":checked")) {
+				idxAlgo = '2';
+			}
+
+			checkSel1 = $("input:checkbox[id='check0301']").is(":checked") ? "1" : "0"
+			checkSel2 = $("input:checkbox[id='check0302']").is(":checked") ? "1" : "0"
+			checkSel3 = $("input:checkbox[id='check0303']").is(":checked") ? "1" : "0"
+			checkSel4 = $("input:checkbox[id='check0304']").is(":checked") ? "1" : "0"
+			checkSel5 = $("input:checkbox[id='check0305']").is(":checked") ? "1" : "0"
+			checkSel6 = $("input:checkbox[id='check0306']").is(":checked") ? "1" : "0"
+			checkSel3 = $("input:checkbox[id='check0303']").is(":checked") ? "1" : "0"
+
+			if (checkSel1 == '0' && checkSel2 == '0' && checkSel3 == '0' &&
+				checkSel4 == '0' && checkSel5 == '0' && checkSel6 == '0' &&
+				checkSel3 == '0') {
+				alert('선택된 추천 조건이 없습니다.');
+				return;
+			}
+
+			$.post('http://123.0.0.1:5000/send_py', {
+
+				algo: idxAlgo,
+				select1: checkSel1,
+				select2: checkSel2,
+				select3: checkSel3,
+				select4: checkSel4,
+				select5: checkSel5,
+				select6: checkSel6,
+				select3: checkSel3
+
+			}, function (jqXHR) {
+
+				// alert("success");
+				// jsonData = JSON.parse(jqXHR);
+				// console.log('data : ', jqXHR.data[0]);	
+				// 초기화 
+				$('#tbody_data').empty();
+
+				idx = 0;
+				jqXHR.data.forEach(function (item) {
+					/* 				console.log(item['data']);		 */
+					idx = idx + 1;
+					var circle = new kakao.maps.Circle({
+						center: new kakao.maps.LatLng(item['LAT_WGS'],
+							item['LON_WGS']), // 원의 중심좌표 입니다
+						radius: 100, // 미터 단위의 원의 반지름입니다
+						strokeWeight: 5, // 선의 두께입니다
+						strokeColor: '#FF0000', // 선의 색깔입니다
+						strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+						strokeStyle: 'dashed', // 선의 스타일 입니다
+						fillColor: '#FF0000', // 채우기 색깔입니다
+						fillOpacity: 0.3
+						// 채우기 불투명도 입니다
+					});
+
+					// 지도에 원을 표시합니다
+					circle.setMap(map);
+					/* "+item+" */
+
+					var innerHtml = "";
+
+					innerHtml = "<tr onclick=\"javascript:movePan(" + item['LAT_WGS'] + "," + item['LON_WGS'] + ")\">";
+					innerHtml += "<td>" + item['kaptName'] + "</td>";
+					innerHtml += "<td>" + item['LAT_WGS'] + "</td>";
+					innerHtml += "<td>" + item['LON_WGS'] + "</td>";
+					innerHtml += "<td>" + item['score_p1'] + "</td>";
+					innerHtml += "<td>" + item['score_p2'] + "</td>";
+					innerHtml += "<td>" + item['score'] + "</td>";
+					innerHtml += "</tr>";
+
+					$('#tbody_data').append(innerHtml);
+
+					// 첫번째 인덱스로 이동 
+					if (idx == 1) {
+						movePan(item['LAT_WGS'], item['LON_WGS'])
+						map.setLevel(4);
+					}
+
+				});
+
+				closeLoading();
+
+			}, 'json' /* xml, text, script, html */)
+				.done(function (xhr) {
+					// alert("second success " + xhr.responseText  );
+					closeLoading();
+				})
+				.fail(function (jqXHR) {
+					alert("error" + jqXHR.responseText);
+					closeLoading();
+				})
+				.always(function (jqXHR) {
+					// alert("finished" + jqXHR.responseText  );
+					closeLoading();
+				});
+
+		}
+
+
+	</script>
+</head>
+
+<body>
+	<tr>
+		<th scope="row">지역구선택</th>
+		<td>
+			<span class="input">
+				<input type="radio" id="check1101" name="check1101" checked="checked">
+				<label for="check1101">노원구</label>
+			</span>
+		</td>
+	</tr>
+	<br>
+	<tr>
+		<th scope="row">알고리즘선택</th>
+		<td>
+			<span class="input">
+				<input type="radio" id="check0101" name="check01" checked="checked">
+				<label for="check0101">Cosine similarity</label>
+			</span>
+			<span class="input">
+				<input type="radio" id="check0102" name="check01">
+				<label for="check0102">MatrixFactorization</label>
+			</span>
+		</td>
+	</tr>
+	<br>
+	<tr id="build_type_android_test">
+		<th scope="row">조건선택</th>
+		<td colspan="6">
+			<span class="input">
+				<input type="checkbox" id="check0301" name="check03">
+				<label for="check0301" id="lcheck0301">초등학교</label>
+			</span>
+			<span class="input">
+				<input type="checkbox" id="check0302" name="check03">
+				<label for="check0302">중학교</label>
+			</span>
+			<span class="input">
+				<input type="checkbox" id="check0303" name="check04">
+				<label for="check0303">고등학교</label>
+			</span>
+			<span class="input">
+				<input type="checkbox" id="check0304" name="check05">
+				<label for="check0304">학원</label>
+			</span>
+			<span class="input">
+				<input type="checkbox" id="check0305" name="check06">
+				<label for="check0305">마트</label>
+			</span>
+			<span class="input">
+				<input type="checkbox" id="check0306" name="check06">
+				<label for="check0306">백화점</label>
+			</span>
+			<span class="input">
+				<input type="checkbox" id="check0303" name="check03">
+				<label for="check0303">지하철</label>
+			</span>
+		</td>
+	</tr>
+	<br>
+	<button width="200px" height="50px" onclick="myFunction()">추천</button>
+	<br>
+	<div id="map" style="width: 100%; height: 550px;"></div>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=342816b6300e44d85442a34b4f98eaf0"></script>
+	<script>
+
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+			mapOption = {
+				center: new kakao.maps.LatLng(33.55256300320184, 126.99094648022366), // 지도의 중심좌표
+				level: 9
+				// 지도의 확대 레벨
+			};
+
+		var map = new kakao.maps.Map(mapContainer, mapOption),
+			customOverlay = new kakao.maps.CustomOverlay({}),
+			infowindow = new kakao.maps.InfoWindow({ removable: true });
+
+		// var map = new kakao.maps.Map(mapContainer, customOverlay = new kakao.maps.CustomOverlay({}),
+		// mapOption); // 지도를 생성합니다
+		// var customOverlay = new kakao.maps.CustomOverlay({
+		// 	map: map
+		// });
+
+		// 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
+		// var linePath = [
+		// 	new kakao.maps.LatLng(33.452344169439935, 126.56838163224233),
+		// 	new kakao.maps.LatLng(33.452339313803456, 126.5309308145358),
+		// 	new kakao.maps.LatLng(33.45138063090639, 126.5326886938353)];
+
+		// // 지도에 표시할 선을 생성합니다
+		// var polyline = new kakao.maps.Polyline({
+		// 	path: linePath, // 선을 구성하는 좌표배열 입니다
+		// 	strokeWeight: 5, // 선의 두께 입니다
+		// 	strokeColor: '#FFAE00', // 선의 색깔입니다
+		// 	strokeOpacity: 0.3, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+		// 	strokeStyle: 'solid' // 선의 스타일입니다
+		// });
+
+		// // 지도에 선을 표시합니다
+		// polyline.setMap(map);
+
+		// var sw = new kakao.maps.LatLng(33.448842, 126.530339), // 사각형 영역의 남서쪽 좌표
+		// 	ne = new kakao.maps.LatLng(33.450026, 126.568556); // 사각형 영역의 북동쪽 좌표
+
+		// 사각형을 구성하는 영역정보를 생성합니다
+		// 사각형을 생성할 때 영역정보는 LatLngBounds 객체로 넘겨줘야 합니다
+		// var rectangleBounds = new kakao.maps.LatLngBounds(sw, ne);
+
+		// // 지도에 표시할 사각형을 생성합니다
+		// var rectangle = new kakao.maps.Rectangle({
+		// 	bounds: rectangleBounds, // 그려질 사각형의 영역정보입니다
+		// 	strokeWeight: 4, // 선의 두께입니다
+		// 	strokeColor: '#FF3DE5', // 선의 색깔입니다
+		// 	strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+		// 	strokeStyle: 'shortdashdot', // 선의 스타일입니다
+		// 	fillColor: '#FF8AEF', // 채우기 색깔입니다
+		// 	fillOpacity: 0.8
+		// 	// 채우기 불투명도 입니다
+		// });
+
+		// // 지도에 사각형을 표시합니다
+		// rectangle.setMap(map);
+
+		// 다각형을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 다각형을 표시합니다
+		/* 	var polygonPath = [
+					new kakao.maps.LatLng(33.45133510810506, 126.53159381623066),
+					new kakao.maps.LatLng(33.44955812811862, 126.5313551811832),
+					new kakao.maps.LatLng(33.449986291544086, 126.53263296132184),
+					new kakao.maps.LatLng(33.450682513554554, 126.53321034054342),
+					new kakao.maps.LatLng(33.451346360004206, 126.53235340081413) ];
+
+			// 지도에 표시할 다각형을 생성합니다
+			var polygon = new kakao.maps.Polygon({
+					path : polygonPath, // 그려질 다각형의 좌표 배열입니다
+				strokeWeight : 3, // 선의 두께입니다
+				strokeColor : '#39DE2A', // 선의 색깔입니다
+				strokeOpacity : 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+				strokeStyle : 'longdash', // 선의 스타일입니다
+				fillColor : '#A2FF99', // 채우기 색깔입니다
+				fillOpacity : 0.3
+			// 채우기 불투명도 입니다
+			}); */
+		// 지도에 다각형을 표시합니다
+		/* polygon.setMap(map) */;
+
+		// $.getJSON("data/data_edu.json", function (jsons) {
+		// 	console.log(jsons);
+
+		// 	jsons.forEach(function (item) {
+		// 		console.log(item);	
+		// 		if (item['상세구분'] == '노원구'){
+		// 			// 지도에 표시할 원을 생성합니다
+		// 			var circle = new kakao.maps.Circle({
+		// 				center: new kakao.maps.LatLng(item['LAT_WGS'],
+		// 					item['LON_WGS']), // 원의 중심좌표 입니다 
+		// 				radius: 100, // 미터 단위의 원의 반지름입니다 
+		// 				strokeWeight: 5, // 선의 두께입니다 
+		// 				strokeColor: '#35B8FA', // 선의 색깔입니다
+		// 				strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+		// 				strokeStyle: 'dashed', // 선의 스타일 입니다
+		// 				fillColor: color_edu, // 채우기 색깔입니다
+		// 				fillOpacity: 0.3
+		// 				// 채우기 불투명도 입니다   
+		// 			});
+
+		// 			// 지도에 원을 표시합니다 
+		// 			circle.setMap(map);
+
+		// 		}
+		// 	});
+		// });
+
+
+
+		function displayMarker() {
+			$.getJSON("data/data_deptstore.txt", function (jsons) {
+				jsons.forEach(function (item) {
+					setMarker('images/mk_ds.png', item['LAT_WGS'], item['LON_WGS']);
+				});
+			});
+
+			$.getJSON("data/data_ele_school.txt", function (jsons) {
+				jsons.forEach(function (item) {
+					setMarker('images/mk_ele.png', item['위도'], item['경도']);
+				});
+			});
+
+			$.getJSON("data/data_mid_school.txt", function (jsons) {
+				jsons.forEach(function (item) {
+					setMarker('images/mk_mid.png', item['위도'], item['경도']);
+				});
+			});
+
+			$.getJSON("data/data_high_school.txt", function (jsons) {
+				jsons.forEach(function (item) {
+					setMarker('images/mk_high.png', item['위도'], item['경도']);
+
+				});
+			});
+
+			$.getJSON("data/data_mart.txt", function (jsons) {
+				jsons.forEach(function (item) {
+					setMarker('images/mk_mart.png', item['LAT_WGS'], item['LON_WGS']);
+				});
+
+			});
+
+			$.getJSON("data/data_subway.json", function (jsons) {
+				jsons.forEach(function (item) {
+					setMarker('images/mk_subway.png', item['LAT_WGS'], item['LON_WGS']);
+				});
+
+				// 지도에 표시할 원을 생성합니다
+				// add_subway = [['33.623885', '123.061881'],['33.633258', '123.058814'],['33.644394','123.051385']]
+				// add_subway.forEach(function (item) {
+				// 	setMarker('images/mk_subway.png',item[0], item[1]);
+				// });
+			});
+		}
+
+		function movePan(lat, lon) {
+			console.log('lat :' + lat);
+			console.log('lon : ' + lon);
+
+			// 이동할 위도 경도 위치를 생성합니다
+			var moveLatLon = new kakao.maps.LatLng(lat, lon);
+
+			// 지도 중심을 부드럽게 이동시킵니다
+			// 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+			map.panTo(moveLatLon);
+
+		};
+
+		function setMarker(imgsrc, lat, lon) {
+			var imageSrc = imgsrc, // 마커이미지의 주소입니다    
+				imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+				imageOption = { offset: new kakao.maps.Point(23, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+			// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+				markerPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치입니다
+
+			// 마커를 생성합니다
+			var marker = new kakao.maps.Marker({
+				position: markerPosition,
+				image: markerImage // 마커이미지 설정 
+			});
+
+			// 마커가 지도 위에 표시되도록 설정합니다
+			marker.setMap(map);
+		};
+
+		// 결과 json 파싱
+		// $.getJSON("output.txt", function (jsons) {
+
+		// 	idx = 0;
+		// 	jsons.forEach(function (item) {
+		// 		/* 				console.log(item['data']);		 */
+		// 		idx = idx + 1;
+		// 		var circle = new kakao.maps.Circle({
+		// 			center: new kakao.maps.LatLng(item['LAT_WGS'],
+		// 				item['LON_WGS']), // 원의 중심좌표 입니다
+		// 			radius: 100, // 미터 단위의 원의 반지름입니다
+		// 			strokeWeight: 5, // 선의 두께입니다
+		// 			strokeColor: '#FF0000', // 선의 색깔입니다
+		// 			strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+		// 			strokeStyle: 'dashed', // 선의 스타일 입니다
+		// 			fillColor: '#FF0000', // 채우기 색깔입니다
+		// 			fillOpacity: 0.3
+		// 			// 채우기 불투명도 입니다
+		// 		});
+
+		// 		// 지도에 원을 표시합니다
+		// 		circle.setMap(map);
+		// 		/* "+item+" */
+
+		// 		var innerHtml = "";
+
+		// 		innerHtml = "<tr onclick=\"javascript:movePan(" + item['LAT_WGS'] + "," + item['LON_WGS'] + ")\">";
+		// 		innerHtml += "<td>" + item['kaptName'] + "</td>";
+		// 		innerHtml += "<td>" + item['LAT_WGS'] + "</td>";
+		// 		innerHtml += "<td>" + item['LON_WGS'] + "</td>";
+		// 		innerHtml += "</tr>";
+
+		// 		$('#tbody_data').append(innerHtml);
+
+		// 	});
+		// });
+
+		/* 	var jsonPath2 = "dataEdu.txt";
+	
+			$.getJSON(jsonPath2, function(jsons) {
+					//console.log(jsons);
+					jsons['마트주소'].forEach(function (item) {
+						console.log(item);
+						var circle = new kakao.maps.Circle({
+							center: new kakao.maps.LatLng(item['LAT_WGS'],
+								item['LON_WGS']), // 원의 중심좌표 입니다 
+							radius: 100, // 미터 단위의 원의 반지름입니다 
+							strokeWeight: 5, // 선의 두께입니다 
+							strokeColor: '#00FF00', // 선의 색깔입니다
+							strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+							strokeStyle: 'dashed', // 선의 스타일 입니다
+							fillColor: '#00FF00', // 채우기 색깔입니다
+							fillOpacity: 0.3
+							// 채우기 불투명도 입니다   
+						});
+	
+						// 지도에 원을 표시합니다 
+						circle.setMap(map);
+	
+					}); */
+
+		/* 			jsons['고시원'].forEach(function(item) {
+		 var circle = new kakao.maps.Circle({
+			center : new kakao.maps.LatLng(item['LAT_WGS'], item['LON_WGS']), // 원의 중심좌표 입니다
+		 radius : 300	, // 미터 단위의 원의 반지름입니다
+		 strokeWeight : 5, // 선의 두께입니다
+		 strokeColor : '#35B8FA', // 선의 색깔입니다
+		 strokeOpacity : 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+		 strokeStyle : 'dashed', // 선의 스타일 입니다
+		 fillColor : '#FFF100', // 채우기 색깔입니다
+		 fillOpacity : 0.3
+		 // 채우기 불투명도 입니다
+		 });
+
+		 // 지도에 원을 표시합니다
+		 circle.setMap(map);
+		 });
+
+		 jsons['마트주소'].forEach(function(item) {
+		 var circle = new kakao.maps.Circle({
+			center : new kakao.maps.LatLng(item['LAT_WGS'], item['LON_WGS']), // 원의 중심좌표 입니다
+		 radius : 50, // 미터 단위의 원의 반지름입니다
+		 strokeWeight : 5, // 선의 두께입니다
+		 strokeColor : '#35B8FA', // 선의 색깔입니다
+		 strokeOpacity : 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+		 strokeStyle : 'dashed', // 선의 스타일 입니다
+		 fillColor : '#FFF300', // 채우기 색깔입니다
+		 fillOpacity : 0.3
+		 // 채우기 불투명도 입니다
+		 });
+
+		 // 지도에 원을 표시합니다
+		 circle.setMap(map);
+		 });
+
+		//jsons['보습']
+		//jsons['어학원유학원']
+		//jsons['예체능']
+		//jsons['입시수능']
+	});
+		 */
+		// 지도 확대 축소 추가
+		var zoomControl = new kakao.maps.ZoomControl();
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+		function clickTrEvent(trObj) {
+			alert(trObj.id);
+		}
+
+		//행정구역 구분
+		$.getJSON("data/geojson_seoul.json", function (geojson) {
+
+			var data = geojson.features;
+			var coordinates = [];    //좌표 저장할 배열
+			var name = '';            //행정 구 이름
+
+			$.each(data, function (index, val) {
+
+				coordinates = val.geometry.coordinates;
+				name = val.properties.SIG_KOR_NM;
+
+				displayArea(coordinates, name);
+
+			})
+		});
+
+		var polygons = [];                //function 안 쪽에 지역변수로 넣으니깐 폴리곤 하나 생성할 때마다 배열이 비어서 클릭했을 때 전체를 못 없애줌.  그래서 전역변수로 만듦.
+
+		//행정구역 폴리곤
+		function displayArea(coordinates, name) {
+
+			var path = [];            //폴리곤 그려줄 path
+			var points = [];        //중심좌표 구하기 위한 지역구 좌표들
+			console.log(name);
+
+			$.each(coordinates[0], function (index, coordinate) {        //console.log(coordinates)를 확인해보면 보면 [0]번째에 배열이 주로 저장이 됨.  그래서 [0]번째 배열에서 꺼내줌.
+
+				$.each(coordinate, function (index, coordinate2) {
+					// console.log(coordinate2);
+					var point = new Object();
+					point.x = coordinate2[1];
+					point.y = coordinate2[0];
+					points.push(point);
+					path.push(new kakao.maps.LatLng(coordinate2[1], coordinate2[0]));
+
+				});
+
+			})
+
+			// 다각형을 생성합니다 
+			var polygon = new kakao.maps.Polygon({
+				map: map, // 다각형을 표시할 지도 객체
+				path: path,
+				strokeWeight: 2,
+				strokeColor: '#004c80',
+				strokeOpacity: 0.8,
+				fillColor: '#fff',
+				fillOpacity: 0.3
+			});
+
+			polygons.push(polygon);            //폴리곤 제거하기 위한 배열
+
+			// 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다 
+			// 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
+			kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
+				if (name == '노원구') {
+					polygon.setOptions({
+						fillColor: '#09f'
+					});
+
+				}
+				customOverlay.setContent('<div class="area">' + name + '</div>');
+				customOverlay.setPosition(mouseEvent.latLng);
+				customOverlay.setMap(map);
+			});
+
+			// 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다 
+			kakao.maps.event.addListener(polygon, 'mousemove', function (mouseEvent) {
+				customOverlay.setPosition(mouseEvent.latLng);
+			});
+
+			// 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
+			// 커스텀 오버레이를 지도에서 제거합니다 
+			kakao.maps.event.addListener(polygon, 'mouseout', function () {
+				if (name == '노원구') {
+					polygon.setOptions({
+						fillColor: '#fff'
+					});
+					customOverlay.setMap(null);
+				}
+			});
+
+			// 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 해당 지역 확대을 확대합니다.
+			kakao.maps.event.addListener(polygon, 'click', function () {
+				if (name == '노원구') {
+					// 현재 지도 레벨에서 2레벨 확대한 레벨
+					var level = map.getLevel() - 4;
+
+					// 지도를 클릭된 폴리곤의 중앙 위치를 기준으로 확대합니다
+					map.setLevel(level, {
+						anchor: centroid(points), animate: {
+							duration: 350            //확대 애니메이션 시간
+						}
+					});
+
+					displayMarker();
+
+					deletePolygon(polygons);                    //폴리곤 제거      
+				}
+			});
+		}
+
+		//centroid 알고리즘 (폴리곤 중심좌표 구하기 위함)
+		function centroid(points) {
+
+			var i, j, len, p1, p2, f, area, x, y;
+
+			area = x = y = 0;
+
+			for (i = 0, len = points.length, j = len - 1; i < len; j = i++) {
+				p1 = points[i];
+				p2 = points[j];
+
+				f = p1.y * p2.x - p2.y * p1.x;
+				x += (p1.x + p2.x) * f;
+				y += (p1.y + p2.y) * f;
+				area += f * 3;
+			}
+			return new kakao.maps.LatLng(x / area, y / area);
+		}
+
+		//지도 위 표시되고 있는 폴리곤 제거
+		function deletePolygon(polygons) {
+			for (var i = 0; i < polygons.length; i++) {
+				polygons[i].setMap(null);
+			}
+			polygons = [];
+		}
+
+		// 지도가 이동, 확대, 축소로 인해 중심좌표가 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+		kakao.maps.event.addListener(map, 'center_changed', function () {
+
+			// 지도의  레벨을 얻어옵니다
+			var level = map.getLevel();
+
+			// 지도의 중심좌표를 얻어옵니다 
+			var latlng = map.getCenter();
+
+			var message = '<p>지도 레벨은 ' + level + ' 이고</p>';
+			message += '<p>중심 좌표는 위도 ' + latlng.getLat() + ', 경도 ' + latlng.getLng() + '입니다</p>';
+
+			var resultDiv = document.getElementById('result');
+			resultDiv.innerHTML = message;
+
+		});
+		// 현재 지도 레벨에서 2레벨 확대한 레벨
+		var level = map.getLevel() - 2;
+
+		// 지도를 클릭된 폴리곤의 중앙 위치를 기준으로 확대합니다
+		map.setLevel(level, {
+			anchor: centroid(points), animate: {
+				duration: 350            //확대 애니메이션 시간
+			}
+		});
+
+		deletePolygon(polygons);
+
+	</script>
+	<p id="result"></p>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>아파트명</th>
+				<th>위도</th>
+				<th>경도</th>
+				<th>1차추천점수</th>
+				<th>2차추천점수</th>
+				<th>최종점수</th>
+			</tr>
+		</thead>
+		<tbody id='tbody_data'>
+		</tbody>
+	</table>
+
+	<!-- 추천 기준 : 마트, 지하철
+		<br>
+		<br> 파란색 : 학교
+		<br>
+		<br> 노란색 : 마트
+		<br>
+		<br> 빨간색 : 추천 받은 아파트
+		<br>
+		<br> 연두색 : 마트
+		<br> -->
+</body>
+
+</html>
