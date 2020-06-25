@@ -10,21 +10,127 @@
 	<script type="text/javascript" src="./js/jquery.cookie.js"></script>
 	<script type="text/javascript" src="./js/sha256.js"></script>
 	<script type="text/javascript" src="./js/util.js"></script>
+	<!--   Core JS Files   -->
+	<!-- CSS Files -->
+	<link href="./assets/css/material-kit.css?v=2.0.7" rel="stylesheet" />
+
+	<script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
+	<script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
+	<script src="./assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+	<script src="./assets/js/plugins/moment.min.js"></script>
+	<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+	<script src="./assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+	<script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+	<!--  Google Maps Plugin    -->
+	<!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+	<script src="./assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
 	<style>
-		.kakaowrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
-		.kakaowrap * {padding: 0;margin: 0;}
-		.kakaowrap .kakaoinfo {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
-		.kakaowrap .kakaoinfo:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-		.kakaoinfo .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
-		.kakaoinfo .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-		.kakaoinfo .close:hover {cursor: pointer;}
-		.kakaoinfo .body {position: relative;overflow: hidden;}
-		.kakaoinfo .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
-		.desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-		.desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
-		.kakaoinfo .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
-		.kakaoinfo:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-		.kakaoinfo .link {color: #5085BB;}
+		.kakaowrap {
+			position: absolute;
+			left: 0;
+			bottom: 40px;
+			width: 288px;
+			height: 132px;
+			margin-left: -144px;
+			text-align: left;
+			overflow: hidden;
+			font-size: 12px;
+			font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+			line-height: 1.5;
+		}
+
+		.kakaowrap * {
+			padding: 0;
+			margin: 0;
+		}
+
+		.kakaowrap .kakaoinfo {
+			width: 286px;
+			height: 120px;
+			border-radius: 5px;
+			border-bottom: 2px solid #ccc;
+			border-right: 1px solid #ccc;
+			overflow: hidden;
+			background: #fff;
+		}
+
+		.kakaowrap .kakaoinfo:nth-child(1) {
+			border: 0;
+			box-shadow: 0px 1px 2px #888;
+		}
+
+		.kakaoinfo .title {
+			padding: 5px 0 0 10px;
+			height: 30px;
+			background: #eee;
+			border-bottom: 1px solid #ddd;
+			font-size: 18px;
+			font-weight: bold;
+		}
+
+		.kakaoinfo .close {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			color: #888;
+			width: 17px;
+			height: 17px;
+			background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+		}
+
+		.kakaoinfo .close:hover {
+			cursor: pointer;
+		}
+
+		.kakaoinfo .body {
+			position: relative;
+			overflow: hidden;
+		}
+
+		.kakaoinfo .desc {
+			position: relative;
+			margin: 13px 0 0 90px;
+			height: 75px;
+		}
+
+		.desc .ellipsis {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.desc .jibun {
+			font-size: 11px;
+			color: #888;
+			margin-top: -2px;
+		}
+
+		.kakaoinfo .img {
+			position: absolute;
+			top: 6px;
+			left: 5px;
+			width: 73px;
+			height: 71px;
+			border: 1px solid #ddd;
+			color: #888;
+			overflow: hidden;
+		}
+
+		.kakaoinfo:after {
+			content: '';
+			position: absolute;
+			margin-left: -12px;
+			left: 50%;
+			bottom: 0;
+			width: 22px;
+			height: 12px;
+			background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+		}
+
+		.kakaoinfo .link {
+			color: #5085BB;
+		}
 	</style>
 	<style>
 		.grid_map {
@@ -78,7 +184,7 @@
 				results = regex.exec(location.search);
 			return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 		}
-		
+
 		var optSecond = 0;
 		var sel1 = 1;
 		var sel2 = 0;
@@ -94,7 +200,7 @@
 			$("#gnb").load("gnb.html", function () {
 				// setting_gnb("menu0102");
 			});
-			
+
 			optSecond = getParameterByName('reco2nd');
 
 			sel1 = getParameterByName('sel1');
@@ -113,7 +219,7 @@
 		});
 
 		function checkVisibleTableView(sta) {
-		
+
 			var tbl = $('#tbl_dongsan');
 
 			if (parseInt(sta) == status_sel_gu) {
@@ -152,27 +258,27 @@
 					"<tbody>" +
 
 					"<tr>	" +
-					"<td ><input type=\"checkbox\" id=\"chk1 value=1 onclick=\"checkSelApt(this)\";/></td>"+
+					"<td ><input type=\"checkbox\" id=\"chk1 value=1 onclick=\"checkSelApt(this)\";/></td>" +
 					"<td>중계탑</td>" +
 					"<td>협의보수 0.3% </td>" +
 					"<td>010-0000-0000</td>		" +
 					"</tr>" +
 					"<tr>	" +
-					"<td><input type=\"checkbox\" id=\"chk1 value=1 onclick=\"checkSelApt(this)\";/></td>"+
+					"<td><input type=\"checkbox\" id=\"chk1 value=1 onclick=\"checkSelApt(this)\";/></td>" +
 					"<td>현대 복덕방</td>" +
 					"<td>협의보수 0.4% </td>" +
 					"<td>010-0000-0000</td>		" +
 					"</tr>" +
 
 					"<tr>	" +
-					"<td><input type=\"checkbox\" id=\"chk1 value=1 onclick=\"checkSelApt(this)\";/></td>"+
+					"<td><input type=\"checkbox\" id=\"chk1 value=1 onclick=\"checkSelApt(this)\";/></td>" +
 					"<td>상계푸른집</td>" +
 					"<td>협의보수 0.35% </td>" +
 					"<td>010-0000-0000</td>	" +
 					"</tr>" +
 
 					"<tr>" +
-					"<td><input type=\"checkbox\" id=\"chk1 value=1 onclick=\"checkSelApt(this)\";/></td>"+
+					"<td><input type=\"checkbox\" id=\"chk1 value=1 onclick=\"checkSelApt(this)\";/></td>" +
 					"<td>상계덩방</td>" +
 					"<td>협의보수 0.34% </td>" +
 					"<td>010-0000-0000</td>	" +
@@ -246,7 +352,7 @@
 			$(".loading").hide();
 		}
 
-		function checkSelApt(chkboxid){
+		function checkSelApt(chkboxid) {
 			alert('111');
 		}
 	</script>
@@ -324,7 +430,7 @@
 
 				algo: '1',
 				gu: guName,
-				optSecond : optSecond,
+				optSecond: optSecond,
 				select1: sel1,
 				select2: sel2,
 				select3: sel3,
@@ -344,24 +450,9 @@
 
 				idx = 0;
 				jqXHR.data.forEach(function (item) {
-					/* 				console.log(item['data']);		 */
-					idx = idx + 1;
-					// var circle = new kakao.maps.Circle({
-					// 	center: new kakao.maps.LatLng(item['LAT_WGS'],
-					// 		item['LON_WGS']), // 원의 중심좌표 입니다
-					// 	radius: 100, // 미터 단위의 원의 반지름입니다
-					// 	strokeWeight: 5, // 선의 두께입니다
-					// 	strokeColor: '#FF0000', // 선의 색깔입니다
-					// 	strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-					// 	strokeStyle: 'dashed', // 선의 스타일 입니다
-					// 	fillColor: '#FF0000', // 채우기 색깔입니다
-					// 	fillOpacity: 0.3
-					// 	// 채우기 불투명도 입니다
-					// });
 
-					// // 지도에 원을 표시합니다
-					// circle.setMap(map);
-					// 마커를 생성합니다
+					idx = idx + 1;
+
 					var markerPosition = new kakao.maps.LatLng(item['LAT_WGS'], item['LON_WGS']);
 					var marker = new kakao.maps.Marker({
 						position: markerPosition
@@ -370,22 +461,22 @@
 					// var commentList = '';
 					// console.log(item['comment'].length);
 					// item['comment'].forEach(function (comment) {
-						// console.log(comment);
-						
+					// console.log(comment);
+
 					// });
 
 					// for(var i=0; i<item['comment'].length; i++) {
-						// console.log(item['comment'][i]);
-						// commentList += "<div class=\"ellipsis\">"+item['comment'][i]+"</div>";
+					// console.log(item['comment'][i]);
+					// commentList += "<div class=\"ellipsis\">"+item['comment'][i]+"</div>";
 					// }
 
 					// for(var i in item['comment']) {
 					// 	// console.log(d);
-						
+
 					// }
 					// 마커가 지도 위에 표시되도록 설정합니다
 					marker.setMap(map);
-					
+
 					// console.log(commentList);
 
 					// // 커스텀 오버레이에 표시할 컨텐츠 입니다
@@ -422,23 +513,106 @@
 					// }
 
 					// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
-					var iwContent = '<div style="padding:5px;">'+item['kaptName']+'</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+					var iwContent = '<div style="padding:5px;">' + item['kaptName'] + '</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 						iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 
 					// // 인포윈도우를 생성합니다
 					var infowindow = new kakao.maps.InfoWindow({
-						content : iwContent,
-						removable : iwRemoveable
+						content: iwContent,
+						removable: iwRemoveable
 					});
 
-					// // 마커에 클릭이벤트를 등록합니다
-					// kakao.maps.event.addListener(marker, 'click', function() {
-					// 	// 마커 위에 인포윈도우를 표시합니다
-					// 	infowindow.open(map, marker);  
-					// });
+					// 마커에 클릭이벤트를 등록합니다
+					kakao.maps.event.addListener(marker, 'click', function () {
+						// 팝업 띄운다! 						
+						// 마커 위에 인포윈도우를 표시합니다
+						// infowindow.open(map, marker);
+						// LAT_WGS: "37.665831"
+						// LON_WGS: "127.055821"
+						// bjdCode: "1135010500"
+						// codeAptNm: "아파트"
+						// codeHeatNm: "지역난방"
+						// codeMgrNm: "위탁관리"
+						// codeSaleNm: "분양"
+						// comment: (5) [{…}, {…}, {…}, {…}, {…}]
+						// doroJuso: "서울특별시 노원구 동일로227길 25"
+						// hoCnt: "1944"
+						// kaptAcompany: "대한주택공사"
+						// kaptBcompany: "대한주택공사"
+						// kaptCode: "A13982301"
+						// kaptDongCnt: "16"
+						// kaptFax: "02-6224-3335"
+						// kaptMarea: "157738.26"
+						// kaptMparea_60: "1272"
+						// kaptMparea_85: "672"
+						// kaptMparea_135: "0"
+						// kaptMparea_136: "0"
+						// kaptName: "상계주공11단지"
+						// kaptTarea: "157742.59"
+						// kaptTel: "029353334"
+						// kaptUsedate: "19880907"
+						// kaptdaCnt: "1944"
+						// privArea: "113613.96"
+						// score: 100
+						// score_p1: "100"
+						// score_p2: 0
+						// score_p3: 0
+
+						// 	0:
+						// content: "노원구에서 무주택인 흙수저 부동산 초보 서민입니다↵나이도 30대 중반이고 결혼도 하고 5세아기도 있어서 실거주위주 집을 매매해보려고 합니다 (실거주7 : 투자3)↵실거주하다가 오르면 좋고 안오르면 말고 정도의 생각입니다↵상계푸르지오, 인덕아이파크 다 떨어졌어요↵상계8단지 넣고 싶으나 분양가가 워낙 비쌀거 같고 대추도 40%만 되니 엄두가 안나네요↵위치는 마들,노원,중계,하계에서 자리를 잡고 싶습니다↵매매는 3~4억미만으로 생각하고 싶네요↵학군 주차 편의시설등 고려해서 아파트 추천 부탁드립니다↵정책도 나왔고 시세가 약간하락되거나 보합될거 같은데 전세 만기전에 알아보고 매매하는데 도움받고자 합니다↵이거 물어볼려고 50개의 덧글을 썻어요↵ 노원구 고수님들 친절하게 알려주시면 좋겠네요↵덧붙여 추천아파트에 대한 장단점도 알려주시면 더 좋겠네요↵감사합니다↵ "
+						// label: "1"
+						// text_comment: "노원역 주변 24평정도면 4억 미만이시면 상계주공 1단지 뒷동추천요 앞동보다 저렴 2단지 뒷동추천[공통점 지분 많고 중계역 노원역 이용편리]↵↵아니면 마들역에있는 상계주공11단지↵↵3.6.7.단지는 나머지 단지들보다 올라잇는 상태라 패스↵↵재건축할때까지 혹은 바로전까지 사실꺼면 14단지도 좋아요 지분1등 마들 과 수락산 중간에 입지라 그게 약점↵↵아차 9단지도 투자용으론 좋은데 지분이 적음 실거주에 편의시설 편한곳 찿으신다니 4억 미만이면↵↵1단지,2단지 뒷동이 제일 좋은 선택이신듯"
+						// title: "질문]노원구 실거주위주(7:3정도) 아파트는 어디가 좋을까요??"
+						
+						console.log(item);  
+						var clickItem = item;
+	
+						var table = "<thead>"+
+							"<tr>"+
+								"<th>내용</th>"+
+								"<th>분류</th>"+
+							"</tr>"+
+							"</thead>"+
+							"<tbody>";
+
+						for (var i in item['comment']) {
+							var it = item['comment'][i];
+							if(it['text_comment'] != undefined){
+								table += "<tr>";
+
+								table += "<td>";
+								table += it['text_comment'];
+								table += "</td>";
+
+								table += "<td>";
+								table += it['label'];
+								table += "</td>";
+
+								table += "</tr>";
+							}
+						}
+
+						table += "</tbody>";
+
+						$("#modal_table").html(table);
+						$("#modal_title").html(item['kaptName'])
+						$("#aptmodal").modal("show");
+						
+						// <table class="table">
+						// <thead>
+						// 	<tr>
+						// 		<th>부동산명</th>
+						// 		<th>협의보수</th>
+						// 		<th>전화번호</th>
+						// 	</tr>
+						// </thead>
+						// <tbody>
+						// 	<tr>
+
+					});
 
 					// 마커 위에 인포윈도우를 표시합니다
-					infowindow.open(map, marker);  
+					infowindow.open(map, marker);
 
 					var innerHtml = "";
 
@@ -450,9 +624,9 @@
 					// innerHtml += "<td>" + item['score_p1'] + "</td>";
 					// innerHtml += "<td>" + item['score_p2'] + "</td>";
 					// simScore = (parseFloat(item['score']) / 150) * 100;
-					if (item['score_sim'] != undefined){
+					if (item['score_sim'] != undefined) {
 						innerHtml += "<td>" + item['score_sim'] + "</td>";
-					} 
+					}
 					innerHtml += "</tr>";
 
 					$('#content_list').append(innerHtml);
@@ -533,7 +707,7 @@
 					infowindow = new kakao.maps.InfoWindow({ removable: true });
 
 
-				function displayMarker(path) {
+				function displayMarker(name, path) {
 
 					// path.forEach(function (itemPath) {
 					// 	console.log(itemPath.getLat() + ', ' + itemPath.getLng());
@@ -544,99 +718,101 @@
 					// 	var std_lat_wgs_limit_max = parseFloat(itemPath['LAT_WGS']) + (0.01 * itemLimitKm);
 					// 	var std_lon_wgs_limit_max = parseFloat(itemPath['LON_WGS']) + (0.01 * itemLimitKm);
 
-						// 병원
-						$.getJSON("datas/data_hosp", function (jsons) {
-							jsons.forEach(function (item) {
-								// var lat = item['LAT_WGS'];
-								// var lon = item['LON_WGS'];
-								// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
-									setMarker('images/mk_hosp.png', item['LAT_WGS'], item['LON_WGS']);
-								// }
-							});
+					// 병원
+					$.getJSON("datas/data_hosp", function (jsons) {
+						jsons.forEach(function (item) {
+							// var lat = item['LAT_WGS'];
+							// var lon = item['LON_WGS'];
+							// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+							setMarker('images/mk_hosp.png', item['LAT_WGS'], item['LON_WGS']);
+							// }
+						});
+					});
+
+					// 공원
+					$.getJSON("datas/data_park", function (jsons) {
+						jsons.forEach(function (item) {
+							// var lat = item['LAT_WGS'];
+							// var lon = item['LON_WGS'];
+							// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+							setMarker('images/mk_park.png', item['LAT_WGS'], item['LON_WGS']);
+							// }
+						});
+					});
+
+					$.getJSON("datas/data_deptment", function (jsons) {
+						jsons.forEach(function (item) {
+							// var lat = item['LAT_WGS'];
+							// var lon = item['LON_WGS'];
+							// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+							setMarker('images/mk_ds.png', item['LAT_WGS'], item['LON_WGS']);
+							// }
+						});
+					});
+
+					$.getJSON("datas/data_ele", function (jsons) {
+						jsons.forEach(function (item) {
+							// var lat = item['위도'];
+							// var lon = item['경도'];
+							// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+							setMarker('images/mk_ele.png', item['위도'], item['경도']);
+							// }
+						});
+					});
+
+					$.getJSON("datas/data_mid", function (jsons) {
+						jsons.forEach(function (item) {
+							// var lat = item['위도'];
+							// var lon = item['경도'];
+							// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+							setMarker('images/mk_mid.png', item['위도'], item['경도']);
+							// }
+						});
+					});
+
+					$.getJSON("datas/data_high", function (jsons) {
+						jsons.forEach(function (item) {
+							// var lat = item['위도'];
+							// var lon = item['경도'];
+							// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+							setMarker('images/mk_high.png', item['위도'], item['경도']);
+							// }
+						});
+					});
+
+					$.getJSON("datas/data_mart", function (jsons) {
+						jsons.forEach(function (item) {
+							// var lat = item['LAT_WGS'];
+							// var lon = item['LON_WGS'];
+							// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+							setMarker('images/mk_mart.png', item['LAT_WGS'], item['LON_WGS']);
+							// }
 						});
 
-						// 공원
-						$.getJSON("datas/data_park", function (jsons) {
-							jsons.forEach(function (item) {
-								// var lat = item['LAT_WGS'];
-								// var lon = item['LON_WGS'];
-								// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
-									setMarker('images/mk_park.png', item['LAT_WGS'], item['LON_WGS']);
-								// }
-							});
-						});
+					});
 
-						$.getJSON("datas/data_deptment", function (jsons) {
-							jsons.forEach(function (item) {
-								// var lat = item['LAT_WGS'];
-								// var lon = item['LON_WGS'];
-								// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
-									setMarker('images/mk_ds.png', item['LAT_WGS'], item['LON_WGS']);
-								// }
-							});
+					$.getJSON("datas/data_subway", function (jsons) {
+						jsons.forEach(function (item) {
+							// var lat = item['LAT_WGS'];
+							// var lon = item['LON_WGS'];
+							// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+							setMarker('images/mk_subway.png', item['LAT_WGS'], item['LON_WGS']);
+							// }
 						});
+					});
 
-						$.getJSON("datas/data_ele", function (jsons) {
-							jsons.forEach(function (item) {
-								// var lat = item['위도'];
-								// var lon = item['경도'];
-								// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
-									setMarker('images/mk_ele.png', item['위도'], item['경도']);
-								// }
-							});
+					// var pathedu = "datas/data학원_"+name+".json";
+
+					$.getJSON('datas/data_edu', function (jsons) {
+						jsons.forEach(function (item) {
+							// var lat = item['LAT_WGS'];
+							// var lon = item['LON_WGS'];
+							// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+							setMarker('images/mk_edu.png', item['LAT_WGS'], item['LON_WGS']);
+							// }
 						});
-
-						$.getJSON("datas/data_mid", function (jsons) {
-							jsons.forEach(function (item) {
-								// var lat = item['위도'];
-								// var lon = item['경도'];
-								// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
-									setMarker('images/mk_mid.png', item['위도'], item['경도']);
-								// }
-							});
-						});
-
-						$.getJSON("datas/data_high", function (jsons) {
-							jsons.forEach(function (item) {
-								// var lat = item['위도'];
-								// var lon = item['경도'];
-								// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
-									setMarker('images/mk_high.png', item['위도'], item['경도']);
-								// }
-							});
-						});
-
-						$.getJSON("datas/data_mart", function (jsons) {
-							jsons.forEach(function (item) {
-								// var lat = item['LAT_WGS'];
-								// var lon = item['LON_WGS'];
-								// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
-									setMarker('images/mk_mart.png', item['LAT_WGS'], item['LON_WGS']);
-								// }
-							});
-
-						});
-
-						$.getJSON("datas/data_subway", function (jsons) {
-							jsons.forEach(function (item) {
-								// var lat = item['LAT_WGS'];
-								// var lon = item['LON_WGS'];
-								// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
-									setMarker('images/mk_subway.png', item['LAT_WGS'], item['LON_WGS']);
-								// }
-							});
-						});
-
-						$.getJSON("datas/data_edu", function (jsons) {
-							jsons.forEach(function (item) {
-								// var lat = item['LAT_WGS'];
-								// var lon = item['LON_WGS'];
-								// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
-									setMarker('images/mk_edu.png', item['LAT_WGS'], item['LON_WGS']);
-								// }
-							});
-						});
-				// 	});
+					});
+					// 	});
 				}
 
 				function movePan(lat, lon) {
@@ -767,35 +943,35 @@
 					// 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 해당 지역 확대을 확대합니다.
 					kakao.maps.event.addListener(polygon, 'click', function () {
 						// if (name == '노원구') {
-							// 현재 지도 레벨에서 2레벨 확대한 레벨
-							var level = map.getLevel() - 4;
+						// 현재 지도 레벨에서 2레벨 확대한 레벨
+						var level = map.getLevel() - 4;
 
-							// 지도를 클릭된 폴리곤의 중앙 위치를 기준으로 확대합니다
-							map.setLevel(level, {
-								anchor: centroid(points), animate: {
-									duration: 350            //확대 애니메이션 시간
-								}
-							});
-
-							status = parseInt(status) + 1;
-
-							if (status > 3) {
-								status = 3;
-								// next로 이동
-								// location.href = './step4.html';
-								return;
+						// 지도를 클릭된 폴리곤의 중앙 위치를 기준으로 확대합니다
+						map.setLevel(level, {
+							anchor: centroid(points), animate: {
+								duration: 350            //확대 애니메이션 시간
 							}
+						});
 
-							// alert(status);
-							checkVisibleTableView(status);
-							$('#title').html(name + ' 추천 매물');
-							$('#title2').html('관심있는 아파트를 선택해주세요');
+						status = parseInt(status) + 1;
 
-							myFunction(name);
+						if (status > 3) {
+							status = 3;
+							// next로 이동
+							// location.href = './step4.html';
+							return;
+						}
 
-							displayMarker(path);
+						// alert(status);
+						checkVisibleTableView(status);
+						$('#title').html(name + ' 추천 매물');
+						$('#title2').html('관심있는 아파트를 선택해주세요');
 
-							deletePolygon(polygons);                    //폴리곤 제거      
+						myFunction(name);
+
+						displayMarker(name, path);
+
+						deletePolygon(polygons);                    //폴리곤 제거      
 						// }
 					});
 				}
@@ -861,6 +1037,74 @@
 		</div>
 	</div>
 	</div>
+
+	<!-- Classic Modal -->
+	<div class="modal fade" id="aptmodal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<!-- <div class="modal-header">
+		  <h5 class="modal-title">여기가 타이틀임</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<i class="material-icons">clear</i>
+		  </button>
+		</div>
+		<div class="modal-body">
+		  <h5 class="modal-title">타이틀타이틀</h5>
+		  <p>내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+		  </p>
+		  <img src="images/img_popup.png" /><br><br>
+		</div> -->
+				<div class="modal-header">
+					<h5 class="modal-title" id="modal_title">여기가 타이틀임</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<i class="material-icons">x</i>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<div id="modal_content"></div>
+					<table class="table" id="modal_table">
+						<thead>
+							<tr>
+								<th>부동산명</th>
+								<th>협의보수</th>
+								<th>전화번호</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>중계탑</td>
+								<td>협의보수 0.3% </td>
+								<td>010-0000-0000</td>
+							</tr>
+							<tr>
+								<td>중계탑</td>
+								<td>협의보수 0.3% </td>
+								<td>010-0000-0000</td>
+							</tr>
+							<tr>
+								<td>중계탑</td>
+								<td>협의보수 0.3% </td>
+								<td>010-0000-0000</td>
+							</tr>
+							<tr>
+								<td>중계탑</td>
+								<td>협의보수 0.3% </td>
+								<td>010-0000-0000</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-link">Nice Button</button>
+					<button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
 	<!-- 로딩 -->
 	<div id="loading" class="loading" style="display:none;">
 		<div class="shadow"></div>

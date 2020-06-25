@@ -1,0 +1,1556 @@
+[
+	{
+		"\uc774\ub984": "247\uc5d0\ub4c0\ucf00\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.491352",
+		"LON_WGS": "126.856794",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uac00\uc628\uc5d0\ub4c0\uad6c\ub85c2\uad00\ud559\uc6d0",
+		"LAT_WGS": "37.495153",
+		"LON_WGS": "126.840673",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uac00\uc628\uc5d0\ub4c0\ud559\uc6d0",
+		"LAT_WGS": "37.489638",
+		"LON_WGS": "126.836872",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uac00\uc6b0\uc2a4\ud559\uc6d0",
+		"LAT_WGS": "37.490934",
+		"LON_WGS": "126.841089",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uac15\ud55c\uc601\uc218\ud559\uc6d0",
+		"LAT_WGS": "37.50047",
+		"LON_WGS": "126.888932",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uac1c\ubd09\ud574\ubc95\uc601\uc218\ud559\uc6d0",
+		"LAT_WGS": "37.489987",
+		"LON_WGS": "126.8577",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uac74\uac15\ud55c\ud559\uc2b5\uc6d0\uaca9\ud559\uc6d0",
+		"LAT_WGS": "37.49681",
+		"LON_WGS": "126.890679",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uace0\ub824\uc774\uc2a4\ucfe8\uc81c3\uad00\ud559\uc6d0",
+		"LAT_WGS": "37.491517",
+		"LON_WGS": "126.854791",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uace0\ub824\uc774\uc2a4\ucfe8\ud559\uc6d0",
+		"LAT_WGS": "37.491502",
+		"LON_WGS": "126.854331",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uace0\ucc99\uc601\uc218\uc804\ubb38\ubcf4\uc2b5\ud559\uc6d0",
+		"LAT_WGS": "37.502822",
+		"LON_WGS": "126.856013",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uace0\ucc99\ucea0\ud37c\uc2a4\ub300\uc131\uc5d4(N)\ud559\uc6d0",
+		"LAT_WGS": "37.497958",
+		"LON_WGS": "126.864348",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uacf5\ubd80\uc758\uc2e0\ud559\uc6d0",
+		"LAT_WGS": "37.480581",
+		"LON_WGS": "126.839785",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uacf5\uc2e0\ud559\uc6d0",
+		"LAT_WGS": "37.505684",
+		"LON_WGS": "126.878915",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uad50\uc721\uc9c0\ub300(\uc8fc)\uc6d0\uaca9\ud559\uc6d0",
+		"LAT_WGS": "37.486759",
+		"LON_WGS": "126.893045",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uad6c\ub85c\uc0c1\uc544\ud0d1\ud559\uc6d0",
+		"LAT_WGS": "37.479984",
+		"LON_WGS": "126.823167",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uad6c\ub85c\uc138\uc885\ubcf4\uc2b5\ud559\uc6d0",
+		"LAT_WGS": "37.489633",
+		"LON_WGS": "126.891047",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uad6c\ub85c\uc774\uc5e0\uc544\uc774\ud559\uc6d0",
+		"LAT_WGS": "37.491875",
+		"LON_WGS": "126.876447",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uad6c\ub85c\ucea0\ud37c\uc2a4\ub300\uc131\uc5d4(N)\ud559\uc6d0",
+		"LAT_WGS": "37.499397",
+		"LON_WGS": "126.891009",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uae00\ud0d1\ud559\uc6d0",
+		"LAT_WGS": "37.503138",
+		"LON_WGS": "126.846185",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub208\ub192\uc774\ub7ec\ub2dd\uc13c\ud130\uac1c\ubd09\ud559\uc6d0",
+		"LAT_WGS": "37.486051",
+		"LON_WGS": "126.852977",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub208\ub192\uc774\ub7ec\ub2dd\uc13c\ud130\uac1c\ubd09\ud604\ub300\ud559\uc6d0",
+		"LAT_WGS": "37.491508",
+		"LON_WGS": "126.862862",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub208\ub192\uc774\ub7ec\ub2dd\uc13c\ud130\ub0a8\uad6c\ub85c\ud559\uc6d0",
+		"LAT_WGS": "37.486661",
+		"LON_WGS": "126.8914",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub208\ub192\uc774\ub7ec\ub2dd\uc13c\ud130\ub77c\uc628\ud559\uc6d0",
+		"LAT_WGS": "37.495744",
+		"LON_WGS": "126.874446",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub208\ub192\uc774\ub7ec\ub2dd\uc13c\ud130\uc2e0\ub3c4\ub9bc\ud559\uc6d0",
+		"LAT_WGS": "37.506392",
+		"LON_WGS": "126.883427",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub208\ub192\uc774\ub7ec\ub2dd\uc13c\ud130\uc624\ub0a8\ud559\uc6d0",
+		"LAT_WGS": "37.486176",
+		"LON_WGS": "126.839502",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub274\uce7c\ub9ac\uc9c0\ud559\uc6d0",
+		"LAT_WGS": "37.498829",
+		"LON_WGS": "126.829907",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub274\ud0d1\ud074\ub798\uc2a4\ud559\uc6d0",
+		"LAT_WGS": "37.484283",
+		"LON_WGS": "126.889128",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub274\ud55c\uc0d8\ud559\uc6d0",
+		"LAT_WGS": "37.502025",
+		"LON_WGS": "126.848756",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub300\uae38\ubcf4\uc2b5\ud559\uc6d0",
+		"LAT_WGS": "37.503041",
+		"LON_WGS": "126.85085",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub300\uc131\uc5d4(N)\ud559\uc6d0",
+		"LAT_WGS": "37.506392",
+		"LON_WGS": "126.883427",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub300\uc591\uace0\ub4f1\ubd80\ud559\uc6d0",
+		"LAT_WGS": "37.489996",
+		"LON_WGS": "126.891709",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub300\uc9c4\ud559\uc6d0",
+		"LAT_WGS": "37.505223",
+		"LON_WGS": "126.889071",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub300\uce58\uc601\uc5b4\uc218\ud559\uc804\ubb38\ud559\uc6d0",
+		"LAT_WGS": "37.497881",
+		"LON_WGS": "126.863466",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub300\uce58\uc601\uc5b4\uc804\ubb38\ud559\uc6d0",
+		"LAT_WGS": "37.491756",
+		"LON_WGS": "126.856276",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub300\ud55c\ub17c\ub9ac\uc815\ub3c5\ud559\uc6d0",
+		"LAT_WGS": "37.492659",
+		"LON_WGS": "126.856332",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub300\ud55c\ub17c\ub9ac\uc815\uc18d\ub3c5\ud559\uc6d0",
+		"LAT_WGS": "37.506392",
+		"LON_WGS": "126.883427",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub354\ub098\uc740\ud574\ubc95\uc601\uc218\ud559\uc6d0",
+		"LAT_WGS": "37.494465",
+		"LON_WGS": "126.831123",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub354\ubca0\uc2a4\ud2b8\uc601\uc218\ud559\uc6d0",
+		"LAT_WGS": "37.498861",
+		"LON_WGS": "126.856589",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub354\uc88b\uc740\ud574\ubc95\uc601\uc218\ud559\uc6d0",
+		"LAT_WGS": "37.491875",
+		"LON_WGS": "126.876447",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub355\ub9bc\ud559\uc6d0",
+		"LAT_WGS": "37.506347",
+		"LON_WGS": "126.858168",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub4dc\ub9bc\uc778\ud559\uc6d0",
+		"LAT_WGS": "37.504858",
+		"LON_WGS": "126.85572",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub4dc\ub9bc\ud558\uc774\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.4977",
+		"LON_WGS": "126.863871",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub4dc\ub9bc\ud558\uc774\ud559\uc6d0",
+		"LAT_WGS": "37.489524",
+		"LON_WGS": "126.839413",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub77c\uc628\uc601\uc5b4\uc804\ubb38\ud559\uc6d0",
+		"LAT_WGS": "37.505684",
+		"LON_WGS": "126.878915",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub78d\uc2a8\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.501994",
+		"LON_WGS": "126.848531",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub8e8\uac00(LUKE)\ud559\uc6d0",
+		"LAT_WGS": "37.489988",
+		"LON_WGS": "126.857181",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub8e8\ud2b8\uc6d0\ud559\uc6d0 ",
+		"LAT_WGS": "37.506392",
+		"LON_WGS": "126.883427",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub9ac\ub354\uc2a4(Leaders`)\ud574\ubc95\ud559\uc6d0",
+		"LAT_WGS": "37.49594",
+		"LON_WGS": "126.872267",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub9ac\ub354\uc2a4\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.48962",
+		"LON_WGS": "126.89413",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub9ac\ub4dc\uc778\uc218\ud559\uc758\ub2ec\uc778\uc2e0\ub3c4\ub9bc1\ud638\uc810\ud559\uc6d0",
+		"LAT_WGS": "37.509595",
+		"LON_WGS": "126.885201",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub9e4\uc4f0\uc2a4\ud1a0\ubc0d\uc218\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.506392",
+		"LON_WGS": "126.883427",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ub9e5\ud559\uc6d0",
+		"LAT_WGS": "37.500849",
+		"LON_WGS": "126.889318",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uba54\uce74\ud559\uc6d0",
+		"LAT_WGS": "37.496788",
+		"LON_WGS": "126.862136",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uba54\ud0c0\uc5d0\uc2a4(S)\ucf54\ub4dc\ud559\uc6d0",
+		"LAT_WGS": "37.495744",
+		"LON_WGS": "126.874446",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uba58\ud1a0\uc2a4\ubcf4\uc2b5\ud559\uc6d0",
+		"LAT_WGS": "37.506902",
+		"LON_WGS": "126.861963",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uba58\ud1a0\ud559\uc6d0",
+		"LAT_WGS": "37.500839",
+		"LON_WGS": "126.844931",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ubaa9\ub3d9\uc704\ub108\uc2a4\ud559\uc6d0",
+		"LAT_WGS": "37.507613",
+		"LON_WGS": "126.863104",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ubaa9\ub3d9\uc720\uc564\uc544\uc774\ud559\uc6d0",
+		"LAT_WGS": "37.496566",
+		"LON_WGS": "126.892953",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ubaa9\ub3d9\uc9c4\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.494558",
+		"LON_WGS": "126.86195",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ubba4\uc5e0\uc601\uc5b4\uac1c\ubd09\ud55c\uc9c4\ud559\uc6d0",
+		"LAT_WGS": "37.486221",
+		"LON_WGS": "126.851729",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ubba4\uc5e0\uc601\uc5b4\uace0\ucc99\ud559\uc6d0",
+		"LAT_WGS": "37.497316",
+		"LON_WGS": "126.862352",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ubba4\uc5e0\uc601\uc5b4\uc774\ud39c\ud559\uc6d0 ",
+		"LAT_WGS": "37.480581",
+		"LON_WGS": "126.839785",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ubc14\ub2d0\ub77c\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.490235",
+		"LON_WGS": "126.858459",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ubc14\ub978\uae38\ub85c\ud559\uc6d0",
+		"LAT_WGS": "37.507518",
+		"LON_WGS": "126.845218",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ubc15\ub300\ud76c\uc601\uc5b4\uc804\ubb38\ud559\uc6d0",
+		"LAT_WGS": "37.490973",
+		"LON_WGS": "126.894263",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ubc15\uc740\uacbd\uc218\ud559\uc804\ubb38\ud559\uc6d0",
+		"LAT_WGS": "37.497059",
+		"LON_WGS": "126.857662",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ubc31\ud638\ubcf4\uc2b5\ud559\uc6d0",
+		"LAT_WGS": "37.508798",
+		"LON_WGS": "126.88007",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ubca0\uc2a4\ud2f0\uc548\ud559\uc6d0",
+		"LAT_WGS": "37.490576",
+		"LON_WGS": "126.855709",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ubcf8\uc218\ud559\uc804\ubb38\ud559\uc6d0",
+		"LAT_WGS": "37.506392",
+		"LON_WGS": "126.883427",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ubcf8\uc218\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.506392",
+		"LON_WGS": "126.883427",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ube14\ub808\uc2f1\uc544\uce74\ub370\ubbf82\uad00\ud559\uc6d0",
+		"LAT_WGS": "37.490758",
+		"LON_WGS": "126.840851",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ube14\ub808\uc2f1\uc544\uce74\ub370\ubbf8\ud559\uc6d0",
+		"LAT_WGS": "37.492596",
+		"LON_WGS": "126.842599",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ube44\uc0c1\uc789\uae00\ub9ac\uc2dc\uc544\uc774\uac1c\ubd09\ud559\uc6d0",
+		"LAT_WGS": "37.491508",
+		"LON_WGS": "126.862862",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ube44\uc0c1\uc789\uae00\ub9ac\uc2dc\uc544\uc774\ud558\uc774\ub9ac\uc628\ud559\uc6d0",
+		"LAT_WGS": "37.496906",
+		"LON_WGS": "126.861898",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ube44\uc5e0(BM)\uc218\ud559\uc804\ubb38\ud559\uc6d0",
+		"LAT_WGS": "37.511203",
+		"LON_WGS": "126.88447",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ube44\uc804\uc5d0\uc2a4\uc5d4\ub514(snd)\ud559\uc6d0",
+		"LAT_WGS": "37.495614",
+		"LON_WGS": "126.874807",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ube44\ud2f0\uc5d8\ud559\uc6d0",
+		"LAT_WGS": "37.487303",
+		"LON_WGS": "126.85423",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ubfcc\ub9ac\ud559\uc6d0",
+		"LAT_WGS": "37.4809",
+		"LON_WGS": "126.83938",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc0c1\uc544\ud0d1\ud559\uc6d0",
+		"LAT_WGS": "37.480581",
+		"LON_WGS": "126.839785",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc0c1\uc9c4\ud559\uc6d0",
+		"LAT_WGS": "37.503121",
+		"LON_WGS": "126.85014",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc0c8\uc194\ubba4\uc5e0\uc601\uc5b4\uc218\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.499991",
+		"LON_WGS": "126.890561",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc0dd\uac01\uc5d0\ub4c0\uc218\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.506392",
+		"LON_WGS": "126.883427",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc11c\uc6b8\ubd84\uc11d\uc218\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.492659",
+		"LON_WGS": "126.856332",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc131\uad11\ud559\uc6d0",
+		"LAT_WGS": "37.488201",
+		"LON_WGS": "126.888894",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc131\uc2ec\ubcf4\uc2b5\ud559\uc6d0",
+		"LAT_WGS": "37.502188",
+		"LON_WGS": "126.855858",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc131\uc9c0\ubcf4\uc2b5\ud559\uc6d0",
+		"LAT_WGS": "37.496473",
+		"LON_WGS": "126.843179",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc138\uc2a4\ud1a0\ud0b9\ud074\ub798\uc2a4(CEStalkingclass)\ud559\uc6d0",
+		"LAT_WGS": "37.490983",
+		"LON_WGS": "126.841521",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc138\uc885\ud559\uc6d0",
+		"LAT_WGS": "37.489409",
+		"LON_WGS": "126.8564",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc218\ub2f4\ud559\uc6d0",
+		"LAT_WGS": "37.489987",
+		"LON_WGS": "126.8577",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc218\ubc15\uc528\ub2f7\ucef4\uc6d0\uaca9\ud559\uc6d0",
+		"LAT_WGS": "37.487258",
+		"LON_WGS": "126.894505",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc218\ubca0\uc2a4\ud2b8(\u79c0Best)\ud559\uc6d0",
+		"LAT_WGS": "37.493868",
+		"LON_WGS": "126.892336",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc218\ud480\ub9bc\ud559\uc6d0",
+		"LAT_WGS": "37.48623",
+		"LON_WGS": "126.851572",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc2a4\uce74\uc774(SKY)\uc601\uc5b4\uc218\ud559\uc804\ubb38\ud559\uc6d0",
+		"LAT_WGS": "37.497987",
+		"LON_WGS": "126.884475",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc2a4\ud130\ub514\ud558\uc774\uc2a4\ud130\ub514\ud558\uc774\ud559\uc6d0",
+		"LAT_WGS": "37.496902",
+		"LON_WGS": "126.822186",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc2a4\ud53c\ub4dc\ucf00\uc774\uc5e0\ubcf4\uc2b5\ud559\uc6d0",
+		"LAT_WGS": "37.503426",
+		"LON_WGS": "126.863985",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc2dc\ub9e4\uc4f0\uc218\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.506392",
+		"LON_WGS": "126.883427",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc2e0\ub300\uc6d0\ud559\uc6d0",
+		"LAT_WGS": "37.487302",
+		"LON_WGS": "126.888024",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc2e0\ub3c4\ub9bc\uc640\uc774\uc988\ub9ac\ub354\uc5d0\ub9ad\uc2a4\uc601\uc5b4\uc218\ud559\uacfc\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.507508",
+		"LON_WGS": "126.879295",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc2e0\ub3c4\ub9bc\ucf00\uc774\ud22c(K2)\ud559\uc6d0",
+		"LAT_WGS": "37.506392",
+		"LON_WGS": "126.883427",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc2e0\uc138\uc885\ubcf4\uc2b5\ud559\uc6d0",
+		"LAT_WGS": "37.504185",
+		"LON_WGS": "126.856742",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc2e0\uc608\uc77c\ud559\uc6d0",
+		"LAT_WGS": "37.500033",
+		"LON_WGS": "126.866764",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc2ec\ud574\ud558\uc774\uce20\uc218\ud559\uc804\ubb38\ud559\uc6d0",
+		"LAT_WGS": "37.4809",
+		"LON_WGS": "126.83938",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc388\uc218\ud559\ub7ec\ub2dd\uc13c\ud130\uc0bc\uc131\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.499672",
+		"LON_WGS": "126.890272",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc465\uc465\ub9ac\ub354\uc2a4\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.489332",
+		"LON_WGS": "126.891669",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc528\uc564\uc5d8\ud559\uc6d0",
+		"LAT_WGS": "37.506392",
+		"LON_WGS": "126.883427",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc544\uc18c\ube44\ud559\uc6d0",
+		"LAT_WGS": "37.500767",
+		"LON_WGS": "126.864093",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc544\uc774\ub514\uc5b4\uc2a4\uc544\uce74\ub370\ubbf8\ud559\uc6d0",
+		"LAT_WGS": "37.497537",
+		"LON_WGS": "126.828921",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc544\uc774\ub514\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.489987",
+		"LON_WGS": "126.8577",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc544\uc774\ub9e5\ud559\uc6d0",
+		"LAT_WGS": "37.496723",
+		"LON_WGS": "126.829748",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc544\uc774\uc218\ubc15\uc528\uc6d0\uaca9\ud559\uc6d0",
+		"LAT_WGS": "37.487258",
+		"LON_WGS": "126.894505",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc544\uc774\uce94\ud559\uc6d0",
+		"LAT_WGS": "37.48794",
+		"LON_WGS": "126.855447",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc5c9\ud074\uae40\uc758\ud50c\ub9bd\ud50c\ub7ec\uc2a4\ud559\uc6d0",
+		"LAT_WGS": "37.496705",
+		"LON_WGS": "126.859275",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc5d0\ub4c0\ub098\uc778\ud559\uc6d0",
+		"LAT_WGS": "37.491931",
+		"LON_WGS": "126.891245",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc5d0\ub4c0\ud50c\ub809\uc2a4\uc5d0\ub4c0\ucf54\uce58\uac1c\ubcc4\uc9c0\ub3c4\uc2e0\ub3c4\ub9bc\ud559\uc6d0",
+		"LAT_WGS": "37.50849",
+		"LON_WGS": "126.886406",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc5d0\uc2a4\uc774\uc5e0(S.E.M)\ud559\uc6d0",
+		"LAT_WGS": "37.507329",
+		"LON_WGS": "126.862872",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc5d0\uc2a4\ucf00\uc774\uc640\uc774(SKY)\uc138\uacc4\ub85c\ud559\uc6d0",
+		"LAT_WGS": "37.506951",
+		"LON_WGS": "126.8555",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc5d0\uc2a4\ud074\ub798\uc2a4\uc218\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.505684",
+		"LON_WGS": "126.878915",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc5d0\uc774\uce58\uc564\uc81c\uc774\ud615\uc124\ud559\uc6d0",
+		"LAT_WGS": "37.505362",
+		"LON_WGS": "126.889371",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc5e0\ubca0\uc2a4\ud2b8\uad6c\ub85c\uc810\ud559\uc6d0",
+		"LAT_WGS": "37.500301",
+		"LON_WGS": "126.888603",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc5f0\uc138\uc774\ub8f8\ud559\uc6d0",
+		"LAT_WGS": "37.496338",
+		"LON_WGS": "126.842368",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc5f0\uc9c0\uc0c1\uc544\ud0d1\ud559\uc6d0",
+		"LAT_WGS": "37.483406",
+		"LON_WGS": "126.842135",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc624\ub958\ub3d9\uc0bc\uc131\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.490166",
+		"LON_WGS": "126.840464",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc624\ub984\uc218\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.501512",
+		"LON_WGS": "126.848554",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc62c\uc5e0\ud559\uc6d0",
+		"LAT_WGS": "37.505787",
+		"LON_WGS": "126.858249",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc640\uc640\ud559\uc2b5\ucf54\uce6d\uc2e0\ub3c4\ub9bc\ud559\uc6d0",
+		"LAT_WGS": "37.506602",
+		"LON_WGS": "126.878752",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc640\uc774\ube44\uc5e0(YBM)\uc789\uae00\ub8e8\uad6c\ub85c\uc628\uc218\uc81c1\ucea0\ud37c\uc2a4\ud559\uc6d0",
+		"LAT_WGS": "37.496127",
+		"LON_WGS": "126.824202",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc640\uc774\ube44\uc5e0\uc789\uae00\ub8e8\ubcf4\uc2b5\ud559\uc6d0",
+		"LAT_WGS": "37.511582",
+		"LON_WGS": "126.884617",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc640\uc774\ube44\uc5e0\uc789\uae00\ub8e8\uc601\uc5b4\uc804\ubb38\ud559\uc6d0",
+		"LAT_WGS": "37.503893",
+		"LON_WGS": "126.848492",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc640\uc774\uc5d4\ucf00\uc774\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.4977",
+		"LON_WGS": "126.863871",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc640\uc774\uc988\ucea0\ud504\ub2f7\ucef4\uc6d0\uaca9\ud559\uc6d0",
+		"LAT_WGS": "37.487258",
+		"LON_WGS": "126.894505",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc655\uc324\uc9c0\uc564\ube44\uc218\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.492055",
+		"LON_WGS": "126.858054",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc678\ub300\uc601\uc5b4\uc804\ubb38\ud559\uc6d0",
+		"LAT_WGS": "37.489786",
+		"LON_WGS": "126.876501",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc6b0\ub9ac\ub4e4\uc758\ud589\ubcf5\ud55c\uacf5\uac04\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.496931",
+		"LON_WGS": "126.874862",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc6c5\uc9c4\ubd81\ud074\ub7fd\ud559\uc2b5\uc13c\ud130\uace0\ucc99\ud559\uc6d0",
+		"LAT_WGS": "37.505309",
+		"LON_WGS": "126.856918",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc6c5\uc9c4\uc53d\ud06c\ube45\ud559\uc2b5\uc13c\ud130\uc2e0\ub3c4\ub9bc\ud559\uc6d0",
+		"LAT_WGS": "37.511203",
+		"LON_WGS": "126.88447",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc6d0\ud22c\uc6d0\ud559\uc6d0",
+		"LAT_WGS": "37.507906",
+		"LON_WGS": "126.853246",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc704\ub108\uc2a4\ubcf4\uc2b5\ud559\uc6d0",
+		"LAT_WGS": "37.4809",
+		"LON_WGS": "126.83938",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc704\ub108\uc2a4\ud574\ubc95\uc601\uc218\ud559\uc6d0",
+		"LAT_WGS": "37.487471",
+		"LON_WGS": "126.891224",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc704\ub108\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.492659",
+		"LON_WGS": "126.856332",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc704\ub4dc\uba58\ud1a0\ud559\uc6d0",
+		"LAT_WGS": "37.4809",
+		"LON_WGS": "126.83938",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc708\uc2a4\ud134\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.495075",
+		"LON_WGS": "126.872008",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc70c\uc218\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.503412",
+		"LON_WGS": "126.86179",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc720\uc131\ud559\uc6d0",
+		"LAT_WGS": "37.48892",
+		"LON_WGS": "126.890149",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc724\uc120\uc0dd\uc601\uc5b4\uc232\uad6c\ub85c\ud559\uc6d0",
+		"LAT_WGS": "37.496334",
+		"LON_WGS": "126.89229",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc724\uc218\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.506623",
+		"LON_WGS": "126.859291",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc774\ub9ac\uc628\uc6d0\uaca9\ud559\uc6d0",
+		"LAT_WGS": "37.486555",
+		"LON_WGS": "126.896162",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc774\uc19d\ub3c5\uc11c\ub17c\uc220\ud559\uc6d0",
+		"LAT_WGS": "37.506392",
+		"LON_WGS": "126.883427",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc774\uc544\uc774\uc774(EiE)\ub274\uc2a4\ud130\ub514\uad6c\ub85c\uad6c\uc77c\ud559\uc6d0",
+		"LAT_WGS": "37.489395",
+		"LON_WGS": "126.876795",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc774\uc544\uc774\uc774(eie)\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.480581",
+		"LON_WGS": "126.839785",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc774\uc5d4\uc9c0\ud30c\uc6cc\ud559\uc6d0",
+		"LAT_WGS": "37.490288",
+		"LON_WGS": "126.84075",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc774\uc5e0\uc5d0\ub4c0\ud559\uc6d0",
+		"LAT_WGS": "37.4809",
+		"LON_WGS": "126.83938",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc774\uc624\ube0c\uc774\ud559\uc6d0",
+		"LAT_WGS": "37.49378",
+		"LON_WGS": "126.836645",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc774\uc774\uc601\uc5b4\uc804\ubb38\ud559\uc6d0",
+		"LAT_WGS": "37.4809",
+		"LON_WGS": "126.83938",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc774\uc9c0\uc601\uc218\uc804\ubb38\ud559\uc6d0",
+		"LAT_WGS": "37.487878",
+		"LON_WGS": "126.85412",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc774\uc9c0\ud559\uc6d0",
+		"LAT_WGS": "37.509595",
+		"LON_WGS": "126.885201",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc774\ud55c\uc900\ud559\uc6d0",
+		"LAT_WGS": "37.497775",
+		"LON_WGS": "126.829383",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc774\ud654\uc218\ud559\ub9e4\ub2c8\uc800\ud559\uc6d0",
+		"LAT_WGS": "37.502787",
+		"LON_WGS": "126.850178",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc778(IN)\ud574\ubc95\uc218\ud559\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.511203",
+		"LON_WGS": "126.88447",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc778\uc218\ud559\uc804\ubb38\ud559\uc6d0",
+		"LAT_WGS": "37.492055",
+		"LON_WGS": "126.858054",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc789\uae00\ub9ac\uc26c\ubb34\ubb34\uc990\uac70\uc6b4\ud559\uc6d0",
+		"LAT_WGS": "37.500646",
+		"LON_WGS": "126.864361",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc789\uae00\ub9ac\uc26c\ubca0\uc774\ud504\ub9ac\ubbf8\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.506392",
+		"LON_WGS": "126.883427",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc7ac\ub2a5\uc2a4\uc2a4\ub85c\ud559\uc2b5\uc13c\ud130\uace0\ucc99\uc9c1\uc601\ud559\uc6d0",
+		"LAT_WGS": "37.505408",
+		"LON_WGS": "126.856156",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc804\ubb38\uace0\ub300\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.504632",
+		"LON_WGS": "126.855104",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc815\uba85\ud559\uc6d0",
+		"LAT_WGS": "37.49706",
+		"LON_WGS": "126.842343",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc815\uc11d\ud559\uc6d0",
+		"LAT_WGS": "37.495744",
+		"LON_WGS": "126.874446",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc815\uc77c\ud559\uc6d0",
+		"LAT_WGS": "37.511203",
+		"LON_WGS": "126.88447",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc815\ucca0\uc601\uc5b4\uc720\ud22c\uc5e0\uc218\ud559\uc804\ubb38\ud559\uc6d0",
+		"LAT_WGS": "37.492055",
+		"LON_WGS": "126.858054",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc81c2\ub274\ud0d1\ud074\ub798\uc2a4\ud559\uc6d0",
+		"LAT_WGS": "37.498067",
+		"LON_WGS": "126.884241",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc81c3\ud55c\uc194\ubcf4\uc2b5\ud559\uc6d0",
+		"LAT_WGS": "37.50238",
+		"LON_WGS": "126.849631",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc81c\uc774\uc564\uc218(J&Su)\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.507613",
+		"LON_WGS": "126.863104",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uc9c0\ud53c\uc9c0\uae30\uc601\uc218\ud559\uc6d0",
+		"LAT_WGS": "37.506392",
+		"LON_WGS": "126.883427",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ucc28\uc77c\ub4dc\uc720\uc601\uc5b4\ud574\ubc95\uc218\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.484289",
+		"LON_WGS": "126.853463",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ucc38\ud559\uc6d0",
+		"LAT_WGS": "37.504712",
+		"LON_WGS": "126.859395",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ucc44\uc6c0\uc2a4\ud130\ub514\ud559\uc6d0",
+		"LAT_WGS": "37.501021",
+		"LON_WGS": "126.889644",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ucc44\uc6c0\ud559\uc6d0",
+		"LAT_WGS": "37.495837",
+		"LON_WGS": "126.892137",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ucc9c\uc655\uc2a4\uce74\uc774\ud559\uc6d0",
+		"LAT_WGS": "37.486041",
+		"LON_WGS": "126.83856",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ucc9c\uc655\ud574\ubc95\ud559\uc6d0",
+		"LAT_WGS": "37.4809",
+		"LON_WGS": "126.83938",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\uccad\uc0d8\ud559\uc6d0",
+		"LAT_WGS": "37.483697",
+		"LON_WGS": "126.842451",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ucea0\ube0c\ub9ac\uc9c0\uc789\uae00\ub9ac\uc26c\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.506392",
+		"LON_WGS": "126.883427",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ucf00\ub124\ub514\uc601\uc5b4\uc218\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.506563",
+		"LON_WGS": "126.856146",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ucf00\uc774\uc774\uc5e0\ud559\uc6d0",
+		"LAT_WGS": "37.4977",
+		"LON_WGS": "126.863871",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ucf54\ub9ac\uc544\ub178\ud2b8\uad6d\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.506392",
+		"LON_WGS": "126.883427",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud038\uc988\ub9ac\ub529\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.511203",
+		"LON_WGS": "126.88447",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud070\ud559\uc6d0",
+		"LAT_WGS": "37.494925",
+		"LON_WGS": "126.889641",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud0c1\ud2f4\ud559\uc6d0",
+		"LAT_WGS": "37.505684",
+		"LON_WGS": "126.878915",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud0d0\uad6c\uc758\ud798\ud559\uc6d0",
+		"LAT_WGS": "37.496658",
+		"LON_WGS": "126.856173",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud0d1\uc218\uc11d\ud559\uc6d0",
+		"LAT_WGS": "37.492403",
+		"LON_WGS": "126.843387",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud0d1\uc5d0\ub4c0\ud559\uc6d0",
+		"LAT_WGS": "37.486174",
+		"LON_WGS": "126.854038",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud0d1\ud074\ub798\uc2a4\uc601\uc218\ud559\uc6d0",
+		"LAT_WGS": "37.505684",
+		"LON_WGS": "126.878915",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud0d1\ud150\uc789\uae00\ub9ac\uc26c\ud559\uc6d0",
+		"LAT_WGS": "37.511582",
+		"LON_WGS": "126.884617",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud22c\ud0d1\uc601\uc218\uc804\ubb38\ud559\uc6d0",
+		"LAT_WGS": "37.492011",
+		"LON_WGS": "126.856325",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud2bc\ud2bc\uc601\uc5b4\ub9c8\uc2a4\ud130\ud074\ub7fd\ub9e4\uc4f0\ucf54\ub4dc\uc218\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.49712",
+		"LON_WGS": "126.856183",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud2bc\ud2bc\uc601\uc5b4\ub9e4\uc2a4\ud130\ud074\ub7fd\uad6c\ub85c\ubcf4\uc2b5\ud559\uc6d0",
+		"LAT_WGS": "37.49038",
+		"LON_WGS": "126.893428",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud30c\uc6cc\uc544\uc774\ub124\ud2b8\ud559\uc6d0",
+		"LAT_WGS": "37.490639",
+		"LON_WGS": "126.858222",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud39c\ud3ec\uc778\ud2b8\ud559\uc6d0",
+		"LAT_WGS": "37.505263",
+		"LON_WGS": "126.892513",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud3a0\ub9ad\uc2a4\ud559\uc6d0",
+		"LAT_WGS": "37.503539",
+		"LON_WGS": "126.88423",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud3ec\uc778\ud2b8\uc218\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.496624",
+		"LON_WGS": "126.89219",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud504\ub77c\uc784\ud50c\ub7ec\uc2a4\ud559\uc6d0",
+		"LAT_WGS": "37.490427",
+		"LON_WGS": "126.85576",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud504\ub77c\uc784\ud559\uc6d0",
+		"LAT_WGS": "37.479984",
+		"LON_WGS": "126.823167",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud504\ub9ac\ubbf8\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.500767",
+		"LON_WGS": "126.864093",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud544\ub9bd\ud559\uc6d0",
+		"LAT_WGS": "37.489353",
+		"LON_WGS": "126.825221",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud544\ud0d1\ud559\uc6d0",
+		"LAT_WGS": "37.48635",
+		"LON_WGS": "126.853025",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud558\ube0c\ub8e8\ud0c0\uc758\ud798\ud559\uc6d0",
+		"LAT_WGS": "37.505102",
+		"LON_WGS": "126.856313",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud558\uc0c1\uc5d0\ub4c0\uc6d0\uaca9\ud559\uc6d0",
+		"LAT_WGS": "37.484498",
+		"LON_WGS": "126.893311",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud558\uc774\ube0c\ub808\uc778\ud559\uc6d0",
+		"LAT_WGS": "37.500071",
+		"LON_WGS": "126.843731",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud558\uc774\uc2a4\ud130\ub514\ud559\uc6d0",
+		"LAT_WGS": "37.50849",
+		"LON_WGS": "126.886406",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud558\uc774\uc774\uc774\ud559\uc6d0",
+		"LAT_WGS": "37.4809",
+		"LON_WGS": "126.83938",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud558\uce84\uc544\uce74\ub370\ubbf8\ud559\uc6d0",
+		"LAT_WGS": "37.48884",
+		"LON_WGS": "126.845928",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud559\uc0ac\uc601\uc218\ud06c\ub9ac\ub2c9\ud559\uc6d0",
+		"LAT_WGS": "37.497457",
+		"LON_WGS": "126.842977",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud55c\uac00\ub78c\uc601\uc218\ud559\uc6d0",
+		"LAT_WGS": "37.49117",
+		"LON_WGS": "126.840568",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud55c\uc194\ub9ac\ub354\uc2a4\ud559\uc6d0",
+		"LAT_WGS": "37.493144",
+		"LON_WGS": "126.891198",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud55c\uc77c\uc601\uc5b4\ud6c8\ub828\uc18c\ud559\uc6d0",
+		"LAT_WGS": "37.509595",
+		"LON_WGS": "126.885201",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud55c\ud604\uc218\ud559\ud559\uc6d0",
+		"LAT_WGS": "37.490172",
+		"LON_WGS": "126.857448",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud56d\ub3d9\uc218\ubaa9\uc6d0\uc810e\ud574\ubc95\ud559\uc6d0",
+		"LAT_WGS": "37.484823",
+		"LON_WGS": "126.82073",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud574\ubc95\uc218\ud559\uc601\uc5b4\ud559\uc6d0",
+		"LAT_WGS": "37.505102",
+		"LON_WGS": "126.856313",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud574\ubc95\uc5d0\ub4c0\uc2e0\ub3c4\ub9bc\uc13c\ud130\ud559\uc6d0",
+		"LAT_WGS": "37.505684",
+		"LON_WGS": "126.878915",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud574\ubc95\uc601\uc5b4\uc81c\ub2c8\uc2a4\uc789\uae00\ub9ac\uc26c\ud559\uc6d0",
+		"LAT_WGS": "37.489976",
+		"LON_WGS": "126.840328",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud574\uc131\ud559\uc6d0",
+		"LAT_WGS": "37.497279",
+		"LON_WGS": "126.829547",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud5e4\ud30c1\uad00\ud559\uc6d0",
+		"LAT_WGS": "37.494986",
+		"LON_WGS": "126.83134",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud5e4\ud30c2\uad00\ud559\uc6d0",
+		"LAT_WGS": "37.495555",
+		"LON_WGS": "126.831356",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud6a8\uc131\ubcf4\uc2b5\ud559\uc6d0",
+		"LAT_WGS": "37.488342",
+		"LON_WGS": "126.830686",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	},
+	{
+		"\uc774\ub984": "\ud76c\ub9dd\uc774\uc74c\uc6d0\uaca9\ud559\uc6d0",
+		"LAT_WGS": "37.485923",
+		"LON_WGS": "126.897336",
+		"\uad6c\ubd84": "\ud559\uc6d0",
+		"\uc0c1\uc138\uad6c\ubd84": "\uad6c\ub85c\uad6c"
+	}
+]
