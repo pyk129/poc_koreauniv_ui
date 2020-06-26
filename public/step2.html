@@ -10,6 +10,21 @@
 	<script type="text/javascript" src="./js/jquery.cookie.js"></script>
 	<script type="text/javascript" src="./js/sha256.js"></script>
 	<script type="text/javascript" src="./js/util.js"></script>
+
+	 
+   <!-- 차트 링크 -->
+   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+   <!-- 부트스트랩 -->
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	 crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	 integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	 crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	 crossorigin="anonymous"></script>
+	   
 	<!--   Core JS Files   -->
 	<!-- CSS Files -->
 	<link href="./assets/css/material-kit.css?v=2.0.7" rel="stylesheet" />
@@ -25,6 +40,8 @@
 	<!--  Google Maps Plugin    -->
 	<!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
 	<script src="./assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
+
+	
 	<style>
 		.kakaowrap {
 			position: absolute;
@@ -170,6 +187,51 @@
 	</style>
 
 	<script>
+		var html='';
+
+		var 노원구 = ['"중계탑 (협의보수 0.3%) 010-0000-0000 "', "중계탑 (협의보수 0.3%) 010-0000-0000 ", "중계탑 (협의보수 0.3%) 010-0000-0000 "];
+
+
+		html += "<div class=\"form-check\">";
+		html +="<label class=\"form-check-label\"></label>";
+		html +="<input class=\"form-check-input\" type=\"radio\" name=\"exampleRadios\" id=\"exampleRadios1\" value=\"option1\" checked>";
+		html +="중계탑 (협의보수 0.3%) 010-0000-0000 ";
+		html +="<span class=\"circle\"></span>";
+		html +="<span class=\"check\"></span>";
+		html +="</span>";
+		html +="</label>";
+		html +="</div>";
+
+		html += "<div class=\"form-check\">";
+		html +="<label class=\"form-check-label\"></label>";
+		html +="<input class=\"form-check-input\" type=\"radio\" name=\"exampleRadios\" id=\"exampleRadios1\" value=\"option1\" checked>";
+		html +="중계탑 (협의보수 0.3%) 010-0000-0000 ";
+		html +="<span class=\"circle\"></span>";
+		html +="<span class=\"check\"></span>";
+		html +="</span>";
+		html +="</label>";
+		html +="</div>";
+
+		html += "<div class=\"form-check\">";
+		html +="<label class=\"form-check-label\"></label>";
+		html +="<input class=\"form-check-input\" type=\"radio\" name=\"exampleRadios\" id=\"exampleRadios1\" value=\"option1\" checked>";
+		html +="중계탑 (협의보수 0.3%) 010-0000-0000 ";
+		html +="<span class=\"circle\"></span>";
+		html +="<span class=\"check\"></span>";
+		html +="</span>";
+		html +="</label>";
+		html +="</div>";
+
+		html += "<div class=\"form-check\">";
+		html +="<label class=\"form-check-label\"></label>";
+		html +="<input class=\"form-check-input\" type=\"radio\" name=\"exampleRadios\" id=\"exampleRadios1\" value=\"option1\" checked>";
+		html +="중계탑 (협의보수 0.3%) 010-0000-0000 ";
+		html +="<span class=\"circle\"></span>";
+		html +="<span class=\"check\"></span>";
+		html +="</span>";
+		html +="</label>";
+		html +="</div>";
+
 		var status_sel_gu = 1;
 		var status_recommend = 2;
 		var status_dongsan = 3;
@@ -403,16 +465,16 @@
 			// }
 			showLoading();
 
-			optSecond = 0;
+			optSecond = 1;
 			sel1 = 1;
 			sel2 = 0;
 			sel3 = 0;
-			sel4 = 1;
+			sel4 = 0;
 			sel5 = 0;
 			sel6 = 0;
 			sel7 = 0;
 			sel8 = 0;
-			sel9 = 1;
+			sel9 = 0;
 
 			$.post('http://127.0.0.1:5000/send_py', {
 
@@ -557,44 +619,117 @@
 						// score_p1: "100"
 						// score_p2: 0
 						// score_p3: 0
-
+						
 						// 	0:
 						// content: "노원구에서 무주택인 흙수저 부동산 초보 서민입니다↵나이도 30대 중반이고 결혼도 하고 5세아기도 있어서 실거주위주 집을 매매해보려고 합니다 (실거주7 : 투자3)↵실거주하다가 오르면 좋고 안오르면 말고 정도의 생각입니다↵상계푸르지오, 인덕아이파크 다 떨어졌어요↵상계8단지 넣고 싶으나 분양가가 워낙 비쌀거 같고 대추도 40%만 되니 엄두가 안나네요↵위치는 마들,노원,중계,하계에서 자리를 잡고 싶습니다↵매매는 3~4억미만으로 생각하고 싶네요↵학군 주차 편의시설등 고려해서 아파트 추천 부탁드립니다↵정책도 나왔고 시세가 약간하락되거나 보합될거 같은데 전세 만기전에 알아보고 매매하는데 도움받고자 합니다↵이거 물어볼려고 50개의 덧글을 썻어요↵ 노원구 고수님들 친절하게 알려주시면 좋겠네요↵덧붙여 추천아파트에 대한 장단점도 알려주시면 더 좋겠네요↵감사합니다↵ "
 						// label: "1"
 						// text_comment: "노원역 주변 24평정도면 4억 미만이시면 상계주공 1단지 뒷동추천요 앞동보다 저렴 2단지 뒷동추천[공통점 지분 많고 중계역 노원역 이용편리]↵↵아니면 마들역에있는 상계주공11단지↵↵3.6.7.단지는 나머지 단지들보다 올라잇는 상태라 패스↵↵재건축할때까지 혹은 바로전까지 사실꺼면 14단지도 좋아요 지분1등 마들 과 수락산 중간에 입지라 그게 약점↵↵아차 9단지도 투자용으론 좋은데 지분이 적음 실거주에 편의시설 편한곳 찿으신다니 4억 미만이면↵↵1단지,2단지 뒷동이 제일 좋은 선택이신듯"
 						// title: "질문]노원구 실거주위주(7:3정도) 아파트는 어디가 좋을까요??"
+
+						// 단지면  kaptName
+						// 주소 kaptAddr	
+						// 세대수 kaptdaCnt: "1944"
+						// 건축 연도 kaptUsedate
+
+						console.log(item['maemae_jisu']);
 						
-						console.log(item);  
-						var clickItem = item;
-	
-						var table = "<thead>"+
-							"<tr>"+
-								"<th>내용</th>"+
-								"<th>분류</th>"+
-							"</tr>"+
-							"</thead>"+
-							"<tbody>";
+						$("#kaptName").html(item['kaptName']);
+						$("#kaptAddr").html(item['doroJuso']);
+						$("#kaptdaCnt").html(item['kaptdaCnt'] +'세대');
+						
+						var yyyyMMdd = item['kaptUsedate'].substring(0, 4)+'년 '+item['kaptUsedate'].substring(4, 6)+'월 '+item['kaptUsedate'].substring(6, 8)+'일';
 
-						for (var i in item['comment']) {
-							var it = item['comment'][i];
-							if(it['text_comment'] != undefined){
-								table += "<tr>";
+						$("#kaptUsedate").html(yyyyMMdd);
 
-								table += "<td>";
-								table += it['text_comment'];
-								table += "</td>";
-
-								table += "<td>";
-								table += it['label'];
-								table += "</td>";
-
-								table += "</tr>";
-							}
+						if(parseInt(item['초등학교']) > 0){
+							$("#itemSchool_ele").show();
+						} else {
+							$("#itemSchool_ele").hide();
 						}
 
-						table += "</tbody>";
+						if(parseInt(item['중학교']) > 0){
+							$("#itemSchool_mid").show();
+						} else {
+							$("#itemSchool_mid").hide();
+						}
 
-						$("#modal_table").html(table);
+						if(parseInt(item['고등학교']) > 0){
+							$("#itemSchool_high").show();
+						} else {
+							$("#itemSchool_high").hide();
+						}
+
+						if(parseInt(item['학원']) > 0){
+							$("#itemEdu").show();
+						} else {
+							$("#itemEdu").hide();
+						}
+
+						if(parseInt(item['마트']) > 0){
+							$("#itemMart").show();
+						} else {
+							$("#itemMart").hide();
+						}
+
+						if(parseInt(item['백화점']) > 0){
+							$("#itemDeptStore").show();
+						} else {
+							$("#itemDeptStore").hide();
+						}
+
+						if(parseInt(item['지하철']) > 0){
+							$("#itemSubway").show();
+						} else {
+							$("#itemSubway").hide();
+						}
+
+						if(parseInt(item['병원']) > 0){
+							$("#itemHosp").show();
+						} else {
+							$("#itemHosp").hide();
+						}
+						
+						if(parseInt(item['공원']) > 0){
+							$("#itemPark").show();
+						} else {
+							$("#itemPark").hide();
+						}
+
+						
+						console.log(item);  
+							var clickItem = item;
+							
+							if(item['comment'].length > 0){
+								var table = 
+								" <table class=\"table\">"
+								"<tbody>";
+
+							for (var i in item['comment']) {
+								var it = item['comment'][i];
+								
+								if(it['text_comment'] != undefined){
+									table += "<tr>";
+
+									table += "<td>";
+									table += it['text_comment'];
+									table += "</td>";
+
+									table += "<td>";
+									table += it['label'];
+									table += "</td>";
+
+									table += "</tr>";
+								}
+							}
+
+							table += "</tbody>";
+							table += "</table>";
+						} else {
+							table = "관련 정보가 존재하지 않습니다.";
+						}
+
+						$("#history").html('');
+						$("#history").html(table);
 						$("#modal_title").html(item['kaptName'])
 						$("#aptmodal").modal("show");
 						
@@ -624,12 +759,61 @@
 					// innerHtml += "<td>" + item['score_p1'] + "</td>";
 					// innerHtml += "<td>" + item['score_p2'] + "</td>";
 					// simScore = (parseFloat(item['score']) / 150) * 100;
-					if (item['score_sim'] != undefined) {
-						innerHtml += "<td>" + item['score_sim'] + "</td>";
-					}
+					// if (item['score_sim'] != undefined) {
+					// 	innerHtml += "<td>" + item['score_sim'] + "</td>";
+					// }
 					innerHtml += "</tr>";
 
 					$('#content_list').append(innerHtml);
+
+					var datas = {};
+					datas['강남구'] =  ['(주)유앤아이부동산중개 (협의보수 0.3%) 강남구 강남대로 02-545-0011 ', '114부동산중개사무소 (협의보수 0.35%) 강남구 도곡로 02-574-5135', '21세기공인중개사사무소 (협의보수 0.3%) 강남구 봉은사로111길 02-548-1113', '강남1번가부동산중개 (협의보수 0.4%) 강남구 도산대로 010-7673-1394'];
+					datas['강동구'] = ['강동부동산중개사무소 (협의보수 0.4%) 강동구 성안로27길 02-488-1170', '강산공인중개사사무소 (협의보수 0.3%) 강동구 천중로18길 02-470-3622', '경인공인중개사사무소 (협의보수 0.35%) 강동구 천중로 02-478-5944', '고덕공인중개사사무소 (협의보수 0.35%) 강동구 고덕로 02-426-1999'];
+					datas['강북구'] = ['대성공인중개사사무소 (협의보수 0.3%) 강북구 수유로 02-905-0059', '두레공인중개사사무소 (협의보수 0.3%) 강북구 인수봉로77길 02-992-7300', '매일공인중개사사무소 (협의보수 0.35%) 강북구 오패산로 02-982-5000', '부동산OK공인중개사사무소 (협의보수 0.35%) 강북구 삼양로27길 02-945-1777'];
+					datas['강서구'] = ['(주)마곡밸리부동산중개법인 (협의보수 0.4%) 강서구 공항대로 02-2665-0055', '강변공인중개사사무소 (협의보수 0.3%) 강서구 허준로 02-3665-2727', '금탑공인중개사사무소 (협의보수 0.35%) 강서구 공항대로 02-2654-0056', '대명공인중개사사무소 (협의보수 0.35%) 강서구 공항대로 02-3144-1744'];
+					datas['관악구'] = ['그린공인중개사사무소 (협의보수 0.3%) 관악구 은천로 02-877-4811', '다올공인중개사사무소 (협의보수 0.25%) 관악구 호암로 02-877-2005', '럭키공인중개사사무소 (협의보수 0.3%) 관악구 성현로 02-878-2828', '미성공인중개사사무소 (협의보수 0.35%) 관악구 난곡로57길 02-863-4200'];
+					datas['광진구'] = ['다솜공인중개사사무소 (협의보수 0.3%) 광진구 능동로41길 02-455-3883', '라인공인중개사사무소 (협의보수 0.3%) 광진구 능동로 02-4989-0890', '박사공인중개사사무소 (협의보수 0.35%) 광진구 동일로30길 02-498-9010', '부동산월드공인중개사사무소 (협의보수 0.35%) 광진구 뚝섬로26길 02-469-8989'];
+					datas['구로구'] = ['길공인중개사사무소 (협의보수 0.3%) 구로구 개봉로3길 02-2684-2455', '대일공인중개사사무소 (협의보수 0.3%) 구로구 구로중앙로 02-2639-8866', '벽산공인중개사사무소 (협의보수 0.35%) 구로구 디지털로 02-2025-2425', '삼성부동산중개사무소 (협의보수 0.35%) 구로구 중앙로12길 02-2612-9400'];
+					datas['금천구'] = ['가산공인중개사사무소 (협의보수 0.3%) 금천구 가산디지털1로 02-2026-0101', '길공인중개사사무소 (협의보수 0.3%) 금천구 시흥대로 02-894-7777', '대성부동산중개사무소 (협의보수 0.35%) 금천구 독산로 02-807-0315', '삼흥부동산중개사무소 (협의보수 0.35%) 금천구 벚꽃로38길 02-854-0077'];
+					datas['노원구'] = ['1단지공인중개사사무소 (협의보수 0.3%) 노원구 덕릉로 02-931-9922', '노원상가공인중개사사무소 (협의보수 0.3%) 노원구 상계로12길 02-931-1215', '더굿공인중개사사무소 (협의보수 0.35%) 노원구 노원로1나길 02-949-1114', '명문공인중개사사무소 (협의보수 0.35%) 노원구 덕릉로126길 02-932-3020'];
+					datas['도봉구'] = ['3단지공인중개사사무소 (협의보수 0.3%) 도봉구 노해로 02-997-8500', '경남공인중개사사무소 (협의보수 0.3%) 도봉구 마들로 02-955-5200', '대지공인중개사사무소 (협의보수 0.35%) 도봉구 노해로 02-908-3200', '방학탑공인중개사사무소 (협의보수 0.35%) 도봉구 마들로 02-3493-3331'];
+					datas['동대문구'] = ['김창희공인중개사사무소 (협의보수 0.3%) 동대문구 외대역동로 02-968-8945', '대우공인중개사사무소 (협의보수 0.3%) 동대문구 한천로58길 02-963-2600', '대학부동산공인중개사사무소 (협의보수 0.35%) 동대문구 이문로 02-967-1400', '로드공인중개사사무소 (협의보수 0.35%) 동대문구 장한로31길 02-2216-5100'];
+					datas['동작구'] = ['골드공인중개사사무소 (협의보수 0.3%) 동작구 상도로 02-825-3131', '뉴흑석공인중개사사무소 (협의보수 0.3%) 동작구 서달로 02-812-0113', '대아공인중개사사무소 (협의보수 0.35%) 동작구 사당로9가길 02-591-4766', '명성공인중개사사무소 (협의보수 0.35%) 동작구 성대로5길 02-825-3535'];
+					datas['마포구'] = ['(주)진명부동산중개법인 (협의보수 0.3%) 마포구 마포대로 02-363-0909', '거송공인중개사사무소 (협의보수 0.3%) 마포구 연희로 02-3141-9933', '뉴태영공인중개사사무소 (협의보수 0.35%) 마포구 독막로 02-715-4343', '마포공인중개사사무소 (협의보수 0.35%) 마포구 만리재로 02-701-4989'];
+					datas['서대문구'] = ['가재울거성공인중개사사무소 (협의보수 0.3%) 서대문구 거북골로 02-375-3377', '남양공인중개사사무소 (협의보수 0.3%) 서대문구 홍제내길 02-3217-8924', '두산공인중개사사무소 (협의보수 0.35%) 서대문구 이화여대8길 02-364-8090', '서광공인중개사사무소 (협의보수 0.35%) 서대문구 북아현로 02-392-7766'];
+					datas['서초구'] = ['강남모나코공인중개사사무소 (협의보수 0.3%) 서초구 서초대로 02-533-9998', '까치공인중개사사무소 (협의보수 0.3%) 서초구 서초중앙로 02-522-2333', '대림공인중개사사무소 (협의보수 0.35%) 서초구 방배로13길 02-521-4989', '래미안114공인중개사사무소 (협의보수 0.35%) 서초구 반포대로 02-599-4700'];
+					datas['성동구'] = ['금호자이공인중개사사무소 (협의보수 0.3%) 성동구 금호로 02-2296-2322', '대박공인중개사사무소 (협의보수 0.3%) 성동구 독서당로 02-2297-5444', '모두공인중개사사무소 (협의보수 0.35%) 성동구 왕십리로 02-2205-1022', '벽산공인중개사사무소 (협의보수 0.35%) 성동구 금호로 02-2291-3330'];
+					datas['성북구'] = ['꿈의숲공인중개사사무소 (협의보수 0.3%) 성북구 월계로36길 02-964-6900', '대광공인중개사사무소 (협의보수 0.3%) 성북구 숭인로16길 02-981-3003', '롯데캐슬공인중개사사무소 (협의보수 0.35%) 성북구 서경로 02-919-2200', '반석공인중개사사무소 (협의보수 0.35%) 성북구 장위로28길 02-916-4300'];
+					datas['송파구'] = ['김앤김부동산중개 (협의보수 0.3%) 송파구 법원로4길 02-430-8040', '대주공인중개사사무소 (협의보수 0.3%) 송파구 오금로57길 02-409-9432', '동양공인중개사사무소 (협의보수 0.35%) 송파구 올림픽로 02-422-4660', '롯데공인중개사사무소 (협의보수 0.35%) 송파구 중대로 02-449-9000'];
+					datas['양천구'] = ['다인공인중개사사무소 (협의보수 0.3%) 양천구 남부순환로70길 02-2690-1189', '래미안공인중개사사무소 (협의보수 0.3%) 양천구 중앙로43길 02-2697-1112', '목동강서부동산중개사무소 (협의보수 0.35%) 양천구 목동서로 02-2648-7077', '부동산랜드공인중개사사무소 (협의보수 0.35%) 양천구 목동동로 02-2648-8989'];
+					datas['영등포구'] = ['금성공인중개사사무소 (협의보수 0.3%) 영등포구 대림로31길 02-848-2848', '닥터공인중개사사무소 (협의보수 0.3%) 영등포구 당산로 02-2069-4545', '두산위브공인중개사사무소 (협의보수 0.35%) 영등포구 신길로60나길 02-833-6100', '리치공인중개사사무소 (협의보수 0.35%) 영등포구 가마산로61가길 02-846-6067'];
+					datas['용산구'] = ['대박공인중개사사무소 (협의보수 0.3%) 용산구 신흥로20길 02-778-6800', '리치공인중개사사무소 (협의보수 0.3%) 용산구 만리재로 02-706-4945', '보광월드공인중개사사무소 (협의보수 0.35%) 용산구 보광로 02-794-6600', '비타민공인중개사사무소 (협의보수 0.35%) 용산구 원효로35길 02-714-8882'];
+					datas['은평구'] = ['뉴한양공인중개사사무소 (협의보수 0.3%) 은평구 진흥로 02-357-4499', '대지공인중개사사무소 (협의보수 0.3%) 은평구 진흥로1길 02-355-4401', '리치공인중개사사무소 (협의보수 0.35%) 은평구 서오릉로 02-383-4600', '메이플공인중개사사무소 (협의보수 0.35%) 은평구 진관2로 02-389-0060'];
+					datas['종로구'] = ['경복궁공인중개사사무소 (협의보수 0.3%) 종로구 사직로8길 02-720-2230', '동양공인중개사사무소 (협의보수 0.3%) 종로구 진흥로 02-391-3177', '박사공인중개사사무소 (협의보수 0.35%) 종로구 창신길 02-3672-8800', '신라부동산중개사무소 (협의보수 0.35%) 종로구 동망산길 02-765-3800'];
+					datas['중구'] = ['궁전공인중개사사무소 (협의보수 0.3%) 중구 다산로22길 02-2235-2829', '덕수궁롯데캐슬공인중개사사무소 (협의보수 0.3%) 중구 서소문로9길 02-2696-6363', '마루공인중개사사무소 (협의보수 0.35%) 중구 퇴계로 02-2236-8949', '부림사부동산중개인사무소 (협의보수 0.35%) 중구 명동9길 02-752-1300'];
+					datas['중랑구'] = ['녹색공인중개사사무소 (협의보수 0.3%) 중랑구 면목로55길 02-493-4545', '더에이스공인중개사사무소 (협의보수 0.3%) 중랑구 사가정로49길 02-434-1700', '벽산공인중개사사무소 (협의보수 0.35%) 중랑구 용마산로125길 02-3421-7400', '사랑채공인중개사사무소 (협의보수 0.35%) 중랑구 면목로 02-2208-0008'];
+
+					var html='';
+					guDongSanData = datas[guName];
+					
+					for (var i = 0 ; i < guDongSanData.length;i++) {
+							html += "<div class=\"form-check\">";
+							html +="<label class=\"form-check-label\">";
+							if (i == 0){
+								html +="<input class=\"form-check-input\" type=\"radio\" name=\"exampleRadios\" id=\"exampleRadios1\" value=\"option1\" checked>";
+							} else {
+								html +="<input class=\"form-check-input\" type=\"radio\" name=\"exampleRadios\" id=\"exampleRadios1\" value=\"option1\">";
+							}
+
+							html +=guDongSanData[i];
+							html +="<span class=\"circle\">";
+							html +="<span class=\"check\"></span>";
+							html +="</span>";
+							html +="</label>";
+							html +="</div>";
+					}
+
+					$('#dongsan').html(html);
 
 					// 첫번째 인덱스로 이동 
 					if (idx == 1) {
@@ -730,7 +914,9 @@
 					});
 
 					// 공원
-					$.getJSON("datas/data_park", function (jsons) {
+					var pathpark = "datas/park/data공원_"+name+".json";
+
+					$.getJSON(pathpark, function (jsons) {
 						jsons.forEach(function (item) {
 							// var lat = item['LAT_WGS'];
 							// var lon = item['LON_WGS'];
@@ -801,9 +987,9 @@
 						});
 					});
 
-					// var pathedu = "datas/data학원_"+name+".json";
+					var pathedu = "datas/edu/data학원_"+name+".json";
 
-					$.getJSON('datas/data_edu', function (jsons) {
+					$.getJSON(pathedu, function (jsons) {
 						jsons.forEach(function (item) {
 							// var lat = item['LAT_WGS'];
 							// var lon = item['LON_WGS'];
@@ -1039,10 +1225,10 @@
 	</div>
 
 	<!-- Classic Modal -->
-	<div class="modal fade" id="aptmodal" tabindex="-1" role="dialog">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<!-- <div class="modal-header">
+<div class="modal fade" id="aptmodal" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+	  <div class="modal-content">
+		<!-- <div class="modal-header">
 		  <h5 class="modal-title">여기가 타이틀임</h5>
 		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			<i class="material-icons">clear</i>
@@ -1054,55 +1240,218 @@
 		  </p>
 		  <img src="images/img_popup.png" /><br><br>
 		</div> -->
-				<div class="modal-header">
-					<h5 class="modal-title" id="modal_title">여기가 타이틀임</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<i class="material-icons">x</i>
-					</button>
+		<div class="modal-header">
+		  <!-- <h3><small>Tabs on Plain Card</small></h3> -->
+		  <!-- Tabs on Plain Card -->
+		  <div class="card card-nav-tabs card-plain">
+			<div class="card-header card-header-info">
+			  <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+			  <div class="nav-tabs-navigation">
+				<div class="nav-tabs-wrapper">
+				  <ul class="nav nav-tabs" data-tabs="tabs">
+					<li class="nav-item">
+					  <a class="nav-link active" href="#home" data-toggle="tab">아파트정보</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="#updates" data-toggle="tab">심리..그래프2차</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="#history" data-toggle="tab">리뷰..3차</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="#dongsan" data-toggle="tab">중계업소</a>
+					</li>
+				  </ul>
 				</div>
-				<div class="modal-body">
-
-					<div id="modal_content"></div>
-					<table class="table" id="modal_table">
-						<thead>
-							<tr>
-								<th>부동산명</th>
-								<th>협의보수</th>
-								<th>전화번호</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>중계탑</td>
-								<td>협의보수 0.3% </td>
-								<td>010-0000-0000</td>
-							</tr>
-							<tr>
-								<td>중계탑</td>
-								<td>협의보수 0.3% </td>
-								<td>010-0000-0000</td>
-							</tr>
-							<tr>
-								<td>중계탑</td>
-								<td>협의보수 0.3% </td>
-								<td>010-0000-0000</td>
-							</tr>
-							<tr>
-								<td>중계탑</td>
-								<td>협의보수 0.3% </td>
-								<td>010-0000-0000</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-link">Nice Button</button>
-					<button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
-				</div>
+			  </div>
 			</div>
-		</div>
-	</div>
+			<div class="card-body ">
+			  <div class="tab-content text-center">
+				<div class="tab-pane active" id="home">
+				  <p>
+					<form>
+  
+					  <div class="form-group row">
+						<label for="staticEmail" class="col-sm-2 col-form-label">단지명</label>
+						<label id="kaptName" for="staticEmail" class="col-lg col-form-label text-left"></label>
+						<!-- <div class="col-sm-10">
+						  <input type="text" readonly class="form-control-plaintext" id="kaptName" value="괴정 경성스마트W아파트">
+						</div> -->
+					  </div>
+			
+					  <div class="form-group row">
+						<label for="kaptAddr" class="col-sm-2 col-form-label">주소</label>
+						<label id="kaptAddr" for="kaptAddr" class="col-lg col-form-label text-left"></label>
+					  </div>
+			
+					  <div class="form-group row">
+						<label for="kaptdaCnt" class="col-sm-2 col-form-label">세대수</label>
+						<label id="kaptdaCnt" for="kaptdaCnt" class="col-lg col-form-label text-left"></label>
+					  </div>
+			
+					  <div class="form-group row">
+						<label for="kaptUsedate" class="col-sm-2 col-form-label">건축연도</label>
+						<label id="kaptUsedate" for="kaptUsedate" class="col-lg col-form-label text-left"></label>
+					  </div>
+					  
+					  <div class="form-group row">
+						<label for="staticEmail" class="col-sm-2 col-form-label">편의시설</label>
+						<div class="col-lg col-form-label text-left">
+						  <span id="itemSchool_ele" class="badge badge-pill badge-primary">초등학교</span>
+						  <span id="itemSchool_mid" class="badge badge-pill badge-info">중학교</span>
+						  <span id="itemSchool_high" class="badge badge-pill badge-success">고등학교</span>
+						  <span id="itemEdu" class="badge badge-pill badge-danger">학원</span>
+						  <span id="itemMart" class="badge badge-pill badge-warning">마트</span>
+						  <span id="itemDeptStore" class="badge badge-pill badge-default">백화점</span>
+						  <span id="itemSubway" class="badge badge-pill badge-primary">지하철</span>
+						  <span id="itemHosp" class="badge badge-pill badge-info">병원</span>
+						  <span id="itemPark" class="badge badge-pill  badge-success">공원</span>
+						  <!-- <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="초등학교, 중학교, 학원, 마트"> -->
+						</div>
+					  </div>        
+					</form>
+				  </p>
+				</div>
+				<div class="tab-pane" id="updates">
+				  <!-- 차트 -->
+  
+				  <div class="container"> <canvas id="myChart"></canvas> </div>
+  
+				</div>
+				<div class="tab-pane" id="history">
+				  <table class="table">
+					<tbody>
+					  <tr>
+						<td>상계주공14단지 용적률 궁금합니다</td>
+						<td>좋음</td>
+					  </tr>
+					  <tr>
+						<td>염광 아름빌 여쭤봐요</td>
+						<td>좋음</td>
+					  </tr>
+					  <tr>
+						<td>하계동 건영아파트극동건영벽산 19평형 1층 매도합니다</td>
+						<td>좋음</td>
+					  </tr>
+					  <tr>
+						<td>월계센트럴아이파크 단지를 돌며</td>
+						<td>나쁨</td>
+					  </tr>
+					  <tr>
+						<td>동북선전문가님들 고견구합니다 마들역 연장안관련</td>
+						<td>나쁨</td>
+					  </tr>
+					  <tr>
+						<td>노원꿈에그린 34평 입주권 7월 실거래가 855억 상계 마들역 위치</td>
+						<td>나쁨</td>
+					  </tr>
+					</tbody>
+				  </table>
+				</div>
+  
+  
+				<div class="tab-pane text-left" id="dongsan">
+				  <!-- 차트 -->
 
+				  
+
+					<div class="form-check">
+					  <label class="form-check-label">
+						<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+						중계탑 (협의보수 0.3%) 010-0000-0000 
+						<span class="circle">
+						  <span class="check"></span>
+						</span>
+					  </label>
+					</div>
+					<div class="form-check">
+					  <label class="form-check-label">
+						<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+						중계탑 (협의보수 0.3%) 010-0000-0000
+						<span class="circle">
+						  <span class="check"></span>
+						</span>
+					  </label>
+					</div>
+					<div class="form-check">
+					  <label class="form-check-label">
+						<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+						중계탑 (협의보수 0.3%) 010-0000-0000
+						<span class="circle">
+						  <span class="check"></span>
+						</span>
+					  </label>
+					</div>
+					<div class="form-check">
+					  <label class="form-check-label">
+						<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
+						중계탑 (협의보수 0.3%) 010-0000-0000
+						<span class="circle">
+						  <span class="check"></span>
+						</span>
+					  </label>
+					</div>
+  
+				  <!-- <table class="table">
+					<thead>
+					  <tr>
+						<th>부동산명</th>
+						<th>협의보수</th>
+						<th>전화번호</th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <tr>
+						<td>중계탑</td>
+						<td>협의보수 0.3% </td>
+						<td>010-0000-0000</td>
+					  </tr>
+					  <tr>
+						<td>중계탑</td>
+						<td>협의보수 0.3% </td>
+						<td>010-0000-0000</td>
+					  </tr>
+					  <tr>
+						<td>중계탑</td>
+						<td>협의보수 0.3% </td>
+						<td>010-0000-0000</td>
+					  </tr>
+					  <tr>
+						<td>중계탑</td>
+						<td>협의보수 0.3% </td>
+						<td>010-0000-0000</td>
+					  </tr>
+					</tbody>
+				  </table> -->
+  
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <!-- End Tabs on plain Card -->
+  
+		  <!-- <h5 class="modal-title">여기가 타이틀임</h5> -->
+		  <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <i class="material-icons">clear</i>
+			</button> -->
+		</div>
+		<!-- <h5 class="modal-title">여기가 타이틀임</h5>  -->
+		<div class="modal-body">
+		  
+  
+		 
+  
+		  <!-- <p><h6 class="text-right"><b>※ 보내기를 누르시면 고객님의 정보를 선택한 중개업소에 전송합니다.</b></h6></p> -->
+		</div>
+		<div class="modal-footer">
+  
+		  <!-- <button type="button" class="btn btn-info btn-round" data-dismiss="modal">보내기</button> -->
+		  <button type="button" class="btn btn-link" data-dismiss="modal">닫기</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+  <!--  End Modal -->
 
 
 	<!-- 로딩 -->

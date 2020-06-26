@@ -31,6 +31,45 @@ The above copyright notice and this permission notice shall be included in all c
   <link href="./assets/css/material-kit.css?v=2.0.7" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="./assets/demo/demo.css" rel="stylesheet" />
+  <!-- 차트 링크 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <!-- 부트스트랩 -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script>
+
+    $(document).ready(function () {
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var chart = new Chart(ctx,
+        { // 챠트 종류를 선택
+          type: 'line',
+          // 챠트를 그릴 데이타 
+          data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [
+              { label: 'My First dataset', backgroundColor: 'transparent', borderColor: 'blue', data: [0, 10, 5, 2, 20, 30, 45] 
+              },
+              { label: 'My First dataset', backgroundColor: 'transparent', borderColor: 'red', data: [20,20,20,20,20,20] 
+              }
+
+            ]
+
+
+          }, // 옵션
+          options: {}
+        });
+
+    });
+
+  </script>
+
 </head>
 
 <div class="title">
@@ -47,7 +86,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 <!-- Classic Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <!-- <div class="modal-header">
         <h5 class="modal-title">여기가 타이틀임</h5>
@@ -62,47 +101,213 @@ The above copyright notice and this permission notice shall be included in all c
         <img src="images/img_popup.png" /><br><br>
       </div> -->
       <div class="modal-header">
-        <h5 class="modal-title">여기가 타이틀임</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <i class="material-icons">clear</i>
-        </button>
+        <!-- <h3><small>Tabs on Plain Card</small></h3> -->
+        <!-- Tabs on Plain Card -->
+        <div class="card card-nav-tabs card-plain">
+          <div class="card-header card-header-info">
+            <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+            <div class="nav-tabs-navigation">
+              <div class="nav-tabs-wrapper">
+                <ul class="nav nav-tabs" data-tabs="tabs">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#home" data-toggle="tab">아파트정보</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#updates" data-toggle="tab">심리..그래프2차</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#history" data-toggle="tab">리뷰..3차</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#dongsan" data-toggle="tab">중계업소</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card-body ">
+            <div class="tab-content text-center">
+              <div class="tab-pane active" id="home">
+                <p>
+                  <form>
+
+                    <div class="form-group row">
+                      <label for="staticEmail" class="col-sm-2 col-form-label">단지명</label>
+                      <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="괴정 경성스마트W아파트">
+                      </div>
+                    </div>
+          
+          
+                    <div class="form-group row">
+                      <label for="staticEmail" class="col-sm-2 col-form-label">주소</label>
+                      <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="부산광역시 사하구 괴정동 258 괴정 경성스마트W아파트">
+                      </div>
+                    </div>
+          
+                    <div class="form-group row">
+                      <label for="staticEmail" class="col-sm-2 col-form-label">세대수</label>
+                      <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="182">
+                      </div>
+                    </div>
+          
+                    <div class="form-group row">
+                      <label for="staticEmail" class="col-sm-2 col-form-label">건축연도</label>
+                      <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="2015년05월">
+                      </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                      <label for="staticEmail" class="col-sm-2 col-form-label">편의시설</label>
+                      <div class="col-sm-10 text-left">
+
+                        <span class="badge badge-pill badge-primary">초등학교</span>
+                        <span class="badge badge-pill badge-info">중학교</span>
+                        <span class="badge badge-pill badge-success">학원</span>
+                        <span class="badge badge-pill badge-danger">마트</span>
+                        <span class="badge badge-pill badge-warning">공원 (8)</span>
+                        <span class="badge badge-pill badge-default">병원 (1)</span>
+                        <!-- <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="초등학교, 중학교, 학원, 마트"> -->
+                      </div>
+                    </div>        
+                  </form>
+                </p>
+              </div>
+              <div class="tab-pane" id="updates">
+                <!-- 차트 -->
+
+                <div class="container"> <canvas id="myChart"></canvas> </div>
+
+              </div>
+              <div class="tab-pane" id="history">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td>상계주공14단지 용적률 궁금합니다</td>
+                      <td>좋음</td>
+                    </tr>
+                    <tr>
+                      <td>염광 아름빌 여쭤봐요</td>
+                      <td>좋음</td>
+                    </tr>
+                    <tr>
+                      <td>하계동 건영아파트극동건영벽산 19평형 1층 매도합니다</td>
+                      <td>좋음</td>
+                    </tr>
+                    <tr>
+                      <td>월계센트럴아이파크 단지를 돌며</td>
+                      <td>나쁨</td>
+                    </tr>
+                    <tr>
+                      <td>동북선전문가님들 고견구합니다 마들역 연장안관련</td>
+                      <td>나쁨</td>
+                    </tr>
+                    <tr>
+                      <td>노원꿈에그린 34평 입주권 7월 실거래가 855억 상계 마들역 위치</td>
+                      <td>나쁨</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+              <div class="tab-pane text-left" id="dongsan">
+                <!-- 차트 -->
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                      중계탑 (협의보수 0.3%) 010-0000-0000 
+                      <span class="circle">
+                        <span class="check"></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                      중계탑 (협의보수 0.3%) 010-0000-0000
+                      <span class="circle">
+                        <span class="check"></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+                      중계탑 (협의보수 0.3%) 010-0000-0000
+                      <span class="circle">
+                        <span class="check"></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
+                      중계탑 (협의보수 0.3%) 010-0000-0000
+                      <span class="circle">
+                        <span class="check"></span>
+                      </span>
+                    </label>
+                  </div>
+
+                <!-- <table class="table">
+                  <thead>
+                    <tr>
+                      <th>부동산명</th>
+                      <th>협의보수</th>
+                      <th>전화번호</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>중계탑</td>
+                      <td>협의보수 0.3% </td>
+                      <td>010-0000-0000</td>
+                    </tr>
+                    <tr>
+                      <td>중계탑</td>
+                      <td>협의보수 0.3% </td>
+                      <td>010-0000-0000</td>
+                    </tr>
+                    <tr>
+                      <td>중계탑</td>
+                      <td>협의보수 0.3% </td>
+                      <td>010-0000-0000</td>
+                    </tr>
+                    <tr>
+                      <td>중계탑</td>
+                      <td>협의보수 0.3% </td>
+                      <td>010-0000-0000</td>
+                    </tr>
+                  </tbody>
+                </table> -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Tabs on plain Card -->
+
+        <!-- <h5 class="modal-title">여기가 타이틀임</h5> -->
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="material-icons">clear</i>
+          </button> -->
       </div>
+      <!-- <h5 class="modal-title">여기가 타이틀임</h5>  -->
       <div class="modal-body">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>부동산명</th>
-              <th>협의보수</th>
-              <th>전화번호</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>중계탑</td>
-              <td>협의보수 0.3% </td>
-              <td>010-0000-0000</td>
-            </tr>
-            <tr>
-              <td>중계탑</td>
-              <td>협의보수 0.3% </td>
-              <td>010-0000-0000</td>
-            </tr>
-            <tr>
-              <td>중계탑</td>
-              <td>협의보수 0.3% </td>
-              <td>010-0000-0000</td>
-            </tr>
-            <tr>
-              <td>중계탑</td>
-              <td>협의보수 0.3% </td>
-              <td>010-0000-0000</td>
-            </tr>
-          </tbody>
-        </table>
+        
+
+       
+
+        <!-- <p><h6 class="text-right"><b>※ 보내기를 누르시면 고객님의 정보를 선택한 중개업소에 전송합니다.</b></h6></p> -->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-link">Nice Button</button>
-        <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+
+        <!-- <button type="button" class="btn btn-info btn-round" data-dismiss="modal">보내기</button> -->
+        <button type="button" class="btn btn-link" data-dismiss="modal">닫기</button>
       </div>
     </div>
   </div>
