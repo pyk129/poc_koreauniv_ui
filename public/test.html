@@ -22,7 +22,7 @@ The above copyright notice and this permission notice shall be included in all c
   <title>
     Material Kit by Creative Tim
   </title>
-  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+  <!-- <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' /> -->
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css"
     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -69,20 +69,613 @@ The above copyright notice and this permission notice shall be included in all c
     });
 
   </script>
+<script>
 
+		function click_modal_tab(num) {
+
+			if (num != 4) {
+				$('#modal_send').hide();
+			} else {
+				$('#modal_send').show();
+			}
+
+		}
+
+		var html = '';
+
+		var 노원구 = ['"중계탑 (협의보수 0.3%) 010-0000-0000 "', "중계탑 (협의보수 0.3%) 010-0000-0000 ", "중계탑 (협의보수 0.3%) 010-0000-0000 "];
+
+
+		html += "<div class=\"form-check\">";
+		html += "<label class=\"form-check-label\"></label>";
+		html += "<input class=\"form-check-input\" type=\"radio\" name=\"exampleRadios\" id=\"exampleRadios1\" value=\"option1\" checked>";
+		html += "중계탑 (협의보수 0.3%) 010-0000-0000 ";
+		html += "<span class=\"circle\"></span>";
+		html += "<span class=\"check\"></span>";
+		html += "</span>";
+		html += "</label>";
+		html += "</div>";
+
+		html += "<div class=\"form-check\">";
+		html += "<label class=\"form-check-label\"></label>";
+		html += "<input class=\"form-check-input\" type=\"radio\" name=\"exampleRadios\" id=\"exampleRadios1\" value=\"option1\" checked>";
+		html += "중계탑 (협의보수 0.3%) 010-0000-0000 ";
+		html += "<span class=\"circle\"></span>";
+		html += "<span class=\"check\"></span>";
+		html += "</span>";
+		html += "</label>";
+		html += "</div>";
+
+		html += "<div class=\"form-check\">";
+		html += "<label class=\"form-check-label\"></label>";
+		html += "<input class=\"form-check-input\" type=\"radio\" name=\"exampleRadios\" id=\"exampleRadios1\" value=\"option1\" checked>";
+		html += "중계탑 (협의보수 0.3%) 010-0000-0000 ";
+		html += "<span class=\"circle\"></span>";
+		html += "<span class=\"check\"></span>";
+		html += "</span>";
+		html += "</label>";
+		html += "</div>";
+
+		html += "<div class=\"form-check\">";
+		html += "<label class=\"form-check-label\"></label>";
+		html += "<input class=\"form-check-input\" type=\"radio\" name=\"exampleRadios\" id=\"exampleRadios1\" value=\"option1\" checked>";
+		html += "중계탑 (협의보수 0.3%) 010-0000-0000 ";
+		html += "<span class=\"circle\"></span>";
+		html += "<span class=\"check\"></span>";
+		html += "</span>";
+		html += "</label>";
+		html += "</div>";
+
+		var status_sel_gu = 1;
+		var status_recommend = 2;
+		var status_dongsan = 3;
+
+		var status = status_sel_gu;
+
+		var dataHomePath = '/Users/a60067648/koreaUnivProject/poc_was_koreauniv/'
+
+		function getParameterByName(name) {
+			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+				results = regex.exec(location.search);
+			return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+
+		var optSecond = 0;
+		var sel1 = 1;
+		var sel2 = 0;
+		var sel3 = 0;
+		var sel4 = 0;
+		var sel5 = 0;
+		var sel6 = 0;
+		var sel7 = 0;
+		var sel8 = 0;
+		var sel9 = 0;
+
+		$(document).ready(function () {
+			// $("#gnb").load("gnb.html", function () {
+			// 	// setting_gnb("menu0102");
+			// });
+
+			optSecond = getParameterByName('reco2nd');
+
+			sel1 = getParameterByName('sel1');
+			sel2 = getParameterByName('sel2');
+			sel3 = getParameterByName('sel3');
+			sel4 = getParameterByName('sel4');
+			sel5 = getParameterByName('sel5');
+			sel6 = getParameterByName('sel6');
+			sel7 = getParameterByName('sel7');
+			sel8 = getParameterByName('sel8');
+			sel9 = getParameterByName('sel9');
+
+			status = status_sel_gu;
+
+			checkVisibleTableView(status_sel_gu);
+		});
+
+		function checkVisibleTableView(sta) {
+
+			var tbl = $('#tbl_dongsan');
+
+			if (parseInt(sta) == status_sel_gu) {
+				$('#title').html('지역 선택');
+				$('#title2').html('관심있는 지역을 지도에서 선택해주세요')
+
+				$('#cancel_btn').hide();
+				$('#execute_btn').hide();
+
+
+			} else if (parseInt(sta) == status_dongsan) {
+				// $('#tbl_dongsan').show();
+				// $('#tbl_recommend').hide();
+
+				$('#cancel_btn').show();
+				$('#execute_btn').show();
+
+				$('#title').html('부동산 선택');
+				$('#title').html('관심있는 부동산을 선택해주세요');
+				var html = "<table class=\"tbl col\">" +
+					"<colgroup>" +
+					"<col width=\"10%\">" +
+					"<col width=\"auto\">" +
+					"<col width=\"30%\">" +
+					"<col width=\"30%\">" +
+
+					"</colgroup>" +
+					"<thead>" +
+					"<tr>" +
+					"<th scope=\"col\">선택</th>" +
+					"<th scope=\"col\">부동산명</th>" +
+					"<th scope=\"col\">협의보수</th>" +
+					"<th scope=\"col\">전화번호</th>" +
+					"</tr>" +
+					"</thead>" +
+					"<tbody>" +
+
+					"<tr>	" +
+					"<td ><input type=\"checkbox\" id=\"chk1 value=1 onclick=\"checkSelApt(this)\";/></td>" +
+					"<td>중계탑</td>" +
+					"<td>협의보수 0.3% </td>" +
+					"<td>010-0000-0000</td>		" +
+					"</tr>" +
+					"<tr>	" +
+					"<td><input type=\"checkbox\" id=\"chk1 value=1 onclick=\"checkSe	Apt(this)\";/></td>" +
+					"<td>현대 복덕방</td>" +
+					"<td>협의보수 0.4% </td>" +
+					"<td>010-0000-0000</td>		" +
+					"</tr>" +
+
+					"<tr>	" +
+					"<td><input type=\"checkbox\" id=\"chk1 value=1 onclick=\"checkSelApt(this)\";/></td>" +
+					"<td>상계푸른집</td>" +
+					"<td>협의보수 0.35% </td>" +
+					"<td>010-0000-0000</td>	" +
+					"</tr>" +
+
+					"<tr>" +
+					"<td><input type=\"checkbox\" id=\"chk1 value=1 onclick=\"checkSelApt(this)\";/></td>" +
+					"<td>상계덩방</td>" +
+					"<td>협의보수 0.34% </td>" +
+					"<td>010-0000-0000</td>	" +
+					"</tr>" +
+
+					"</tbody>" +
+					"</table>";
+				tbl.html('');
+				tbl.html(html);
+
+				$('#cancel_btn').attr('disabled', false);
+
+			} else {
+
+				$('#cancel_btn').show();
+				$('#execute_btn').show();
+
+				$('#title').html('추천매물');
+				$('#title').html('관심있는 매물을 선택해주세요');
+				var html = "<table class=\"tbl\">" +
+					"<colgroup>" +
+					"<col style=\"width:10%\">" +
+					"<col style=\"width:10%\">" +
+					"<col style=\"width:auto\">" +
+
+					"</colgroup>" +
+					"<thead>" +
+					"<tr>" +
+					"<th scope=\"col\">선택</th>" +
+					"<th scope=\"col\">추천순서</th>" +
+					"<th scope=\"col\">아파트명</th>" +
+					"</tr>" +
+					"</thead>" +
+					"<tbody id=\"content_list\">" +
+					"</tbody>" +
+					"</table>";
+				tbl.html('');
+				tbl.html(html);
+			}
+		}
+
+		function before() {
+			status = parseInt(status) - 1;
+			if (status < 2) {
+				status = 1;
+				location.reload();
+			}
+
+			checkVisibleTableView(status);
+		}
+
+		function next() {
+			status = parseInt(status) + 1;
+
+			if (status > 3) {
+				status = 3;
+				// next로 이동
+				// location.href = './step4.html';
+				return;
+			}
+			// alert(status);
+			checkVisibleTableView(status);
+		}
+
+
+		function showLoading() {
+			$(".loading").show();
+		}
+
+		function closeLoading() {
+			$(".loading").hide();
+		}
+
+		function checkSelApt(chkboxid) {
+			alert('111');
+		}
+	</script>
+	<script>
+		$(document).ready(function () {
+		});
+
+	</script>
+	<script>
+		function myFunction(guName) {
+
+			showLoading();
+
+			// optSecond = 1;
+			// sel1 = 1;
+			// sel2 = 0;
+			// sel3 = 0;
+			// sel4 = 0;
+			// sel5 = 0;
+			// sel6 = 0;
+			// sel7 = 0;
+			// sel8 = 0;
+			// sel9 = 0;
+			// 'http://aws.hancy.kr:8802/send_py
+			//
+			// http://aws.hancy.kr:8802/send_py
+			$.post('http://127.0.0.1:5000/send_py', {
+
+				// algo: idxAlgo,
+				// select1: checkSel1,
+				// select2: checkSel2,
+				// select3: checkSel3,
+				// select4: checkSel4,
+				// select5: checkSel5,
+				// select6: checkSel6,
+				// select7: checkSel7,
+				// select6: checkSel8,
+				// select7: checkSel9
+
+
+				algo: '1',
+				gu: guName,
+				optSecond: optSecond,
+				select1: sel1,
+				select2: sel2,
+				select3: sel3,
+				select4: sel4,
+				select5: sel5,
+				select6: sel6,
+				select7: sel7,
+				select8: sel8,
+				select9: sel9
+			}, function (jqXHR) {
+
+				// alert("success");
+				// jsonData = JSON.parse(jqXHR);
+				// console.log('data : ', jqXHR.data[0]);	
+				// 초기화 
+				$('#content_list').empty();
+
+				idx = 0;
+				jqXHR.data.forEach(function (item) {
+
+					idx = idx + 1;
+
+					var markerPosition = new kakao.maps.LatLng(item['LAT_WGS'], item['LON_WGS']);
+					var marker = new kakao.maps.Marker({
+						position: markerPosition
+					});
+
+					// 마커가 지도 위에 표시되도록 설정합니다
+					marker.setMap(map);
+
+
+					// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
+					var iwContent = '<div style="padding:5px;" onclick=onClick_marker(' + item + ')>' + item['kaptName'] + '</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+						iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+
+					// // 인포윈도우를 생성합니다
+					var infowindow = new kakao.maps.InfoWindow({
+						content: iwContent,
+						removable: iwRemoveable
+					});
+
+					// 마커에 클릭이벤트를 등록합니다
+					kakao.maps.event.addListener(marker, 'click', function () {
+						onClick_marker(item);
+
+					});
+
+					// 마커 위에 인포윈도우를 표시합니다
+					infowindow.open(map, marker);
+
+					var innerHtml = "";
+
+					innerHtml = "<tr onclick=\"javascript:movePan(" + item['LAT_WGS'] + "," + item['LON_WGS'] + ")\">";
+
+					innerHtml += "<td><input type=\"checkbox\" id=\"chk1 value=1 onclick=\"checkSelApt(this)\";/></td>";
+					innerHtml += "<td scope=\"row\">" + idx + "</a></td>";
+					innerHtml += "<td>" + item['kaptName'] + "</td>";
+					// innerHtml += "<td>" + item['score_p1'] + "</td>";
+					// innerHtml += "<td>" + item['score_p2'] + "</td>";
+					// simScore = (parseFloat(item['score']) / 150) * 100;
+					// if (item['score_sim'] != undefined) {
+					// 	innerHtml += "<td>" + item['score_sim'] + "</td>";
+					// }
+					innerHtml += "</tr>";
+
+					$('#content_list').append(innerHtml);
+
+					var datas_dongsan = {};
+					datas_dongsan['강남구'] = ['(주)유앤아이부동산중개 (협의보수 0.3%) 강남구 강남대로 02-545-0011 ', '114부동산중개사무소 (협의보수 0.35%) 강남구 도곡로 02-574-5135', '21세기공인중개사사무소 (협의보수 0.3%) 강남구 봉은사로111길 02-548-1113', '강남1번가부동산중개 (협의보수 0.4%) 강남구 도산대로 010-7673-1394'];
+					datas_dongsan['강동구'] = ['강동부동산중개사무소 (협의보수 0.4%) 강동구 성안로27길 02-488-1170', '강산공인중개사사무소 (협의보수 0.3%) 강동구 천중로18길 02-470-3622', '경인공인중개사사무소 (협의보수 0.35%) 강동구 천중로 02-478-5944', '고덕공인중개사사무소 (협의보수 0.35%) 강동구 고덕로 02-426-1999'];
+					datas_dongsan['강북구'] = ['대성공인중개사사무소 (협의보수 0.3%) 강북구 수유로 02-905-0059', '두레공인중개사사무소 (협의보수 0.3%) 강북구 인수봉로77길 02-992-7300', '매일공인중개사사무소 (협의보수 0.35%) 강북구 오패산로 02-982-5000', '부동산OK공인중개사사무소 (협의보수 0.35%) 강북구 삼양로27길 02-945-1777'];
+					datas_dongsan['강서구'] = ['(주)마곡밸리부동산중개법인 (협의보수 0.4%) 강서구 공항대로 02-2665-0055', '강변공인중개사사무소 (협의보수 0.3%) 강서구 허준로 02-3665-2727', '금탑공인중개사사무소 (협의보수 0.35%) 강서구 공항대로 02-2654-0056', '대명공인중개사사무소 (협의보수 0.35%) 강서구 공항대로 02-3144-1744'];
+					datas_dongsan['관악구'] = ['그린공인중개사사무소 (협의보수 0.3%) 관악구 은천로 02-877-4811', '다올공인중개사사무소 (협의보수 0.25%) 관악구 호암로 02-877-2005', '럭키공인중개사사무소 (협의보수 0.3%) 관악구 성현로 02-878-2828', '미성공인중개사사무소 (협의보수 0.35%) 관악구 난곡로57길 02-863-4200'];
+					datas_dongsan['광진구'] = ['다솜공인중개사사무소 (협의보수 0.3%) 광진구 능동로41길 02-455-3883', '라인공인중개사사무소 (협의보수 0.3%) 광진구 능동로 02-4989-0890', '박사공인중개사사무소 (협의보수 0.35%) 광진구 동일로30길 02-498-9010', '부동산월드공인중개사사무소 (협의보수 0.35%) 광진구 뚝섬로26길 02-469-8989'];
+					datas_dongsan['구로구'] = ['길공인중개사사무소 (협의보수 0.3%) 구로구 개봉로3길 02-2684-2455', '대일공인중개사사무소 (협의보수 0.3%) 구로구 구로중앙로 02-2639-8866', '벽산공인중개사사무소 (협의보수 0.35%) 구로구 디지털로 02-2025-2425', '삼성부동산중개사무소 (협의보수 0.35%) 구로구 중앙로12길 02-2612-9400'];
+					datas_dongsan['금천구'] = ['가산공인중개사사무소 (협의보수 0.3%) 금천구 가산디지털1로 02-2026-0101', '길공인중개사사무소 (협의보수 0.3%) 금천구 시흥대로 02-894-7777', '대성부동산중개사무소 (협의보수 0.35%) 금천구 독산로 02-807-0315', '삼흥부동산중개사무소 (협의보수 0.35%) 금천구 벚꽃로38길 02-854-0077'];
+					datas_dongsan['노원구'] = ['1단지공인중개사사무소 (협의보수 0.3%) 노원구 덕릉로 02-931-9922', '노원상가공인중개사사무소 (협의보수 0.3%) 노원구 상계로12길 02-931-1215', '더굿공인중개사사무소 (협의보수 0.35%) 노원구 노원로1나길 02-949-1114', '명문공인중개사사무소 (협의보수 0.35%) 노원구 덕릉로126길 02-932-3020'];
+					datas_dongsan['도봉구'] = ['3단지공인중개사사무소 (협의보수 0.3%) 도봉구 노해로 02-997-8500', '경남공인중개사사무소 (협의보수 0.3%) 도봉구 마들로 02-955-5200', '대지공인중개사사무소 (협의보수 0.35%) 도봉구 노해로 02-908-3200', '방학탑공인중개사사무소 (협의보수 0.35%) 도봉구 마들로 02-3493-3331'];
+					datas_dongsan['동대문구'] = ['김창희공인중개사사무소 (협의보수 0.3%) 동대문구 외대역동로 02-968-8945', '대우공인중개사사무소 (협의보수 0.3%) 동대문구 한천로58길 02-963-2600', '대학부동산공인중개사사무소 (협의보수 0.35%) 동대문구 이문로 02-967-1400', '로드공인중개사사무소 (협의보수 0.35%) 동대문구 장한로31길 02-2216-5100'];
+					datas_dongsan['동작구'] = ['골드공인중개사사무소 (협의보수 0.3%) 동작구 상도로 02-825-3131', '뉴흑석공인중개사사무소 (협의보수 0.3%) 동작구 서달로 02-812-0113', '대아공인중개사사무소 (협의보수 0.35%) 동작구 사당로9가길 02-591-4766', '명성공인중개사사무소 (협의보수 0.35%) 동작구 성대로5길 02-825-3535'];
+					datas_dongsan['마포구'] = ['(주)진명부동산중개법인 (협의보수 0.3%) 마포구 마포대로 02-363-0909', '거송공인중개사사무소 (협의보수 0.3%) 마포구 연희로 02-3141-9933', '뉴태영공인중개사사무소 (협의보수 0.35%) 마포구 독막로 02-715-4343', '마포공인중개사사무소 (협의보수 0.35%) 마포구 만리재로 02-701-4989'];
+					datas_dongsan['서대문구'] = ['가재울거성공인중개사사무소 (협의보수 0.3%) 서대문구 거북골로 02-375-3377', '남양공인중개사사무소 (협의보수 0.3%) 서대문구 홍제내길 02-3217-8924', '두산공인중개사사무소 (협의보수 0.35%) 서대문구 이화여대8길 02-364-8090', '서광공인중개사사무소 (협의보수 0.35%) 서대문구 북아현로 02-392-7766'];
+					datas_dongsan['서초구'] = ['강남모나코공인중개사사무소 (협의보수 0.3%) 서초구 서초대로 02-533-9998', '까치공인중개사사무소 (협의보수 0.3%) 서초구 서초중앙로 02-522-2333', '대림공인중개사사무소 (협의보수 0.35%) 서초구 방배로13길 02-521-4989', '래미안114공인중개사사무소 (협의보수 0.35%) 서초구 반포대로 02-599-4700'];
+					datas_dongsan['성동구'] = ['금호자이공인중개사사무소 (협의보수 0.3%) 성동구 금호로 02-2296-2322', '대박공인중개사사무소 (협의보수 0.3%) 성동구 독서당로 02-2297-5444', '모두공인중개사사무소 (협의보수 0.35%) 성동구 왕십리로 02-2205-1022', '벽산공인중개사사무소 (협의보수 0.35%) 성동구 금호로 02-2291-3330'];
+					datas_dongsan['성북구'] = ['꿈의숲공인중개사사무소 (협의보수 0.3%) 성북구 월계로36길 02-964-6900', '대광공인중개사사무소 (협의보수 0.3%) 성북구 숭인로16길 02-981-3003', '롯데캐슬공인중개사사무소 (협의보수 0.35%) 성북구 서경로 02-919-2200', '반석공인중개사사무소 (협의보수 0.35%) 성북구 장위로28길 02-916-4300'];
+					datas_dongsan['송파구'] = ['김앤김부동산중개 (협의보수 0.3%) 송파구 법원로4길 02-430-8040', '대주공인중개사사무소 (협의보수 0.3%) 송파구 오금로57길 02-409-9432', '동양공인중개사사무소 (협의보수 0.35%) 송파구 올림픽로 02-422-4660', '롯데공인중개사사무소 (협의보수 0.35%) 송파구 중대로 02-449-9000'];
+					datas_dongsan['양천구'] = ['다인공인중개사사무소 (협의보수 0.3%) 양천구 남부순환로70길 02-2690-1189', '래미안공인중개사사무소 (협의보수 0.3%) 양천구 중앙로43길 02-2697-1112', '목동강서부동산중개사무소 (협의보수 0.35%) 양천구 목동서로 02-2648-7077', '부동산랜드공인중개사사무소 (협의보수 0.35%) 양천구 목동동로 02-2648-8989'];
+					datas_dongsan['영등포구'] = ['금성공인중개사사무소 (협의보수 0.3%) 영등포구 대림로31길 02-848-2848', '닥터공인중개사사무소 (협의보수 0.3%) 영등포구 당산로 02-2069-4545', '두산위브공인중개사사무소 (협의보수 0.35%) 영등포구 신길로60나길 02-833-6100', '리치공인중개사사무소 (협의보수 0.35%) 영등포구 가마산로61가길 02-846-6067'];
+					datas_dongsan['용산구'] = ['대박공인중개사사무소 (협의보수 0.3%) 용산구 신흥로20길 02-778-6800', '리치공인중개사사무소 (협의보수 0.3%) 용산구 만리재로 02-706-4945', '보광월드공인중개사사무소 (협의보수 0.35%) 용산구 보광로 02-794-6600', '비타민공인중개사사무소 (협의보수 0.35%) 용산구 원효로35길 02-714-8882'];
+					datas_dongsan['은평구'] = ['뉴한양공인중개사사무소 (협의보수 0.3%) 은평구 진흥로 02-357-4499', '대지공인중개사사무소 (협의보수 0.3%) 은평구 진흥로1길 02-355-4401', '리치공인중개사사무소 (협의보수 0.35%) 은평구 서오릉로 02-383-4600', '메이플공인중개사사무소 (협의보수 0.35%) 은평구 진관2로 02-389-0060'];
+					datas_dongsan['종로구'] = ['경복궁공인중개사사무소 (협의보수 0.3%) 종로구 사직로8길 02-720-2230', '동양공인중개사사무소 (협의보수 0.3%) 종로구 진흥로 02-391-3177', '박사공인중개사사무소 (협의보수 0.35%) 종로구 창신길 02-3672-8800', '신라부동산중개사무소 (협의보수 0.35%) 종로구 동망산길 02-765-3800'];
+					datas_dongsan['중구'] = ['궁전공인중개사사무소 (협의보수 0.3%) 중구 다산로22길 02-2235-2829', '덕수궁롯데캐슬공인중개사사무소 (협의보수 0.3%) 중구 서소문로9길 02-2696-6363', '마루공인중개사사무소 (협의보수 0.35%) 중구 퇴계로 02-2236-8949', '부림사부동산중개인사무소 (협의보수 0.35%) 중구 명동9길 02-752-1300'];
+					datas_dongsan['중랑구'] = ['녹색공인중개사사무소 (협의보수 0.3%) 중랑구 면목로55길 02-493-4545', '더에이스공인중개사사무소 (협의보수 0.3%) 중랑구 사가정로49길 02-434-1700', '벽산공인중개사사무소 (협의보수 0.35%) 중랑구 용마산로125길 02-3421-7400', '사랑채공인중개사사무소 (협의보수 0.35%) 중랑구 면목로 02-2208-0008'];
+
+					var html = '';
+					guDongSanData = datas_dongsan[guName];
+
+					for (var i = 0; i < guDongSanData.length; i++) {
+						html += "<div class=\"form-check\">";
+						html += "<label class=\"form-check-label\">";
+						if (i == 0) {
+							html += "<input class=\"form-check-input\" type=\"radio\" name=\"exampleRadios\" id=\"exampleRadios1\" value=\"option1\" checked>";
+						} else {
+							html += "<input class=\"form-check-input\" type=\"radio\" name=\"exampleRadios\" id=\"exampleRadios1\" value=\"option1\">";
+						}
+
+						html += guDongSanData[i];
+						html += "<span class=\"circle\">";
+						html += "<span class=\"check\"></span>";
+						html += "</span>";
+						html += "</label>";
+						html += "</div>";
+					}
+
+					$('#dongsan').html(html);
+
+					// 첫번째 인덱스로 이동 
+					if (idx == 1) {
+						movePan(item['LAT_WGS'], item['LON_WGS'])
+						map.setLevel(4);
+					}
+
+				});
+
+				closeLoading();
+
+			}, 'json' /* xml, text, script, html */)
+				.done(function (xhr) {
+					// alert("second success " + xhr.responseText  );
+					closeLoading();
+				})
+				.fail(function (jqXHR) {
+					alert("error" + jqXHR.responseText);
+					closeLoading();
+				})
+				.always(function (jqXHR) {
+					// alert("finished" + jqXHR.responseText  );
+					closeLoading();
+				});
+
+		}
+
+		function onClick_marker(item) {
+			// 팝업 띄운다! 						
+			// 마커 위에 인포윈도우를 표시합니다
+			// infowindow.open(map, marker);
+			// LAT_WGS: "37.665831"
+			// LON_WGS: "127.055821"
+			// bjdCode: "1135010500"
+			// codeAptNm: "아파트"
+			// codeHeatNm: "지역난방"
+			// codeMgrNm: "위탁관리"
+			// codeSaleNm: "분양"
+			// comment: (5) [{…}, {…}, {…}, {…}, {…}]
+			// doroJuso: "서울특별시 노원구 동일로227길 25"
+			// hoCnt: "1944"
+			// kaptAcompany: "대한주택공사"
+			// kaptBcompany: "대한주택공사"
+			// kaptCode: "A13982301"
+			// kaptDongCnt: "16"
+			// kaptFax: "02-6224-3335"
+			// kaptMarea: "157738.26"
+			// kaptMparea_60: "1272"
+			// kaptMparea_85: "672"
+			// kaptMparea_135: "0"
+			// kaptMparea_136: "0"
+			// kaptName: "상계주공11단지"
+			// kaptTarea: "157742.59"
+			// kaptTel: "029353334"
+			// kaptUsedate: "19880907"
+			// kaptdaCnt: "1944"
+			// privArea: "113613.96"
+			// score: 100
+			// score_p1: "100"
+			// score_p2: 0
+			// score_p3: 0
+
+			// 	0:
+			// content: "노원구에서 무주택인 흙수저 부동산 초보 서민입니다↵나이도 30대 중반이고 결혼도 하고 5세아기도 있어서 실거주위주 집을 매매해보려고 합니다 (실거주7 : 투자3)↵실거주하다가 오르면 좋고 안오르면 말고 정도의 생각입니다↵상계푸르지오, 인덕아이파크 다 떨어졌어요↵상계8단지 넣고 싶으나 분양가가 워낙 비쌀거 같고 대추도 40%만 되니 엄두가 안나네요↵위치는 마들,노원,중계,하계에서 자리를 잡고 싶습니다↵매매는 3~4억미만으로 생각하고 싶네요↵학군 주차 편의시설등 고려해서 아파트 추천 부탁드립니다↵정책도 나왔고 시세가 약간하락되거나 보합될거 같은데 전세 만기전에 알아보고 매매하는데 도움받고자 합니다↵이거 물어볼려고 50개의 덧글을 썻어요↵ 노원구 고수님들 친절하게 알려주시면 좋겠네요↵덧붙여 추천아파트에 대한 장단점도 알려주시면 더 좋겠네요↵감사합니다↵ "
+			// label: "1"
+			// text_comment: "노원역 주변 24평정도면 4억 미만이시면 상계주공 1단지 뒷동추천요 앞동보다 저렴 2단지 뒷동추천[공통점 지분 많고 중계역 노원역 이용편리]↵↵아니면 마들역에있는 상계주공11단지↵↵3.6.7.단지는 나머지 단지들보다 올라잇는 상태라 패스↵↵재건축할때까지 혹은 바로전까지 사실꺼면 14단지도 좋아요 지분1등 마들 과 수락산 중간에 입지라 그게 약점↵↵아차 9단지도 투자용으론 좋은데 지분이 적음 실거주에 편의시설 편한곳 찿으신다니 4억 미만이면↵↵1단지,2단지 뒷동이 제일 좋은 선택이신듯"
+			// title: "질문]노원구 실거주위주(7:3정도) 아파트는 어디가 좋을까요??"
+
+			// 단지면  kaptName
+			// 주소 kaptAddr	
+			// 세대수 kaptdaCnt: "1944"
+			// 건축 연도 kaptUsedate
+
+			console.log(item['maemae_jisu']);
+
+			$("#kaptName").html(item['kaptName']);
+			$("#kaptAddr").html(item['doroJuso']);
+			$("#kaptdaCnt").html(item['kaptdaCnt'] + '세대');
+
+			var yyyyMMdd = item['kaptUsedate'].substring(0, 4) + '년 ' + item['kaptUsedate'].substring(4, 6) + '월 ' + item['kaptUsedate'].substring(6, 8) + '일';
+
+			$("#kaptUsedate").html(yyyyMMdd);
+
+			if (parseInt(item['초등학교']) > 0) {
+				$("#itemSchool_ele").show();
+			} else {
+				$("#itemSchool_ele").hide();
+			}
+
+			if (parseInt(item['중학교']) > 0) {
+				$("#itemSchool_mid").show();
+			} else {
+				$("#itemSchool_mid").hide();
+			}
+
+			if (parseInt(item['고등학교']) > 0) {
+				$("#itemSchool_high").show();
+			} else {
+				$("#itemSchool_high").hide();
+			}
+
+			if (parseInt(item['학원']) > 0) {
+				$("#itemEdu").show();
+			} else {
+				$("#itemEdu").hide();
+			}
+
+			if (parseInt(item['마트']) > 0) {
+				$("#itemMart").show();
+			} else {
+				$("#itemMart").hide();
+			}
+
+			if (parseInt(item['백화점']) > 0) {
+				$("#itemDeptStore").show();
+			} else {
+				$("#itemDeptStore").hide();
+			}
+
+			if (parseInt(item['지하철']) > 0) {
+				$("#itemSubway").show();
+			} else {
+				$("#itemSubway").hide();
+			}
+
+			if (parseInt(item['병원']) > 0) {
+				$("#itemHosp").show();
+			} else {
+				$("#itemHosp").hide();
+			}
+
+			if (parseInt(item['공원']) > 0) {
+				$("#itemPark").show();
+			} else {
+				$("#itemPark").hide();
+			}
+
+			console.log(item);
+
+			var clickItem = item;
+
+			lenComment = item['comment'].length;
+			if (lenComment > 0) {
+				var table =
+					" <table class=\"table\">"
+				"<tbody>";
+
+				if (lenComment > 5) {
+					lenComment = 5;
+				}
+
+				for (var i = 0; i < lenComment; i++) {
+					var it = item['comment'][i];
+
+					if (it['text_comment'] != undefined) {
+						table += "<tr>";
+
+						table += "<td>";
+						table += it['text_comment'];
+						table += "</td>";
+
+						table += "<td>";
+						table += it['label'];
+						table += "</td>";
+
+						table += "</tr>";
+					}
+				}
+
+				table += "</tbody>";
+				table += "</table>";
+			} else {
+				table = "관련 정보가 존재하지 않습니다.";
+			}
+
+			$("#history").html('');
+			$("#history").html(table);
+			$("#modal_title").html(item['kaptName'])
+			$("#aptmodal").modal("show");
+
+			// <table class="table">
+			// <thead>
+			// 	<tr>
+			// 		<th>부동산명</th>
+			// 		<th>협의보수</th>
+			// 		<th>전화번호</th>
+			// 	</tr>
+			// </thead>
+			// <tbody>
+			// 	<tr>
+		}
+
+	</script>
 </head>
+<body>
+  <div class="col-xl" id="map"></div>
 
-<div class="title">
+<!-- <div class="title">
   <h3>Modal</h3>
 </div>
 <div class="row">
+  
   <div class="col-lg-4 col-md-6">
     <button class="btn btn-block btn-primary" data-toggle="modal" data-target="#myModal">
       <i class="material-icons">library_books</i>
       Classic
     </button>
   </div>
-</div>
+</div> -->
 
 <!-- Classic Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
@@ -344,6 +937,351 @@ The above copyright notice and this permission notice shall be included in all c
     }
   }
 </script>
+
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=342816b6300e44d85442a74b4f98eaf0"></script>
+	<script>
+
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+			mapOption = {
+				center: new kakao.maps.LatLng(37.55256300320184, 126.99094648022766), // 지도의 중심좌표
+				level: 9
+				// 지도의 확대 레벨
+			};
+
+		var map = new kakao.maps.Map(mapContainer, mapOption),
+			customOverlay = new kakao.maps.CustomOverlay({}),
+			infowindow = new kakao.maps.InfoWindow({ removable: true });
+
+
+		function displayMarker(name, path) {
+
+			// path.forEach(function (itemPath) {
+			// 	console.log(itemPath.getLat() + ', ' + itemPath.getLng());
+
+			// 	// 위도 기준으로는 + 0.01이 약 +1km에 해당하고, 경도 기준으로는 +0.015가 약 +1km 정도에 해당합니다.
+			// 	// 범위 계산
+			// 	var itemLimitKm = 100;
+			// 	var std_lat_wgs_limit_max = parseFloat(itemPath['LAT_WGS']) + (0.01 * itemLimitKm);
+			// 	var std_lon_wgs_limit_max = parseFloat(itemPath['LON_WGS']) + (0.01 * itemLimitKm);
+
+			// 병원
+			$.getJSON("datas/data_hosp", function (jsons) {
+				jsons.forEach(function (item) {
+					// var lat = item['LAT_WGS'];
+					// var lon = item['LON_WGS'];
+					// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+					setMarker('images/mk_hosp.png', item['LAT_WGS'], item['LON_WGS']);
+					// }
+				});
+			});
+
+			// 공원
+			var pathpark = "datas/park/data공원_" + name + ".json";
+
+			$.getJSON(pathpark, function (jsons) {
+				jsons.forEach(function (item) {
+					// var lat = item['LAT_WGS'];
+					// var lon = item['LON_WGS'];
+					// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+					setMarker('images/mk_park.png', item['LAT_WGS'], item['LON_WGS']);
+					// }
+				});
+			});
+
+			$.getJSON("datas/data_deptment", function (jsons) {
+				jsons.forEach(function (item) {
+					// var lat = item['LAT_WGS'];
+					// var lon = item['LON_WGS'];
+					// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+					setMarker('images/mk_ds.png', item['LAT_WGS'], item['LON_WGS']);
+					// }
+				});
+			});
+
+			$.getJSON("datas/data_ele", function (jsons) {
+				jsons.forEach(function (item) {
+					// var lat = item['위도'];
+					// var lon = item['경도'];
+					// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+					setMarker('images/mk_ele.png', item['위도'], item['경도']);
+					// }
+				});
+			});
+
+			$.getJSON("datas/data_mid", function (jsons) {
+				jsons.forEach(function (item) {
+					// var lat = item['위도'];
+					// var lon = item['경도'];
+					// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+					setMarker('images/mk_mid.png', item['위도'], item['경도']);
+					// }
+				});
+			});
+
+			$.getJSON("datas/data_high", function (jsons) {
+				jsons.forEach(function (item) {
+					// var lat = item['위도'];
+					// var lon = item['경도'];
+					// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+					setMarker('images/mk_high.png', item['위도'], item['경도']);
+					// }
+				});
+			});
+
+			$.getJSON("datas/data_mart", function (jsons) {
+				jsons.forEach(function (item) {
+					// var lat = item['LAT_WGS'];
+					// var lon = item['LON_WGS'];
+					// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+					setMarker('images/mk_mart.png', item['LAT_WGS'], item['LON_WGS']);
+					// }
+				});
+
+			});
+
+			$.getJSON("datas/data_subway", function (jsons) {
+				jsons.forEach(function (item) {
+					// var lat = item['LAT_WGS'];
+					// var lon = item['LON_WGS'];
+					// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+					setMarker('images/mk_subway.png', item['LAT_WGS'], item['LON_WGS']);
+					// }
+				});
+			});
+
+			var pathedu = "datas/edu/data학원_" + name + ".json";
+
+			$.getJSON(pathedu, function (jsons) {
+				jsons.forEach(function (item) {
+					// var lat = item['LAT_WGS'];
+					// var lon = item['LON_WGS'];
+					// if(std_lat_wgs_limit_max > lat && std_lon_wgs_limit_max > lon) {
+					setMarker('images/mk_edu.png', item['LAT_WGS'], item['LON_WGS']);
+					// }
+				});
+			});
+			// 	});
+		}
+
+		function movePan(lat, lon) {
+			// console.log('lat :' + lat);
+			// console.log('lon : ' + lon);
+
+			// 이동할 위도 경도 위치를 생성합니다
+			var moveLatLon = new kakao.maps.LatLng(lat, lon);
+
+			// 지도 중심을 부드럽게 이동시킵니다
+			// 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+			map.panTo(moveLatLon);
+
+		};
+
+		function setMarker(imgsrc, lat, lon) {
+			var imageSrc = imgsrc, // 마커이미지의 주소입니다    
+				imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
+				imageOption = { offset: new kakao.maps.Point(50, 50) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+			// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+				markerPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치입니다
+
+			// 마커를 생성합니다
+			var marker = new kakao.maps.Marker({
+				position: markerPosition,
+				image: markerImage // 마커이미지 설정 
+			});
+
+			// 마커가 지도 위에 표시되도록 설정합니다
+			marker.setOpacity(0.7);
+			marker.setMap(map);
+		};
+
+
+		// 지도 확대 축소 추가
+		var zoomControl = new kakao.maps.ZoomControl();
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+		function clickTrEvent(trObj) {
+			alert(trObj.id);
+		}
+
+		//행정구역 구분
+		$.getJSON("datas/geojson_seoul.json", function (geojson) {
+
+			var data = geojson.features;
+			var coordinates = [];    //좌표 저장할 배열
+			var name = '';            //행정 구 이름
+
+			$.each(data, function (index, val) {
+
+				coordinates = val.geometry.coordinates;
+				name = val.properties.SIG_KOR_NM;
+
+				displayArea(coordinates, name);
+
+			})
+		});
+
+		var polygons = [];                //function 안 쪽에 지역변수로 넣으니깐 폴리곤 하나 생성할 때마다 배열이 비어서 클릭했을 때 전체를 못 없애줌.  그래서 전역변수로 만듦.
+
+		//행정구역 폴리곤
+		function displayArea(coordinates, name) {
+
+			var path = [];            //폴리곤 그려줄 path
+			var points = [];        //중심좌표 구하기 위한 지역구 좌표들
+			console.log(name);
+
+			$.each(coordinates[0], function (index, coordinate) {        //console.log(coordinates)를 확인해보면 보면 [0]번째에 배열이 주로 저장이 됨.  그래서 [0]번째 배열에서 꺼내줌.
+
+				$.each(coordinate, function (index, coordinate2) {
+					// console.log(coordinate2);
+					var point = new Object();
+					point.x = coordinate2[1];
+					point.y = coordinate2[0];
+					points.push(point);
+					path.push(new kakao.maps.LatLng(coordinate2[1], coordinate2[0]));
+
+				});
+
+			})
+
+			// 다각형을 생성합니다 
+			var polygon = new kakao.maps.Polygon({
+				map: map, // 다각형을 표시할 지도 객체
+				path: path,
+				strokeWeight: 2,
+				strokeColor: '#004c80',
+				strokeOpacity: 0.8,
+				fillColor: '#fff',
+				fillOpacity: 0.7
+			});
+
+			polygons.push(polygon);            //폴리곤 제거하기 위한 배열
+
+			// 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다 
+			// 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
+			kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
+				// if (name == '노원구') {
+				polygon.setOptions({
+					fillColor: '#09f'
+				});
+
+				// }
+				customOverlay.setContent('<div class="area">' + name + '</div>');
+				customOverlay.setPosition(mouseEvent.latLng);
+				customOverlay.setMap(map);
+			});
+
+			// 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다 
+			kakao.maps.event.addListener(polygon, 'mousemove', function (mouseEvent) {
+				customOverlay.setPosition(mouseEvent.latLng);
+			});
+
+			// 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
+			// 커스텀 오버레이를 지도에서 제거합니다 
+			kakao.maps.event.addListener(polygon, 'mouseout', function () {
+				// if (name == '노원구') {
+				polygon.setOptions({
+					fillColor: '#fff'
+				});
+				customOverlay.setMap(null);
+				// }
+			});
+
+			// 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 해당 지역 확대을 확대합니다.
+			kakao.maps.event.addListener(polygon, 'click', function () {
+				// if (name == '노원구') {
+				// 현재 지도 레벨에서 2레벨 확대한 레벨
+				var level = map.getLevel() - 4;
+
+				// 지도를 클릭된 폴리곤의 중앙 위치를 기준으로 확대합니다
+				map.setLevel(level, {
+					anchor: centroid(points), animate: {
+						duration: 350            //확대 애니메이션 시간
+					}
+				});
+
+				status = parseInt(status) + 1;
+
+				if (status > 3) {
+					status = 3;
+					// next로 이동
+					// location.href = './step4.html';
+					return;
+				}
+
+				// alert(status);
+				checkVisibleTableView(status);
+				$('#title').html(name + ' 추천 매물');
+				$('#title2').html('관심있는 아파트를 선택해주세요');
+
+				myFunction(name);
+
+				displayMarker(name, path);
+
+				deletePolygon(polygons);                    //폴리곤 제거      
+				// }
+			});
+		}
+
+		//centroid 알고리즘 (폴리곤 중심좌표 구하기 위함)
+		function centroid(points) {
+
+			var i, j, len, p1, p2, f, area, x, y;
+
+			area = x = y = 0;
+
+			for (i = 0, len = points.length, j = len - 1; i < len; j = i++) {
+				p1 = points[i];
+				p2 = points[j];
+
+				f = p1.y * p2.x - p2.y * p1.x;
+				x += (p1.x + p2.x) * f;
+				y += (p1.y + p2.y) * f;
+				area += f * 3;
+			}
+			return new kakao.maps.LatLng(x / area, y / area);
+		}
+
+		//지도 위 표시되고 있는 폴리곤 제거
+		function deletePolygon(polygons) {
+			for (var i = 0; i < polygons.length; i++) {
+				polygons[i].setMap(null);
+			}
+			polygons = [];
+		}
+
+		// 지도가 이동, 확대, 축소로 인해 중심좌표가 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+		// kakao.maps.event.addListener(map, 'center_changed', function () {
+
+		// 	// 지도의  레벨을 얻어옵니다
+		// 	var level = map.getLevel();
+
+		// 	// 지도의 중심좌표를 얻어옵니다 
+		// 	var latlng = map.getCenter();
+
+		// 	var message = '<p>지도 레벨은 ' + level + ' 이고</p>';
+		// 	message += '<p>중심 좌표는 위도 ' + latlng.getLat() + ', 경도 ' + latlng.getLng() + '입니다</p>';
+
+		// 	var resultDiv = document.getElementById('result');
+		// 	resultDiv.innerHTML = message;
+
+		// });
+
+		// 현재 지도 레벨에서 2레벨 확대한 레벨
+		var level = map.getLevel() - 2;
+
+		// 지도를 클릭된 폴리곤의 중앙 위치를 기준으로 확대합니다
+		map.setLevel(level, {
+			anchor: centroid(points), animate: {
+				duration: 350            //확대 애니메이션 시간
+			}
+		});
+
+		deletePolygon(polygons);
+
+	</script>
 </body>
 
 </html>

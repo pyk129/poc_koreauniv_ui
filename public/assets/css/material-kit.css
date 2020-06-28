@@ -19090,4 +19090,20 @@ footer .pull-center {
   }
 }
 
+.loading .shadow{position:fixed;left:0;top:0;right:0;bottom:0;background:url(../images/bg_loading_shadow.png);z-index:9999;}
+.loading .img{position:fixed;left:50%;top:50%;margin:-100px 0 0 -100px;z-index:10000;}
+
+
+/* load progress 2019-11-06 수정 */
+.load_progress {position:absolute;top:50%;left:50%;margin:-62px 0 0 -62px;width:124px;height:124px;text-align:center;}
+.load_progress .img {display:block;position:absolute;top:0;left:0;}
+.load_progress .circle {width:100%;height:100%;}
+.load_progress .circle canvas {visibility:hidden;}
+.load_progress .cont {position:relative;}
+.load_progress .num {top:49px;font-size:24px;}
+.load_progress .num span {font-weight:normal;font-size:12px;}
+.load_progress .txt {top:77px;font-size:10px;color:#777;}
+.load_progress .txt em {color:#2494fd}
+
+
 /*# sourceMappingURL=kit-free.css.map */
