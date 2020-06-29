@@ -1,54 +1,75 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-<title>SMTH</title>
-<link rel="stylesheet" type="text/css" href="./css/common.css">
-<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="./js/jquery.cookie.js"></script>
-<script type="text/javascript" src="./js/sha256.js"></script>
-<script type="text/javascript" src="./js/util.js"></script>
-<!--[if lt IE 9]>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>SMTH</title>
+	<link href="assets/css/material-kit.min.css?v=2.0.7" rel="stylesheet" />
+	<script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
+	<script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
+	<script src="./assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+	<script src="./assets/js/plugins/moment.min.js"></script>
+	<script src="./assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
+	<!--[if lt IE 9]>
 	<script type="text/javascript" src="./js/ie.js"></script>
 	<![endif]-->
 	<script>
-		function openPopup(){
+		function openPopup() {
 			var popupWidth = 670;
 			var popupHeight = 190
 
 			var popupX = (window.screen.width / 2) - (popupWidth / 2);
 			// 만들 팝업창 width 크기의 1/2 만큼 보정값으로 빼주었음
 
-			var popupY= (window.screen.height / 2) - (popupHeight / 2);
-			
-			window.open('popup.html', '', 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
+			var popupY = (window.screen.height / 2) - (popupHeight / 2);
+
+			window.open('popup.html', '', 'status=no, height=' + popupHeight + ', width=' + popupWidth + ', left=' + popupX + ', top=' + popupY);
 
 		}
 
 	</script>
 </head>
-<body class="main">
-	<div id="wrap">
-		<!-- <div class="logo_top"><strong><img src="./images/img_logo_ds.png" alt="신한DS" /></strong></div> -->
-		<div class="box_login">
-			<!-- <h1 class="logo">S.M.T.H</h1> -->
-			<p>
-				<!-- <input type="text" placeholder="아이디 입력" title="아이디 입력" id="user_id" /> -->
-			</p>
-			<p class="mt10">
-				<!-- <input type="password" placeholder="비밀번호" title="비밀번호" id ="password"/> -->
-			</p>
-			<div class="mt20"><a href="javascript:;" onclick="openPopup()" class="btn_login" id="login_btn">START</a>
+
+<body>
+	<div class="page-header header-filter" data-parallax="true"
+		style="background-image: url('../assets/img/profile_city.jpg')">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<h1 class="title">SMTH</h1>
+					<h4>Smart AI Recommendation System</h4>
+					<br>
+					<a data-toggle="modal" data-target="#exampleModal"
+						class="btn btn-danger btn-raised btn-lg">
+						<i class="fa fa-play"></i> Start
+					</a>
+				</div>
 			</div>
-					</div>
-		<div class="footer">
-			<!-- <p class="copyright">Copyright ©2019. Shinhan DS Co., Ltd. All Right Reserved.</p> -->
 		</div>
 	</div>
-	
 
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog  modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">고대빵님의 자산정보</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body center">
+					<img src="images/img_popup.png">
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+					<button type="button" class="btn btn-primary " data-dismiss="modal" onclick=confirmBtn();>확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- 로딩 -->
 	<div id="loading" class="loading" style="display:none;">
 		<div class="shadow"></div>
@@ -56,73 +77,28 @@
 	</div>
 	<!-- 로딩 -->
 
-	<script>	
-		function showLoading(){
-  			$(".loading").show();
-		} 
-
-		function closeLoading(){
-  			$(".loading").hide();
+	<script>
+		function confirmBtn(){
+			location.href = "step1.html";
 		}
 
-		$(document).ready(function() {
-			var $form = $('#login_form');
-		});
-
-		$('a#login_btn').click(function(event) {
-			login()
-		});
-
-
-		function login() {
-			var user_id = $('input#user_id').val();
-			var password = $('input#password').val();
-			var save_id = $('input#save_id').is(":checked");
-
-			if (user_id.length == 0) {
-				alert('아이디를 입력해주세요.');
-				return;
-			}
-
-			if (password.length == 0) {
-				alert('비밀번호를 입력해주세요.');
-				return;
-			}
-
-			var sha256_password = sha256(password).toUpperCase();
-
-			showLoading();
-			$.post('login.do', {
-				user_id: user_id,
-				password: sha256_password
-			}, function (res) {
-				closeLoading();
-				var result = res.result;
-				var message = res.message;
-				if (result == "0000") {
-					var data = res.data;
-					var login_time = data.login_time;
-					
-					
-					setTimeout(function() {
-						alert('로그인 되었습니다.\n최근접속: ' + formatDate(new Date(login_time), 'yyyy-MM-dd HH:mm:ss'));
-						location.href = './download_app_list.html';
-					}, 10);
-				
-
-					
-				} else {
-					setTimeout(function() {
-						alert(message);
-					}, 10);
-				}
-			});
+		function showLoading() {
+			$(".loading").show();
 		}
 
+		function closeLoading() {
+			$(".loading").hide();
+		}
 
-		
+		$(document).ready(function () {
+			// var $form = $('#login_form');
+		});
+
+
+
 
 
 	</script>
 </body>
+
 </html>

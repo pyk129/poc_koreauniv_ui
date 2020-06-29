@@ -19090,8 +19090,8 @@ footer .pull-center {
   }
 }
 
-.loading .shadow{position:fixed;left:0;top:0;right:0;bottom:0;background:url(../images/bg_loading_shadow.png);z-index:9999;}
-.loading .img{position:fixed;left:50%;top:50%;margin:-100px 0 0 -100px;z-index:10000;}
+.loading .shadow{position:fixed;left:0;top:0;right:0;bottom:0;background:url(../../images/bg_loading_shadow.png);z-index:9999;}
+.loading .img{position:fixed;left:50%;top:50%;margin:-100px 0 0 -100px;z-index:9999;}
 
 
 /* load progress 2019-11-06 수정 */

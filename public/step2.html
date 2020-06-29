@@ -27,20 +27,28 @@
 
 	<!--   Core JS Files   -->
 	<!-- CSS Files -->
-	<link href="./assets/css/material-kit.css?v=2.0.7" rel="stylesheet" />
-
+	<link href="assets/css/material-kit.min.css?v=2.0.7" rel="stylesheet" />
 	<script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
 	<script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
 	<script src="./assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
 	<script src="./assets/js/plugins/moment.min.js"></script>
-	<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-	<script src="./assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
-	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-	<script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-	<!--  Google Maps Plugin    -->
-	<!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
 	<script src="./assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
 
+	<style>
+		.navbar-absolute-logo {
+			padding-left: 45px;
+		}
+
+		.navbar-absolute-logo img {
+			position: absolute;
+			left: 15px;
+			margin-top: -6px;
+		}
+
+		body {
+			background: white;
+		}
+	</style>
 	<style>
 		html,
 		body {
@@ -361,7 +369,7 @@
 
 	</script>
 	<script>
-		var datas_dongsan = {};		
+		var datas_dongsan = {};
 		$(document).ready(function () {
 			// $('#idlcheck0301').css("color", '#ff0000');
 			datas_dongsan['강남구'] = ['(주)유앤아이부동산중개 (협의보수 0.3%) 강남구 강남대로 02-545-0011 ', '114부동산중개사무소 (협의보수 0.35%) 강남구 도곡로 02-574-5135', '21세기공인중개사사무소 (협의보수 0.3%) 강남구 봉은사로111길 02-548-1113', '강남1번가부동산중개 (협의보수 0.4%) 강남구 도산대로 010-7673-1394'];
@@ -402,8 +410,8 @@
 				el.removeChild(el.lastChild);
 			}
 		}
-		
-		
+
+
 		// 검색 결과 목록과 마커를 표출하는 함수입니다
 		function displayPlaces(places) {
 
@@ -419,14 +427,14 @@
 			// 지도에 표시되고 있는 마커를 제거합니다
 			removeMarker();
 			for (var i = 0; i < places.length; i++) {
-				
+
 				item = places[i];
 
 				// 마커를 생성하고 지도에 표시합니다
 				var placePosition = new kakao.maps.LatLng(item['LAT_WGS'], item['LON_WGS']),
 					marker = addMarker(placePosition, i),
 					itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-					displayInfowindow(marker, item['kaptName']);
+				displayInfowindow(marker, item['kaptName']);
 
 				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 				// LatLngBounds 객체에 좌표를 추가합니다
@@ -443,7 +451,7 @@
 					kakao.maps.event.addListener(marker, 'mouseout', function () {
 						infowindow.close();
 					});
-				 	// 마커에 클릭이벤트를 등록합니다
+					// 마커에 클릭이벤트를 등록합니다
 					kakao.maps.event.addListener(marker, 'click', function () {
 						movePan(item['LAT_WGS'], item['LON_WGS']);
 						onClick_marker(item);
@@ -472,10 +480,10 @@
 			menuEl.scrollTop = 0;
 
 			// 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-			map.setBounds(bounds);	
+			map.setBounds(bounds);
 		}
 
-		function displayDongsan(guName){
+		function displayDongsan(guName) {
 			var html = '';
 			guDongSanData = datas_dongsan[guName];
 
@@ -511,7 +519,7 @@
 			// 	itemStr += '    <span>' + item['doroJuso'] + '</span>' +
 			// 		'   <span class="jibun gray">' + item['doroJuso'] + '</span>';
 			// } else {
-				itemStr += '    <span>' + item['doroJuso'] + '</span>';
+			itemStr += '    <span>' + item['doroJuso'] + '</span>';
 			// }
 
 			itemStr += '  <span class="tel">' + item['kaptdaCnt'] + ' 세대</span>' +
@@ -566,10 +574,12 @@
 			sel7 = 0;
 			sel8 = 0;
 			sel9 = 0;
+
+			// 'http://127.0.0.1:5000/send_py'
 			// 'http://aws.hancy.kr:8802/send_py
 			//
 			// http://aws.hancy.kr:8802/send_py
-			$.post('http://127.0.0.1:5000/send_py', {
+			$.post('http://aws.hancy.kr:8802/send_py', {
 
 				// algo: idxAlgo,
 				// select1: checkSel1,
@@ -740,15 +750,15 @@
 			} else {
 				$("#itemPark").hide();
 			}
-			
+
 			listjisu = item['maemae_jisu'];
 			listjisuDate = listjisu['date'];
 			listjisuDate = listjisu['jisu'];
-			
+
 			labelDatas = [];
 			jisuDatas = [];
 			predictJisuDatas = [];
-			for (var i =0 ; i < item['maemae_jisu'].length;i++){
+			for (var i = 0; i < item['maemae_jisu'].length; i++) {
 				labelDatas.push(item['maemae_jisu'][i]['date']);;
 				jisuDatas.push(item['maemae_jisu'][i]['jisu']);;
 				predictJisuDatas.push(item['maemae_jisu'][i]['predict_jisu']);
@@ -757,19 +767,21 @@
 			var ctx = document.getElementById('myChart').getContext('2d');
 			var chart = new Chart(ctx,
 				{ // 챠트 종류를 선택
-				type: 'line',
-				// 챠트를 그릴 데이타 
-				data: {
-					labels: labelDatas	,
-					datasets: [
-					{ label: '매매가격지수', backgroundColor: 'transparent', borderColor: 'blue', data:jisuDatas 
-					},
-					{ label: '예측된매매가격지수', backgroundColor: 'transparent', borderColor: 'red', data: predictJisuDatas 
-					}
+					type: 'line',
+					// 챠트를 그릴 데이타 
+					data: {
+						labels: labelDatas,
+						datasets: [
+							{
+								label: '매매가격지수', backgroundColor: 'transparent', borderColor: 'blue', data: jisuDatas
+							},
+							{
+								label: '예측된매매가격지수', backgroundColor: 'transparent', borderColor: 'red', data: predictJisuDatas
+							}
 
-					]
-				}, // 옵션
-				options: {}
+						]
+					}, // 옵션
+					options: {}
 				});
 
 			var clickItem = item;
@@ -812,20 +824,20 @@
 			$("#history").html(table);
 			$("#modal_title").html(item['kaptName'])
 
-			$("#aptmodal").attr('tabindex','-1');
+			$("#aptmodal").attr('tabindex', '-1');
 			// 모달 보내기 버튼 안보이게..
 			$('#modal_send').hide();
 			$("#aptmodal").modal("show");
 		}
 
-		function reload(){
+		function reload() {
 			location.reload();
 		}
 	</script>
 </head>
 
 <body>
-	<a id="skippy" class="sr-only sr-only-focusable" href="#content">
+	<!-- <a id="skippy" class="sr-only sr-only-focusable" href="#content">
 		<div class="container">
 			<span class="skiplink-text">Skip to main content</span>
 		</div>
@@ -847,7 +859,27 @@
 					fill="currentColor" class="octo-body"></path>
 			</svg></a>
 
-	</header>
+	</header> -->
+
+	<nav class="navbar navbar-expand-lg bg-primary">
+		<div class="container">
+			<div class="navbar-translate">
+				<a class="navbar-brand" href="#0" onclick="reload();">똑똑한AI추천 SMTH</a>
+				<a href="https://github.com/creativetimofficial/material-kit" class="github-corner"
+					aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250"
+						style="fill:#fff; color:#9c27b0; position: absolute; top: 0; border: 0; right: 0;"
+						aria-hidden="true">
+						<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+						<path
+							d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+							fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+						<path
+							d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+							fill="currentColor" class="octo-body"></path>
+					</svg></a>
+			</div>
+		</div>
+	</nav>
 	<div class="map_wrap">
 		<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 		<div id="menu_wrap2" class="bg_white">
@@ -1170,7 +1202,7 @@
 				// var html = "<div class=\"list-group\" >";
 				// html += "</div>"
 				// tbl.html(html);
-				
+
 				$('#menu_wrap2').hide();
 
 				myFunction(name);
@@ -1265,7 +1297,7 @@
 				<div class="modal-header">
 					<!-- Tabs on Plain Card -->
 					<div class="card card-nav-tabs card-plain">
-						<div class="card-header card-header-info">
+						<div class="card-header card-header-primary">
 							<!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
 							<div class="nav-tabs-navigation">
 								<div class="nav-tabs-wrapper">
@@ -1367,12 +1399,12 @@
 
 
 
-					<!-- <p><h6 class="text-right"><b>※ 보내기를 누르시면 고객님의 정보를 선택한 중개업소에 전송합니다.</b></h6></p> -->
+					<!-- <p><h6 class="text-right"><b>※ 기를 누르시면 고객님의 정보를 선택한 중개업소에 전송합니다.</b></h6></p> -->
 				</div>
 				<div class="modal-footer">
 
-					<button type="button" class="btn btn-info btn-round" data-dismiss="modal"
-						id='modal_send' onClick="location.href='./step4.html'">보내기</button>
+					<button type="button" class="btn btn-primary btn-round" data-dismiss="modal" id='modal_send'
+						onClick="location.href='./step3.html'">보내기</button>
 					<button type="button" class="btn btn-link" data-dismiss="modal" id='modal_close'>닫기</button>
 				</div>
 			</div>
@@ -1380,12 +1412,6 @@
 	</div>
 	<!--  End Modal -->
 
-
-	<!-- 로딩 -->
-	<div id="loading" class="loading" style="display:none;">
-		<div class="shadow"></div>
-		<img src="./images/loading.gif" class="img" />
-	</div>
 	<script>
 		// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 		// 인포윈도우에 장소명을 표시합니다
@@ -1397,6 +1423,12 @@
 		}
 
 	</script>
+
+	<!-- 로딩 -->
+	<div id="loading" class="loading" style="display:none;">
+		<div class="shadow"></div>
+		<img src="./images/loading.gif" class="img" />
+	</div>
 </body>
 
 </html>
