@@ -52,21 +52,24 @@
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 		aria-hidden="true">
-		<div class="modal-dialog  modal-lg" role="document">
+		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">고대빵님의 자산정보</h5>
+					<h5 class="modal-title" id="exampleModalLabel"><b>고대빵님의 자산정보</b></h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body center">
-					<img src="images/img_popup.png">
+				<div class="modal-body">
+					<div class="overflow-auto">
+						<img src="images/img_popup.png" style="width: 460px; height: auto; overflow: hidden;">
+					</div>
+
 				</div>
 				<div class="modal-footer">
+					<button type="button" class="btn btn-primary btn-round float-right" data-dismiss="modal" onclick=confirmBtn();>확인</button>
 					<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-					<button type="button" class="btn btn-primary " data-dismiss="modal" onclick=confirmBtn();>확인</button>
-				</div>
+				</div> 
 			</div>
 		</div>
 	</div>

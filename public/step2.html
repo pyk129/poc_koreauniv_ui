@@ -571,16 +571,16 @@
 
 			showLoading();
 
-			optSecond = 1;
-			sel1 = 0;
-			sel2 = 0;
-			sel3 = 0;
-			sel4 = 0;
-			sel5 = 1;
-			sel6 = 0;
-			sel7 = 0;
-			sel8 = 0;
-			sel9 = 0;
+			// optSecond = 1;
+			// sel1 = 0;
+			// sel2 = 0;
+			// sel3 = 0;
+			// sel4 = 0;
+			// sel5 = 1;
+			// sel6 = 0;
+			// sel7 = 0;
+			// sel8 = 0;
+			// sel9 = 0;
 
 			// 'http://127.0.0.1:5000/send_py'
 			// 'http://aws.hancy.kr:8802/send_py
@@ -1158,7 +1158,7 @@
 			kakao.maps.event.addListener(polygon, 'click', function () {
 				// if (name == '노원구') {
 				// 현재 지도 레벨에서 2레벨 확대한 레벨
-				var level = map.getLevel() - 4;
+				var level = map.getLevel() - 5;
 
 				// 지도를 클릭된 폴리곤의 중앙 위치를 기준으로 확대합니다
 				map.setLevel(level, {
@@ -1419,7 +1419,7 @@
 		function onclickQuestion() {
 			$('a[href="#dongsan"]').tab('show');
 		}
-		
+
 		// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 		// 인포윈도우에 장소명을 표시합니다
 		function displayInfowindow(marker, title) {
