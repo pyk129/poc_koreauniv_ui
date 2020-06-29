@@ -1,4 +1,4 @@
-const _pathBase = 'C:\Users\pyk12\Desktop\github\koreaUnivProject_Was';
+const _pathBase = '/Users/a60067648/koreaUnivProject/koreaUnivProject_Was';
 module.exports = {
 		root: '/',
 		port : 8080,
