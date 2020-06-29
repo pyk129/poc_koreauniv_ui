@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>SMTH</title>
+	<link rel="stylesheet" type="text/css" href="./css/common.css">
+	<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="./js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="./js/sha256.js"></script>
+	<script type="text/javascript" src="./js/util.js"></script>
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="./js/ie.js"></script>
+	<![endif]-->
+	<script>
+
+		function getParameterByName(name) {
+			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+				results = regex.exec(location.search);
+			return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+
+		$(function(){
+			var key = getParameterByName('name');
+			var title = key;
+
+			$('#title').html('');
+			$('#title').html(title);
+		});
+		
+		function confirmBtn(){
+			if (confirm("접수를 하시겠습니까?") == true){    //확인
+				alert('접수를 완료 했습니다.');
+				location.href = './index.html';
+			}else{   //취소
+				return;
+			}
+			
+		
+		}
+	</script>
+</head>
+
+<body>
+	<div id="wrap">
+
+			<!-- gnb -->
+			<div id="gnb">
+			</div>
+			<!-- gnb -->
+			<div id="contents" style="float: left;margin: 20px;">
+				<div class="tit_area cf">
+					<h2 id='title'>신한 따뜻한 주택 대출 상담</h2>
+				</div>
+		
+				<table class="tbl col">
+					<caption>계정 추가 표</caption>
+					<colgroup>
+						<col width="25%">
+						<col width="auto">
+					</colgroup>			
+					<tbody>
+					
+						<tr>
+							<th scope="row">대상 부동산</th>
+							<td>
+								<input id="name" type="text" class="w100" placeholder="사용자 이름을 입력하세요" title="계정 이름" value="노원중계아파트" disabled>
+							</td>
+						</tr>
+
+						<tr>
+							<th scope="row">대출 가능금액</th>
+							<td><input id="name" type="text" class="w100" placeholder="사용자 이름을 입력하세요" title="계정 이름" value="1.5억원" disabled>
+								
+							</td>
+						
+						</tr>
+						<tr>
+							<th scope="row"></span>대출금리</th>
+							<td><input id="name" type="text" class="w100" placeholder="사용자 이름을 입력하세요" title="계정 이름" value="2.9% (금융채 5년)">
+							</td>
+						</tr>
+
+						<tr>
+							<th scope="row"></span>최대가능기간</th>
+							<td><input id="name" type="text" class="w100" placeholder="사용자 이름을 입력하세요" title="계정 이름" value="30년">		
+							</td>
+						</tr>
+					</tbody>
+
+				</table>
+				
+				<div class="wrap_top cf" style="float: right;margin-top: 10px;">
+				
+					<!-- <div class="fr txt_area">
+						<p><span class="p_red">(<em>*</em>)</span> 접수를 진행하시겠습니까?</p>
+					</div> -->
+
+					<div class="fl">
+						<a id="cancel_btn" href="javascript:;" class="btn bgGray width01">취소</a>
+						<a id="execute_btn" href="javascript:confirmBtn();" class="btn bgblue">접수진행</a>
+					</div>
+				</div>
+			</div>
+			
+	</div>
+	<!-- 로딩 -->
+	<div id="loading" class="loading" style="display:none;">
+		<div class="shadow"></div>
+		<img src="./images/loading.gif" class="img" />
+	</div>
+	</div>
+	<!-- 로딩 -->
+	<script>
+		function showLoading() {
+			 $(".loading").show();
+		}
+
+		function closeLoading() {
+			$(".loading").hide();
+		}
+
+		$(document).ready(function () {
+			// 메뉴 로드
+			$("#gnb").load("gnb.html", function () {
+				// setting_gnb("menu0102");
+			});
+		});
+
+	
+		$("a#cancel_btn").click(function (event) {
+			history.back();
+		});
+
+
+	</script>
+</body>
+
+</html>
