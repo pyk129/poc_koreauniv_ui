@@ -187,8 +187,8 @@
 	<form>	
 	  	<h3>매입 가격 입력</h3>
 		<div class="form-group">
-			<label for="FormControlInput1">아파트 매입 가격은 얼마를 생각하시나요? 금액을 입력해 주세요</label>
-			<input type="number" class="form-control" id="FormControlInput1" placeholder="">
+			<label for="inputmoney">아파트 매입 가격은 얼마를 생각하시나요? 금액을 입력해 주세요</label>
+			<input type="text" class="form-control" id="inputmoney" placeholder="">
 		</div>
 	<form>
   <div>
@@ -400,7 +400,7 @@
 
 
 		<div>
-			<label class="mt-4" for="check0901">쾌적한 환경이 필요 하신가요?</label>
+			<label class="mt-4" for="check0901">자연과 어우러지는 주거환경을 원하시나요?</label>
 			<div class="form-check form-check-radio mt-2">
 			<label class="form-check-label">
 				<input class="form-check-input" type="radio" id="check0901" name="check09" checked="checked" value="1">자차
@@ -472,7 +472,40 @@
 			$(".loading").hide();
 		}
 
+		function numberWithCommas(x) {
+    		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+
+
 		$(document).ready(function () {
+			
+			$("#inputmoney" ).on( "keyup", function( event ) {
+
+			// 1.
+				var selection = window.getSelection().toString();
+				if ( selection !== '' ) {
+					return;
+				}
+
+				// 2.
+				if ( $.inArray( event.keyCode, [38,40,37,39] ) !== -1 ) {
+					return;
+				}
+			
+				// 3
+				var $this = $( this );
+				var input = $this.val();
+
+				// 4
+				var input = input.replace(/[\D\s\._\-]+/g, "");
+
+				// 5
+				input = input ? parseInt( input, 10 ) : 0;
+
+				// 6
+				$this.val(input.toLocaleString());
+				
+			} );
 		});
 
 		$("a#cancel_btn").click(function (event) {
