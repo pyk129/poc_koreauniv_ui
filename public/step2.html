@@ -4,6 +4,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>SMTH</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+
 	<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
 	<!-- <link rel="stylesheet" type="text/css" href="./css/common.css">
 	<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
@@ -11,7 +13,9 @@
 	<script type="text/javascript" src="./js/sha256.js"></script>
 	<script type="text/javascript" src="./js/util.js"></script>
  -->
-
+	<!--     Fonts and icons     -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 	<!-- 차트 링크 -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<!-- 부트스트랩 -->
@@ -35,26 +39,6 @@
 	<script src="./assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
 
 	<style>
-<<<<<<< HEAD
-<<<<<<< HEAD
-		.navbar-absolute-logo {
-		padding-left: 45px;
-		}
-
-		.navbar-absolute-logo img {
-		position: absolute;
-		left: 15px;
-		margin-top: -6px;
-		}
-
-		body {
-		background: white;
-		}
-	</style>
-	<style>
-=======
->>>>>>> 8b1816baf3081b4b41def82126ad1b2224ee7042
-=======
 		.navbar-absolute-logo {
 			padding-left: 45px;
 		}
@@ -73,7 +57,6 @@
 		.loading .shadow{position:fixed;left:0;top:0;right:0;bottom:0;background:url(../../images/bg_loading_shadow.png);z-index:9999;}
 		.loading .img{position:fixed;left:50%;top:50%;margin:-100px 0 0 -100px;z-index:9999;}
 
->>>>>>> 24f164c0d06896548aa14451c3144ba1723e53fa
 		html,
 		body {
 			height: 100%
@@ -153,21 +136,12 @@
 
 		#menu_wrap .option button {
 			margin-left: 5px;
-<<<<<<< HEAD
 		}
 
 		#placesList li {
 			list-style: none;
 		}
 
-=======
-		}
-
-		#placesList li {
-			list-style: none;
-		}
-
->>>>>>> 8b1816baf3081b4b41def82126ad1b2224ee7042
 		#placesList .item {
 			position: relative;
 			border-bottom: 1px solid #888;
@@ -216,7 +190,6 @@
 
 		#placesList .item .marker_1 {
 			background-position: 0 -10px;
-<<<<<<< HEAD
 		}
 
 		#placesList .item .marker_2 {
@@ -280,71 +253,6 @@
 			text-align: center;
 		}
 
-=======
-		}
-
-		#placesList .item .marker_2 {
-			background-position: 0 -56px;
-		}
-
-		#placesList .item .marker_3 {
-			background-position: 0 -102px
-		}
-
-		#placesList .item .marker_4 {
-			background-position: 0 -148px;
-		}
-
-		#placesList .item .marker_5 {
-			background-position: 0 -194px;
-		}
-
-		#placesList .item .marker_6 {
-			background-position: 0 -240px;
-		}
-
-		#placesList .item .marker_7 {
-			background-position: 0 -286px;
-		}
-
-		#placesList .item .marker_8 {
-			background-position: 0 -332px;
-		}
-
-		#placesList .item .marker_9 {
-			background-position: 0 -378px;
-		}
-
-		#placesList .item .marker_10 {
-			background-position: 0 -423px;
-		}
-
-		#placesList .item .marker_11 {
-			background-position: 0 -470px;
-		}
-
-		#placesList .item .marker_12 {
-			background-position: 0 -516px;
-		}
-
-		#placesList .item .marker_13 {
-			background-position: 0 -562px;
-		}
-
-		#placesList .item .marker_14 {
-			background-position: 0 -608px;
-		}
-
-		#placesList .item .marker_15 {
-			background-position: 0 -654px;
-		}
-
-		#pagination {
-			margin: 10px auto;
-			text-align: center;
-		}
-
->>>>>>> 8b1816baf3081b4b41def82126ad1b2224ee7042
 		#pagination a {
 			display: inline-block;
 			margin-right: 10px;
@@ -469,7 +377,6 @@
 		function closeLoading() {
 			$(".loading").hide();
 		}
-<<<<<<< HEAD
 
 	</script>
 	<script>
@@ -505,43 +412,6 @@
 
 	</script>
 	<script>
-=======
-
-	</script>
-	<script>
-		var datas_dongsan = {};
-		$(document).ready(function () {
-			// $('#idlcheck0301').css("color", '#ff0000');
-			datas_dongsan['강남구'] = ['(주)유앤아이부동산중개 (협의보수 0.3%) 강남구 강남대로 02-545-0011 ', '114부동산중개사무소 (협의보수 0.35%) 강남구 도곡로 02-574-5135', '21세기공인중개사사무소 (협의보수 0.3%) 강남구 봉은사로111길 02-548-1113', '강남1번가부동산중개 (협의보수 0.4%) 강남구 도산대로 010-7673-1394'];
-			datas_dongsan['강동구'] = ['강동부동산중개사무소 (협의보수 0.4%) 강동구 성안로27길 02-488-1170', '강산공인중개사사무소 (협의보수 0.3%) 강동구 천중로18길 02-470-3622', '경인공인중개사사무소 (협의보수 0.35%) 강동구 천중로 02-478-5944', '고덕공인중개사사무소 (협의보수 0.35%) 강동구 고덕로 02-426-1999'];
-			datas_dongsan['강북구'] = ['대성공인중개사사무소 (협의보수 0.3%) 강북구 수유로 02-905-0059', '두레공인중개사사무소 (협의보수 0.3%) 강북구 인수봉로77길 02-992-7300', '매일공인중개사사무소 (협의보수 0.35%) 강북구 오패산로 02-982-5000', '부동산OK공인중개사사무소 (협의보수 0.35%) 강북구 삼양로27길 02-945-1777'];
-			datas_dongsan['강서구'] = ['(주)마곡밸리부동산중개법인 (협의보수 0.4%) 강서구 공항대로 02-2665-0055', '강변공인중개사사무소 (협의보수 0.3%) 강서구 허준로 02-3665-2727', '금탑공인중개사사무소 (협의보수 0.35%) 강서구 공항대로 02-2654-0056', '대명공인중개사사무소 (협의보수 0.35%) 강서구 공항대로 02-3144-1744'];
-			datas_dongsan['관악구'] = ['그린공인중개사사무소 (협의보수 0.3%) 관악구 은천로 02-877-4811', '다올공인중개사사무소 (협의보수 0.25%) 관악구 호암로 02-877-2005', '럭키공인중개사사무소 (협의보수 0.3%) 관악구 성현로 02-878-2828', '미성공인중개사사무소 (협의보수 0.35%) 관악구 난곡로57길 02-863-4200'];
-			datas_dongsan['광진구'] = ['다솜공인중개사사무소 (협의보수 0.3%) 광진구 능동로41길 02-455-3883', '라인공인중개사사무소 (협의보수 0.3%) 광진구 능동로 02-4989-0890', '박사공인중개사사무소 (협의보수 0.35%) 광진구 동일로30길 02-498-9010', '부동산월드공인중개사사무소 (협의보수 0.35%) 광진구 뚝섬로26길 02-469-8989'];
-			datas_dongsan['구로구'] = ['길공인중개사사무소 (협의보수 0.3%) 구로구 개봉로3길 02-2684-2455', '대일공인중개사사무소 (협의보수 0.3%) 구로구 구로중앙로 02-2639-8866', '벽산공인중개사사무소 (협의보수 0.35%) 구로구 디지털로 02-2025-2425', '삼성부동산중개사무소 (협의보수 0.35%) 구로구 중앙로12길 02-2612-9400'];
-			datas_dongsan['금천구'] = ['가산공인중개사사무소 (협의보수 0.3%) 금천구 가산디지털1로 02-2026-0101', '길공인중개사사무소 (협의보수 0.3%) 금천구 시흥대로 02-894-7777', '대성부동산중개사무소 (협의보수 0.35%) 금천구 독산로 02-807-0315', '삼흥부동산중개사무소 (협의보수 0.35%) 금천구 벚꽃로38길 02-854-0077'];
-			datas_dongsan['노원구'] = ['1단지공인중개사사무소 (협의보수 0.3%) 노원구 덕릉로 02-931-9922', '노원상가공인중개사사무소 (협의보수 0.3%) 노원구 상계로12길 02-931-1215', '더굿공인중개사사무소 (협의보수 0.35%) 노원구 노원로1나길 02-949-1114', '명문공인중개사사무소 (협의보수 0.35%) 노원구 덕릉로126길 02-932-3020'];
-			datas_dongsan['도봉구'] = ['3단지공인중개사사무소 (협의보수 0.3%) 도봉구 노해로 02-997-8500', '경남공인중개사사무소 (협의보수 0.3%) 도봉구 마들로 02-955-5200', '대지공인중개사사무소 (협의보수 0.35%) 도봉구 노해로 02-908-3200', '방학탑공인중개사사무소 (협의보수 0.35%) 도봉구 마들로 02-3493-3331'];
-			datas_dongsan['동대문구'] = ['김창희공인중개사사무소 (협의보수 0.3%) 동대문구 외대역동로 02-968-8945', '대우공인중개사사무소 (협의보수 0.3%) 동대문구 한천로58길 02-963-2600', '대학부동산공인중개사사무소 (협의보수 0.35%) 동대문구 이문로 02-967-1400', '로드공인중개사사무소 (협의보수 0.35%) 동대문구 장한로31길 02-2216-5100'];
-			datas_dongsan['동작구'] = ['골드공인중개사사무소 (협의보수 0.3%) 동작구 상도로 02-825-3131', '뉴흑석공인중개사사무소 (협의보수 0.3%) 동작구 서달로 02-812-0113', '대아공인중개사사무소 (협의보수 0.35%) 동작구 사당로9가길 02-591-4766', '명성공인중개사사무소 (협의보수 0.35%) 동작구 성대로5길 02-825-3535'];
-			datas_dongsan['마포구'] = ['(주)진명부동산중개법인 (협의보수 0.3%) 마포구 마포대로 02-363-0909', '거송공인중개사사무소 (협의보수 0.3%) 마포구 연희로 02-3141-9933', '뉴태영공인중개사사무소 (협의보수 0.35%) 마포구 독막로 02-715-4343', '마포공인중개사사무소 (협의보수 0.35%) 마포구 만리재로 02-701-4989'];
-			datas_dongsan['서대문구'] = ['가재울거성공인중개사사무소 (협의보수 0.3%) 서대문구 거북골로 02-375-3377', '남양공인중개사사무소 (협의보수 0.3%) 서대문구 홍제내길 02-3217-8924', '두산공인중개사사무소 (협의보수 0.35%) 서대문구 이화여대8길 02-364-8090', '서광공인중개사사무소 (협의보수 0.35%) 서대문구 북아현로 02-392-7766'];
-			datas_dongsan['서초구'] = ['강남모나코공인중개사사무소 (협의보수 0.3%) 서초구 서초대로 02-533-9998', '까치공인중개사사무소 (협의보수 0.3%) 서초구 서초중앙로 02-522-2333', '대림공인중개사사무소 (협의보수 0.35%) 서초구 방배로13길 02-521-4989', '래미안114공인중개사사무소 (협의보수 0.35%) 서초구 반포대로 02-599-4700'];
-			datas_dongsan['성동구'] = ['금호자이공인중개사사무소 (협의보수 0.3%) 성동구 금호로 02-2296-2322', '대박공인중개사사무소 (협의보수 0.3%) 성동구 독서당로 02-2297-5444', '모두공인중개사사무소 (협의보수 0.35%) 성동구 왕십리로 02-2205-1022', '벽산공인중개사사무소 (협의보수 0.35%) 성동구 금호로 02-2291-3330'];
-			datas_dongsan['성북구'] = ['꿈의숲공인중개사사무소 (협의보수 0.3%) 성북구 월계로36길 02-964-6900', '대광공인중개사사무소 (협의보수 0.3%) 성북구 숭인로16길 02-981-3003', '롯데캐슬공인중개사사무소 (협의보수 0.35%) 성북구 서경로 02-919-2200', '반석공인중개사사무소 (협의보수 0.35%) 성북구 장위로28길 02-916-4300'];
-			datas_dongsan['송파구'] = ['김앤김부동산중개 (협의보수 0.3%) 송파구 법원로4길 02-430-8040', '대주공인중개사사무소 (협의보수 0.3%) 송파구 오금로57길 02-409-9432', '동양공인중개사사무소 (협의보수 0.35%) 송파구 올림픽로 02-422-4660', '롯데공인중개사사무소 (협의보수 0.35%) 송파구 중대로 02-449-9000'];
-			datas_dongsan['양천구'] = ['다인공인중개사사무소 (협의보수 0.3%) 양천구 남부순환로70길 02-2690-1189', '래미안공인중개사사무소 (협의보수 0.3%) 양천구 중앙로43길 02-2697-1112', '목동강서부동산중개사무소 (협의보수 0.35%) 양천구 목동서로 02-2648-7077', '부동산랜드공인중개사사무소 (협의보수 0.35%) 양천구 목동동로 02-2648-8989'];
-			datas_dongsan['영등포구'] = ['금성공인중개사사무소 (협의보수 0.3%) 영등포구 대림로31길 02-848-2848', '닥터공인중개사사무소 (협의보수 0.3%) 영등포구 당산로 02-2069-4545', '두산위브공인중개사사무소 (협의보수 0.35%) 영등포구 신길로60나길 02-833-6100', '리치공인중개사사무소 (협의보수 0.35%) 영등포구 가마산로61가길 02-846-6067'];
-			datas_dongsan['용산구'] = ['대박공인중개사사무소 (협의보수 0.3%) 용산구 신흥로20길 02-778-6800', '리치공인중개사사무소 (협의보수 0.3%) 용산구 만리재로 02-706-4945', '보광월드공인중개사사무소 (협의보수 0.35%) 용산구 보광로 02-794-6600', '비타민공인중개사사무소 (협의보수 0.35%) 용산구 원효로35길 02-714-8882'];
-			datas_dongsan['은평구'] = ['뉴한양공인중개사사무소 (협의보수 0.3%) 은평구 진흥로 02-357-4499', '대지공인중개사사무소 (협의보수 0.3%) 은평구 진흥로1길 02-355-4401', '리치공인중개사사무소 (협의보수 0.35%) 은평구 서오릉로 02-383-4600', '메이플공인중개사사무소 (협의보수 0.35%) 은평구 진관2로 02-389-0060'];
-			datas_dongsan['종로구'] = ['경복궁공인중개사사무소 (협의보수 0.3%) 종로구 사직로8길 02-720-2230', '동양공인중개사사무소 (협의보수 0.3%) 종로구 진흥로 02-391-3177', '박사공인중개사사무소 (협의보수 0.35%) 종로구 창신길 02-3672-8800', '신라부동산중개사무소 (협의보수 0.35%) 종로구 동망산길 02-765-3800'];
-			datas_dongsan['중구'] = ['궁전공인중개사사무소 (협의보수 0.3%) 중구 다산로22길 02-2235-2829', '덕수궁롯데캐슬공인중개사사무소 (협의보수 0.3%) 중구 서소문로9길 02-2696-6363', '마루공인중개사사무소 (협의보수 0.35%) 중구 퇴계로 02-2236-8949', '부림사부동산중개인사무소 (협의보수 0.35%) 중구 명동9길 02-752-1300'];
-			datas_dongsan['중랑구'] = ['녹색공인중개사사무소 (협의보수 0.3%) 중랑구 면목로55길 02-493-4545', '더에이스공인중개사사무소 (협의보수 0.3%) 중랑구 사가정로49길 02-434-1700', '벽산공인중개사사무소 (협의보수 0.35%) 중랑구 용마산로125길 02-3421-7400', '사랑채공인중개사사무소 (협의보수 0.35%) 중랑구 면목로 02-2208-0008'];
-		});
-
-	</script>
-	<script>
->>>>>>> 8b1816baf3081b4b41def82126ad1b2224ee7042
 
 		var markers = [];
 
@@ -588,7 +458,6 @@
 					kakao.maps.event.addListener(marker, 'mouseover', function () {
 						displayInfowindow(marker, item['kaptName']);
 					});
-<<<<<<< HEAD
 
 					kakao.maps.event.addListener(marker, 'mouseout', function () {
 						infowindow.close();
@@ -614,33 +483,6 @@
 					};
 				})(marker, item);
 
-=======
-
-					kakao.maps.event.addListener(marker, 'mouseout', function () {
-						infowindow.close();
-					});
-					// 마커에 클릭이벤트를 등록합니다
-					kakao.maps.event.addListener(marker, 'click', function () {
-						movePan(item['LAT_WGS'], item['LON_WGS']);
-						onClick_marker(item);
-					});
-					// 아이템 클릭시 
-					itemEl.onclick = function () {
-						movePan(item['LAT_WGS'], item['LON_WGS']);
-						onClick_marker(item);
-					};
-
-					itemEl.onmouseover = function () {
-						movePan(item['LAT_WGS'], item['LON_WGS']);
-						displayInfowindow(marker, item['kaptName']);
-					};
-
-					itemEl.onmouseout = function () {
-						infowindow.close();
-					};
-				})(marker, item);
-
->>>>>>> 8b1816baf3081b4b41def82126ad1b2224ee7042
 				fragment.appendChild(itemEl);
 			}
 
@@ -688,11 +530,36 @@
 			// 	itemStr += '    <span>' + item['doroJuso'] + '</span>' +
 			// 		'   <span class="jibun gray">' + item['doroJuso'] + '</span>';
 			// } else {
-			itemStr += '    <span>' + item['doroJuso'] + '</span>';
+			itemStr += '<span><b>' +item['doroJuso'] + '</b></span>';
 			// }
+			itemStr += "<div class=\"col-lg col-form-label text-left\">";
+			itemStr += "<button class=\"btn btn-primary mr-2\" style='width: 30%'>1차 : "+item['score_p1']+"점</button>";
+			itemStr += "<button class=\"btn btn-info mr-2\" style='width: 30%'>2차 : "+item['score_p2']+"점</button>";
+			itemStr += "<button class=\"btn btn-success\" style='width: 30%'>3차 : "+item['score_p3']+"점</button>";
+			itemStr += "</div>";
 
-			itemStr += '  <span class="tel">' + item['kaptdaCnt'] + ' 세대</span>' +
+			// itemStr += "<div class=\"progress\">";
+			// 	itemStr += "<div class=\"progress-bar\" role=\"progressbar\" style=\"width: 15%\" aria-valuenow=\"15\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>";
+			// 	itemStr += "<div class=\"progress-bar bg-success\" role=\"progressbar\" style=\"width: 30%\" aria-valuenow=\"30\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>";
+			// 	itemStr += "<div class=\"progress-bar bg-info\" role=\"progressbar\" style=\"width: 20%\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>";
+			// 	itemStr += "</div>";
+			itemStr += '<span><b>'+item['score_sim']+'% 유사<b></span>' +
+
 				'</div>';
+// 				<div class="progress">
+//   <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+// </div>
+			// itemStr += "<button type=\"button\" class=\"btn btn-primary\">";
+			// itemStr += "1차추천 <span class=\"badge badge-default\">94</span>";
+			// itemStr += "</button>";
+
+			// itemStr += "<button type=\"button\" class=\"btn btn-primary\">";
+			// itemStr += "2차추천 <span class=\"badge badge-default\">94</span>";
+			// itemStr += "</button>";
+
+			// itemStr += "<button type=\"button\" class=\"btn btn-primary\">";
+			// itemStr += "3차추천 <span class=\"badge badge-default\">94</span>";
+			// itemStr += "</button>";
 
 			el.innerHTML = itemStr;
 			el.className = 'item';
@@ -969,7 +836,7 @@
 					
 					var it = item['comment'][i];
 					
-					if (it['title'] != undefined) {
+					if (it['content'] != undefined) {
 						if (lenComment > 6) {
 							break;
 						}
@@ -983,7 +850,7 @@
 						table += "<tr>";
 
 						table += "<td>";
-						table += "["+ it['title']+ "] : " + it['text_comment'];
+						table += it['content'];
 						table += "</td>";
 
 						table += "<td>";
@@ -1037,61 +904,14 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-<<<<<<< HEAD
-	<!-- <a id="skippy" class="sr-only sr-only-focusable" href="#content">
-=======
-	<a id="skippy" class="sr-only sr-only-focusable" href="#content">
->>>>>>> 8b1816baf3081b4b41def82126ad1b2224ee7042
-=======
-
 		<!-- 로딩 -->
 		<div id="loading" class="loading" style="display:none;">
 			<div class="shadow"></div>
 			<img src="./images/loading.gif" class="img" />
 		</div>
-	<nav class="navbar navbar-expand-lg bg-primary">
->>>>>>> 24f164c0d06896548aa14451c3144ba1723e53fa
-		<div class="container">
-			<div class="navbar-translate">
-				<a class="navbar-brand" href="#0" onclick="reload();">똑똑한AI추천 SMTH</a>
-				<a href="https://github.com/creativetimofficial/material-kit" class="github-corner"
-					aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250"
-						style="fill:#fff; color:#9c27b0; position: absolute; top: 0; border: 0; right: 0;"
-						aria-hidden="true">
-						<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-						<path
-							d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
-							fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
-						<path
-							d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
-							fill="currentColor" class="octo-body"></path>
-					</svg></a>
-			</div>
-		</div>
-<<<<<<< HEAD
-	</a>
-	<header class="navbar navbar-expand navbar-dark bg-info flex-column flex-md-row bd-navbar">
-		<a class="navbar-brand mr-0 mr-md-2 navbar-absolute-logo padding" onclick="reload();">
-			&nbsp;&nbsp;&nbsp;&nbsp;똑똑한AI추천 SMTH
-		</a>
 
-		<a href="https://github.com/creativetimofficial/material-kit" class="github-corner"
-			aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250"
-				style="fill:#fff; color:#b8ecf3; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
-				<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-				<path
-					d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
-					fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
-				<path
-					d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
-					fill="currentColor" class="octo-body"></path>
-			</svg></a>
 
-<<<<<<< HEAD
-	</header> -->
-
-<nav class="navbar navbar-expand-lg bg-primary">
+<!-- <nav class="navbar navbar-expand-lg bg-primary">
 	<div class="container">
 		<div class="navbar-translate">
 		<a class="navbar-brand" href="#0" onclick="reload();">똑똑한AI추천 SMTH</a>
@@ -1108,14 +928,52 @@
 			</svg></a>
 		</div>
 	</div>
-	</nav>
-=======
-	</header>
->>>>>>> 8b1816baf3081b4b41def82126ad1b2224ee7042
-=======
-	</nav>
-
->>>>>>> 24f164c0d06896548aa14451c3144ba1723e53fa
+	</nav> -->
+	<header class="navbar navbar-expand navbar-dark bg-primary flex-column flex-md-row bd-navbar">
+		<a class="navbar-brand mr-0 mr-md-2 navbar-absolute-logo" onclick="reload();" target="_blank">
+			&nbsp&nbsp&nbsp&nbsp똑똑한AI추천 SMTH
+		</a>
+		<div class="navbar-nav-scroll ml-md-auto ">
+		</div>
+		<a href="https://github.com/pyk129/poc_koreauniv_ui" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fff; color:#9c27b0; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+			<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+			<path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+			<path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+		  </svg></a>
+		<style>
+		  .github-corner:hover .octo-arm {
+			animation: octocat-wave 560ms ease-in-out
+		  }
+	
+		  @keyframes octocat-wave {
+	
+			0%,
+			100% {
+			  transform: rotate(0)
+			}
+	
+			20%,
+			60% {
+			  transform: rotate(-25deg)
+			}
+	
+			40%,
+			80% {
+			  transform: rotate(10deg)
+			}
+		  }
+	
+		  @media (max-width:500px) {
+			.github-corner:hover .octo-arm {
+			  animation: none
+			}
+	
+			.github-corner .octo-arm {
+			  animation: octocat-wave 560ms ease-in-out
+			}
+		  }
+		</style>
+	  </header>
 	<div class="map_wrap">
 		<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 		<div id="menu_wrap2" class="bg_white text-center">
@@ -1368,7 +1226,7 @@
 				});
 
 				// }
-				customOverlay.setContent('<div class="area">' + name + '</div>');
+				customOverlay.setContent('<div class="area">' + name + '</;>');
 				customOverlay.setPosition(mouseEvent.latLng);
 				customOverlay.setMap(map);
 			});
@@ -1468,15 +1326,7 @@
 				<div class="modal-header">
 					<!-- Tabs on Plain Card -->
 					<div class="card card-nav-tabs card-plain">
-<<<<<<< HEAD
-<<<<<<< HEAD
 						<div class="card-header card-header-primary">
-=======
-						<div class="card-header card-header-info">
->>>>>>> 8b1816baf3081b4b41def82126ad1b2224ee7042
-=======
-						<div class="card-header card-header-primary">
->>>>>>> 24f164c0d06896548aa14451c3144ba1723e53fa
 							<!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
 							<div class="nav-tabs-navigation">
 								<div class="nav-tabs-wrapper">
@@ -1578,52 +1428,21 @@
 
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 					<!-- <p><h6 class="text-right"><b>※ 기를 누르시면 고객님의 정보를 선택한 중개업소에 전송합니다.</b></h6></p> -->
 				</div>
 				<div class="modal-footer">
-
-					<button type="button" class="btn btn-primary btn-round" data-dismiss="modal"
-						id='modal_send' onClick="location.href='./step3.html'">보내기</button>
-=======
-					<!-- <p><h6 class="text-right"><b>※ 보내기를 누르시면 고객님의 정보를 선택한 중개업소에 전송합니다.</b></h6></p> -->
-				</div>
-				<div class="modal-footer">
-
-					<button type="button" class="btn btn-info btn-round" data-dismiss="modal"
-						id='modal_send' onClick="location.href='./step4.html'">보내기</button>
->>>>>>> 8b1816baf3081b4b41def82126ad1b2224ee7042
-=======
-					<!-- <p><h6 class="text-right"><b>※ 기를 누르시면 고객님의 정보를 선택한 중개업소에 전송합니다.</b></h6></p> -->
-				</div>
-				<div class="modal-footer">
-
+					<button type="button" class="btn btn-link" data-dismiss="modal" id='modal_close'>닫기</button>
 					<button type="button" class="btn btn-primary btn-round" id='modal_ques'
 						onClick=onclickQuestion();>문의하기</button>
 
 					<button type="button" class="btn btn-primary btn-round" data-dismiss="modal" id='modal_send'
 						onClick="location.href='./step3.html'">보내기</button>
->>>>>>> 24f164c0d06896548aa14451c3144ba1723e53fa
-					<button type="button" class="btn btn-link" data-dismiss="modal" id='modal_close'>닫기</button>
+				
 				</div>
 			</div>
 		</div>
 	</div>
 	<!--  End Modal -->
-<<<<<<< HEAD
-=======
-
-<<<<<<< HEAD
-
->>>>>>> 8b1816baf3081b4b41def82126ad1b2224ee7042
-	<!-- 로딩 -->
-	<div id="loading" class="loading" style="display:none;">
-		<div class="shadow"></div>
-		<img src="./images/loading.gif" class="img" />
-	</div>
-=======
->>>>>>> 24f164c0d06896548aa14451c3144ba1723e53fa
 	<script>
 
 		function onclickQuestion() {			

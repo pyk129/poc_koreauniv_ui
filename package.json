@@ -19,12 +19,8 @@
     "helmet": "^3.21.2",
     "http-proxy-middleware": "^0.20.0",
     "ipaddr": "0.0.9",
-<<<<<<< HEAD
     "jquery": "^1.9.1",
     "popper.js": "^1.16.1",
-=======
-    "jquery": "^1.12.4",
->>>>>>> 24f164c0d06896548aa14451c3144ba1723e53fa
     "winston": "^3.2.1",
     "winston-daily-rotate-file": "^4.2.1"
   }

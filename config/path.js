@@ -1,8 +1,6 @@
-<<<<<<< HEAD
+
 const _pathBase = '/Users/a60067648/koreaUnivProject/koreaUnivProject_Was';
-=======
-const _pathBase = 'C:/Users/pyk12/Desktop/git/ui/poc_koreauniv_ui/koreaUnivProject_Was';
->>>>>>> 24f164c0d06896548aa14451c3144ba1723e53fa
+// const _pathBase = 'C:/Users/pyk12/Desktop/git/ui/poc_koreauniv_ui/koreaUnivProject_Was';
 module.exports = {
 		root: '/',
 		port : 8080,
