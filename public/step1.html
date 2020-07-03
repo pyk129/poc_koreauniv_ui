@@ -219,11 +219,11 @@
 	  	<h3>매입 가격 입력</h3>
 		<div class="form-group">
 			<label for="FormControlInput1">아파트 매입 가격은 얼마를 생각하시나요? 금액을 입력해 주세요</label>
-			<input type="number" class="form-control" id="FormControlInput1" placeholder="">
+			<input type="string" class="form-control" id="FormControlInput1" onKeyup="inputNumberAutoComma(this)" placeholder="">
 		</div>
 	<form>
   <div>
-    <label for="check0101">1.나이가 50대 이상이신가요?</label>
+    <label for="check0101">1.나이가 65살 이상이신가요?</label>
 	<div class="form-check form-check-radio mt-2">
   <label class="form-check-label">
     <input class="form-check-input" type="radio" id="check0101" name="check01" checked="checked" value="1"> 예
@@ -434,7 +434,7 @@
 			<label class="mt-4" for="check0901">쾌적한 환경이 필요 하신가요?</label>
 			<div class="form-check form-check-radio mt-2">
 			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0901" name="check09" checked="checked" value="1">자차
+				<input class="form-check-input" type="radio" id="check0901" name="check09" checked="checked" value="1">예
 				<span class="circle">
 					<span class="check"></span>
 				</span>
@@ -442,7 +442,7 @@
 			</div>
 			<div class="form-check form-check-radio">
 			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0902" name="check09" value="2">도보
+				<input class="form-check-input" type="radio" id="check0902" name="check09" value="2">아니오
 				<span class="circle">
 					<span class="check"></span>
 				</span>
@@ -453,10 +453,10 @@
 	<form>
 
 		<form>	
-	  	<h3>정보동의</h3>
+	  	<h3 class="mt-5">정보동의</h3>
 
 		<div>
-			<label class="mt-4" for="check1001">개인정보 제공동의 하시겠습니까?</label>
+			<label class="mt-2" for="check1001">개인정보 제공동의 하시겠습니까?</label>
 			<div class="form-check form-check-radio mt-2">
 			<label class="form-check-label">
 				<input class="form-check-input" type="radio" id="check1001" name="check10" checked="checked" value="1">예
@@ -510,7 +510,36 @@
 			history.back();
 		});
 
+		
+		function inputNumberAutoComma(obj) {
+       
+			// 콤마( , )의 경우도 문자로 인식되기때문에 콤마를 따로 제거한다.
+			var deleteComma = obj.value.replace(/\,/g, "");
 
+			// 콤마( , )를 제외하고 문자가 입력되었는지를 확인한다.
+			if(isFinite(deleteComma) == false) {
+				alert("문자는 입력하실 수 없습니다.");
+				obj.value = "";
+				return false;
+			}
+			
+			// 기존에 들어가있던 콤마( , )를 제거한 이 후의 입력값에 다시 콤마( , )를 삽입한다.
+			obj.value = inputNumberWithComma(inputNumberRemoveComma(obj.value));
+		}
+		
+		// 천단위 이상의 숫자에 콤마( , )를 삽입하는 함수
+		function inputNumberWithComma(str) {
+
+			str = String(str);
+			return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
+		}
+
+		// 콤마( , )가 들어간 값에 콤마를 제거하는 함수
+		function inputNumberRemoveComma(str) {
+
+			str = String(str);
+			return str.replace(/[^\d]+/g, "");
+		}
 	</script>
 </body>
 
