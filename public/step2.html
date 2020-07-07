@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>SMTH</title>
+	<title>Best House for You</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
 
 	<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
@@ -103,8 +103,8 @@
 			top: 0;
 			left: 0;
 			bottom: 0;
-			width: 20%;
-			height: 65px;
+			width: 30%;
+			height: 230px;
 			margin: 10px 0 30px 10px;
 			padding: 20px;
 			text-align: center;
@@ -351,6 +351,10 @@
 		var sel7 = 0;
 		var sel8 = 0;
 		var sel9 = 0;
+		var priceinput;
+		var priceloan;
+		var priceinq;
+		var pricedongsan;
 
 		$(document).ready(function () {
 			// $("#gnb").load("gnb.html", function () {
@@ -369,6 +373,18 @@
 			sel7 = getParameterByName('sel7');
 			sel8 = getParameterByName('sel8');
 			sel9 = getParameterByName('sel9');
+
+			priceinput = getParameterByName('priceinput');
+			priceloan = getParameterByName('priceloan');
+
+			priceinq = getParameterByName('priceinq');
+			pricedongsan = getParameterByName('pricedongsan');
+
+			$('#priceinput').html(priceinput+'원')
+			$('#priceloan').html(priceloan+'원')
+
+			$('#priceinq').html(priceinq+'원')
+			$('#pricedongsan').html(pricedongsan+'원')
 
 			status = status_sel_gu;
 
@@ -935,7 +951,7 @@
 	</nav> -->
 	<header class="navbar navbar-expand navbar-dark bg-primary flex-column flex-md-row bd-navbar">
 		<a class="navbar-brand mr-0 mr-md-2 navbar-absolute-logo" onclick="reload();" target="_blank">
-			&nbsp&nbsp&nbsp&nbsp똑똑한AI추천 SMTH
+			&nbsp&nbsp&nbsp&nbsp똑똑한AI추천  <B>B</B>est <B>H</B>ouse <B>F</B>or <B>Y</B>ou
 		</a>
 		<div class="navbar-nav-scroll ml-md-auto ">
 			<ul class="navbar-nav bd-navbar-nav flex-row">
@@ -1001,6 +1017,35 @@
 		<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 		<div id="menu_wrap2" class="bg_white">
 			<b>관심있는 지역을 지도에서 선택해주세요.</b>
+			<form class="mt-5">
+
+				<div class="form-group row">
+					<label for="priceinput" class="col-sm-4 col-form-label text-left text-white">매입가능금액 </label>
+					<label id="priceinput" for="priceinput"
+						class="col-lg col-form-label text-right text-white"></label>
+				</div>
+
+				<div class="form-group row">
+					<label for="priceloan" class="col-sm-4 col-form-label text-left text-white ">예상대출금액</label>
+					<label id="priceloan" for="priceloan"
+						class="col-lg col-form-label text-right text-white"></label>
+				</div>
+
+				<div class="form-group row">
+					<label for="priceinq" class="col-sm-4 col-form-label text-left text-white">고객예금 </label>
+					<label id="priceinq" for="priceinq"
+						class="col-lg col-form-label text-right text-white"></label>
+				</div>
+
+				<div class="form-group row">
+					<label for="pricedongsan" class="col-sm-4 col-form-label text-left text-white">고객부동산</label>
+					<label id="pricedongsan" for="pricedongsan"
+						class="col-lg col-form-label text-right text-white"></label>
+				</div>
+			</form>
+		
+			<!-- <button type="button" class="btn btn-primary btn-round btn-block" style="width:100%;height: 40px;" id='modal_send' onClick="confirmBtn();"><i class="material-icons mr-1">check_circle_outline</i>입력금액</button>
+			<button type="button" class="btn btn-primary btn-round btn-block" style="width:100%" id='modal_send' onClick="confirmBtn();"><i class="material-icons mr-1">check_circle_outline</i>대출금액</button> -->
 		</div>
 		<!-- <div class="alert alert-success">
 			<div class="container">
@@ -1383,10 +1428,10 @@
 											<a class="nav-link" href="#dongsan" data-toggle="tab"
 												onclick=click_modal_tab(4)>중계 업소</a>
 										</li>
-										<li class="nav-item">
+										<!-- <li class="nav-item">
 											<a class="nav-link" href="#daechul" data-toggle="tab"
 												onclick=click_modal_tab(5)>대출 추천</a>
-										</li>
+										</li> -->
 									</ul>
 								</div>
 							</div>

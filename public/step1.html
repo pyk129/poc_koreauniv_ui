@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-	<title>SMTH</title>
+	<title>Best House for You</title>
 	<!-- <link rel="stylesheet" type="text/css" href="./css/common.css">
 	<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="./js/jquery.cookie.js"></script>
@@ -46,16 +46,33 @@
 	<script>
 		function confirmBtn() {
 
-			checkSel1 = $("input:radio[name='check01']:checked").val();
-			checkSel2 = $("input:radio[name='check02']:checked").val();
-			checkSel3 = $("input:radio[name='check03']:checked").val();
-			checkSel4 = $("input:radio[name='check04']:checked").val();
-			checkSel5 = $("input:radio[name='check05']:checked").val();
-			checkSel6 = $("input:radio[name='check06']:checked").val();
-			checkSel7 = $("input:radio[name='check07']:checked").val();
-			checkSel8 = $("input:radio[name='check08']:checked").val();
-			checkSel9 = $("input:radio[name='check09']:checked").val();
+			// 매입가격
+			priceinput = $("#FormControlInput1").val();
 
+			// 부동산 알아보는 이유 
+			checkSel2 = $("input:radio[name='check02']:checked").val();
+			
+			// 대출 얼마 
+			checkSel3 = $("input:radio[name='check03']:checked").val();
+			// 근처 지하철
+			checkSel7 = $("input:radio[name='check07']:checked").val();
+			// 초등
+			checkSel6 = $("input:radio[name='check06']:checked").val();
+			// 중등
+			check062 = $("input:radio[name='check062']:checked").val();
+			// 고등학교
+			check063 = $("input:radio[name='check063']:checked").val();
+			// 학원
+			check064 = $("input:radio[name='check064']:checked").val();
+			// 주변 마트 
+			checkSel5 = $("input:radio[name='check05']:checked").val();
+			// 백화점
+			check052 = $("input:radio[name='check052']:checked").val();
+			// 병원
+			checkSel1 = $("input:radio[name='check01']:checked").val();
+			// 공원 
+			checkSel9 = $("input:radio[name='check09']:checked").val();
+		
 			var sel2차추천여부 = 1;
 
 			var reEle = 0;
@@ -74,75 +91,63 @@
 			}
 
 			if (checkSel2 == 1) {
-				// 병원 O
 				sel2차추천여부 = 0;
 			}
-
+			// 마트
 			if (checkSel5 == 1) {
 				reMart = 1;
-				reDepartment = 0;
-
-			} else if (checkSel5 == 2) {
-				reMart = 0;
+			
+			} 
+			// 백화점
+			if (check052 == 1) {
 				reDepartment = 1;
-
-			} else {
-				reMart = 0;
-				reDepartment = 0;
 
 			}
 
 			// 학교 선택 
 			if (checkSel6 == 1) {
-				// 유딩
-				reEle = 0;
-				reMid = 0;
-				reHigh = 0;
-
-			} else if (checkSel6 == 2) {
-				// 초딩
+				// 초등
 				reEle = 1;
-				reMid = 0;
-				reHigh = 0;
 
-			} else if (checkSel6 == 3) {
-				// 중딩
-				reEle = 0;
+			}
+			
+			if (check062 == 1) {
+				// 중등
 				reMid = 1;
-				reHigh = 0;
-			} else {
+
+			} 
+			if (check063 == 1) {
 				// 고딩
-				reEle = 0;
-				reMid = 0;
 				reHigh = 1;
-			}
+			} 
 
-			if (checkSel7 == 1) {
-				// 유딩
-				reSubway = 0;
-			} else if (checkSel7 == 2) {
-				// 유딩
-				reSubway = 0;
-			} else {
-				reSubway = 1;
-			}
-
-			if (checkSel8 == 1) {
-				// 유딩
+			if (check064 == 1) {
+				// 학원
 				reEdu = 1;
-			} else {
-				reEdu = 0;
-			}
-
-
+			} 
+			
+			// 공원
 			if (checkSel9 == 1) {
-				// 유딩
+				// 공원
 				rePark = 1;
 			} else {
 				rePark = 0;
 			}
 
-			location.href = 'step2.html?sel1=' + reEle + '&sel2=' + reMid + '&sel3=' + reHigh + '&sel4=' + reEdu + '&sel5=' + reMart + '&sel6=' + reDepartment + '&sel7=' + reSubway + '&sel8=' + reHosp + '&sel9=' + rePark + '&reco2nd=' + sel2차추천여부;
+			var priceloan;
+			if (checkSel3 == 1){
+				priceloan = inputNumberWithComma(50000000);
+			} else if (checkSel3 == 2){
+				priceloan = inputNumberWithComma(100000000);
+			} else if (checkSel3 == 3){
+				priceloan = inputNumberWithComma(200000000);
+			} else {
+				priceloan = inputNumberWithComma(300000000);
+			}
+
+			var priceinq = inputNumberWithComma(237000000);
+			var pricedongsan = inputNumberWithComma(250000000);
+			location.href = 'step2.html?sel1=' + reEle + '&sel2=' + reMid + '&sel3=' + reHigh + '&sel4=' + reEdu + '&sel5=' + reMart + '&sel6=' + reDepartment + '&sel7=' + reSubway + '&sel8=' + reHosp + '&sel9=' + rePark + '&reco2nd=' + sel2차추천여부+'&priceinput='+priceinput+'&priceloan='+priceloan+'&priceinq='+priceinq+'&pricedongsan='+pricedongsan;
 
 			// model = TheModelClass(*args, **kwargs)
 			// model.load_state_dict(torch.load(PATH))
@@ -167,7 +172,7 @@
 
  <header class="navbar navbar-expand navbar-dark bg-primary flex-column flex-md-row bd-navbar">
     <a class="navbar-brand mr-0 mr-md-2 navbar-absolute-logo" onclick="reload();" target="_blank">
-		&nbsp&nbsp&nbsp&nbsp똑똑한AI추천 SMTH
+		&nbsp&nbsp&nbsp&nbsp똑똑한AI추천 <B>B</B>est <B>H</B>ouse <B>F</B>or <B>Y</B>ou
     </a>
     <div class="navbar-nav-scroll ml-md-auto ">
     </div>
@@ -216,13 +221,13 @@
 
    <div class="form-group">
 	<form>	
-	  	<h3>매입 가격 입력</h3>
-		<div class="form-group">
-			<label for="FormControlInput1">아파트 매입 가격은 얼마를 생각하시나요? 금액을 입력해 주세요</label>
-			<input type="string" class="form-control" id="FormControlInput1" onKeyup="inputNumberAutoComma(this)" placeholder="">
+	  	<h3>부동산 정보 입력</h3>
+		<div class="form-group "mt-4"">
+			<label for="FormControlInput1">1. 아파트 매입 가격은 얼마를 생각하시나요? 금액을 입력해 주세요</label>
+			<input type="string" class="form-control" id="FormControlInput1" value="300,000,000" onKeyup="inputNumberAutoComma(this)" placeholder="">
 		</div>
 	<form>
-
+	
 <div>
     <label class="mt-4" for="check0202">2.지금 부동산을 알아보는 이유가 뭔가요?</label>
 	<div class="form-check form-check-radio mt-2">
@@ -250,12 +255,11 @@
   </label>
 </div>
 
-
 		<div>
 			<label class="mt-4" for="check0301">3.대출은 얼마 생각하시나요?</label>
 			<div class="form-check form-check-radio mt-2">
 		<label class="form-check-label">
-			<input class="form-check-input" type="radio" id="check0301" name="check03" checked="checked" value="1">0~5000만원
+			<input class="form-check-input" type="radio" id="check0301" name="check03"  value="1">0~5000만원
 			<span class="circle">
 				<span class="check"></span>
 			</span>
@@ -271,7 +275,7 @@
 		</div>
 		<div class="form-check form-check-radio">
 		<label class="form-check-label">
-			<input class="form-check-input" type="radio" id="check0303" name="check03" value="3">1억~2억
+			<input class="form-check-input" type="radio" id="check0303" name="check03" value="3" checked="checked">1억~2억
 			<span class="circle">
 				<span class="check"></span>
 			</span>
@@ -286,7 +290,7 @@
 		</label>
 		</div>
 	</div>
-
+	
 	<form>	
 	  	<!-- <h3>추천 조건 선택</h3><span class="p_red">(<em>*</em>)
 			</span> 고객님과 맞는 내용을 선택하세요. -->
@@ -311,7 +315,7 @@
 			</label>
 			</div>		
 		</div>
-		
+	
 		<h3 class="mt-5">교육 환경 선택</h3>
 		<div>
 			<label class="mt-4" for="check0601">1. 근처에 초등학교가 있어야 하나요?</label>
@@ -372,9 +376,9 @@
 			</label>
 			</div>
 		</div>
-
+		
 		<div>
-			<label class="mt-4" for="check0801">4. 사교육이 필요 하신가요?</label>
+			<label class="mt-4" for="check0801">4. 근처에 입시 학원이 있어야 하나요??</label>
 			<div class="form-check form-check-radio mt-2">
 			<label class="form-check-label">
 				<input class="form-check-input" type="radio" id="check0801" name="check064" checked="checked" value="1">네
@@ -394,7 +398,7 @@
 		
 		
 		</div>
-
+		
 		<h3 class="mt-5">쇼핑 방법 선택</h3>
 		<div>
 			<label class="mt-4" for="check0501">1. 주변에 마트가 있어야하나요?</label>
@@ -416,7 +420,7 @@
 			</div>
 
 		</div>
-
+		
 		<div>
 			<label class="mt-4" for="check0501">2. 주변에 백화점이 있어야하나요?</label>
 			<div class="form-check form-check-radio mt-2">
@@ -436,7 +440,7 @@
 			</label>
 			</div>
 		</div>
-
+		
 		<h3 class="mt-5">편의 시설 선택</h3>
 		<div>
 			<label class="mt-4" for="check0101">1. 근처에 병원이 있어야하나요?</label>
@@ -457,7 +461,7 @@
 		  </label>
 		</div>
 		
-
+		
 		<div>
 			<label class="mt-4" for="check0901">2. 근처에 공원이 있어야 하나요?</label>
 			<div class="form-check form-check-radio mt-2">
@@ -509,7 +513,7 @@
 </div>
 	</form>
 		<div class="mt-4">
-			<button type="button" class="btn btn-primary btn-round btn-block" style="width:100%" id='modal_send' onClick="confirmBtn();"><i class="material-icons mr-1">check_circle_outline</i> 설문완료</button>
+				<button type="button" class="btn btn-primary btn-round btn-block" style="width:100%" id='modal_send' onClick="confirmBtn();"><i class="material-icons mr-1">check_circle_outline</i> 설문완료</button>
 		</div>
 </main>
 
