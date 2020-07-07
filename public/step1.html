@@ -222,24 +222,6 @@
 			<input type="string" class="form-control" id="FormControlInput1" onKeyup="inputNumberAutoComma(this)" placeholder="">
 		</div>
 	<form>
-  <div>
-    <label for="check0101">1.나이가 65살 이상이신가요?</label>
-	<div class="form-check form-check-radio mt-2">
-  <label class="form-check-label">
-    <input class="form-check-input" type="radio" id="check0101" name="check01" checked="checked" value="1"> 예
-    <span class="circle">
-        <span class="check"></span>
-    </span>
-  </label>
-</div>
-<div class="form-check form-check-radio">
-  <label class="form-check-label">
-    <input class="form-check-input" type="radio" id="check0102" name="check01" value="2"> 아니오
-    <span class="circle">
-        <span class="check"></span>
-    </span>
-  </label>
-</div>
 
 <div>
     <label class="mt-4" for="check0202">2.지금 부동산을 알아보는 이유가 뭔가요?</label>
@@ -306,17 +288,15 @@
 	</div>
 
 	<form>	
-	  	<h3>추천 조건 선택</h3>
-		<p>
-			<span class="p_red">(<em>*</em>)
-			</span> 고객님과 맞는 내용을 선택하세요.
-		</p>
+	  	<!-- <h3>추천 조건 선택</h3><span class="p_red">(<em>*</em>)
+			</span> 고객님과 맞는 내용을 선택하세요. -->
 
+		<h3 class="mt-5">교통 환경 선택</h3>
 		<div>
-			<label class="mt-4" for="check0501">주된 쇼핑 방법은 무엇인가요?</label>
+			<label class="mt-4" for="check0601">1. 근처에 지하철이 있어야 하나요?</label>
 			<div class="form-check form-check-radio mt-2">
 			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0501" name="check05" checked="checked" value="1">마트
+				<input class="form-check-input" type="radio" id="check0701" name="check07" checked="checked" value="1">예
 				<span class="circle">
 					<span class="check"></span>
 				</span>
@@ -324,27 +304,20 @@
 			</div>
 			<div class="form-check form-check-radio">
 			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0502" name="check05" value="2">백화점
+				<input class="form-check-input" type="radio" id="check0702" name="check07" value="2">아니오
 				<span class="circle">
 					<span class="check"></span>
 				</span>
 			</label>
-			</div>
-			<div class="form-check form-check-radio">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0503" name="check05" value="3">온라인
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
+			</div>		
 		</div>
 		
+		<h3 class="mt-5">교육 환경 선택</h3>
 		<div>
-			<label class="mt-4" for="check0601">자녀가 있으신가요?</label>
+			<label class="mt-4" for="check0601">1. 근처에 초등학교가 있어야 하나요?</label>
 			<div class="form-check form-check-radio mt-2">
 			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0601" name="check06" checked="checked" value="1">유치원
+				<input class="form-check-input" type="radio" id="check0601" name="check06" checked="checked" value="1">예
 				<span class="circle">
 					<span class="check"></span>
 				</span>
@@ -352,23 +325,7 @@
 			</div>
 			<div class="form-check form-check-radio">
 			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0602" name="check06" value="2">초등학생
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-			<div class="form-check form-check-radio">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0603" name="check06" value="3">중학생
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-			<div class="form-check form-check-radio">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0603" name="check06" value="3">고등학생
+				<input class="form-check-input" type="radio" id="check0602" name="check06" value="2">아니오
 				<span class="circle">
 					<span class="check"></span>
 				</span>
@@ -376,12 +333,11 @@
 			</div>
 		</div>
 
-
 		<div>
-			<label class="mt-4" for="check0601">출근은 어떻게 하시나요?</label>
+			<label class="mt-4" for="check0601">2. 근처에 중학교가 있어야 하나요?</label>
 			<div class="form-check form-check-radio mt-2">
 			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0701" name="check07" checked="checked" value="1">자차
+				<input class="form-check-input" type="radio" id="check06012" name="check062" checked="checked" value="1">예
 				<span class="circle">
 					<span class="check"></span>
 				</span>
@@ -389,29 +345,19 @@
 			</div>
 			<div class="form-check form-check-radio">
 			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0702" name="check07" value="2">도보
+				<input class="form-check-input" type="radio" id="check06022" name="check062" value="2">아니오
 				<span class="circle">
 					<span class="check"></span>
 				</span>
 			</label>
 			</div>
-			<div class="form-check form-check-radio">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0703" name="check07" value="3">대중교통
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-		
 		</div>
 
-
 		<div>
-			<label class="mt-4" for="check0801">사교육이 필요 하신가요?</label>
+			<label class="mt-4" for="check0601">3. 근처에 고등학교가 있어야 하나요?</label>
 			<div class="form-check form-check-radio mt-2">
 			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0801" name="check08" checked="checked" value="1">네
+				<input class="form-check-input" type="radio" id="check06013" name="check063" checked="checked" value="1">예
 				<span class="circle">
 					<span class="check"></span>
 				</span>
@@ -419,7 +365,27 @@
 			</div>
 			<div class="form-check form-check-radio">
 			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0802" name="check08" value="2">아니오
+				<input class="form-check-input" type="radio" id="check06023" name="check063" value="2">아니오
+				<span class="circle">
+					<span class="check"></span>
+				</span>
+			</label>
+			</div>
+		</div>
+
+		<div>
+			<label class="mt-4" for="check0801">4. 사교육이 필요 하신가요?</label>
+			<div class="form-check form-check-radio mt-2">
+			<label class="form-check-label">
+				<input class="form-check-input" type="radio" id="check0801" name="check064" checked="checked" value="1">네
+				<span class="circle">
+					<span class="check"></span>
+				</span>
+			</label>
+			</div>
+			<div class="form-check form-check-radio">
+			<label class="form-check-label">
+				<input class="form-check-input" type="radio" id="check0802" name="check064" value="2">아니오
 				<span class="circle">
 					<span class="check"></span>
 				</span>
@@ -429,9 +395,71 @@
 		
 		</div>
 
+		<h3 class="mt-5">쇼핑 방법 선택</h3>
+		<div>
+			<label class="mt-4" for="check0501">1. 주변에 마트가 있어야하나요?</label>
+			<div class="form-check form-check-radio mt-2">
+			<label class="form-check-label">
+				<input class="form-check-input" type="radio" id="check0501" name="check05" checked="checked" value="1">예
+				<span class="circle">
+					<span class="check"></span>
+				</span>
+			</label>
+			</div>
+			<div class="form-check form-check-radio">
+			<label class="form-check-label">
+				<input class="form-check-input" type="radio" id="check0502" name="check05" value="2">아니오
+				<span class="circle">
+					<span class="check"></span>
+				</span>
+			</label>
+			</div>
+
+		</div>
 
 		<div>
-			<label class="mt-4" for="check0901">쾌적한 환경이 필요 하신가요?</label>
+			<label class="mt-4" for="check0501">2. 주변에 백화점이 있어야하나요?</label>
+			<div class="form-check form-check-radio mt-2">
+			<label class="form-check-label">
+				<input class="form-check-input" type="radio" id="check05012" name="check052" checked="checked" value="1">예
+				<span class="circle">
+					<span class="check"></span>
+				</span>
+			</label>
+			</div>
+			<div class="form-check form-check-radio">
+			<label class="form-check-label">
+				<input class="form-check-input" type="radio" id="check05022" name="check052" value="2">아니오
+				<span class="circle">
+					<span class="check"></span>
+				</span>
+			</label>
+			</div>
+		</div>
+
+		<h3 class="mt-5">편의 시설 선택</h3>
+		<div>
+			<label class="mt-4" for="check0101">1. 근처에 병원이 있어야하나요?</label>
+			<div class="form-check form-check-radio mt-2">
+		  <label class="form-check-label">
+			<input class="form-check-input" type="radio" id="check0101" name="check01" checked="checked" value="1"> 예
+			<span class="circle">
+				<span class="check"></span>
+			</span>
+		  </label>
+		</div>
+		<div class="form-check form-check-radio">
+		  <label class="form-check-label">
+			<input class="form-check-input" type="radio" id="check0102" name="check01" value="2"> 아니오
+			<span class="circle">
+				<span class="check"></span>
+			</span>
+		  </label>
+		</div>
+		
+
+		<div>
+			<label class="mt-4" for="check0901">2. 근처에 공원이 있어야 하나요?</label>
 			<div class="form-check form-check-radio mt-2">
 			<label class="form-check-label">
 				<input class="form-check-input" type="radio" id="check0901" name="check09" checked="checked" value="1">예
