@@ -88,7 +88,7 @@
 			top: 0;
 			left: 0;
 			bottom: 0;
-			width: 300px;
+			width: 400px;
 			margin: 10px 0 30px 10px;
 			padding: 5px;
 			overflow-y: auto;
@@ -314,7 +314,7 @@
 
 		function click_modal_tab(num) {
 
-			if (num != 5) {
+			if (num != 6) {
 				$('#modal_send').hide();
 				$('#modal_ques').show();
 
@@ -562,10 +562,10 @@
 			itemStr += '<h6 class="text-info">최대실거래가 : ' +inputNumberWithComma(item['max_price']) + '원</h6>';
 			itemStr += '<h6 class="text-primary">최저실거래가 : ' +inputNumberWithComma(item['min_price']) + '원</h6>';
 			// }
-			itemStr += "<div class=\"col-lg col-form-label text-left\">";
-			itemStr += "<button class=\"btn btn-primary mr-2\" style='width: 30%'>유사점수:"+item['score_p1']+"점</button>";
-			itemStr += "<button class=\"btn btn-info mr-2\" style='width: 30%'>매매점수:"+item['score_p2']+"점</button>";
-			itemStr += "<button class=\"btn btn-success\" style='width: 30%'>의견점수:"+item['score_p3']+"점</button>";
+			itemStr += "<div class=\"col-lg col-form-label text-left mt-2\">";
+			itemStr += "<button class=\"btn btn-primary mr-2 text-center\" style='width: 35%'>적합성:"+item['score_p1']+"점</button>";
+			itemStr += "<button class=\"btn btn-info mr-2 text-center\" style='width: 35%'>투자성:"+item['score_p2']+"점</button>";
+			itemStr += "<button class=\"btn btn-success text-center\" style='width: 30%'>평판:"+item['score_p3']+"점</button>";
 			itemStr += "</div>";
 			
 			
@@ -648,6 +648,7 @@
 			//
 			// http://aws.hancy.kr:8802/send_py
 			$.post('http://aws.hancy.kr:8802/send_py', {
+				// $.post('http://127.0.0.1:5001/send_py', {
 
 				// algo: idxAlgo,
 				// select1: checkSel1,
@@ -987,11 +988,11 @@
 		<div class="navbar-nav-scroll ml-md-auto ">
 			<ul class="navbar-nav bd-navbar-nav flex-row">
 			<li class="nav-item">
-				<a class="nav-link" href="https://demos.creative-tim.com/material-kit/index.html"><i class="material-icons">home</i> HOME</a>
+				<a class="nav-link" href="./index.html"><i class="material-icons">home</i> HOME</a>
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link" href="https://github.com/creativetimofficial/material-kit" target="_blank" rel="noopener"><i class="material-icons">check_circle_outline</i> 설문조사</a>
+					<a class="nav-link" href="./step1.html" target="_blank" rel="noopener"><i class="material-icons">check_circle_outline</i> 설문조사</a>
 				  </li>
 	
 			  <!-- <li class="nav-item">
@@ -1464,10 +1465,10 @@
 											<a class="nav-link" href="#dongsan" data-toggle="tab"
 												onclick=click_modal_tab(5)>중계 업소</a>
 										</li>
-										<!-- <li class="nav-item">
+										<li class="nav-item">
 											<a class="nav-link" href="#daechul" data-toggle="tab"
-												onclick=click_modal_tab(5)>대출 추천</a>
-										</li> -->
+												onclick=click_modal_tab(6)>대출 추천</a>
+										</li>
 									</ul>
 								</div>
 							</div>
@@ -1594,11 +1595,11 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-link" data-dismiss="modal" id='modal_close'>닫기</button>
-					<button type="button" class="btn btn-primary btn-round" id='modal_ques'
-						onClick=onclickQuestion();>문의하기</button>
+					<!-- <button type="button" class="btn btn-primary btn-round" id='modal_ques'
+						onClick=onclickQuestion();>문의하기</button> -->
 
 					<button type="button" class="btn btn-primary btn-round" data-dismiss="modal" id='modal_send'
-						onClick="location.href='./step3.html'">보내기</button>
+						onClick="location.href='./step4.html'">대출신청</button>
 				
 				</div>
 			</div>

@@ -13,7 +13,8 @@
 	<!-- CSS Files -->
 
 	<!--     Fonts and icons     -->
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+	<link rel="stylesheet" type="text/css"
+		href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 
 	<!-- 부트스트랩 -->
@@ -26,23 +27,23 @@
 
 	<style>
 		.navbar-absolute-logo {
-		padding-left: 45px;
+			padding-left: 45px;
 		}
 
 		.navbar-absolute-logo img {
-		position: absolute;
-		left: 15px;
-		margin-top: -6px;
+			position: absolute;
+			left: 15px;
+			margin-top: -6px;
 		}
 
 		body {
-		background: white;
+			background: white;
 		}
 	</style>
 	<!--[if lt IE 9]>
 	<script type="text/javascript" src="./js/ie.js"></script>	
 	<![endif]-->
-	
+
 	<script>
 		function confirmBtn() {
 
@@ -51,7 +52,7 @@
 
 			// 부동산 알아보는 이유 
 			checkSel2 = $("input:radio[name='check02']:checked").val();
-			
+
 			// 대출 얼마 
 			checkSel3 = $("input:radio[name='check03']:checked").val();
 			// 근처 지하철
@@ -72,7 +73,7 @@
 			checkSel1 = $("input:radio[name='check01']:checked").val();
 			// 공원 
 			checkSel9 = $("input:radio[name='check09']:checked").val();
-		
+
 			var sel2차추천여부 = 1;
 
 			var reEle = 0;
@@ -96,8 +97,8 @@
 			// 마트
 			if (checkSel5 == 1) {
 				reMart = 1;
-			
-			} 
+
+			}
 			// 백화점
 			if (check052 == 1) {
 				reDepartment = 1;
@@ -110,22 +111,22 @@
 				reEle = 1;
 
 			}
-			
+
 			if (check062 == 1) {
 				// 중등
 				reMid = 1;
 
-			} 
+			}
 			if (check063 == 1) {
 				// 고딩
 				reHigh = 1;
-			} 
+			}
 
 			if (check064 == 1) {
 				// 학원
 				reEdu = 1;
-			} 
-			
+			}
+
 			// 공원
 			if (checkSel9 == 1) {
 				// 공원
@@ -135,11 +136,11 @@
 			}
 
 			var priceloan;
-			if (checkSel3 == 1){
+			if (checkSel3 == 1) {
 				priceloan = inputNumberWithComma(50000000);
-			} else if (checkSel3 == 2){
+			} else if (checkSel3 == 2) {
 				priceloan = inputNumberWithComma(100000000);
-			} else if (checkSel3 == 3){
+			} else if (checkSel3 == 3) {
 				priceloan = inputNumberWithComma(200000000);
 			} else {
 				priceloan = inputNumberWithComma(99900000000);
@@ -147,7 +148,7 @@
 
 			var pricemy = inputNumberWithComma(237000000 + 250000000);
 
-			location.href = 'step2.html?sel1=' + reEle + '&sel2=' + reMid + '&sel3=' + reHigh + '&sel4=' + reEdu + '&sel5=' + reMart + '&sel6=' + reDepartment + '&sel7=' + reSubway + '&sel8=' + reHosp + '&sel9=' + rePark + '&reco2nd=' + sel2차추천여부+'&priceinput='+priceinput+'&priceloan='+priceloan+'&pricemy='+pricemy;
+			location.href = 'step2.html?sel1=' + reEle + '&sel2=' + reMid + '&sel3=' + reHigh + '&sel4=' + reEdu + '&sel5=' + reMart + '&sel6=' + reDepartment + '&sel7=' + reSubway + '&sel8=' + reHosp + '&sel9=' + rePark + '&reco2nd=' + sel2차추천여부 + '&priceinput=' + priceinput + '&priceloan=' + priceloan + '&pricemy=' + pricemy;
 
 			// model = TheModelClass(*args, **kwargs)
 			// model.load_state_dict(torch.load(PATH))
@@ -170,352 +171,388 @@
 
 <body>
 
- <header class="navbar navbar-expand navbar-dark bg-primary flex-column flex-md-row bd-navbar">
-    <a class="navbar-brand mr-0 mr-md-2 navbar-absolute-logo" onclick="reload();" target="_blank">
-		&nbsp&nbsp&nbsp&nbsp똑똑한AI추천 <B>B</B>est <B>H</B>ouse <B>F</B>or <B>Y</B>ou
-    </a>
-    <div class="navbar-nav-scroll ml-md-auto ">
-    </div>
-    <a href="https://github.com/pyk129/poc_koreauniv_ui" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fff; color:#9c27b0; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
-        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
-        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
-      </svg></a>
-    <style>
-      .github-corner:hover .octo-arm {
-        animation: octocat-wave 560ms ease-in-out
-      }
-
-      @keyframes octocat-wave {
-
-        0%,
-        100% {
-          transform: rotate(0)
-        }
-
-        20%,
-        60% {
-          transform: rotate(-25deg)
-        }
-
-        40%,
-        80% {
-          transform: rotate(10deg)
-        }
-      }
-
-      @media (max-width:500px) {
-        .github-corner:hover .octo-arm {
-          animation: none
-        }
-
-        .github-corner .octo-arm {
-          animation: octocat-wave 560ms ease-in-out
-        }
-      }
-    </style>
-  </header>
-
- <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
-     <h2>추천 설문 작성</h2>
-
-   <div class="form-group">
-	<form>	
-	  	<h3>부동산 정보 입력</h3>
-		<div class="form-group "mt-4"">
-			<label for="FormControlInput1">1. 아파트 매입 가격은 얼마를 생각하시나요? 금액을 입력해 주세요</label>
-			<input type="string" class="form-control" id="FormControlInput1" value="300,000,000" onKeyup="inputNumberAutoComma(this)" placeholder="">
+	<header class="navbar navbar-expand navbar-dark bg-primary flex-column flex-md-row bd-navbar">
+		<a class="navbar-brand mr-0 mr-md-2 navbar-absolute-logo" onclick="reload();" target="_blank">
+			&nbsp&nbsp&nbsp&nbsp똑똑한AI추천 <B>B</B>est <B>H</B>ouse <B>F</B>or <B>Y</B>ou
+		</a>
+		<div class="navbar-nav-scroll ml-md-auto ">
 		</div>
-	<form>
-	
-<div>
-    <label class="mt-4" for="check0202">2.지금 부동산을 알아보는 이유가 뭔가요?</label>
-	<div class="form-check form-check-radio mt-2">
-  <label class="form-check-label">
-    <input class="form-check-input" type="radio" id="check0201" name="check02" checked="checked" value="1">주거 목적
-    <span class="circle">
-        <span class="check"></span>
-    </span>
-  </label>
-</div>
-<div class="form-check form-check-radio">
-  <label class="form-check-label">
-    <input class="form-check-input" type="radio" id="check0202" name="check02" value="2">주거 투자
-    <span class="circle">
-        <span class="check"></span>
-    </span>
-  </label>
-</div>
-<div class="form-check form-check-radio">
-  <label class="form-check-label">
-    <input class="form-check-input" type="radio" id="check0203" name="check02" value="3">투자 목적
-    <span class="circle">
-        <span class="check"></span>
-    </span>
-  </label>
-</div>
+		<a href="https://github.com/pyk129/poc_koreauniv_ui" class="github-corner"
+			aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250"
+				style="fill:#fff; color:#9c27b0; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+				<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+				<path
+					d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+					fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+				<path
+					d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+					fill="currentColor" class="octo-body"></path>
+			</svg></a>
+		<style>
+			.github-corner:hover .octo-arm {
+				animation: octocat-wave 560ms ease-in-out
+			}
 
-		<div>
-			<label class="mt-4" for="check0301">3.대출은 얼마 생각하시나요?</label>
-			<div class="form-check form-check-radio mt-2">
-		<label class="form-check-label">
-			<input class="form-check-input" type="radio" id="check0301" name="check03"  value="1">5천만원
-			<span class="circle">
-				<span class="check"></span>
-			</span>
-		</label>
-		</div>
-		<div class="form-check form-check-radio">
-		<label class="form-check-label">
-			<input class="form-check-input" type="radio" id="check0302" name="check03" value="2">1억
-			<span class="circle">
-				<span class="check"></span>
-			</span>
-		</label>
-		</div>
-		<div class="form-check form-check-radio">
-		<label class="form-check-label">
-			<input class="form-check-input" type="radio" id="check0303" name="check03" value="3" checked="checked">2억
-			<span class="circle">
-				<span class="check"></span>
-			</span>
-		</label>
-		</div>
-		<div class="form-check form-check-radio">
-		<label class="form-check-label">
-			<input class="form-check-input" type="radio" id="check0304" name="check03" value="4">제한없음
-			<span class="circle">
-				<span class="check"></span>
-			</span>
-		</label>
-		</div>
-	</div>
-	
-	<form>	
-	  	<!-- <h3>추천 조건 선택</h3><span class="p_red">(<em>*</em>)
+			@keyframes octocat-wave {
+
+				0%,
+				100% {
+					transform: rotate(0)
+				}
+
+				20%,
+				60% {
+					transform: rotate(-25deg)
+				}
+
+				40%,
+				80% {
+					transform: rotate(10deg)
+				}
+			}
+
+			@media (max-width:500px) {
+				.github-corner:hover .octo-arm {
+					animation: none
+				}
+
+				.github-corner .octo-arm {
+					animation: octocat-wave 560ms ease-in-out
+				}
+			}
+		</style>
+	</header>
+
+	<main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+		<h2>추천 설문 작성</h2>
+
+		<div class="form-group">
+			<form>
+				<h3>부동산 정보 입력</h3>
+				<div class="form-group mt-4">
+					<label for="FormControlInput1">1. 전 단계에서 선택하신 자산외에 추가로 조달 가능한 금액을 알려주세요</label>
+					<input type="string" class="form-control" id="FormControlInput1" value="300,000,000"
+						onKeyup="inputNumberAutoComma(this)" placeholder="">
+				</div>
+				<form>
+
+					<div>
+						<label class="mt-4" for="check0202">2.지금 부동산을 알아보는 이유가 뭔가요?</label>
+						<div class="form-check form-check-radio mt-2">
+							<label class="form-check-label">
+								<input class="form-check-input" type="radio" id="check0201" name="check02"
+									checked="checked" value="1">주거 목적
+								<span class="circle">
+									<span class="check"></span>
+								</span>
+							</label>
+						</div>
+						<div class="form-check form-check-radio">
+							<label class="form-check-label">
+								<input class="form-check-input" type="radio" id="check0202" name="check02" value="2">주거
+								투자
+								<span class="circle">
+									<span class="check"></span>
+								</span>
+							</label>
+						</div>
+						<div class="form-check form-check-radio">
+							<label class="form-check-label">
+								<input class="form-check-input" type="radio" id="check0203" name="check02" value="3">투자
+								목적
+								<span class="circle">
+									<span class="check"></span>
+								</span>
+							</label>
+						</div>
+
+						<div>
+							<label class="mt-4" for="check0301">3.대출은 얼마 생각하시나요?</label>
+							<div class="form-check form-check-radio mt-2">
+								<label class="form-check-label">
+									<input class="form-check-input" type="radio" id="check0301" name="check03"
+										value="1">5천만원
+									<span class="circle">
+										<span class="check"></span>
+									</span>
+								</label>
+							</div>
+							<div class="form-check form-check-radio">
+								<label class="form-check-label">
+									<input class="form-check-input" type="radio" id="check0302" name="check03"
+										value="2">1억
+									<span class="circle">
+										<span class="check"></span>
+									</span>
+								</label>
+							</div>
+							<div class="form-check form-check-radio">
+								<label class="form-check-label">
+									<input class="form-check-input" type="radio" id="check0303" name="check03" value="3"
+										checked="checked">2억
+									<span class="circle">
+										<span class="check"></span>
+									</span>
+								</label>
+							</div>
+							<div class="form-check form-check-radio">
+								<label class="form-check-label">
+									<input class="form-check-input" type="radio" id="check0304" name="check03"
+										value="4">제한없음
+									<span class="circle">
+										<span class="check"></span>
+									</span>
+								</label>
+							</div>
+						</div>
+
+						<form>
+							<!-- <h3>추천 조건 선택</h3><span class="p_red">(<em>*</em>)
 			</span> 고객님과 맞는 내용을 선택하세요. -->
 
-		<h3 class="mt-5">교통 환경 선택</h3>
-		<div>
-			<label class="mt-4" for="check0601">1. 근처에 지하철이 있어야 하나요?</label>
-			<div class="form-check form-check-radio mt-2">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0701" name="check07" checked="checked" value="1">예
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-			<div class="form-check form-check-radio">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0702" name="check07" value="2">아니오
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>		
-		</div>
-	
-		<h3 class="mt-5">교육 환경 선택</h3>
-		<div>
-			<label class="mt-4" for="check0601">1. 근처에 초등학교가 있어야 하나요?</label>
-			<div class="form-check form-check-radio mt-2">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0601" name="check06" checked="checked" value="1">예
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-			<div class="form-check form-check-radio">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0602" name="check06" value="2">아니오
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-		</div>
+							<h3 class="mt-5">교통 환경 선택</h3>
+							<div>
+								<label class="mt-4" for="check0601">1. 근처에 지하철이 있어야 하나요?</label>
+								<div class="form-check form-check-radio mt-2">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" id="check0701" name="check07"
+											checked="checked" value="1">예
+										<span class="circle">
+											<span class="check"></span>
+										</span>
+									</label>
+								</div>
+								<div class="form-check form-check-radio">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" id="check0702" name="check07"
+											value="2">아니오
+										<span class="circle">
+											<span class="check"></span>
+										</span>
+									</label>
+								</div>
+							</div>
 
-		<div>
-			<label class="mt-4" for="check0601">2. 근처에 중학교가 있어야 하나요?</label>
-			<div class="form-check form-check-radio mt-2">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check06012" name="check062" checked="checked" value="1">예
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-			<div class="form-check form-check-radio">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check06022" name="check062" value="2">아니오
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-		</div>
+							<h3 class="mt-5">교육 환경 선택</h3>
+							<div>
+								<label class="mt-4" for="check0601">1. 근처에 초등학교가 있어야 하나요?</label>
+								<div class="form-check form-check-radio mt-2">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" id="check0601" name="check06"
+											checked="checked" value="1">예
+										<span class="circle">
+											<span class="check"></span>
+										</span>
+									</label>
+								</div>
+								<div class="form-check form-check-radio">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" id="check0602" name="check06"
+											value="2">아니오
+										<span class="circle">
+											<span class="check"></span>
+										</span>
+									</label>
+								</div>
+							</div>
 
-		<div>
-			<label class="mt-4" for="check0601">3. 근처에 고등학교가 있어야 하나요?</label>
-			<div class="form-check form-check-radio mt-2">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check06013" name="check063" checked="checked" value="1">예
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-			<div class="form-check form-check-radio">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check06023" name="check063" value="2">아니오
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-		</div>
-		
-		<div>
-			<label class="mt-4" for="check0801">4. 근처에 입시 학원이 있어야 하나요??</label>
-			<div class="form-check form-check-radio mt-2">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0801" name="check064" checked="checked" value="1">네
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-			<div class="form-check form-check-radio">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0802" name="check064" value="2">아니오
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-		
-		
-		</div>
-		
-		<h3 class="mt-5">쇼핑 방법 선택</h3>
-		<div>
-			<label class="mt-4" for="check0501">1. 주변에 마트가 있어야하나요?</label>
-			<div class="form-check form-check-radio mt-2">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0501" name="check05" checked="checked" value="1">예
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-			<div class="form-check form-check-radio">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0502" name="check05" value="2">아니오
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
+							<div>
+								<label class="mt-4" for="check0601">2. 근처에 중학교가 있어야 하나요?</label>
+								<div class="form-check form-check-radio mt-2">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" id="check06012" name="check062"
+											checked="checked" value="1">예
+										<span class="circle">
+											<span class="check"></span>
+										</span>
+									</label>
+								</div>
+								<div class="form-check form-check-radio">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" id="check06022" name="check062"
+											value="2">아니오
+										<span class="circle">
+											<span class="check"></span>
+										</span>
+									</label>
+								</div>
+							</div>
 
-		</div>
-		
-		<div>
-			<label class="mt-4" for="check0501">2. 주변에 백화점이 있어야하나요?</label>
-			<div class="form-check form-check-radio mt-2">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check05012" name="check052" checked="checked" value="1">예
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-			<div class="form-check form-check-radio">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check05022" name="check052" value="2">아니오
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-		</div>
-		
-		<h3 class="mt-5">편의 시설 선택</h3>
-		<div>
-			<label class="mt-4" for="check0101">1. 근처에 병원이 있어야하나요?</label>
-			<div class="form-check form-check-radio mt-2">
-		  <label class="form-check-label">
-			<input class="form-check-input" type="radio" id="check0101" name="check01" checked="checked" value="1"> 예
-			<span class="circle">
-				<span class="check"></span>
-			</span>
-		  </label>
-		</div>
-		<div class="form-check form-check-radio">
-		  <label class="form-check-label">
-			<input class="form-check-input" type="radio" id="check0102" name="check01" value="2"> 아니오
-			<span class="circle">
-				<span class="check"></span>
-			</span>
-		  </label>
-		</div>
-		
-		
-		<div>
-			<label class="mt-4" for="check0901">2. 근처에 공원이 있어야 하나요?</label>
-			<div class="form-check form-check-radio mt-2">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0901" name="check09" checked="checked" value="1">예
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-			<div class="form-check form-check-radio">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check0902" name="check09" value="2">아니오
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
+							<div>
+								<label class="mt-4" for="check0601">3. 근처에 고등학교가 있어야 하나요?</label>
+								<div class="form-check form-check-radio mt-2">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" id="check06013" name="check063"
+											checked="checked" value="1">예
+										<span class="circle">
+											<span class="check"></span>
+										</span>
+									</label>
+								</div>
+								<div class="form-check form-check-radio">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" id="check06023" name="check063"
+											value="2">아니오
+										<span class="circle">
+											<span class="check"></span>
+										</span>
+									</label>
+								</div>
+							</div>
 
-		</div>
-	<form>
-
-		<form>	
-	  	<h3 class="mt-5">정보동의</h3>
-
-		<div>
-			<label class="mt-2" for="check1001">개인정보 제공동의 하시겠습니까?</label>
-			<div class="form-check form-check-radio mt-2">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check1001" name="check10" checked="checked" value="1">예
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-			<div class="form-check form-check-radio">
-			<label class="form-check-label">
-				<input class="form-check-input" type="radio" id="check1002" name="check10" value="2">아니오
-				<span class="circle">
-					<span class="check"></span>
-				</span>
-			</label>
-			</div>
-		</div>
-	</form>
-</form>
+							<div>
+								<label class="mt-4" for="check0801">4. 근처에 입시 학원이 있어야 하나요??</label>
+								<div class="form-check form-check-radio mt-2">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" id="check0801" name="check064"
+											checked="checked" value="1">네
+										<span class="circle">
+											<span class="check"></span>
+										</span>
+									</label>
+								</div>
+								<div class="form-check form-check-radio">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" id="check0802" name="check064"
+											value="2">아니오
+										<span class="circle">
+											<span class="check"></span>
+										</span>
+									</label>
+								</div>
 
 
-</div>
-	</form>
-		<div class="mt-4">
-				<button type="button" class="btn btn-primary btn-round btn-block" style="width:100%" id='modal_send' onClick="confirmBtn();"><i class="material-icons mr-1">check_circle_outline</i> 설문완료</button>
-		</div>
-</main>
+							</div>
+
+							<h3 class="mt-5">쇼핑 방법 선택</h3>
+							<div>
+								<label class="mt-4" for="check0501">1. 주변에 마트가 있어야하나요?</label>
+								<div class="form-check form-check-radio mt-2">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" id="check0501" name="check05"
+											checked="checked" value="1">예
+										<span class="circle">
+											<span class="check"></span>
+										</span>
+									</label>
+								</div>
+								<div class="form-check form-check-radio">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" id="check0502" name="check05"
+											value="2">아니오
+										<span class="circle">
+											<span class="check"></span>
+										</span>
+									</label>
+								</div>
+
+							</div>
+
+							<div>
+								<label class="mt-4" for="check0501">2. 주변에 백화점이 있어야하나요?</label>
+								<div class="form-check form-check-radio mt-2">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" id="check05012" name="check052"
+											checked="checked" value="1">예
+										<span class="circle">
+											<span class="check"></span>
+										</span>
+									</label>
+								</div>
+								<div class="form-check form-check-radio">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" id="check05022" name="check052"
+											value="2">아니오
+										<span class="circle">
+											<span class="check"></span>
+										</span>
+									</label>
+								</div>
+							</div>
+
+							<h3 class="mt-5">편의 시설 선택</h3>
+							<div>
+								<label class="mt-4" for="check0101">1. 근처에 병원이 있어야하나요?</label>
+								<div class="form-check form-check-radio mt-2">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" id="check0101" name="check01"
+											checked="checked" value="1"> 예
+										<span class="circle">
+											<span class="check"></span>
+										</span>
+									</label>
+								</div>
+								<div class="form-check form-check-radio">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" id="check0102" name="check01"
+											value="2"> 아니오
+										<span class="circle">
+											<span class="check"></span>
+										</span>
+									</label>
+								</div>
+
+
+								<div>
+									<label class="mt-4" for="check0901">2. 근처에 공원이 있어야 하나요?</label>
+									<div class="form-check form-check-radio mt-2">
+										<label class="form-check-label">
+											<input class="form-check-input" type="radio" id="check0901" name="check09"
+												checked="checked" value="1">예
+											<span class="circle">
+												<span class="check"></span>
+											</span>
+										</label>
+									</div>
+									<div class="form-check form-check-radio">
+										<label class="form-check-label">
+											<input class="form-check-input" type="radio" id="check0902" name="check09"
+												value="2">아니오
+											<span class="circle">
+												<span class="check"></span>
+											</span>
+										</label>
+									</div>
+
+								</div>
+								<form>
+
+									<form>
+										<h3 class="mt-5">정보동의</h3>
+
+										<div>
+											<label class="mt-2" for="check1001">개인정보 제공동의 하시겠습니까?</label>
+											<div class="form-check form-check-radio mt-2">
+												<label class="form-check-label">
+													<input class="form-check-input" type="radio" id="check1001"
+														name="check10" checked="checked" value="1">예
+													<span class="circle">
+														<span class="check"></span>
+													</span>
+												</label>
+											</div>
+											<div class="form-check form-check-radio">
+												<label class="form-check-label">
+													<input class="form-check-input" type="radio" id="check1002"
+														name="check10" value="2">아니오
+													<span class="circle">
+														<span class="check"></span>
+													</span>
+												</label>
+											</div>
+										</div>
+									</form>
+								</form>
+
+
+							</div>
+						</form>
+						<div class="mt-4">
+							<button type="button" class="btn btn-primary btn-round btn-block" style="width:100%"
+								id='modal_send' onClick="confirmBtn();"><i
+									class="material-icons mr-1">check_circle_outline</i> 설문완료</button>
+						</div>
+	</main>
 
 	</div>
 	<!-- 로딩 -->
@@ -524,7 +561,7 @@
 		<img src="./images/loading.gif" class="img" />
 	</div>
 	</div>
-</div>
+	</div>
 	<!-- 로딩 -->
 	<script>
 		function showLoading() {
@@ -542,23 +579,23 @@
 			history.back();
 		});
 
-		
+
 		function inputNumberAutoComma(obj) {
-       
+
 			// 콤마( , )의 경우도 문자로 인식되기때문에 콤마를 따로 제거한다.
 			var deleteComma = obj.value.replace(/\,/g, "");
 
 			// 콤마( , )를 제외하고 문자가 입력되었는지를 확인한다.
-			if(isFinite(deleteComma) == false) {
+			if (isFinite(deleteComma) == false) {
 				alert("문자는 입력하실 수 없습니다.");
 				obj.value = "";
 				return false;
 			}
-			
+
 			// 기존에 들어가있던 콤마( , )를 제거한 이 후의 입력값에 다시 콤마( , )를 삽입한다.
 			obj.value = inputNumberWithComma(inputNumberRemoveComma(obj.value));
 		}
-		
+
 		// 천단위 이상의 숫자에 콤마( , )를 삽입하는 함수
 		function inputNumberWithComma(str) {
 
