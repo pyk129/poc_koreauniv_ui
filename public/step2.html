@@ -462,14 +462,13 @@
 			// 지도에 표시되고 있는 마커를 제거합니다
 			removeMarker();
 			for (var i = 0; i < places.length; i++) {
-
 				item = places[i];
 
 				// 마커를 생성하고 지도에 표시합니다
 				var placePosition = new kakao.maps.LatLng(item['LAT_WGS'], item['LON_WGS']),
 					marker = addMarker(placePosition, i),
 					itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-				displayInfowindow(marker, item['kaptName']);
+				displayInfowindow(marker, item);
 
 				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 				// LatLngBounds 객체에 좌표를 추가합니다
@@ -480,7 +479,7 @@
 				// mouseout 했을 때는 인포윈도우를 닫습니다
 				(function (marker, item) {
 					kakao.maps.event.addListener(marker, 'mouseover', function () {
-						displayInfowindow(marker, item['kaptName']);
+						displayInfowindow(marker, item);
 					});
 
 					kakao.maps.event.addListener(marker, 'mouseout', function () {
@@ -499,7 +498,7 @@
 
 					itemEl.onmouseover = function () {
 						movePan(item['LAT_WGS'], item['LON_WGS']);
-						displayInfowindow(marker, item['kaptName']);
+						displayInfowindow(marker);
 					};
 
 					itemEl.onmouseout = function () {
@@ -559,8 +558,9 @@
 			// 	itemStr += '    <span>' + item['doroJuso'] + '</span>' +
 			// 		'   <span class="jibun gray">' + item['doroJuso'] + '</span>';
 			// } else {
-			itemStr += '<h6 class="text-danger">최대실거래가 : ' +inputNumberWithComma(item['max_price']) + '원</h6>';
-			itemStr += '<h6 class="text-info">최저실거래가 : ' +inputNumberWithComma(item['min_price']) + '원</h6>';
+			itemStr += '<h6 class="text-danger"><b>최근실거래가 : ' +inputNumberWithComma(item['recent_price']) + '원</b></h6>';
+			itemStr += '<h6 class="text-info">최대실거래가 : ' +inputNumberWithComma(item['max_price']) + '원</h6>';
+			itemStr += '<h6 class="text-primary">최저실거래가 : ' +inputNumberWithComma(item['min_price']) + '원</h6>';
 			// }
 			itemStr += "<div class=\"col-lg col-form-label text-left\">";
 			itemStr += "<button class=\"btn btn-primary mr-2\" style='width: 30%'>유사점수:"+item['score_p1']+"점</button>";
@@ -846,7 +846,7 @@
 						labels: labelDatas,
 						datasets: [
 							{
-								label: '실거래가', backgroundColor: 'transparent', borderColor: 'blue', data: realpriceDatas
+								label: '실거래가', backgroundColor: 'transparent', borderColor: 'purple', data: realpriceDatas
 							}
 						]
 					}, // 옵션
@@ -994,9 +994,9 @@
 					<a class="nav-link" href="https://github.com/creativetimofficial/material-kit" target="_blank" rel="noopener"><i class="material-icons">check_circle_outline</i> 설문조사</a>
 				  </li>
 	
-			  <li class="nav-item">
+			  <!-- <li class="nav-item">
 				<a class="nav-link" href="https://www.creative-tim.com/product/material-kit-pro"> <i class="material-icons">place</i> 관심지역선택 </a>
-			  </li>
+			  </li> -->
 			  <li class="nav-item">
 				<a class="nav-link"></a>
 			  </li>
@@ -1450,7 +1450,7 @@
 										</li>
 										<li class="nav-item">
 											<a class="nav-link" href="#realprice" data-toggle="tab"
-												onclick=click_modal_tab(2)>실거래가</a>
+												onclick=click_modal_tab(2)>실거래가변동내역</a>
 										</li>
 										<li class="nav-item">
 											<a class="nav-link" href="#updates" data-toggle="tab"
@@ -1616,8 +1616,9 @@
 
 		// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 		// 인포윈도우에 장소명을 표시합니다
-		function displayInfowindow(marker, title) {
-			var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
+		function displayInfowindow(marker, item) {
+			// ' 최대실거래가 : ' + item['max_price']+
+			var content = '<div style="padding:5px;z-index:1;">' + item['kaptName'] +'</div>';
 
 			infowindow.setContent(content);
 			infowindow.open(map, marker);
