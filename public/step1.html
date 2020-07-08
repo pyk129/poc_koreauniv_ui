@@ -142,12 +142,12 @@
 			} else if (checkSel3 == 3){
 				priceloan = inputNumberWithComma(200000000);
 			} else {
-				priceloan = inputNumberWithComma(300000000);
+				priceloan = inputNumberWithComma(99900000000);
 			}
 
-			var priceinq = inputNumberWithComma(237000000);
-			var pricedongsan = inputNumberWithComma(250000000);
-			location.href = 'step2.html?sel1=' + reEle + '&sel2=' + reMid + '&sel3=' + reHigh + '&sel4=' + reEdu + '&sel5=' + reMart + '&sel6=' + reDepartment + '&sel7=' + reSubway + '&sel8=' + reHosp + '&sel9=' + rePark + '&reco2nd=' + sel2차추천여부+'&priceinput='+priceinput+'&priceloan='+priceloan+'&priceinq='+priceinq+'&pricedongsan='+pricedongsan;
+			var pricemy = inputNumberWithComma(237000000 + 250000000);
+
+			location.href = 'step2.html?sel1=' + reEle + '&sel2=' + reMid + '&sel3=' + reHigh + '&sel4=' + reEdu + '&sel5=' + reMart + '&sel6=' + reDepartment + '&sel7=' + reSubway + '&sel8=' + reHosp + '&sel9=' + rePark + '&reco2nd=' + sel2차추천여부+'&priceinput='+priceinput+'&priceloan='+priceloan+'&pricemy='+pricemy;
 
 			// model = TheModelClass(*args, **kwargs)
 			// model.load_state_dict(torch.load(PATH))
@@ -259,7 +259,7 @@
 			<label class="mt-4" for="check0301">3.대출은 얼마 생각하시나요?</label>
 			<div class="form-check form-check-radio mt-2">
 		<label class="form-check-label">
-			<input class="form-check-input" type="radio" id="check0301" name="check03"  value="1">0~5000만원
+			<input class="form-check-input" type="radio" id="check0301" name="check03"  value="1">5천만원
 			<span class="circle">
 				<span class="check"></span>
 			</span>
@@ -267,7 +267,7 @@
 		</div>
 		<div class="form-check form-check-radio">
 		<label class="form-check-label">
-			<input class="form-check-input" type="radio" id="check0302" name="check03" value="2">5000만원~1억
+			<input class="form-check-input" type="radio" id="check0302" name="check03" value="2">1억
 			<span class="circle">
 				<span class="check"></span>
 			</span>
@@ -275,7 +275,7 @@
 		</div>
 		<div class="form-check form-check-radio">
 		<label class="form-check-label">
-			<input class="form-check-input" type="radio" id="check0303" name="check03" value="3" checked="checked">1억~2억
+			<input class="form-check-input" type="radio" id="check0303" name="check03" value="3" checked="checked">2억
 			<span class="circle">
 				<span class="check"></span>
 			</span>
@@ -283,7 +283,7 @@
 		</div>
 		<div class="form-check form-check-radio">
 		<label class="form-check-label">
-			<input class="form-check-input" type="radio" id="check0304" name="check03" value="4">2억 이상
+			<input class="form-check-input" type="radio" id="check0304" name="check03" value="4">제한없음
 			<span class="circle">
 				<span class="check"></span>
 			</span>

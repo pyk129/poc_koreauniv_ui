@@ -103,8 +103,8 @@
 			top: 0;
 			left: 0;
 			bottom: 0;
-			width: 30%;
-			height: 230px;
+			width: 35%;
+			height: 250px;
 			margin: 10px 0 30px 10px;
 			padding: 20px;
 			text-align: center;
@@ -314,7 +314,7 @@
 
 		function click_modal_tab(num) {
 
-			if (num != 4) {
+			if (num != 5) {
 				$('#modal_send').hide();
 				$('#modal_ques').show();
 
@@ -353,8 +353,8 @@
 		var sel9 = 0;
 		var priceinput;
 		var priceloan;
-		var priceinq;
-		var pricedongsan;
+		var pricemy;
+		var myprice;
 
 		$(document).ready(function () {
 			// $("#gnb").load("gnb.html", function () {
@@ -376,15 +376,19 @@
 
 			priceinput = getParameterByName('priceinput');
 			priceloan = getParameterByName('priceloan');
+			pricemy = getParameterByName('pricemy');
 
-			priceinq = getParameterByName('priceinq');
-			pricedongsan = getParameterByName('pricedongsan');
+			var pinput = parseInt(priceinput.replace(/,/gi,''));
+			var ploan = parseInt(priceloan.replace(/,/gi,''));
+			var pmy = parseInt(pricemy.replace(/,/gi,''));
+			// alert(pinput + ' '+ ploan + ' ' +pmy);
 
-			$('#priceinput').html(priceinput+'원')
-			$('#priceloan').html(priceloan+'원')
+			$('#priceinput').html(priceinput+'원');
+			$('#priceloan').html(priceloan+'원');
+			$('#pricemy').html(pricemy+'원');
+			myprice = pinput + ploan + pmy;
 
-			$('#priceinq').html(priceinq+'원')
-			$('#pricedongsan').html(pricedongsan+'원')
+			$('#pricetotal').html(inputNumberWithComma(myprice)+'원')
 
 			status = status_sel_gu;
 
@@ -537,7 +541,12 @@
 
 			$('#dongsan').html(html);
 		}
+		// 천단위 이상의 숫자에 콤마( , )를 삽입하는 함수
+		function inputNumberWithComma(str) {
 
+			str = String(str);
+			return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
+		}
 		// 검색결과 항목을 Element로 반환하는 함수입니다
 		function getListItem(index, item) {
 
@@ -550,13 +559,16 @@
 			// 	itemStr += '    <span>' + item['doroJuso'] + '</span>' +
 			// 		'   <span class="jibun gray">' + item['doroJuso'] + '</span>';
 			// } else {
-			itemStr += '<span><b>' +item['doroJuso'] + '</b></span>';
+			itemStr += '<h6 class="text-danger">최대실거래가 : ' +inputNumberWithComma(item['max_price']) + '원</h6>';
+			itemStr += '<h6 class="text-info">최저실거래가 : ' +inputNumberWithComma(item['min_price']) + '원</h6>';
 			// }
 			itemStr += "<div class=\"col-lg col-form-label text-left\">";
-			itemStr += "<button class=\"btn btn-primary mr-2\" style='width: 30%'>조건유사점수 : "+item['score_p1']+"점</button>";
-			itemStr += "<button class=\"btn btn-info mr-2\" style='width: 30%'>매매가격점수 : "+item['score_p2']+"점</button>";
-			itemStr += "<button class=\"btn btn-success\" style='width: 30%'>주변의견점수 : "+item['score_p3']+"점</button>";
+			itemStr += "<button class=\"btn btn-primary mr-2\" style='width: 30%'>유사점수:"+item['score_p1']+"점</button>";
+			itemStr += "<button class=\"btn btn-info mr-2\" style='width: 30%'>매매점수:"+item['score_p2']+"점</button>";
+			itemStr += "<button class=\"btn btn-success\" style='width: 30%'>의견점수:"+item['score_p3']+"점</button>";
 			itemStr += "</div>";
+			
+			
 
 			// itemStr += "<div class=\"progress\">";
 			// 	itemStr += "<div class=\"progress-bar\" role=\"progressbar\" style=\"width: 15%\" aria-valuenow=\"15\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>";
@@ -660,7 +672,8 @@
 				select6: sel6,
 				select7: sel7,
 				select8: sel8,
-				select9: sel9
+				select9: sel9,
+				myprice: myprice
 			}, function (jqXHR) {
 
 				// alert("success");
@@ -807,7 +820,6 @@
 				$("#itemPark").hide();
 			}
 
-
 			// 2차 추천 내용 표시
 			listjisu = item['maemae_jisu'];
 			listjisuDate = listjisu['date'];
@@ -816,12 +828,31 @@
 			labelDatas = [];
 			jisuDatas = [];
 			predictJisuDatas = [];
+			realpriceDatas = [];
 			for (var i = 0; i < item['maemae_jisu'].length; i++) {
 				labelDatas.push(item['maemae_jisu'][i]['date']);;
 				jisuDatas.push(item['maemae_jisu'][i]['jisu']);;
-				predictJisuDatas.push(item['maemae_jisu'][i]['predict_jisu']);
+				predictJisuDatas.push(item['maemae_jisu'][i]['predict_jisu']);	
+				realpriceDatas.push(item['maemae_jisu'][i]['realprice']);
 			}
+
 			// console.log('data : '+ predictJisuDatas);
+			var ctx = document.getElementById('realpriceChart').getContext('2d');
+			var chart2 = new Chart(ctx,
+				{ // 챠트 종류를 선택
+					type: 'line',
+					// 챠트를 그릴 데이타 
+					data: {
+						labels: labelDatas,
+						datasets: [
+							{
+								label: '실거래가', backgroundColor: 'transparent', borderColor: 'blue', data: realpriceDatas
+							}
+						]
+					}, // 옵션
+					options: {}
+				});
+
 			var ctx = document.getElementById('myChart').getContext('2d');
 			var chart = new Chart(ctx,
 				{ // 챠트 종류를 선택
@@ -1018,30 +1049,31 @@
 		<div id="menu_wrap2" class="bg_white">
 			<b>관심있는 지역을 지도에서 선택해주세요.</b>
 			<form class="mt-5">
+				
+				<div class="form-group row">
+					<label for="pricetotal" class="col-sm-6 col-form-label text-left text-white">나의 총예산 </label>
+					<label id="pricetotal" for="pricetotal"
+						class="col-lg col-form-label text-right text-white"></label>
+				</div>
 
 				<div class="form-group row">
-					<label for="priceinput" class="col-sm-4 col-form-label text-left text-white">매입가능금액 </label>
+					<label for="pricemy" class="col-sm-6 col-form-label text-left text-white">(예금+부동산-기존대출) </label>
+					<label id="pricemy" for="pricemy"
+						class="col-lg col-form-label text-right text-white"></label>
+				</div>
+	
+				<div class="form-group row">
+					<label for="priceinput" class="col-sm-6 col-form-label text-left text-white">추가조달 가능금액</label>
 					<label id="priceinput" for="priceinput"
 						class="col-lg col-form-label text-right text-white"></label>
 				</div>
 
 				<div class="form-group row">
-					<label for="priceloan" class="col-sm-4 col-form-label text-left text-white ">예상대출금액</label>
+					<label for="priceloan" class="col-sm-6 col-form-label text-left text-white ">대출받을금액</label>
 					<label id="priceloan" for="priceloan"
 						class="col-lg col-form-label text-right text-white"></label>
 				</div>
 
-				<div class="form-group row">
-					<label for="priceinq" class="col-sm-4 col-form-label text-left text-white">고객예금 </label>
-					<label id="priceinq" for="priceinq"
-						class="col-lg col-form-label text-right text-white"></label>
-				</div>
-
-				<div class="form-group row">
-					<label for="pricedongsan" class="col-sm-4 col-form-label text-left text-white">고객부동산</label>
-					<label id="pricedongsan" for="pricedongsan"
-						class="col-lg col-form-label text-right text-white"></label>
-				</div>
 			</form>
 		
 			<!-- <button type="button" class="btn btn-primary btn-round btn-block" style="width:100%;height: 40px;" id='modal_send' onClick="confirmBtn();"><i class="material-icons mr-1">check_circle_outline</i>입력금액</button>
@@ -1417,16 +1449,20 @@
 												onclick=click_modal_tab(1)>아파트정보</a>
 										</li>
 										<li class="nav-item">
+											<a class="nav-link" href="#realprice" data-toggle="tab"
+												onclick=click_modal_tab(2)>실거래가</a>
+										</li>
+										<li class="nav-item">
 											<a class="nav-link" href="#updates" data-toggle="tab"
-												onclick=click_modal_tab(2)>매수 심리</a>
+												onclick=click_modal_tab(3)>매수 심리</a>
 										</li>
 										<li class="nav-item">
 											<a class="nav-link" href="#history" data-toggle="tab"
-												onclick=click_modal_tab(3)>주변 의견</a>
+												onclick=click_modal_tab(4)>주변 의견</a>
 										</li>
 										<li class="nav-item">
 											<a class="nav-link" href="#dongsan" data-toggle="tab"
-												onclick=click_modal_tab(4)>중계 업소</a>
+												onclick=click_modal_tab(5)>중계 업소</a>
 										</li>
 										<!-- <li class="nav-item">
 											<a class="nav-link" href="#daechul" data-toggle="tab"
@@ -1487,6 +1523,14 @@
 									</form>
 									</p>
 								</div>
+								
+								<div class="tab-pane" id="realprice">
+									<!-- 차트 -->
+									<div class="container"> <canvas id="realpriceChart"></canvas> </div>
+
+								</div>
+
+
 								<div class="tab-pane" id="updates">
 									<!-- 차트 -->
 									<div class="container"> <canvas id="myChart"></canvas> </div>
