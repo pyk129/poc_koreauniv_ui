@@ -1154,16 +1154,40 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score
 from time import time
-stopwords = ['의','가','이','은','들','는','좀','잘','걍','과','도','를','으로','자','에','와','한','하다']
 
-multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words = stopwords)),
+from konlpy.tag import Mecab
+
+def tokenizer_mecab_morphs(doc):
+    return mecab.morphs(doc)
+# =============================================================================
+#     ret = []
+#     for r in mecab.morphs(doc):
+#       if len(r) >= 2:
+#         # print(r)
+#         ret.append(r)
+#     return ret
+# 
+# =============================================================================
+mecab = Mecab()
+
+stopword = [
+'이','는','가','에','하','은','도','있','을','들','네요',
+'으로','의','습니다','한','것','로','를','지','게','에서',
+'년', '입니다','는데','어','기','억','었','시','더','합니다','적',
+'과','겠','나','해','라','까지','인','그','죠',
+'보다','살','니','된','저','해서',
+'았','와','차','요','라고','듯',
+'ㄷ','길','받','신','곳','다는','라는','데','높','화','던','초','및','서','아요',
+'건','동','사',
+'그리고','싶','오','여',
+'어서','어요','인데','아서','이제','보이','으면','아직','은데']
+
+multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words = stopwords, tokenizer=tokenizer_mecab_morphs)),
                       ('nbc', MultinomialNB())])
 
 
 if __name__ == "__main__":
-    
- 
-    
+       
     df = pd.DataFrame()
     
     xlspath = 'datas/labelData.xlsx'
@@ -1189,17 +1213,30 @@ if __name__ == "__main__":
     from sklearn.model_selection import train_test_split
     
 
-    X_train, X_test, y_train, y_test = train_test_split(train, label, test_size=0.1)
+# =============================================================================
+#     X_train, X_test, y_train, y_test = train_test_split(train, label, test_size=0.1)
+# =============================================================================
 
+# =============================================================================
+# 
+#     start = time()
+#     multi_nbc.fit(X_train, y_train)
+#     end = time()
+# #     print('Time: {:f}s'.format(end-start))
+#     y_pred = multi_nbc.predict(X_test)
+#     accScore = accuracy_score(y_test, y_pred)
+#     print("3차 테스트 테스트 정확도: {:.3f}".format(accScore))
+# =============================================================================
+    n = 5
+    kfold = KFold(n_splits=n, shuffle=True, random_state=0)
+    scores = cross_val_score(multi_nbc, train, label, cv=kfold)
+    print('\n')
+    print('\n')
+    print('n_splits={}, 3차 cross validation score: {}'.format(n, scores))
+    print('\n')
+    print('\n')
+    multi_nbc.fit(train, label)
 
-    start = time()
-    multi_nbc.fit(X_train, y_train)
-    end = time()
-#     print('Time: {:f}s'.format(end-start))
-    y_pred = multi_nbc.predict(X_test)
-    accScore = accuracy_score(y_test, y_pred)
-    print("3차 테스트 테스트 정확도: {:.3f}".format(accScore))
-            
     app.run(host='0.0.0.0',port=5001)
     
     
