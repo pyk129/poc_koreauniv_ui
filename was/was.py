@@ -31,10 +31,9 @@ class Recommend1:
     path_병원 = 'datas/data_hosp'
     path_공원 = 'datas/data_park'
     
-    path_실거래가2 = 'datas/dataApt실거래가_노원구.csv'
-    path_실거래가 = 'datas/dataApt실거래가_노원구.json'
+    path_실거래가 = 'datas/dataApt실거래가_노원구_201701_201912.json'
      
-    path_2ndModel = 'datas/20200708_recomment2nd.pkl'
+    path_2ndModel = 'datas/20200709_recomment2nd.pkl'
     path_3ndModel = 'C:/Users/pyk12/Downloads/recommendModel3rd_model'
     
     def loadData(self):
@@ -540,6 +539,8 @@ class Recommend1:
         testCommentData['공릉풍림아이원'] = item3
         testCommentData['월계삼창'] = item4
         
+        list_all_maemae_jisu = []
+        
         # p1 rank1 계산 
         for idx in sim_rank_idx[:rnkcnt]:
            
@@ -566,17 +567,6 @@ class Recommend1:
             if len(jsonApt['doroJuso'].replace(' ','')) <= 0:
                 continue
         
-# =============================================================================
-#             juso = jsonApt['doroJuso'].replace('서울특별시 ', '')
-# =============================================================================
-            #.replace(self.guName,'')            
-# =============================================================================
-#             print(juso);
-# =============================================================================
-            # 도로명 주소가 같은 애의 실거래가를 가져와서 
-# =============================================================================
-#             juso='동일로173가길'
-# =============================================================================
             
             # 실거래가 금액 뽑아보자 
             juso_split = jsonApt['doroJuso'].split()
@@ -584,14 +574,22 @@ class Recommend1:
             
             print('주소 :', jsonApt['doroJuso'])
             print('주소 split 결과 :', juso_split)
-           
+
+            doroname = ''            
+            if len(juso_split[3]) > 0:                
+                doroname = juso_split[2] + ' ' +juso_split[3]
+                doroname = doroname.strip()
+                
+            else :
+                doroname = juso_split[2]
+            
 # =============================================================================
 #             (self.df실거래가['년'] == '2019') &
+#                                    (self.df실거래가['도로명건물본번호코드'] == juso_split[3].zfill(5)) &
 # =============================================================================
             dfAptInfo = self.df실거래가[
-                    (self.df실거래가['도로명'] == juso_split[2]) &
-                    (self.df실거래가['도로명건물본번호코드'] == juso_split[3].zfill(5)) &
-                    (self.df실거래가['거래금액'].astype(int) <= int(self.myprice))
+                    (self.df실거래가['도로명'] == doroname) &
+                    (self.df실거래가['거래금액(만원)'].astype(int) <= int(self.myprice))
                     ]
             
             if len(dfAptInfo) <= 0:
@@ -599,8 +597,8 @@ class Recommend1:
                 print('아파트 정보 없음 ')
                 continue
                         
-            maxPrice = str(dfAptInfo['거래금액'].max())
-            minPrice = str(dfAptInfo['거래금액'].min())
+            maxPrice = str(dfAptInfo['거래금액(만원)'].max())
+            minPrice = str(dfAptInfo['거래금액(만원)'].min())
             
             jsonApt['max_price'] = maxPrice
             jsonApt['min_price'] = minPrice
@@ -619,7 +617,7 @@ class Recommend1:
             
             maemae_jisu = []
             
-            testkey = ['거래금액','계약년월','기준금리', '통화금융지표','매매가격지수']
+            testkey = ['계약년월', '거래금액(만원)', '매매가격지수', '통화금융지표', '기준금리']
             dfAptInfo2 = dfAptInfo[testkey]
             predict = self.clf_from_joblib.predict(dfAptInfo2)
             print(predict[0])
@@ -629,56 +627,61 @@ class Recommend1:
             maemae_jisu_lastItem = {}
             
             index = 0
+            
             for i, d in dfAptInfo2.iterrows():                  
                  jisuItem = {}
                  jisuItem['date'] = str(int(d['계약년월']))
                  jisuItem['jisu'] = str(d['매매가격지수'])
-                 jisuItem['realprice'] = str(d['거래금액'])
+                 jisuItem['realprice'] = str(int(d['거래금액(만원)']))
 
                  jisuItem['predict_jisu'] = str(predict[index])
+                                  
                  maemae_jisu.append(jisuItem);
                  maemae_jisu_lastItem = d
                  index += 1
                                 
             maemae_jisu = sorted(maemae_jisu, key=(lambda maemae_jisu:maemae_jisu['date']), reverse = False)   
             
-
 # =============================================================================
 #                     if not maemae_jisu_lastItem:
 # =============================================================================
+            
             maemae_jisu_lastItem = maemae_jisu[len(maemae_jisu) - 1]
+
+            # 나중에 minmax사용하기 위해 사용 
+            list_all_maemae_jisu.append(float(maemae_jisu_lastItem['predict_jisu']))
     
-            jsonApt['recent_price'] = maemae_jisu_lastItem['realprice']
+            jsonApt['recent_price'] = int(maemae_jisu_lastItem['realprice'])
     
             yyyyMM = maemae_jisu_lastItem['date']
-            print(yyyyMM)
-            last2NdItem = dfAptInfo[dfAptInfo['계약년월'].astype(str).str.contains(yyyyMM)]
-            print("***  ", last2NdItem.iloc[0])
-            
-            from dateutil.relativedelta import relativedelta
-                               
-            def createPredict2NdDataAfterMonth(lastItem, afterMonth):
-                 maemaejisu = lastItem.copy()
-                 nextMonth = (datetime.strptime(str(int(maemaejisu['계약년월'])), '%Y%m')+ relativedelta(months=afterMonth)).strftime("%Y%m")
-                 maemaejisu['계약년월'] = nextMonth
-                 predict = str(self.clf_from_joblib.predict([maemaejisu])[0])
 
-                 ret = {}
-                 ret['date'] = nextMonth
-                 ret['predict_jisu'] = predict
-                 
-                 return ret
+            last2NdItem = dfAptInfo[dfAptInfo['계약년월'].astype(str).str.contains(yyyyMM)]
+            print("가장 최근의 실거래가 데이터 추출 ", last2NdItem.iloc[0])
             
-            # 1개월 뒤만 표기 
 # =============================================================================
+#             from dateutil.relativedelta import relativedelta
+#                                
+#             def createPredict2NdDataAfterMonth(lastItem, afterMonth):
+#                  maemaejisu = lastItem.copy()
+#                  nextMonth = (datetime.strptime(str(int(maemaejisu['계약년월'])), '%Y%m')+ relativedelta(months=afterMonth)).strftime("%Y%m")
+#                  maemaejisu['계약년월'] = nextMonth
+#                  predict = str(predict[len(maemae_jisu) -1 ])
+# 
+#                  ret = {}
+#                  ret['date'] = nextMonth
+#                  ret['predict_jisu'] = predict
+#                  
+#                  return ret
+#             
+#             # 1개월 뒤만 표기 
 #             predict2ndAfter1MonthData = createPredict2NdDataAfterMonth(last2NdItem.iloc[0], 1)
 #             
 #             print('*************************************************')
 #             print('*           2차 매개가격지수 1달뒤 예측               ', predict2ndAfter1MonthData['predict_jisu'])
 #             print('*************************************************')
 #             maemae_jisu.append(predict2ndAfter1MonthData)
-#             
 # =============================================================================
+            
 # =============================================================================
 #                     for i in range(1,13):
 #                         maemae_jisu.append(createPredict2NdDataAfterMonth(last2NdItem.iloc[0], i))
@@ -780,8 +783,6 @@ class Recommend1:
             print(score_p3)
             print(max_score_p3)
             
-
-            
             jsonApt['comment'] = retDatas
             # score 기본값 할당 
             jsonApt['score'] = 0
@@ -792,31 +793,33 @@ class Recommend1:
             
             output.append(jsonApt)
             
-            # 아이템이 10개 이상 채워지면 종료
-            if len(output) > 10:
-                break
-
         print('* 2nd predict? : ',int(self.optSecond))
         
         if int(self.optSecond) == 1:
                 
-            # p2 rank 계산
-            min_max_scaler = MinMaxScaler()
-            p2 = np.array(predict2nd)
-            p2 = p2.reshape(rnkcnt,1)
-         
-            predictMinMax = min_max_scaler.fit_transform(p2)
-            print('predict score = ', predictMinMax * 40)
-            p2Scores = predictMinMax * 40
-            
+            # 리스트에 나온 데이터들의 매매가격지수 가져와서 minmaxscaling 돌린다.            
+# =============================================================================
+#             min_max_scaler = MinMaxScaler()
+#             min_max_scaler.fit(np.array(list_all_maemae_jisu).reshape(-1, 1))     
+#                    
+# =============================================================================
             finalScore = []
+            maxjisu = 105.74
+            minjisu = 85.28
+            
             for i, d in enumerate(output):
-                p2score = p2Scores[i][0]
-# =============================================================================
-#                 d['score_p2'] = str(int(p2score))
-# =============================================================================
-                d['score_p2'] = str(int(0))
-                d['score'] = float(d['score_p1']) + float(p2score) + float(d['score_p3'])
+                maemae_jisu[len(maemae_jisu) - 1]
+                
+                mmjisu = d['maemae_jisu']
+                lastmmjisu = mmjisu[len(mmjisu) - 1]
+                #'scorep2 매매가격지수 : ', 
+                print(float(lastmmjisu['predict_jisu']))
+                jisuscale = (float(lastmmjisu['predict_jisu']) - minjisu) / (maxjisu - minjisu)
+                
+                scorep2 = jisuscale * 40
+                
+                d['score_p2'] = str(int(scorep2))
+                d['score'] = float(d['score_p1']) + float(scorep2) + float(d['score_p3'])
                 
                 score_sim = (float(d['score']) /150) * 100
                 d['score_sim'] = str(round(score_sim,2))
@@ -824,6 +827,7 @@ class Recommend1:
                 finalScore.append(d)
             
             result = sorted(finalScore, key=(lambda finalScore:finalScore['score']), reverse = True)        
+            
             return result
         
         else:
@@ -1134,8 +1138,7 @@ from sklearn.metrics import accuracy_score
 from time import time
 stopwords = ['의','가','이','은','들','는','좀','잘','걍','과','도','를','으로','자','에','와','한','하다']
 
-multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(2, 2),stop_words = stopwords)),
-                      ('tfidf', TfidfTransformer()),
+multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words = stopwords)),
                       ('nbc', MultinomialNB())])
 
 
@@ -1146,16 +1149,13 @@ if __name__ == "__main__":
     df = pd.DataFrame()
     
     xlspath = 'datas/labelData.xlsx'
-    df1_1 = pd.read_excel(xlspath,sheet_name='4-1.내용(2019,1~500)')
-    df1_2 = pd.read_excel(xlspath,sheet_name='4-2.내용(2019,501~948)')
+    df1_1 = pd.read_excel(xlspath,sheet_name='4-1.내용-중립제거(2019,1~500)')
     
-    df2_1 = df1_1[['내용','긍정-2, 중립-1, 부정-0']]
-    df2_2 = df1_2[['내용','긍정-2, 중립-1, 부정-0']]
+    df2_1 = df1_1[['문장분류','긍정-2, 중립-1, 부정-0']]
     
     df2_1 = df2_1.dropna()
-    df2_2 = df2_2.dropna()
     
-    df = pd.concat([df2_1, df2_2])
+    df = df1_1
 
     train = []
     label = []
@@ -1164,14 +1164,14 @@ if __name__ == "__main__":
         # ,(콤마) 제거 
         l = int(d['긍정-2, 중립-1, 부정-0'])
         if l != 1:        
-            data = d['내용'][d['내용'].find(',') + 1:]
+            data = d['문장분류'][d['문장분류'].find(',') + 1:]
             train.append(data)
             label.append(int(d['긍정-2, 중립-1, 부정-0']))
     
     from sklearn.model_selection import train_test_split
     
-    print('.', end = '')
-    X_train, X_test, y_train, y_test = train_test_split(train, label, test_size=0.2)
+
+    X_train, X_test, y_train, y_test = train_test_split(train, label, test_size=0.1)
 
 
     start = time()

@@ -1,0 +1,15 @@
+pandas
+flask-cors
+flask
+numpy
+haversine
+scikit-learn
+keras
+torch
+transformers
+Keras-Preprocessing
+joblib
+#torch==1.4.0
+#transformers==2.11.0
+#Keras-Preprocessing==1.1.0
+#joblib==0.14.1
