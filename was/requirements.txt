@@ -5,10 +5,11 @@ numpy
 haversine
 scikit-learn
 keras
-torch
-transformers
+#torch
+#transformers
 Keras-Preprocessing
 joblib
+xlrd
 #torch==1.4.0
 #transformers==2.11.0
 #Keras-Preprocessing==1.1.0

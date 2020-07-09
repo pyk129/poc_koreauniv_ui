@@ -7,9 +7,9 @@ from haversine import haversine, Unit
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
 
-import torch
-from transformers import BertTokenizer
-from keras.preprocessing.sequence import pad_sequences
+#import torch
+#from transformers import BertTokenizer
+#from keras.preprocessing.sequence import pad_sequences
 import joblib
 
 from datetime import datetime
