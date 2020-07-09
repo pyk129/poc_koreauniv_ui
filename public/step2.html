@@ -662,8 +662,8 @@
 			// 'http://aws.hancy.kr:8802/send_py
 			//
 			// http://aws.hancy.kr:8802/send_py
-			$.post('http://aws.hancy.kr:8802/send_py', {
-			// $.post('http://127.0.0.1:5001/send_py', {
+			// $.post('http://aws.hancy.kr:8802/send_py', {
+			$.post('http://127.0.0.1:5001/send_py', {
 
 				// algo: idxAlgo,
 				// select1: checkSel1,
@@ -837,60 +837,65 @@
 			}
 
 			// 2차 추천 내용 표시
-			listjisu = item['maemae_jisu'];
-			listjisuDate = listjisu['date'];
-			listjisuDate = listjisu['jisu'];
 
-			labelDatas = [];
-			jisuDatas = [];
-			predictJisuDatas = [];
-			realpriceDatas = [];
-			for (var i = 0; i < item['maemae_jisu'].length; i++) {
-				labelDatas.push(item['maemae_jisu'][i]['date']);;
-				jisuDatas.push(item['maemae_jisu'][i]['jisu']);;
-				predictJisuDatas.push(item['maemae_jisu'][i]['predict_jisu']);	
-				realpriceDatas.push(item['maemae_jisu'][i]['realprice']);
+
+			if(item['maemae_jisu'].length > 0){
+				listjisu = item['maemae_jisu'];
+
+				listjisuDate = listjisu['date'];
+				listjisuDate = listjisu['jisu'];
+
+				labelDatas = [];
+				jisuDatas = [];
+				predictJisuDatas = [];
+				realpriceDatas = [];
+				for (var i = 0; i < item['maemae_jisu'].length; i++) {
+					labelDatas.push(item['maemae_jisu'][i]['date']);;
+					jisuDatas.push(item['maemae_jisu'][i]['jisu']);;
+					predictJisuDatas.push(item['maemae_jisu'][i]['predict_jisu']);	
+					
+					realpriceDatas.push(item['maemae_jisu'][i]['realprice']);
+				}
+
+				// console.log('data : '+ predictJisuDatas);
+				var ctx = document.getElementById('realpriceChart').getContext('2d');
+				var chart2 = new Chart(ctx,
+					{ // 챠트 종류를 선택
+						type: 'line',
+						// 챠트를 그릴 데이타 
+						data: {
+							labels: labelDatas,
+							datasets: [
+								{
+									label: '실거래가', backgroundColor: 'transparent', borderColor: 'purple', data: realpriceDatas
+								}
+							]
+						}, // 옵션
+						options: {}
+					});
+
+				if(predictJisuDatas.length >=0){
+					var ctx = document.getElementById('myChart').getContext('2d');
+					var chart = new Chart(ctx,
+						{ // 챠트 종류를 선택
+							type: 'line',
+							// 챠트를 그릴 데이타 
+							data: {
+								labels: labelDatas,
+								datasets: [
+									{
+										label: '매매가격지수', backgroundColor: 'transparent', borderColor: 'blue', data: jisuDatas
+									},
+									{
+										label: '예측된매매가격지수', backgroundColor: 'transparent', borderColor: 'red', data: predictJisuDatas
+									}
+
+								]
+							}, // 옵션
+							options: {}
+						});
+				}
 			}
-
-			// console.log('data : '+ predictJisuDatas);
-			var ctx = document.getElementById('realpriceChart').getContext('2d');
-			var chart2 = new Chart(ctx,
-				{ // 챠트 종류를 선택
-					type: 'line',
-					// 챠트를 그릴 데이타 
-					data: {
-						labels: labelDatas,
-						datasets: [
-							{
-								label: '실거래가', backgroundColor: 'transparent', borderColor: 'purple', data: realpriceDatas
-							}
-						]
-					}, // 옵션
-					options: {}
-				});
-
-			var ctx = document.getElementById('myChart').getContext('2d');
-			var chart = new Chart(ctx,
-				{ // 챠트 종류를 선택
-					type: 'line',
-					// 챠트를 그릴 데이타 
-					data: {
-						labels: labelDatas,
-						datasets: [
-							{
-								label: '매매가격지수', backgroundColor: 'transparent', borderColor: 'blue', data: jisuDatas
-							},
-							{
-								label: '예측된매매가격지수', backgroundColor: 'transparent', borderColor: 'red', data: predictJisuDatas
-							}
-
-						]
-					}, // 옵션
-					options: {}
-				});
-
-			var clickItem = item;
-
 			
 			if (item['comment'].length > 0) {
 				var table =
