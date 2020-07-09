@@ -1,5 +1,5 @@
 #!/bin/bash
 
-#git pull
+git pull
 
 docker build --no-cache -t estate_model .
