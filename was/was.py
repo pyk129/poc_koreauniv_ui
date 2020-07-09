@@ -540,38 +540,38 @@ class Recommend1:
         testCommentData['월계삼창'] = item4
         
         
-          item5 = ['학군좋고 쇼핑센터 많고 1.7호선 가깝고 생활인프라는 최고!!!!',
+        item5 = ['학군좋고 쇼핑센터 많고 1.7호선 가깝고 생활인프라는 최고!!!!',
                    '실거주하기 정말 좋아요. 지하철 1,7호선 가깝고 가까운 영화관, 대형마트, 미술관 다 있고 중랑천과 공원 모두 가까워서 운동하기도 좋아요. 주민들도 조용하고 매너좋고 만족도 높습니다.',
                    '조용하고 아이키우기 환경좋고 살기 좋습니다',
                    '경비실이 출입구와 멀리 떨어져 있어 쓸데없는 접촉이 없고 사생활보호 및 내집 드나들기 편합니다',
                    '중랑천, 편의 시설 가깝고 조용해서 살기 좋아요.']
-          item6 = ['석계역과 광운대역 두개의 역을 사용할 수 있는점, 그리고 석계역과 3분거리 라는 점이 강점이죠.',
+        item6 = ['석계역과 광운대역 두개의 역을 사용할 수 있는점, 그리고 석계역과 3분거리 라는 점이 강점이죠.',
                    '그랑빌에 비해 구조도 잘 빠졌다는점 확실하구요.',
                    '동부간선로도 가까워서 교통 부분 만족하며 살고 있어요',
                    '풍림 살아보니 참 좋네요 큰차이가 아니라 생각 했었는데 구조가 좋으니 동일평형보다 훨씬크게 느껴지고 초역세권이니 지하철입구까지 너무 가깝네요.',
                    '식당은 많은데 큰 건물이 없어서 대형문화시설이 못들어오는게 별로 인듯',
                    '다소 외진곳에 있어서 택시기사분들이 잘 모를경우 몰라요.',
                    '484세대로 대단지 대비 작지만 요즘 트렌드상 리모델링엔 더 적합하다는 확신이 있었네요']
-          item7 = ['지하철 3분이내로 가깝고 초중고 도가까워 살기편합니다 앞으로 동북선 개통되면 집값도오르겠죠~~~^^',
+        item7 = ['지하철 3분이내로 가깝고 초중고 도가까워 살기편합니다 앞으로 동북선 개통되면 집값도오르겠죠~~~^^',
                    '밤에 들어오면 이중주차가 힘들어요.',
                    '지하철 가깝다는것이 정말 최고의 최고의 장점',
                    '첨에 왔을때 바퀴벌레 때문에 소스라친적이 여러번…살면서 바퀴 이렇게 많이 본건 첨이에요. 그리고 관리비가 너무 비쌉니다…ㅠㅠ',
                    '상계역과 인접해서 교통편이 아주 좋고 편의시설도 부족함이 없어요~']
-          item8 = ['바로앞에 우이천도 있고 살기 좋은곳 같아요',
+        item8 = ['바로앞에 우이천도 있고 살기 좋은곳 같아요',
                    '층간소음 꽤 있고 주차하기 힘들어요ㅠㅠ',
                    '앞뒤로 산있고 개천있는건 좋아요',
                    '버스정거장 바로앞이라 좋고 101동은 앞쪽 우이천과 뒷쪽 초안산과 맞바람으로 여름에 왠만한 더위빼고 에어콘 필요없음']
-          item9 = ['우이천을 끼고 있는 환경이 수채물감으로 그린 풍경화에요. 너무 아름답고, 바로뒤엔 산이 있어서 공기도 좋구요.',
+        item9 = ['우이천을 끼고 있는 환경이 수채물감으로 그린 풍경화에요. 너무 아름답고, 바로뒤엔 산이 있어서 공기도 좋구요.',
                    '지하주차장도 있고, 입주민들이 다들 온순하신편인듯 해요.',
                    '초안산, 우이천과 접해 있어서 공기가 좋고 산책로가 잘 조정되어 있음',
                    '중간층에 살고 있는데 뷰는 정말 좋아요. 앞에 가리는것이 없는데다 남향이라 햇볕도 잘 들어와요.',
                    '다만 주위 편의시설이 너무 부족해요.']
 
-           testCommentData['하계극동건영벽산'] = item5
-           testCommentData['월계풍림아이원'] = item6
-           testCommentData['상계벽산'] = item7
-           testCommentData['월계극동'] = item8
-           testCommentData['월계유원'] = item9
+        testCommentData['하계극동건영벽산'] = item5
+        testCommentData['월계풍림아이원'] = item6
+        testCommentData['상계벽산'] = item7
+        testCommentData['월계극동'] = item8
+        testCommentData['월계유원'] = item9
 
         
         list_all_maemae_jisu = []
@@ -1191,6 +1191,10 @@ from sklearn.metrics import accuracy_score
 from time import time
 
 from konlpy.tag import Mecab
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
+
+mecab = Mecab()
 
 def tokenizer_mecab_morphs(doc):
     return mecab.morphs(doc)
@@ -1203,9 +1207,9 @@ def tokenizer_mecab_morphs(doc):
 #     return ret
 # 
 # =============================================================================
-mecab = Mecab()
 
-stopwords = [
+
+stopword = [
 '이','는','가','에','하','은','도','있','을','들','네요',
 '으로','의','습니다','한','것','로','를','지','게','에서',
 '년', '입니다','는데','어','기','억','었','시','더','합니다','적',
@@ -1217,7 +1221,7 @@ stopwords = [
 '그리고','싶','오','여',
 '어서','어요','인데','아서','이제','보이','으면','아직','은데']
 
-multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words = stopwords, tokenizer=tokenizer_mecab_morphs)),
+multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
                       ('nbc', MultinomialNB())])
 
 
