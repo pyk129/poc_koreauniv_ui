@@ -23,7 +23,7 @@ class Recommend1:
     path_중학교 = 'datas/data_mid'
     path_고등학교 = 'datas/data_high'
 
-    path_학원 = 'datas/data_edu.txt'
+    path_학원 = 'datas/data_edu'
     path_마트 = 'datas/data_mart'
     path_백화점 = 'datas/data_deptment' 
     path_지하철 = 'datas/data_subway'
@@ -31,7 +31,7 @@ class Recommend1:
     path_병원 = 'datas/data_hosp'
     path_공원 = 'datas/data_park'
     
-    path_실거래가 = 'datas/dataApt실거래가_노원구_201701_201912.json'
+    path_실거래가 = 'datas/apt_realprice/dataApt실거래가_노원구_201701_201912.json'
      
     path_2ndModel = 'datas/20200709_recomment2nd.pkl'
     path_3ndModel = 'C:/Users/pyk12/Downloads/recommendModel3rd_model'
@@ -39,15 +39,13 @@ class Recommend1:
     def loadData(self):
         # 노원구 시설 데이터 로드 
         self.json_apt_datas = self.openFile(self.path_아파트)
-
-        
+        self.df실거래가 = pd.DataFrame(self.openFile(self.path_실거래가))      
         
     def createDataFromJson(self, datas):
         ret = []
         try:
             for sc in datas:
                 d = {}
-
                 d['LAT_WGS'] = sc['LAT_WGS']
                 d['LON_WGS'] = sc['LON_WGS']
 
@@ -177,7 +175,7 @@ class Recommend1:
         
         # 출력 
         self.clf_from_joblib = joblib.load(self.path_2ndModel) 
-        self.df실거래가 = pd.DataFrame(self.openFile(self.path_실거래가))      
+
                 
 # =============================================================================
 #         dfAptInfo = self.df실거래가[
@@ -316,6 +314,8 @@ class Recommend1:
         self.simirarity = simirarity
         self.guName = gu
         self.path_아파트 = 'datas/apt_list_seoul/apt_data_'+gu+'.json'
+        self.path_실거래가 = 'datas/apt_realprice/dataApt실거래가_'+gu+'_201701_201912.json'
+        
         self.optSecond = optSecond
         self.myprice = myprice
         
@@ -583,10 +583,7 @@ class Recommend1:
             else :
                 doroname = juso_split[2]
             
-# =============================================================================
-#             (self.df실거래가['년'] == '2019') &
-#                                    (self.df실거래가['도로명건물본번호코드'] == juso_split[3].zfill(5)) &
-# =============================================================================
+
             dfAptInfo = self.df실거래가[
                     (self.df실거래가['도로명'] == doroname) &
                     (self.df실거래가['거래금액(만원)'].astype(int) <= int(self.myprice))
@@ -602,200 +599,221 @@ class Recommend1:
             
             jsonApt['max_price'] = maxPrice
             jsonApt['min_price'] = minPrice
-        
-            print('*************************************************')
-            print('*                     2차 추천                   *')
-            print('*************************************************')
-            
-# =============================================================================
-#             '월계로45가길', '94'
-#             1087000000
-#             & (self.df실거래가['거래금액'].astype(int) <= self.myprice))
-# =============================================================================
-                
-            predict = 0
-            
+
             maemae_jisu = []
-            
-            testkey = ['계약년월', '거래금액(만원)', '매매가격지수', '통화금융지표', '기준금리']
-            dfAptInfo2 = dfAptInfo[testkey]
-            predict = self.clf_from_joblib.predict(dfAptInfo2)
-            print(predict[0])
-            print(predict[1])
-            print(len(predict))
-            print(len(dfAptInfo2))
-            maemae_jisu_lastItem = {}
-            
-            index = 0
-            
-            for i, d in dfAptInfo2.iterrows():                  
-                 jisuItem = {}
-                 jisuItem['date'] = str(int(d['계약년월']))
-                 jisuItem['jisu'] = str(d['매매가격지수'])
-                 jisuItem['realprice'] = str(int(d['거래금액(만원)']))
 
-                 jisuItem['predict_jisu'] = str(predict[index])
-                                  
-                 maemae_jisu.append(jisuItem);
-                 maemae_jisu_lastItem = d
-                 index += 1
-                                
-            maemae_jisu = sorted(maemae_jisu, key=(lambda maemae_jisu:maemae_jisu['date']), reverse = False)   
-            
 # =============================================================================
-#                     if not maemae_jisu_lastItem:
+# 노원구 아닐경우 실거래가만 표기             
 # =============================================================================
-            
-            maemae_jisu_lastItem = maemae_jisu[len(maemae_jisu) - 1]
+            if '노원구' not in self.guName:
 
-            # 나중에 minmax사용하기 위해 사용 
-            list_all_maemae_jisu.append(float(maemae_jisu_lastItem['predict_jisu']))
-    
-            jsonApt['recent_price'] = int(maemae_jisu_lastItem['realprice'])
-    
-            yyyyMM = maemae_jisu_lastItem['date']
-
-            last2NdItem = dfAptInfo[dfAptInfo['계약년월'].astype(str).str.contains(yyyyMM)]
-            print("가장 최근의 실거래가 데이터 추출 ", last2NdItem.iloc[0])
-            
-# =============================================================================
-#             from dateutil.relativedelta import relativedelta
-#                                
-#             def createPredict2NdDataAfterMonth(lastItem, afterMonth):
-#                  maemaejisu = lastItem.copy()
-#                  nextMonth = (datetime.strptime(str(int(maemaejisu['계약년월'])), '%Y%m')+ relativedelta(months=afterMonth)).strftime("%Y%m")
-#                  maemaejisu['계약년월'] = nextMonth
-#                  predict = str(predict[len(maemae_jisu) -1 ])
-# 
-#                  ret = {}
-#                  ret['date'] = nextMonth
-#                  ret['predict_jisu'] = predict
-#                  
-#                  return ret
-#             
-#             # 1개월 뒤만 표기 
-#             predict2ndAfter1MonthData = createPredict2NdDataAfterMonth(last2NdItem.iloc[0], 1)
-#             
-#             print('*************************************************')
-#             print('*           2차 매개가격지수 1달뒤 예측               ', predict2ndAfter1MonthData['predict_jisu'])
-#             print('*************************************************')
-#             maemae_jisu.append(predict2ndAfter1MonthData)
-# =============================================================================
-            
-# =============================================================================
-#                     for i in range(1,13):
-#                         maemae_jisu.append(createPredict2NdDataAfterMonth(last2NdItem.iloc[0], i))
-# # =============================================================================
-# =============================================================================
-#                     maemae_jisu.append(createPredict2NdDataAfterMonth(last2NdItem.iloc[0], 2))
-#                     maemae_jisu.append(createPredict2NdDataAfterMonth(last2NdItem.iloc[0], 3))
-#                     
-# =============================================================================
-
-            jsonApt['maemae_jisu'] = maemae_jisu   
-                    
-            if aptName in testCommentKey:
-            
-                for d in testCommentData[aptName]:                        
-                    emotion = {}
-                    emotion['content'] = d
-
-                    label = multi_nb.predict([d])[0]
-                    emotion['predict'] = str(label)
-                                        
-                    score_p3[label] = score_p3[label] + 1
-                                            
-                    retDatas.append(emotion)
-                    isEquals = False
-            else :
+                recentRealPrice = ''
                 
-                if len(kAptNameSplit) > 0:    
-    
-                    for split in kAptNameSplit:
-                        dftmp = dfcomment[dfcomment['total'].str.contains(split)]
-                                            
-                        if len(dftmp) != 0:
-                            isEquals = True
-                        else:
-                            isEquals = False
-                            break
-            
-                    if isEquals:
-                        
-                        for i, d in dftmp.iterrows():                        
-                            emotion = {}
-    # =============================================================================
-    #                         emotion['title'] = d['title']
-    # =============================================================================
-                            emotion['content'] = d['content']
-    # =============================================================================
-    #                         emotion['text_comment'] = d['text_comment']
-    # =============================================================================
-                           # print(d['text_comment'])
-                            label = multi_nb.predict([d['content']])[0]
-                            emotion['predict'] = str(label)
-                            
-    # =============================================================================
-    #                         if int(emotion['predict']) == 0:    
-    #                             print('====== predidct 부정!!!!!!!!!!!!!!1')
-    # =============================================================================
-    #                        label = np.argmax(self.test_sentences([d['total']]))
-    #                        emotion['label'] =  str(label)
-                            
-                            score_p3[label] = score_p3[label] + 1
-                                                    
-                            retDatas.append(emotion)
-                            isEquals = False
-    
-                else :
-                    for i,d in dfcomments.iterrows():
-                        
-                        emotion = {}
-    # =============================================================================
-    #                     emotion['title'] = d['title']
-    # =============================================================================
-                        emotion['content'] = d['content']
-    # =============================================================================
-    #                     emotion['text_comment'] = d['text_comment']
-    # =============================================================================
-                        
-                        label = multi_nb.predict([d['content']])[0]
-                        emotion['predict'] = str(label)
-    # =============================================================================
-    #                     label = np.argmax(self.test_sentences([d['total']]))
-    #                     emotion['label'] =  str(label)
-    #                     
-    # =============================================================================
-                        score_p3[label] = score_p3[label] + 1
-                        retDatas.append(emotion)
-
-            max_key = max(score_p3, key=score_p3.get)
-            
-            if max_key == 2:
-                max_score_p3 = 10
+                for i, d in dfAptInfo.iterrows():                  
+                     jisuItem = {}
+                     jisuItem['date'] = str(int(d['계약년월']))
+                     jisuItem['realprice'] = str(int(d['거래금액(만원)']))
+                     jisuItem['predict_jisu'] = []
+                                    
+                     maemae_jisu.append(jisuItem);
+                     recentRealPrice = jisuItem['realprice']
                 
-            elif max_key == 1:
-                max_score_p3 = 5
+                jsonApt['maemae_jisu'] = maemae_jisu  
+                jsonApt['recent_price'] = recentRealPrice                
+                jsonApt['score_p1'] = str(first_rec_max_score)
+                jsonApt['comment'] = []
+                
+                first_rec_max_score -=5
+                
+                output.append(jsonApt)
                 
             else:
-                max_score_p3 = 0
                 
-            print(score_p3)
-            print(max_score_p3)
-            
-            jsonApt['comment'] = retDatas
-            # score 기본값 할당 
-            jsonApt['score'] = 0
-            
-            jsonApt['score_p1'] = str(first_rec_max_score)
-            jsonApt['score_p3'] = str(max_score_p3)
-            first_rec_max_score -=5
-            
-            output.append(jsonApt)
+                print('*************************************************')
+                print('*                     2차 추천                   *')
+                print('*************************************************')
+                                
+                predict = 0        
+                
+                testkey = ['계약년월', '거래금액(만원)', '매매가격지수', '통화금융지표', '기준금리']
+                dfAptInfo2 = dfAptInfo[testkey]
+                predict = self.clf_from_joblib.predict(dfAptInfo2)
+                print(predict[0])
+                print(predict[1])
+                print(len(predict))
+                print(len(dfAptInfo2))
+                maemae_jisu_lastItem = {}
+                
+                index = 0
+                
+                for i, d in dfAptInfo2.iterrows():                  
+                     jisuItem = {}
+                     jisuItem['date'] = str(int(d['계약년월']))
+                     jisuItem['jisu'] = str(d['매매가격지수'])
+                     jisuItem['realprice'] = str(int(d['거래금액(만원)']))
+    
+                     jisuItem['predict_jisu'] = str(predict[index])
+                                      
+                     maemae_jisu.append(jisuItem);
+                     maemae_jisu_lastItem = d
+                     index += 1
+                                    
+                maemae_jisu = sorted(maemae_jisu, key=(lambda maemae_jisu:maemae_jisu['date']), reverse = False)   
+                
+    # =============================================================================
+    #                     if not maemae_jisu_lastItem:
+    # =============================================================================
+                
+                maemae_jisu_lastItem = maemae_jisu[len(maemae_jisu) - 1]
+    
+                # 나중에 minmax사용하기 위해 사용 
+                list_all_maemae_jisu.append(float(maemae_jisu_lastItem['predict_jisu']))
+        
+                jsonApt['recent_price'] = int(maemae_jisu_lastItem['realprice'])
+        
+                yyyyMM = maemae_jisu_lastItem['date']
+    
+                last2NdItem = dfAptInfo[dfAptInfo['계약년월'].astype(str).str.contains(yyyyMM)]
+                print("가장 최근의 실거래가 데이터 추출 ", last2NdItem.iloc[0])
+                
+    # =============================================================================
+    #             from dateutil.relativedelta import relativedelta
+    #                                
+    #             def createPredict2NdDataAfterMonth(lastItem, afterMonth):
+    #                  maemaejisu = lastItem.copy()
+    #                  nextMonth = (datetime.strptime(str(int(maemaejisu['계약년월'])), '%Y%m')+ relativedelta(months=afterMonth)).strftime("%Y%m")
+    #                  maemaejisu['계약년월'] = nextMonth
+    #                  predict = str(predict[len(maemae_jisu) -1 ])
+    # 
+    #                  ret = {}
+    #                  ret['date'] = nextMonth
+    #                  ret['predict_jisu'] = predict
+    #                  
+    #                  return ret
+    #             
+    #             # 1개월 뒤만 표기 
+    #             predict2ndAfter1MonthData = createPredict2NdDataAfterMonth(last2NdItem.iloc[0], 1)
+    #             
+    #             print('*************************************************')
+    #             print('*           2차 매개가격지수 1달뒤 예측               ', predict2ndAfter1MonthData['predict_jisu'])
+    #             print('*************************************************')
+    #             maemae_jisu.append(predict2ndAfter1MonthData)
+    # =============================================================================
+                
+    # =============================================================================
+    #                     for i in range(1,13):
+    #                         maemae_jisu.append(createPredict2NdDataAfterMonth(last2NdItem.iloc[0], i))
+    # # =============================================================================
+    # =============================================================================
+    #                     maemae_jisu.append(createPredict2NdDataAfterMonth(last2NdItem.iloc[0], 2))
+    #                     maemae_jisu.append(createPredict2NdDataAfterMonth(last2NdItem.iloc[0], 3))
+    #                     
+    # =============================================================================
+    
+                jsonApt['maemae_jisu'] = maemae_jisu   
+                        
+                if aptName in testCommentKey:
+                
+                    for d in testCommentData[aptName]:                        
+                        emotion = {}
+                        emotion['content'] = d
+    
+                        label = multi_nb.predict([d])[0]
+                        emotion['predict'] = str(label)
+                                            
+                        score_p3[label] = score_p3[label] + 1
+                                                
+                        retDatas.append(emotion)
+                        isEquals = False
+                else :
+                    
+                    if len(kAptNameSplit) > 0:    
+        
+                        for split in kAptNameSplit:
+                            dftmp = dfcomment[dfcomment['total'].str.contains(split)]
+                                                
+                            if len(dftmp) != 0:
+                                isEquals = True
+                            else:
+                                isEquals = False
+                                break
+                
+                        if isEquals:
+                            
+                            for i, d in dftmp.iterrows():                        
+                                emotion = {}
+        # =============================================================================
+        #                         emotion['title'] = d['title']
+        # =============================================================================
+                                emotion['content'] = d['content']
+        # =============================================================================
+        #                         emotion['text_comment'] = d['text_comment']
+        # =============================================================================
+                               # print(d['text_comment'])
+                                label = multi_nb.predict([d['content']])[0]
+                                emotion['predict'] = str(label)
+                                
+        # =============================================================================
+        #                         if int(emotion['predict']) == 0:    
+        #                             print('====== predidct 부정!!!!!!!!!!!!!!1')
+        # =============================================================================
+        #                        label = np.argmax(self.test_sentences([d['total']]))
+        #                        emotion['label'] =  str(label)
+                                
+                                score_p3[label] = score_p3[label] + 1
+                                                        
+                                retDatas.append(emotion)
+                                isEquals = False
+        
+                    else :
+                        for i,d in dfcomments.iterrows():
+                            
+                            emotion = {}
+        # =============================================================================
+        #                     emotion['title'] = d['title']
+        # =============================================================================
+                            emotion['content'] = d['content']
+        # =============================================================================
+        #                     emotion['text_comment'] = d['text_comment']
+        # =============================================================================
+                            
+                            label = multi_nb.predict([d['content']])[0]
+                            emotion['predict'] = str(label)
+        # =============================================================================
+        #                     label = np.argmax(self.test_sentences([d['total']]))
+        #                     emotion['label'] =  str(label)
+        #                     
+        # =============================================================================
+                            score_p3[label] = score_p3[label] + 1
+                            retDatas.append(emotion)
+    
+                max_key = max(score_p3, key=score_p3.get)
+                
+                if max_key == 2:
+                    max_score_p3 = 10
+                    
+                elif max_key == 1:
+                    max_score_p3 = 5
+                    
+                else:
+                    max_score_p3 = 0
+                    
+                print(score_p3)
+                print(max_score_p3)
+                
+                jsonApt['comment'] = retDatas
+                # score 기본값 할당 
+                jsonApt['score'] = 0
+                
+                jsonApt['score_p1'] = str(first_rec_max_score)
+                jsonApt['score_p3'] = str(max_score_p3)
+                first_rec_max_score -=5
+                
+                output.append(jsonApt)
             
         print('* 2nd predict? : ',int(self.optSecond))
         
-        if int(self.optSecond) == 1:
+        if int(self.optSecond) == 1 and '노원구' in self.guName:
                 
             # 리스트에 나온 데이터들의 매매가격지수 가져와서 minmaxscaling 돌린다.            
 # =============================================================================
