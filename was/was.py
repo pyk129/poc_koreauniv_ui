@@ -452,10 +452,13 @@ class Recommend1:
         # 유사도 측정 
         #################################
         df_matrix = df.values
-        min_max_scaler = MinMaxScaler()
-        df_matrix_MinMax = min_max_scaler.fit_transform(df_matrix)
+        df_matrix_MinMax = df_matrix
+# =============================================================================
+#         min_max_scaler = MinMaxScaler()
+#         df_matrix_MinMax = min_max_scaler.fit_transform(df_matrix)
+# =============================================================================
         
-        if self.simirarity == '1':
+        if self.simirarity == '2':
             print('*************************************************')
             print('*      유사도 비교 방법 : 코사인 유사도 비교       *')
             print('*************************************************')
@@ -468,13 +471,29 @@ class Recommend1:
             # Matrix Factrazation 
             ##################################
             print('*************************************************')
-            print('Matrix Factrazation 비교 ')
+            print('       유사도 비교 방법   :  Matrix Factrazation 비교 ')
             print('*************************************************')
-            factorizer = MatrixFactorization(df_matrix_MinMax, k=6, learning_rate=0.007, reg_param=0.01, epochs=100, verbose=True)
+            factorizer = MatrixFactorization(df_matrix_MinMax, k=6, learning_rate=0.001, reg_param=0.01, epochs=200, verbose=True)
+#            factorizer = MatrixFactorization(df_matrix_MinMax, k=6, learning_rate=0.21, reg_param=0.01, epochs=200, verbose=True)
             factorizer.fit()
+            print('*************************************************')
+            print(' Matrix Factrazation 전 matrix ')
+            print('*************************************************')
+            print(' ')
+            print(df_matrix_MinMax)
+            print(' ')  
+            print('*************************************************')
             
             ret_simularity = factorizer.get_complete_matrix()
-  
+            print(' ')
+            print(' ')
+            print('*************************************************')
+            print(' Matrix Factrazation 적용 matrix ')
+            print('*************************************************')
+            print(' ')
+            print(ret_simularity)
+            print(' ')  
+            print('*************************************************')  
         
         sel_query = np.array([np.array(self.select_query).T[0]])
 # =============================================================================
@@ -588,7 +607,9 @@ class Recommend1:
             
             kAptNameSplit = aptName.split()
             
-            print("========================================== : ", jsonApt['kaptName'])
+# =============================================================================
+#             print("========================================== : ", jsonApt['kaptName'])
+# =============================================================================
           
             retDatas = []
             
@@ -607,8 +628,10 @@ class Recommend1:
             juso_split = jsonApt['doroJuso'].split()
             
             
-            print('주소 :', jsonApt['doroJuso'])
-            print('주소 split 결과 :', juso_split)
+# =============================================================================
+#             print('주소 :', jsonApt['doroJuso'])
+#             print('주소 split 결과 :', juso_split)
+# =============================================================================
 
             doroname = ''            
             if len(juso_split[3]) > 0:                
@@ -664,19 +687,29 @@ class Recommend1:
                 
             else:
                 
-                print('*************************************************')
-                print('*                     2차 추천                   *')
-                print('*************************************************')
-                                
+# =============================================================================
+#                 print('*************************************************')
+#                 print('*                     2차 추천                   *')
+#                 print('*************************************************')
+#                                 
+# =============================================================================
                 predict = 0        
                 
                 testkey = ['계약년월', '거래금액(만원)', '매매가격지수', '통화금융지표', '기준금리']
                 dfAptInfo2 = dfAptInfo[testkey]
                 predict = self.clf_from_joblib.predict(dfAptInfo2)
-                print(predict[0])
-                print(predict[1])
-                print(len(predict))
-                print(len(dfAptInfo2))
+# =============================================================================
+#                 print(predict[0])
+# =============================================================================
+# =============================================================================
+#                 print(predict[1])
+# =============================================================================
+# =============================================================================
+#                 print(len(predict))
+# =============================================================================
+# =============================================================================
+#                 print(len(dfAptInfo2))
+# =============================================================================
                 maemae_jisu_lastItem = {}
                 
                 index = 0
@@ -709,7 +742,9 @@ class Recommend1:
                 yyyyMM = maemae_jisu_lastItem['date']
     
                 last2NdItem = dfAptInfo[dfAptInfo['계약년월'].astype(str).str.contains(yyyyMM)]
-                print("가장 최근의 실거래가 데이터 추출 ", last2NdItem.iloc[0])
+# =============================================================================
+#                 print("가장 최근의 실거래가 데이터 추출 ", last2NdItem.iloc[0])
+# =============================================================================
                 
     # =============================================================================
     #             from dateutil.relativedelta import relativedelta
@@ -833,8 +868,10 @@ class Recommend1:
                 else:
                     max_score_p3 = 0
                     
-                print(score_p3)
-                print(max_score_p3)
+# =============================================================================
+#                 print(score_p3)
+#                 print(max_score_p3)
+# =============================================================================
                 
                 jsonApt['comment'] = retDatas
                 # score 기본값 할당 
@@ -846,7 +883,9 @@ class Recommend1:
                 
                 output.append(jsonApt)
             
-        print('* 2nd predict? : ',int(self.optSecond))
+# =============================================================================
+#         print('* 2nd predict? : ',int(self.optSecond))
+# =============================================================================
         
         if int(self.optSecond) == 1 and '노원구' in self.guName:
                 
@@ -1166,11 +1205,6 @@ def userLogin():
     recommend.setup("1", d['gu'], d['optSecond'], d['select1'], d['select2'],d['select3'],d['select4'],d['select5'],d['select6'],d['select7'],d['select8'],d['select9'],d['myprice'])
     out = recommend.run(multi_nbc)
     
-# =============================================================================
-#     for o in out:
-#         print(o['kaptName'])
-#         
-# =============================================================================
     data = {}
     data['data'] = out
     ojson = jsonify(data)
@@ -1194,21 +1228,13 @@ from konlpy.tag import Mecab
 from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
 
-mecab = Mecab()
-
-def tokenizer_mecab_morphs(doc):
-    return mecab.morphs(doc)
 # =============================================================================
-#     ret = []
-#     for r in mecab.morphs(doc):
-#       if len(r) >= 2:
-#         # print(r)
-#         ret.append(r)
-#     return ret
+# mecab = Mecab()
+# 
+# def tokenizer_mecab_morphs(doc):
+#     return mecab.morphs(doc)
 # 
 # =============================================================================
-
-
 stopword = [
 '이','는','가','에','하','은','도','있','을','들','네요',
 '으로','의','습니다','한','것','로','를','지','게','에서',
@@ -1221,8 +1247,16 @@ stopword = [
 '그리고','싶','오','여',
 '어서','어요','인데','아서','이제','보이','으면','아직','은데']
 
-multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
+multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword,
+
+                                               )),
                       ('nbc', MultinomialNB())])
+
+# =============================================================================
+# multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
+#                       ('nbc', MultinomialNB())])
+# 
+# =============================================================================
 
 
 if __name__ == "__main__":
@@ -1251,21 +1285,6 @@ if __name__ == "__main__":
     
     from sklearn.model_selection import train_test_split
     
-
-# =============================================================================
-#     X_train, X_test, y_train, y_test = train_test_split(train, label, test_size=0.1)
-# =============================================================================
-
-# =============================================================================
-# 
-#     start = time()
-#     multi_nbc.fit(X_train, y_train)
-#     end = time()
-# #     print('Time: {:f}s'.format(end-start))
-#     y_pred = multi_nbc.predict(X_test)
-#     accScore = accuracy_score(y_test, y_pred)
-#     print("3차 테스트 테스트 정확도: {:.3f}".format(accScore))
-# =============================================================================
     n = 5
     kfold = KFold(n_splits=n, shuffle=True, random_state=0)
     scores = cross_val_score(multi_nbc, train, label, cv=kfold)
@@ -1311,4 +1330,20 @@ if __name__ == "__main__":
 # 
 # len(dfTotal)
 # 
+# =============================================================================
+
+
+# =============================================================================
+#     X_train, X_test, y_train, y_test = train_test_split(train, label, test_size=0.1)
+# =============================================================================
+
+# =============================================================================
+# 
+#     start = time()
+#     multi_nbc.fit(X_train, y_train)
+#     end = time()
+# #     print('Time: {:f}s'.format(end-start))
+#     y_pred = multi_nbc.predict(X_test)
+#     accScore = accuracy_score(y_test, y_pred)
+#     print("3차 테스트 테스트 정확도: {:.3f}".format(accScore))
 # =============================================================================
