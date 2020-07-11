@@ -60,12 +60,12 @@ class Recommend1:
     
     def createQuery(self, select):
         active_limitkm = 0.5
-        inactive_limitkm = 0.5
+        inactive_limitkm = 0
         
         sel = float(select)
         
         if sel > 0.0:
-            return [sel, active_limitkm, 100]
+            return [sel, active_limitkm, 0]
         else:
             return [sel, inactive_limitkm, 0]
     
