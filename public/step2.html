@@ -697,8 +697,8 @@
 			// 'http://aws.hancy.kr:8802/send_py
 			//
 			// http://aws.hancy.kr:8802/send_py
-			$.post('http://aws.hancy.kr:8802/send_py', {
-			// $.post('http://127.0.0.1:5001/send_py', {
+			// $.post('http://aws.hancy.kr:8802/send_py', {
+			$.post('http://127.0.0.1:5001/send_py', {
 
 				// algo: idxAlgo,
 				// select1: checkSel1,
@@ -943,7 +943,8 @@
 					var it = item['comment'][i];
 					
 					if (it['content'] != undefined) {
-						if (lenComment > 6) {
+
+						if (optSecond == 1 && lenComment > 6) {
 							break;
 						}
 

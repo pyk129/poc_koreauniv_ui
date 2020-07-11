@@ -60,7 +60,7 @@ class Recommend1:
     
     def createQuery(self, select):
         active_limitkm = 0.5
-        inactive_limitkm = 0
+        inactive_limitkm = 0.5
         
         sel = float(select)
         
