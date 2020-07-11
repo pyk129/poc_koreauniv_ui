@@ -59,8 +59,8 @@ class Recommend1:
         return ret
     
     def createQuery(self, select):
-        active_limitkm = 1
-        inactive_limitkm = 1
+        active_limitkm = 0.5
+        inactive_limitkm = 0.1
         
         sel = float(select)
         
@@ -458,7 +458,7 @@ class Recommend1:
 #         df_matrix_MinMax = min_max_scaler.fit_transform(df_matrix)
 # =============================================================================
         
-        if self.simirarity == '2':
+        if self.simirarity == '1':
             print('*************************************************')
             print('*      유사도 비교 방법 : 코사인 유사도 비교       *')
             print('*************************************************')
@@ -466,21 +466,21 @@ class Recommend1:
             # 코사인 유사도 
             #################################
             ret_simularity = df_matrix_MinMax
-        else:
+        elif self.simirarity == '2':
             #################################
             # Matrix Factrazation 
             ##################################
             print('*************************************************')
             print('       유사도 비교 방법   :  Matrix Factrazation 비교 ')
             print('*************************************************')
-            factorizer = MatrixFactorization(df_matrix_MinMax, k=6, learning_rate=0.001, reg_param=0.01, epochs=200, verbose=True)
+            factorizer = MatrixFactorization(df_matrix, k=6, learning_rate=0.001, reg_param=0.01, epochs=200, verbose=True)
 #            factorizer = MatrixFactorization(df_matrix_MinMax, k=6, learning_rate=0.21, reg_param=0.01, epochs=200, verbose=True)
             factorizer.fit()
             print('*************************************************')
             print(' Matrix Factrazation 전 matrix ')
             print('*************************************************')
             print(' ')
-            print(df_matrix_MinMax)
+            print(df_matrix)
             print(' ')  
             print('*************************************************')
             
@@ -494,7 +494,31 @@ class Recommend1:
             print(ret_simularity)
             print(' ')  
             print('*************************************************')  
-        
+        else :
+            
+            print('*************************************************')
+            print('       유사도 비교 방법   :  Matrix Factrazation (ASL)비교 ')
+            print('*************************************************')
+            
+            print('*************************************************')
+            print(' Matrix Factrazation 전 matrix ')
+            print('*************************************************')
+            print(' ')
+            print(df_matrix)
+            print(' ')  
+            print('*************************************************')
+            als = ALS(df_matrix)
+            ret_simularity = als.get_complete_matrix()
+            print(' ')
+            print(' ')
+            print('*************************************************')
+            print(' Matrix Factrazation 적용 matrix ')
+            print('*************************************************')
+            print(' ')
+            print(ret_simularity)
+            print(' ')  
+            print('*************************************************')  
+            
         sel_query = np.array([np.array(self.select_query).T[0]])
 # =============================================================================
 #         print('selq : ', sel_query)
@@ -996,6 +1020,80 @@ class Recommend1:
 
 import numpy as np
 
+class ALS():
+    
+    def __init__(self, matrixR):
+        self.r_lambda = 0.1
+        self.nf = 200
+        self.alpha = 0.1
+
+        self.nu = matrixR.shape[0]
+        self.ni = matrixR.shape[1]
+        self.R = matrixR
+        # initialize X and Y with very small values
+        self.X = np.random.rand(self.nu, self.nf) * 0.01
+        self.Y = np.random.rand(self.ni, self.nf) * 0.01
+        # Initialize Binary Rating Matrix P
+        self.P = np.copy(matrixR)
+        self.P[self.P > 0] = 1
+        #Initialize Confidence Matrix C¶
+        self.C = 1 + self.alpha * matrixR
+    
+    def loss_function(self, C, P, xTy, X, Y, r_lambda):
+        predict_error = np.square(P - xTy)
+        confidence_error = np.sum(C * predict_error)
+        regularization = r_lambda * (np.sum(np.square(X)) + np.sum(np.square(Y)))
+        total_loss = confidence_error + regularization
+        return np.sum(predict_error), confidence_error, regularization, total_loss
+    
+    def optimize_user(self, X, Y, C, P, nu, nf, r_lambda):
+        yT = np.transpose(Y)
+        for u in range(nu):
+            Cu = np.diag(C[u])
+            yT_Cu_y = np.matmul(np.matmul(yT, Cu), Y)
+            lI = np.dot(r_lambda, np.identity(nf))
+            yT_Cu_pu = np.matmul(np.matmul(yT, Cu), P[u])
+            X[u] = np.linalg.solve(yT_Cu_y + lI, yT_Cu_pu)
+
+    def optimize_item(self, X, Y, C, P, ni, nf, r_lambda):
+        xT = np.transpose(X)
+        for i in range(ni):
+            Ci = np.diag(C[:, i])
+            xT_Ci_x = np.matmul(np.matmul(xT, Ci), X)
+            lI = np.dot(r_lambda, np.identity(nf))
+            xT_Ci_pi = np.matmul(np.matmul(xT, Ci), P[:, i])
+            Y[i] = np.linalg.solve(xT_Ci_x + lI, xT_Ci_pi)
+    
+    def get_complete_matrix(self):
+        predict_errors = []
+        confidence_errors = []
+        regularization_list = []
+        total_losses = []
+        
+        for i in range(5):
+    
+            if i!=0:   
+                self.optimize_user(self.X, self.Y, self.C, self.P, self.nu, self.nf, self.r_lambda)
+                self.optimize_item(self.X, self.Y, self.C, self.P, self.ni, self.nf, self.r_lambda)
+            predict = np.matmul(self.X, np.transpose(self.Y))
+            predict_error, confidence_error, regularization, total_loss = self.loss_function(self.C, self.P, predict, self.X, self.Y, self.r_lambda)
+            
+            predict_errors.append(predict_error)
+            confidence_errors.append(confidence_error)
+            regularization_list.append(regularization)
+            total_losses.append(total_loss)
+            
+            print('----------------step %d----------------' % i)
+            print("predict error: %f" % predict_error)
+            print("confidence error: %f" % confidence_error)
+            print("regularization: %f" % regularization)
+            print("total loss: %f" % total_loss)
+            
+        predict = np.matmul(self.X, np.transpose(self.Y))
+        print('final predict')
+        print([predict])
+        return predict
+
 
 class MatrixFactorization():
     def __init__(self, R, k, learning_rate, reg_param, epochs, verbose=False):
@@ -1202,7 +1300,7 @@ def userLogin():
     print('9 : ', d['select9'])
     print('myprice : ', d['myprice'])
     
-    recommend.setup("1", d['gu'], d['optSecond'], d['select1'], d['select2'],d['select3'],d['select4'],d['select5'],d['select6'],d['select7'],d['select8'],d['select9'],d['myprice'])
+    recommend.setup( d['algo'], d['gu'], d['optSecond'], d['select1'], d['select2'],d['select3'],d['select4'],d['select5'],d['select6'],d['select7'],d['select8'],d['select9'],d['myprice'])
     out = recommend.run(multi_nbc)
     
     data = {}
@@ -1228,13 +1326,11 @@ from konlpy.tag import Mecab
 from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
 
-# =============================================================================
-# mecab = Mecab()
-# 
-# def tokenizer_mecab_morphs(doc):
-#     return mecab.morphs(doc)
-# 
-# =============================================================================
+mecab = Mecab()
+
+def tokenizer_mecab_morphs(doc):
+    return mecab.morphs(doc)
+
 stopword = [
 '이','는','가','에','하','은','도','있','을','들','네요',
 '으로','의','습니다','한','것','로','를','지','게','에서',
@@ -1247,16 +1343,16 @@ stopword = [
 '그리고','싶','오','여',
 '어서','어요','인데','아서','이제','보이','으면','아직','은데']
 
-multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword,
+# =============================================================================
+# multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword,
+# 
+#                                                )),
+#                       ('nbc', MultinomialNB())])
+# =============================================================================
 
-                                               )),
+multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
                       ('nbc', MultinomialNB())])
 
-# =============================================================================
-# multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
-#                       ('nbc', MultinomialNB())])
-# 
-# =============================================================================
 
 
 if __name__ == "__main__":

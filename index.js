@@ -119,7 +119,7 @@ app.post('/send_py.do', require('./api/send_py.js'));
 // });
 
 app.listen(app.get('port'), function () {
-	util.logger.info('SMTH listening on port ' + app.get('port'));
+	util.logger.info('Best For you listening on port ' + app.get('port'));
 });
 
 function check_mobile_device(user_agent) {

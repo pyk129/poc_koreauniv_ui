@@ -461,13 +461,21 @@
 
 			// 지도에 표시되고 있는 마커를 제거합니다
 			removeMarker();
+
+			if (places.length > 15){
+				places.length = 15;
+			}
+
 			for (var i = 0; i < places.length; i++) {
 				item = places[i];
+				
+				console.log('position : ', i);
 
 				// 마커를 생성하고 지도에 표시합니다
 				var placePosition = new kakao.maps.LatLng(item['LAT_WGS'], item['LON_WGS']),
 					marker = addMarker(placePosition, i),
 					itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
+					
 				displayInfowindow(marker, item);
 
 				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
@@ -514,7 +522,14 @@
 			menuEl.scrollTop = 0;
 
 			// 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-			map.setBounds(bounds);
+			// map.setBounds(bounds);
+
+			// var placePosition = new kakao.maps.LatLng(item['LAT_WGS'], item['LON_WGS']),
+
+			if (places[0] != undefined){
+				movePan(places[0]['LAT_WGS'], places[0]['LON_WGS']);
+				// map.setLevel(2);
+			}
 		}
 
 		function displayDongsan(guName) {
@@ -576,13 +591,26 @@
 			// 		'   <span class="jibun gray">' + item['doroJuso'] + '</span>';
 			// } else {
 			itemStr += '<h6 class="text-danger"><b>최근실거래가 : ' +inputNumberWithHangul(item['recent_price']) + '원</b></h6>';
-			itemStr += '<h6 class="text-info">최대실거래가 : ' +inputNumberWithHangul(item['max_price']) + '원</h6>';
-			itemStr += '<h6 class="text-primary">저실거래가 : ' +inputNumberWithHangul(item['min_price']) + '원</h6>';
+			itemStr += '<h6 class="text-success">최고실거래가 : ' +inputNumberWithHangul(item['max_price']) + '원</h6>';
+			itemStr += '<h6 class="text-primary">최저실거래가 : ' +inputNumberWithHangul(item['min_price']) + '원</h6>';
 			// }
 			itemStr += "<div class=\"col-lg col-form-label text-left mt-2\">";
-			itemStr += "<button class=\"btn btn-primary mr-2 text-center\" style='width: 35%'>적합성:"+item['score_p1']+"점</button>";
-			itemStr += "<button class=\"btn btn-info mr-2 text-center\" style='width: 35%'>투자성:"+item['score_p2']+"점</button>";
-			itemStr += "<button class=\"btn btn-success text-center\" style='width: 30%'>평판:"+item['score_p3']+"점</button>";
+			itemStr += "<button class=\"btn btn-primary mr-2 text-center\" style='width: 30%'>적합성:"+item['score_p1']+"점</button>";
+
+			if(item['score_p2'] == 0){
+				itemStr += "<button class=\"btn btn-info mr-2 text-center\" style='width: 30%'>내역없음</button>";
+			} else {
+				itemStr += "<button class=\"btn btn-info mr-2 text-center\" style='width: 30%'>투자성:"+item['score_p2']+"점</button>";
+			}
+
+
+
+			if(item['score_p3'] == 0){
+				itemStr += "<button class=\"btn btn-success text-center mr-2\" style='width: 30%'>내역없음</button>";
+			} else {
+				itemStr += "<button class=\"btn btn-success text-center mr-2\" style='width: 30%'>평판:"+item['score_p3']+"점</button>";
+			}
+
 			itemStr += "</div>";
 			
 			// itemStr += "<div class=\"progress\">";
@@ -662,8 +690,8 @@
 			// 'http://aws.hancy.kr:8802/send_py
 			//
 			// http://aws.hancy.kr:8802/send_py
-			// $.post('http://aws.hancy.kr:8802/send_py', {
-			$.post('http://127.0.0.1:5001/send_py', {
+			$.post('http://aws.hancy.kr:8802/send_py', {
+			// $.post('http://127.0.0.1:5001/send_py', {
 
 				// algo: idxAlgo,
 				// select1: checkSel1,
@@ -677,7 +705,7 @@
 				// select7: checkSel9
 
 
-				algo: '2',
+				algo: '3',
 				gu: guName,
 				optSecond: optSecond,
 				select1: sel1,
@@ -704,10 +732,9 @@
 				displayDongsan(guName);
 
 				$('#menu_wrap').show();
-
-
+				
 				closeLoading();
-
+				
 			}, 'json' /* xml, text, script, html */)
 				.done(function (xhr) {
 					// alert("second success " + xhr.responseText  );
@@ -1007,13 +1034,15 @@
 		</a>
 		<div class="navbar-nav-scroll ml-md-auto ">
 			<ul class="navbar-nav bd-navbar-nav flex-row">
-			<li class="nav-item">
-				<a class="nav-link" href="./index.html"><i class="material-icons">home</i> HOME</a>
+		
+
+				<li class="nav-item">
+					<a class="nav-link" href="./index.html"><i class="material-icons">home</i> HOME</a>
 				</li>
 
 				<li class="nav-item">
 					<a class="nav-link" href="./step1.html" target="_blank" rel="noopener"><i class="material-icons">check_circle_outline</i> 설문조사</a>
-				  </li>
+				</li>
 	
 			  <!-- <li class="nav-item">
 				<a class="nav-link" href="https://www.creative-tim.com/product/material-kit-pro"> <i class="material-icons">place</i> 관심지역선택 </a>
@@ -1396,7 +1425,8 @@
 				deletePolygon(polygons);                    //폴리곤 제거      
 				// }
 
-				var level = map.getLevel() - 7;
+				var level = 3;
+				// map.getLevel() - 7;
 
 				// 지도를 클릭된 폴리곤의 중앙 위치를 기준으로 확대합니다
 				map.setLevel(level, {
@@ -1436,15 +1466,15 @@
 			polygons = [];
 		}
 
-		// 현재 지도 레벨에서 2레벨 확대한 레벨
-		var level = map.getLevel() - 1;
+		// // 현재 지도 레벨에서 2레벨 확대한 레벨
+		// var level = map.getLevel() - 1;
 
-		// 지도를 클릭된 폴리곤의 중앙 위치를 기준으로 확대합니다
-		map.setLevel(level, {
-			anchor: centroid(points), animate: {
-				duration: 350            //확대 애니메이션 시간
-			}
-		});
+		// // 지도를 클릭된 폴리곤의 중앙 위치를 기준으로 확대합니다
+		// map.setLevel(level, {
+		// 	anchor: centroid(points), animate: {
+		// 		duration: 350            //확대 애니메이션 시간
+		// 	}
+		// });
 
 		deletePolygon(polygons);
 
