@@ -602,13 +602,20 @@
 			} else {
 				itemStr += "<button class=\"btn btn-info mr-2 text-center\" style='width: 30%'>투자성:"+item['score_p2']+"점</button>";
 			}
+			
+			if(parseInt(item['score_p3_len']) == 0){
+				if(optSecond == 0){
+					itemStr += "<button class=\"btn btn-success text-center mr-2\" style='width: 30%'>평판:"+ item['comment'].length +"건</button>";				
+				} else {
+					itemStr += "<button class=\"btn btn-success text-center mr-2\" style='width: 30%'>내역없음</button>";
+				}
 
-
-
-			if(item['score_p3'] == 0){
-				itemStr += "<button class=\"btn btn-success text-center mr-2\" style='width: 30%'>내역없음</button>";
 			} else {
-				itemStr += "<button class=\"btn btn-success text-center mr-2\" style='width: 30%'>평판:"+item['score_p3']+"점</button>";
+				if(item['score_p3'] == 0){
+					itemStr += "<button class=\"btn btn-success text-center mr-2\" style='width: 30%'>평판:0점</button>";
+				} else {
+					itemStr += "<button class=\"btn btn-success text-center mr-2\" style='width: 30%'>평판:"+item['score_p3']+"점</button>";
+				}
 			}
 
 			itemStr += "</div>";
@@ -957,9 +964,11 @@
 						console.log(it['predict']);
 						
 						if(parseInt(it['predict']) == 0){
+							// table += "<img src='images/pos_icon.png' style=width: 9px; height: 9px; >";
 							table += "<img src='images/baseline_sentiment_very_dissatisfied_black_18dp.png' style=width: 36px; height: auto; >";
 						} else {
 							table += "<img src='images/baseline_sentiment_very_satisfied_black_18dp.png' style=width: 36px; height: auto; >";
+							// table += "<img src='images/neg_icon.png' style=width: 9px; height: 9px; >";
 						}
 
 						table += "</td>";
@@ -1312,7 +1321,7 @@
 			});
 
 			// 마커가 지도 위에 표시되도록 설정합니다
-			marker.setOpacity(0.7);
+			marker.setOpacity(0.8);
 			marker.setMap(map);
 		};
 

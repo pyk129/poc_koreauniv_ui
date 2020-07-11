@@ -60,14 +60,14 @@ class Recommend1:
     
     def createQuery(self, select):
         active_limitkm = 0.5
-        inactive_limitkm = 0.1
+        inactive_limitkm = 0.5
         
         sel = float(select)
         
         if sel > 0.0:
-            return [sel,active_limitkm]
+            return [sel, active_limitkm, 100]
         else:
-            return [sel,inactive_limitkm]
+            return [sel, inactive_limitkm, 0]
     
 # =============================================================================
 #     def getRecommend3rd(self, searchword):
@@ -432,9 +432,13 @@ class Recommend1:
 
                 itemLimitKm = d[1]
                 
+                if itemLimitKm < 0:
+                    continue
+                
                 ret = self.getInRangeSelectData(apt_data, self.items[idx], itemLimitKm)
                 apt_data[self.itemKeys[idx]] = ret                
-                apt_data[self.itemLenKeys[idx]] = len(ret)
+                apt_data[self.itemLenKeys[idx]] = len(ret) + d[2]
+                
 # =============================================================================
 #                 print('*** : ', self.itemLenKeys[idx], ' ', len(ret))
 # =============================================================================
@@ -473,7 +477,7 @@ class Recommend1:
             print('*************************************************')
             print('       유사도 비교 방법   :  Matrix Factrazation 비교 ')
             print('*************************************************')
-            factorizer = MatrixFactorization(df_matrix, k=6, learning_rate=0.001, reg_param=0.01, epochs=200, verbose=True)
+            factorizer = MatrixFactorization(df_matrix, k=200, learning_rate=0.001, reg_param=0.01, epochs=50, verbose=True)
 #            factorizer = MatrixFactorization(df_matrix_MinMax, k=6, learning_rate=0.21, reg_param=0.01, epochs=200, verbose=True)
             factorizer.fit()
             print('*************************************************')
@@ -524,9 +528,18 @@ class Recommend1:
 #         print('selq : ', sel_query)
 # =============================================================================
         cosine_sim = cosine_similarity(sel_query, df.values).flatten()
-        
         sim_rank_idx = cosine_sim.argsort()[::-1]
-        
+        print(' ')
+        print(' ')
+        print('*************************************************')
+        print(' 유사도 계산 결과 ')
+        print('*************************************************')
+        print(' ')
+        print(sim_rank_idx)
+        print(' ')  
+        print('*************************************************')  
+            
+       
 # =============================================================================
 #         for idx in sim_rank_idx[:10]:
 #             print("==== : ", self.json_apt_datas[idx])
@@ -547,7 +560,7 @@ class Recommend1:
 # =============================================================================
 #        + dfcomment['content']  + ' ' 
         
-        testCommentKey = ['월계풍림아이원','월계그랑빌','공릉풍림아이원','월계삼창','하계극동건영벽산','월계풍림아이원','상계벽산','월계극동','월계유원']
+        testCommentKey = ['월계풍림아이원','월계그랑빌','공릉풍림아이원','월계삼창','하계극동건영벽산','월계풍림아이원','상계벽산','월계극동','월계유원','월계삼호4차','중계건영2차','월계서광','공릉1동삼익','공릉대주파크빌']
         testCommentData = {}
     
         item1 = ['석계역과 광운대역 두개의 역을 사용할 수 있는점, 그리고 석계역과 3분거리 라는 점이 강점이죠.',
@@ -616,6 +629,32 @@ class Recommend1:
         testCommentData['월계극동'] = item8
         testCommentData['월계유원'] = item9
 
+        testCommentData['월계삼호4차'] = ['신혼부부 전세로 좋은곳이라고 봐요 1호선 7호선 도보권이고 이마트도 붙어있어서 좋아요~^^',
+               '바로 옆 삼호3차 상가에 하나로마트도 있어서 2,4째 일요일에도 마트 이용 가능',
+               '경비아저씨 진짜 친절하시고 동네주민분들도 마주치면 다 인사해주심',
+               '주차공간 절대부족 오래되어 모든시설 낙후',
+               '광운대역 육교만 넘어가면 코 앞! 종로 쪽 접근성 좋음']
+        testCommentData['중계건영2차'] =  ['지하철 1분거리, 롯데슈퍼 1분거리, 아울렛 대형마트 10분 내외, 공원 및 당현천 5분 내외, 정남향,베란다 많아서 좋아요, 스타벅스 맥날 5분 거리',
+               '도로측 동은 시끄러워서 문을 못 열어요, 바퀴벌레 많음, 베란다 냄새, 주차 정말 최악, 쓰레기장 별로, 학군 그다지, 먹거리 별로 없음',
+               '백날천날 무슨짓을 한다해도 주변 영세민 아파트 싹 다 밀어버리지 않는한(탈북자 포함) 집값은 절대 안오름',
+               '역세권,공원,학교,유통점 모두 편리합니다',
+               '지하철역이 가까워서 편리하고 주변에 대학병원 마트 영화관등 편의시설이 좋아요.',
+               '경비아저씨들 정말 좋으시구요.']
+        testCommentData['월계서광'] = ['역 가깝고 살기 좋아요.',
+               '전철과교통이마트가 가까이있어서조용하고살기가아주넘좋아요~^^^',
+               '조용하고 지하철이 가깝습니다. 이마트도 가깝고 유흥시설이 적어 아이들을 키우기 좋은 동네입니다.',
+               '입주민들이 친절하고 편의시설이용하기조아요',
+               '하루종일 지하철소리가 시끄러워요 예민 하신분은 못살아요.오래된아파트라 리모델링필수구요.']
+        testCommentData['공릉1동삼익'] = ['일단 태릉입구역 6/7호선 역세권이 메리트 있고 바로 앞, 마을 버스 이용하면 석계역도 코앞인 교통과 위치적인 면에선 최고쬬',
+               '주변에 시야를 가릴만한 건물이 없어 뷰도 좋습니다',
+               '뒤에 동부간선도로가 있어서 그런지 먼지가 많고 앞도로도 버스가 다녀서 여름에 문열어놓고 자기엔 시끄러워요.',
+               '주차장 입구가 엄청 좁고 아이들이 놀기엔 놀이터가 조금 음침해요.',
+               '한동이라는 아쉬움이좀있어요']
+        testCommentData['공릉대주파크빌'] = ['앞이 뻥뚫여있어 중랑천 조망좋고 바로뒤 재래시장 및 공트럴파크가서 간단히 밥먹고 커피마시기 괜찮음',
+               '정문이 큰길가에 있어 주차하고 나가기 편하고 근처아파트들에 비해 관리가 잘되있음',
+               '음식물쓰레기 처리장치가 지을때부터 설치되어있어 진짜편함',
+               '공릉시장 매우 가깝고,차타고 10분이면 이마트, 트레이더스',
+               '대규모 단지가 아닌 나홀로 아파트지만 관리 잘해주셔서 깨끗하고 가성비 끝판왕 살기 좋은 아파트입니다 굳bb']
         
         list_all_maemae_jisu = []
         
@@ -711,12 +750,10 @@ class Recommend1:
                 
             else:
                 
-# =============================================================================
-#                 print('*************************************************')
-#                 print('*                     2차 추천                   *')
-#                 print('*************************************************')
-#                                 
-# =============================================================================
+                print('*************************************************')
+                print('*                     2차 추천                   *')
+                print('*************************************************')
+                                
                 predict = 0        
                 
                 testkey = ['계약년월', '거래금액(만원)', '매매가격지수', '통화금융지표', '기준금리']
@@ -743,9 +780,11 @@ class Recommend1:
                      jisuItem['date'] = str(int(d['계약년월']))
                      jisuItem['jisu'] = str(d['매매가격지수'])
                      jisuItem['realprice'] = str(int(d['거래금액(만원)']))
-    
-                     jisuItem['predict_jisu'] = str(predict[index])
-                                      
+                     
+# =============================================================================
+#                      jisuItem['predict_jisu'] = str(predict[index])
+# =============================================================================
+                     jisuItem['predict_jisu'] = str(self.clf_from_joblib.predict([d])[0])
                      maemae_jisu.append(jisuItem);
                      maemae_jisu_lastItem = d
                      index += 1
@@ -763,37 +802,38 @@ class Recommend1:
         
                 jsonApt['recent_price'] = int(maemae_jisu_lastItem['realprice'])
         
+                # 데이터에서 가장 최근의 날짜를 가져온다.
                 yyyyMM = maemae_jisu_lastItem['date']
+                
+                # 가장 마지막 데이터를 가져온다. 
+                last2NdItem = dfAptInfo2[dfAptInfo2['계약년월'].astype(str).str.contains(yyyyMM)]
+                
+                print("가장 최근의 실거래가 데이터 추출 ", last2NdItem)
     
-                last2NdItem = dfAptInfo[dfAptInfo['계약년월'].astype(str).str.contains(yyyyMM)]
-# =============================================================================
-#                 print("가장 최근의 실거래가 데이터 추출 ", last2NdItem.iloc[0])
-# =============================================================================
+                from dateutil.relativedelta import relativedelta
+                                   
+                def createPredict2NdDataAfterMonth(lastItem, afterMonth):
+                     maemaejisu ={}
+
+                     nextMonth = (datetime.strptime(str(int(lastItem['계약년월'].iloc[0])), '%Y%m')+ relativedelta(months=afterMonth)).strftime("%Y%m")
+                     maemaejisu['계약년월'] = nextMonth
+                     
+                     ret = {}
+                     ret['date'] = nextMonth
+
+                     ret['predict_jisu'] = str(self.clf_from_joblib.predict(lastItem)[0])
+
+                     return ret
                 
-    # =============================================================================
-    #             from dateutil.relativedelta import relativedelta
-    #                                
-    #             def createPredict2NdDataAfterMonth(lastItem, afterMonth):
-    #                  maemaejisu = lastItem.copy()
-    #                  nextMonth = (datetime.strptime(str(int(maemaejisu['계약년월'])), '%Y%m')+ relativedelta(months=afterMonth)).strftime("%Y%m")
-    #                  maemaejisu['계약년월'] = nextMonth
-    #                  predict = str(predict[len(maemae_jisu) -1 ])
-    # 
-    #                  ret = {}
-    #                  ret['date'] = nextMonth
-    #                  ret['predict_jisu'] = predict
-    #                  
-    #                  return ret
-    #             
-    #             # 1개월 뒤만 표기 
-    #             predict2ndAfter1MonthData = createPredict2NdDataAfterMonth(last2NdItem.iloc[0], 1)
-    #             
-    #             print('*************************************************')
-    #             print('*           2차 매개가격지수 1달뒤 예측               ', predict2ndAfter1MonthData['predict_jisu'])
-    #             print('*************************************************')
-    #             maemae_jisu.append(predict2ndAfter1MonthData)
-    # =============================================================================
+                # 1개월 뒤만 표기 
+                predict2ndAfter1MonthData = createPredict2NdDataAfterMonth(last2NdItem, 1)
                 
+                print('*************************************************')
+                print('*           2차 매개가격지수 1달뒤 예측               ', predict2ndAfter1MonthData['predict_jisu'])
+                print('*************************************************')
+                maemae_jisu.append(predict2ndAfter1MonthData)
+
+                jsonApt['maemae_jisu'] = maemae_jisu   
     # =============================================================================
     #                     for i in range(1,13):
     #                         maemae_jisu.append(createPredict2NdDataAfterMonth(last2NdItem.iloc[0], i))
@@ -804,8 +844,14 @@ class Recommend1:
     #                     
     # =============================================================================
     
-                jsonApt['maemae_jisu'] = maemae_jisu   
-                        
+    
+# =============================================================================
+#                 if int(self.optSecond) == 1 and '노원구' in self.guName:
+# =============================================================================
+                print('*************************************************')
+                print('*                     3차 추천                   *')
+                print('*************************************************')
+
                 if aptName in testCommentKey:
                 
                     for d in testCommentData[aptName]:                        
@@ -836,23 +882,10 @@ class Recommend1:
                             
                             for i, d in dftmp.iterrows():                        
                                 emotion = {}
-        # =============================================================================
-        #                         emotion['title'] = d['title']
-        # =============================================================================
                                 emotion['content'] = d['content']
-        # =============================================================================
-        #                         emotion['text_comment'] = d['text_comment']
-        # =============================================================================
                                # print(d['text_comment'])
                                 label = multi_nb.predict([d['content']])[0]
                                 emotion['predict'] = str(label)
-                                
-        # =============================================================================
-        #                         if int(emotion['predict']) == 0:    
-        #                             print('====== predidct 부정!!!!!!!!!!!!!!1')
-        # =============================================================================
-        #                        label = np.argmax(self.test_sentences([d['total']]))
-        #                        emotion['label'] =  str(label)
                                 
                                 score_p3[label] = score_p3[label] + 1
                                                         
@@ -863,46 +896,49 @@ class Recommend1:
                         for i,d in dfcomments.iterrows():
                             
                             emotion = {}
-        # =============================================================================
-        #                     emotion['title'] = d['title']
-        # =============================================================================
                             emotion['content'] = d['content']
-        # =============================================================================
-        #                     emotion['text_comment'] = d['text_comment']
-        # =============================================================================
                             
                             label = multi_nb.predict([d['content']])[0]
                             emotion['predict'] = str(label)
-        # =============================================================================
-        #                     label = np.argmax(self.test_sentences([d['total']]))
-        #                     emotion['label'] =  str(label)
-        #                     
-        # =============================================================================
                             score_p3[label] = score_p3[label] + 1
                             retDatas.append(emotion)
     
-                max_key = max(score_p3, key=score_p3.get)
-                
-                if max_key == 2:
-                    max_score_p3 = 10
+                try:
+                    pos_cnt = score_p3[2] 
+                    neg_cnt = score_p3[0]
                     
-                elif max_key == 1:
-                    max_score_p3 = 5
+                    if pos_cnt > neg_cnt:
+                        # 긍정
+                        max_score_p3 = 10
+                        
+                    elif pos_cnt < neg_cnt:
+                        # 부정 
+                        max_score_p3 = 5
+                        
+                    elif pos_cnt == neg_cnt:
+                        max_score_p3 = 0
+                        
+                    else:
+                        #없으경우 같을경우
+                        max_score_p3 = -1
+
+                except:
+                    max_score_p3 = -1
                     
-                else:
-                    max_score_p3 = 0
-                    
+                jsonApt['comment'] = retDatas
+                jsonApt['score_p3'] = str(max_score_p3)
 # =============================================================================
 #                 print(score_p3)
 #                 print(max_score_p3)
 # =============================================================================
                 
-                jsonApt['comment'] = retDatas
+                
                 # score 기본값 할당 
                 jsonApt['score'] = 0
                 
                 jsonApt['score_p1'] = str(first_rec_max_score)
-                jsonApt['score_p3'] = str(max_score_p3)
+                
+                
                 first_rec_max_score -=5
                 
                 output.append(jsonApt)
@@ -935,7 +971,17 @@ class Recommend1:
                 scorep2 = jisuscale * 40
                 
                 d['score_p2'] = str(int(scorep2))
-                d['score'] = float(d['score_p1']) + float(scorep2) + float(d['score_p3'])
+                
+                scorep3 = 0
+                if d['score_p3'] > 0:
+                    score3 = d['score_p3']
+                    d['score_p3_len'] = d['score_p3']
+                    
+                else :
+                    d['score_p3_len'] = 0
+
+                    
+                d['score'] = float(d['score_p1']) + float(scorep2) + float(score3)
                 
                 score_sim = (float(d['score']) /150) * 100
                 d['score_sim'] = str(round(score_sim,2))
@@ -953,11 +999,12 @@ class Recommend1:
                 d['score_p2'] = 0
                 d['score_p3'] = 0
                 d['score'] = float(d['score_p1'])
-                
+                d['score_p3_len'] = 0
                 score_sim = (float(d['score']) /100) * 100
                 d['score_sim'] = str(round(score_sim,2))
                 result.append(d)
             
+           
             return result
     
 
@@ -1084,11 +1131,24 @@ class ALS():
             total_losses.append(total_loss)
             
             print('----------------step %d----------------' % i)
-            print("predict error: %f" % predict_error)
-            print("confidence error: %f" % confidence_error)
-            print("regularization: %f" % regularization)
-            print("total loss: %f" % total_loss)
+            print("predict error: %f" , predict_error)
+            print("confidence error: %f" , confidence_error)
+            print("regularization: %f" , regularization)
+            print("total loss: %f" , total_loss)
             
+        
+# =============================================================================
+#         predicts ={}
+#         predicts['predict_error'] = predict_errors
+#         predicts['confidence_error'] = confidence_errors
+#         predicts['regularization'] = regularization_list
+#         predicts['total_loss'] = total_losses
+#         
+#         import json
+#         with open('first_predict_graph.json', 'w', encoding='utf-8') as make_file:
+#             json.dump(predicts, make_file, indent="\t")
+# =============================================================================
+        
         predict = np.matmul(self.X, np.transpose(self.Y))
         print('final predict')
         print([predict])
@@ -1137,6 +1197,8 @@ class MatrixFactorization():
 
         # train while epochs
         self._training_process = []
+        
+        savedata=[]
         for epoch in range(self._epochs):
 
             # rating이 존재하는 index를 기준으로 training
@@ -1146,10 +1208,17 @@ class MatrixFactorization():
                         self.gradient_descent(i, j, self._R[i, j])
             cost = self.cost()
             self._training_process.append((epoch, cost))
-
+            savedata.append(cost)
             # print status
             if self._verbose == True and ((epoch + 1) % 10 == 0):
                 print("Iteration: %d ; cost = %.4f" % (epoch + 1, cost))
+                
+                
+# =============================================================================
+#         import json
+#         with open('first_gd_predict_graph.json', 'w', encoding='utf-8') as make_file:
+#             json.dump(savedata, make_file, indent="\t")
+# =============================================================================
 
 
     def cost(self):
