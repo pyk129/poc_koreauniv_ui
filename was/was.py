@@ -69,97 +69,6 @@ class Recommend1:
         else:
             return [sel, inactive_limitkm, 0]
     
-# =============================================================================
-#     def getRecommend3rd(self, searchword):
-#         
-#         print('recommend word : ', searchword)
-#         
-#         self.driver.get('https://cafe.naver.com/jaegebal')
-#         
-#         ret = []
-#         self.driver.find_element_by_xpath('//*[@id="topLayerQueryInput"]').send_keys(searchword)
-#         self.driver.find_element_by_xpath('//*[@id="cafe-search"]/form/button').click()
-#         
-#         ts.sleep(0.3)
-#         
-#         totalListCnt = 1
-#         listItemCnt = 1
-#         pageNoCnt = 1
-#         
-#         # f = open('result20200523.csv','a', newline='\n')
-#         # wr = csv.writer(f)
-#         
-#         loopFlag = True
-#         # try:
-#         listData = []
-#         while loopFlag:    
-#         
-#             try :
-#                 self.driver.switch_to.frame("cafe_main")
-#             except:
-#                 pass
-#         
-#             totalListCnt = len(self.driver.find_elements_by_xpath('//*[@id="main-area"]/div[5]/table/tbody/tr'))
-#         
-#             # 인덱스 초기화 
-#             if listItemCnt > totalListCnt:
-#                 totalListCnt = 0
-#                 listItemCnt = 1
-#         
-#                 ######################################
-#                 #
-#                 # Page 컨트롤 
-#                 #
-#                 ######################################
-#                 try:
-#                     totalPageNoCnt = len(self.driver.find_element_by_class_name('prev-next').find_elements_by_tag_name('a'))
-#                 except:
-#                     totalPageNoCnt = 1
-#                     
-#                 # 인덱스 초기화 
-#                 items = self.driver.find_element_by_class_name('prev-next')
-#                 items = items.find_elements_by_tag_name('a')
-#                 
-#                 try:
-#                     clickItem = self.driver.find_element_by_xpath('//*[@id="main-area"]/div[7]/a['+str(pageNoCnt)+']')
-#                 except:
-#                     loopFlag = False
-#                     print('loop 종료 ')
-#                     continue
-#                     
-#                 clickItemText = clickItem.text
-#         
-#                 clickItem.click()
-#                 ts.sleep(0.5)
-#                 pageNoCnt += 1
-#             #     print('pageCnt : ', pageNoCnt, ' totalPageNoCnt : ' ,totalPageNoCnt)
-#         
-#                 if '다음' in clickItemText:
-#                     # 다음으로 넘어간 페이지 +1, 이전버튼 +1 해서 이전버튼이 있다면 3부터 인덱스 시작함. 
-#                     pageNoCnt = 3
-#         
-#                 else:
-#                     # 전체 페이지카운트 보다 현재 리스트 카운트가 더 크다면 루프 종료
-#                     if pageNoCnt > totalPageNoCnt:
-#                         loopFlag = False
-#                         print('loop 종료 ')
-#                         break
-# 
-#             try:
-#                 item = self.driver.find_element_by_xpath('//*[@id="main-area"]/div[5]/table/tbody/tr['+str(listItemCnt)+']/td[1]/div[2]/div/a[1]')
-#         
-#                 # 제목 
-#                 title = item.text
-#                 print(title)
-#                 ret.append(title)
-#                 listItemCnt += 1
-#             except:
-#                 loopFlag = False
-#                 print('loop 종료 ')
-# 
-#         
-#         return ret
-# =============================================================================
     
     def __init__(self):
         
@@ -423,7 +332,6 @@ class Recommend1:
     def run(self, multi_nb):
         
         # 아파트 별 거리 구함 
-        apt_datas= []
         for i, apt_data in enumerate(self.json_apt_datas):
             
             for idx, d in enumerate(self.select_query): 
@@ -540,11 +448,6 @@ class Recommend1:
         print('*************************************************')  
             
        
-# =============================================================================
-#         for idx in sim_rank_idx[:10]:
-#             print("==== : ", self.json_apt_datas[idx])
-# =============================================================================
-    
         output = []
         
         first_rec_max_score = 100
@@ -555,11 +458,7 @@ class Recommend1:
 
         dfcomment = pd.DataFrame(self.openFile(self.path_댓글데이터))
         dfcomment['total'] = dfcomment['content']
-# =============================================================================
-#         dfcomment['title'] + ' ' + 
-# =============================================================================
-#        + dfcomment['content']  + ' ' 
-        
+   
         testCommentKey = ['월계풍림아이원','월계그랑빌','공릉풍림아이원','월계삼창','하계극동건영벽산','월계풍림아이원','상계벽산','월계극동','월계유원','월계삼호4차','중계건영2차','월계서광','공릉1동삼익','공릉대주파크빌']
         testCommentData = {}
     
@@ -1516,4 +1415,96 @@ if __name__ == "__main__":
 #     y_pred = multi_nbc.predict(X_test)
 #     accScore = accuracy_score(y_test, y_pred)
 #     print("3차 테스트 테스트 정확도: {:.3f}".format(accScore))
+# =============================================================================
+
+# =============================================================================
+#     def getRecommend3rd(self, searchword):
+#         
+#         print('recommend word : ', searchword)
+#         
+#         self.driver.get('https://cafe.naver.com/jaegebal')
+#         
+#         ret = []
+#         self.driver.find_element_by_xpath('//*[@id="topLayerQueryInput"]').send_keys(searchword)
+#         self.driver.find_element_by_xpath('//*[@id="cafe-search"]/form/button').click()
+#         
+#         ts.sleep(0.3)
+#         
+#         totalListCnt = 1
+#         listItemCnt = 1
+#         pageNoCnt = 1
+#         
+#         # f = open('result20200523.csv','a', newline='\n')
+#         # wr = csv.writer(f)
+#         
+#         loopFlag = True
+#         # try:
+#         listData = []
+#         while loopFlag:    
+#         
+#             try :
+#                 self.driver.switch_to.frame("cafe_main")
+#             except:
+#                 pass
+#         
+#             totalListCnt = len(self.driver.find_elements_by_xpath('//*[@id="main-area"]/div[5]/table/tbody/tr'))
+#         
+#             # 인덱스 초기화 
+#             if listItemCnt > totalListCnt:
+#                 totalListCnt = 0
+#                 listItemCnt = 1
+#         
+#                 ######################################
+#                 #
+#                 # Page 컨트롤 
+#                 #
+#                 ######################################
+#                 try:
+#                     totalPageNoCnt = len(self.driver.find_element_by_class_name('prev-next').find_elements_by_tag_name('a'))
+#                 except:
+#                     totalPageNoCnt = 1
+#                     
+#                 # 인덱스 초기화 
+#                 items = self.driver.find_element_by_class_name('prev-next')
+#                 items = items.find_elements_by_tag_name('a')
+#                 
+#                 try:
+#                     clickItem = self.driver.find_element_by_xpath('//*[@id="main-area"]/div[7]/a['+str(pageNoCnt)+']')
+#                 except:
+#                     loopFlag = False
+#                     print('loop 종료 ')
+#                     continue
+#                     
+#                 clickItemText = clickItem.text
+#         
+#                 clickItem.click()
+#                 ts.sleep(0.5)
+#                 pageNoCnt += 1
+#             #     print('pageCnt : ', pageNoCnt, ' totalPageNoCnt : ' ,totalPageNoCnt)
+#         
+#                 if '다음' in clickItemText:
+#                     # 다음으로 넘어간 페이지 +1, 이전버튼 +1 해서 이전버튼이 있다면 3부터 인덱스 시작함. 
+#                     pageNoCnt = 3
+#         
+#                 else:
+#                     # 전체 페이지카운트 보다 현재 리스트 카운트가 더 크다면 루프 종료
+#                     if pageNoCnt > totalPageNoCnt:
+#                         loopFlag = False
+#                         print('loop 종료 ')
+#                         break
+# 
+#             try:
+#                 item = self.driver.find_element_by_xpath('//*[@id="main-area"]/div[5]/table/tbody/tr['+str(listItemCnt)+']/td[1]/div[2]/div/a[1]')
+#         
+#                 # 제목 
+#                 title = item.text
+#                 print(title)
+#                 ret.append(title)
+#                 listItemCnt += 1
+#             except:
+#                 loopFlag = False
+#                 print('loop 종료 ')
+# 
+#         
+#         return ret
 # =============================================================================

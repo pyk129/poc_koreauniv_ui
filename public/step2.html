@@ -436,7 +436,9 @@
 
 	</script>
 	<script>
-
+		var isDisplayAptCircle = false;
+		var aptCircleIndex = 0;
+		var arrayCircle = [];
 		var markers = [];
 
 		// 검색결과 목록의 자식 Element를 제거하는 함수입니다
@@ -477,6 +479,9 @@
 					itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
 					
 				displayInfowindow(marker, item);
+				if(i == 0){
+					displayAptCircle(item);
+				}
 
 				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 				// LatLngBounds 객체에 좌표를 추가합니다
@@ -485,17 +490,17 @@
 				// 마커와 검색결과 항목에 mouseover 했을때
 				// 해당 장소에 인포윈도우에 장소명을 표시합니다
 				// mouseout 했을 때는 인포윈도우를 닫습니다
-				(function (marker, item) {
-					var isDisplayAptCircle = false;
+				(function (marker, item, i) {
+					
 
 					kakao.maps.event.addListener(marker, 'mouseover', function () {
 						displayInfowindow(marker, item);
-						// displayAptCircle(item);
+						displayAptCircle(item);
 					});
 
 					kakao.maps.event.addListener(marker, 'mouseout', function () {
 						infowindow.close();
-						// removeAptCircle(item);
+						removeAptCircle(item);
 					});
 				 	// 마커에 클릭이벤트를 등록합니다
 					kakao.maps.event.addListener(marker, 'click', function () {
@@ -511,19 +516,17 @@
 					itemEl.onmouseover = function () {
 						movePan(item['LAT_WGS'], item['LON_WGS']);
 						displayInfowindow(marker,item);
-						
-						// if(isDisplayAptCircle == false){
-							displayAptCircle(item);
-							isDisplayAptCircle = true;
-						// }
+						displayAptCircle(item);
+
 					};
 
 					itemEl.onmouseout = function () {
 						infowindow.close();
+						
 						removeAptCircle(item);
-						// isDisplayAptCircle = false;
+					
 					};
-				})(marker, item);
+				})(marker, item, i);
 
 				fragment.appendChild(itemEl);
 			}
@@ -545,27 +548,26 @@
 
 		var aptCiecle;
 		function removeAptCircle(){
-			// if(aptCiecle != undefined){
-			// 	aptCiecle.setMap(null);
-			// }
+			for (var i = 0; i < arrayCircle.length; i++) {
+        		arrayCircle[i].setMap(null);    
+			}
 		}
 		function displayAptCircle(item){
-			// var circleWgs = new kakao.maps.LatLng(item['LAT_WGS'], item['LON_WGS']);
+			var circleWgs = new kakao.maps.LatLng(item['LAT_WGS'], item['LON_WGS']);
 			
-			// aptCircle = new kakao.maps.Circle({ 
-			// 	center :circleWgs, 
-	        //     radius: 500,  // m단위 원의 반지름. 
-            //     strokeWeight: 1, // 선의 두께입니다
-            //     strokeColor: '#00a0e9', // 선의 색깔입니다
-            //     strokeOpacity: 0.1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
-            //     strokeStyle: 'solid', // 선의 스타일입니다
-            //     fillColor: '#00a0e9', // 채우기 색깔입니다
-            //     fillOpacity: 0.2 // 채우기 불투명도입니다 
-            // });     
+			aptCircle = new kakao.maps.Circle({ 
+				center :circleWgs, 
+	            radius: 500,  // m단위 원의 반지름. 
+                strokeWeight: 1, // 선의 두께입니다
+                strokeColor: '#00a0e9', // 선의 색깔입니다
+                strokeOpacity: 0.1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
+                strokeStyle: 'solid', // 선의 스타일입니다
+                fillColor: '#00a0e9', // 채우기 색깔입니다
+                fillOpacity: 0.2 // 채우기 불투명도입니다 
+            });     
 
-			// // 그려지고 있는 원을 지도에 표시합니다
-			// // aptCiecle.setMap(null);
-			// aptCircle.setMap(map); 
+			aptCircle.setMap(map); 
+			arrayCircle.push(aptCircle);
 		}
 
 		function displayDongsan(guName) {
