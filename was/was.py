@@ -973,15 +973,15 @@ class Recommend1:
                 d['score_p2'] = str(int(scorep2))
                 
                 scorep3 = 0
-                if d['score_p3'] > 0:
-                    score3 = d['score_p3']
+                if d['score_p3'] != '0':
+                    scorep3 = d['score_p3']
                     d['score_p3_len'] = d['score_p3']
                     
                 else :
                     d['score_p3_len'] = 0
 
                     
-                d['score'] = float(d['score_p1']) + float(scorep2) + float(score3)
+                d['score'] = float(d['score_p1']) + float(scorep2) + float(scorep3)
                 
                 score_sim = (float(d['score']) /150) * 100
                 d['score_sim'] = str(round(score_sim,2))
@@ -1395,10 +1395,6 @@ from konlpy.tag import Mecab
 from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
 
-mecab = Mecab()
-
-def tokenizer_mecab_morphs(doc):
-    return mecab.morphs(doc)
 
 stopword = [
 '이','는','가','에','하','은','도','있','을','들','네요',
@@ -1412,12 +1408,21 @@ stopword = [
 '그리고','싶','오','여',
 '어서','어요','인데','아서','이제','보이','으면','아직','은데']
 
+
+
+
 # =============================================================================
 # multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword,
 # 
 #                                                )),
 #                       ('nbc', MultinomialNB())])
 # =============================================================================
+
+mecab = Mecab()
+
+def tokenizer_mecab_morphs(doc):
+    return mecab.morphs(doc)
+
 
 multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
                       ('nbc', MultinomialNB())])

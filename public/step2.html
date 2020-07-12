@@ -486,12 +486,16 @@
 				// 해당 장소에 인포윈도우에 장소명을 표시합니다
 				// mouseout 했을 때는 인포윈도우를 닫습니다
 				(function (marker, item) {
+					var isDisplayAptCircle = false;
+
 					kakao.maps.event.addListener(marker, 'mouseover', function () {
 						displayInfowindow(marker, item);
+						// displayAptCircle(item);
 					});
 
 					kakao.maps.event.addListener(marker, 'mouseout', function () {
 						infowindow.close();
+						// removeAptCircle(item);
 					});
 				 	// 마커에 클릭이벤트를 등록합니다
 					kakao.maps.event.addListener(marker, 'click', function () {
@@ -506,11 +510,18 @@
 
 					itemEl.onmouseover = function () {
 						movePan(item['LAT_WGS'], item['LON_WGS']);
-						displayInfowindow(marker);
+						displayInfowindow(marker,item);
+						
+						// if(isDisplayAptCircle == false){
+							displayAptCircle(item);
+							isDisplayAptCircle = true;
+						// }
 					};
 
 					itemEl.onmouseout = function () {
 						infowindow.close();
+						removeAptCircle(item);
+						// isDisplayAptCircle = false;
 					};
 				})(marker, item);
 
@@ -530,6 +541,31 @@
 				movePan(places[0]['LAT_WGS'], places[0]['LON_WGS']);
 				// map.setLevel(2);
 			}
+		}
+
+		var aptCiecle;
+		function removeAptCircle(){
+			// if(aptCiecle != undefined){
+			// 	aptCiecle.setMap(null);
+			// }
+		}
+		function displayAptCircle(item){
+			// var circleWgs = new kakao.maps.LatLng(item['LAT_WGS'], item['LON_WGS']);
+			
+			// aptCircle = new kakao.maps.Circle({ 
+			// 	center :circleWgs, 
+	        //     radius: 500,  // m단위 원의 반지름. 
+            //     strokeWeight: 1, // 선의 두께입니다
+            //     strokeColor: '#00a0e9', // 선의 색깔입니다
+            //     strokeOpacity: 0.1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
+            //     strokeStyle: 'solid', // 선의 스타일입니다
+            //     fillColor: '#00a0e9', // 채우기 색깔입니다
+            //     fillOpacity: 0.2 // 채우기 불투명도입니다 
+            // });     
+
+			// // 그려지고 있는 원을 지도에 표시합니다
+			// // aptCiecle.setMap(null);
+			// aptCircle.setMap(map); 
 		}
 
 		function displayDongsan(guName) {
@@ -1693,6 +1729,9 @@
 
 			infowindow.setContent(content);
 			infowindow.open(map, marker);
+
+
+
 		}
 
 	</script>
