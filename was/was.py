@@ -331,11 +331,31 @@ class Recommend1:
     
     def run(self, multi_nb):
         
+        queryTrueValueCnt = 0
+        
+        for d in self.select_query:
+            if d[0] > 0:
+                queryTrueValueCnt += 1
+
+        print("select_queryCount : ", queryTrueValueCnt) 
+    
+           
         # 아파트 별 거리 구함 
         for i, apt_data in enumerate(self.json_apt_datas):
             
+            # 1. 내가 선택한 것의 개수가 똑같게 나왔는지 확인     
+            queryDataEqualCount = queryTrueValueCnt 
+            # 2. 내가 선택한거 외에 추가적인 아이템 개수는 몇개인가?
+            notSelItemCnt = 0
+            
+            totalkm = 0
+            
+            queryDataEqualCounts = []
+            queryDataNotSelItemCnt = []
+            queryDataTotalkm = []
+            
             for idx, d in enumerate(self.select_query): 
-              
+             
                 ret = []
 
                 itemLimitKm = d[1]
@@ -343,10 +363,47 @@ class Recommend1:
                 if itemLimitKm < 0:
                     continue
                 
-                ret = self.getInRangeSelectData(apt_data, self.items[idx], itemLimitKm)
+                ret, selQueryInRangeItemTotalkm = self.getInRangeSelectData(apt_data, self.items[idx], itemLimitKm)
                 apt_data[self.itemKeys[idx]] = ret                
+                
+                # 만약 데이터가 없다면..
+                resCnt = len(ret)
+                
+                if d[0] > 0:
+                    # 선택한 쿼리 
+                    if resCnt <= 0:
+                        # 같지 않다. 
+                        queryDataEqualCount -= 1
+                    
+                    totalkm += selQueryInRangeItemTotalkm
+                    
+                else:
+                    # 선택하지 않은 쿼리
+                    if resCnt > 0:
+                        notSelItemCnt += 1
+                    
                 apt_data[self.itemLenKeys[idx]] = len(ret) + d[2]
                 
+                # 값 보정 
+                if queryDataEqualCount < 0:
+                    queryDataEqualCount = 0
+                
+                if d[0] > 0:
+                    # 내가 선택한 데이터와 같은애의 개수
+                    apt_data['queryDataEqualCount'] = int(queryDataEqualCount)
+                    
+                    # 내가 선택한 애의 전체 개수
+                    apt_data['queryDataTotalCount'] = queryTrueValueCnt
+                    # 내가 선택하지 않은 데이터의 개수 
+                    apt_data['queryDataNotSelItemCnt'] = notSelItemCnt
+                    # 내가 선택한 데이터의 전체 km 
+                    apt_data['queryDataTotalkm'] = totalkm
+                                       
+# =============================================================================
+#         queryDataTotalkm
+#         queryDataTotalCount - 
+# # =============================================================================
+        
 # =============================================================================
 #                 print('*** : ', self.itemLenKeys[idx], ' ', len(ret))
 # =============================================================================
@@ -556,12 +613,13 @@ class Recommend1:
                '대규모 단지가 아닌 나홀로 아파트지만 관리 잘해주셔서 깨끗하고 가성비 끝판왕 살기 좋은 아파트입니다 굳bb']
         
         list_all_maemae_jisu = []
+
         
         # p1 rank1 계산 
         for idx in sim_rank_idx[:rnkcnt]:
            
             jsonApt = self.json_apt_datas[idx]
-            
+                       
 # =============================================================================
 #             3차 추천용 데이터 뽑기 
 # =============================================================================
@@ -584,12 +642,12 @@ class Recommend1:
             
             if len(jsonApt['doroJuso'].replace(' ','')) <= 0:
                 continue
-        
-            
+                    
             # 실거래가 금액 뽑아보자 
             juso_split = jsonApt['doroJuso'].split()
             
-            
+        
+         
 # =============================================================================
 #             print('주소 :', jsonApt['doroJuso'])
 #             print('주소 split 결과 :', juso_split)
@@ -613,6 +671,11 @@ class Recommend1:
                 # 아파트 정보가 없다면 pass
                 print('아파트 정보 없음 ')
                 continue
+            
+            queryDataEqualCounts.append(jsonApt['queryDataEqualCount'])
+            queryDataNotSelItemCnt.append(jsonApt['queryDataNotSelItemCnt'])
+            queryDataTotalkm.append(jsonApt['queryDataTotalkm'])
+
                         
             maxPrice = str(dfAptInfo['거래금액(만원)'].max())
             minPrice = str(dfAptInfo['거래금액(만원)'].min())
@@ -649,9 +712,11 @@ class Recommend1:
                 
             else:
                 
-                print('*************************************************')
-                print('*                     2차 추천                   *')
-                print('*************************************************')
+# =============================================================================
+#                 print('*************************************************')
+#                 print('*                     2차 추천                   *')
+#                 print('*************************************************')
+# =============================================================================
                                 
                 predict = 0        
                 
@@ -707,7 +772,9 @@ class Recommend1:
                 # 가장 마지막 데이터를 가져온다. 
                 last2NdItem = dfAptInfo2[dfAptInfo2['계약년월'].astype(str).str.contains(yyyyMM)]
                 
-                print("가장 최근의 실거래가 데이터 추출 ", last2NdItem)
+# =============================================================================
+#                 print("가장 최근의 실거래가 데이터 추출 ", last2NdItem)
+# =============================================================================
     
                 from dateutil.relativedelta import relativedelta
                                    
@@ -727,9 +794,11 @@ class Recommend1:
                 # 1개월 뒤만 표기 
                 predict2ndAfter1MonthData = createPredict2NdDataAfterMonth(last2NdItem, 1)
                 
-                print('*************************************************')
-                print('*           2차 매개가격지수 1달뒤 예측               ', predict2ndAfter1MonthData['predict_jisu'])
-                print('*************************************************')
+# =============================================================================
+#                 print('*************************************************')
+#                 print('*           2차 매개가격지수 1달뒤 예측               ', predict2ndAfter1MonthData['predict_jisu'])
+#                 print('*************************************************')
+# =============================================================================
                 maemae_jisu.append(predict2ndAfter1MonthData)
 
                 jsonApt['maemae_jisu'] = maemae_jisu   
@@ -747,9 +816,11 @@ class Recommend1:
 # =============================================================================
 #                 if int(self.optSecond) == 1 and '노원구' in self.guName:
 # =============================================================================
-                print('*************************************************')
-                print('*                     3차 추천                   *')
-                print('*************************************************')
+# =============================================================================
+#                 print('*************************************************')
+#                 print('*                     3차 추천                   *')
+#                 print('*************************************************')
+# =============================================================================
 
                 if aptName in testCommentKey:
                 
@@ -834,27 +905,95 @@ class Recommend1:
                 
                 # score 기본값 할당 
                 jsonApt['score'] = 0
+            
                 
-                jsonApt['score_p1'] = str(first_rec_max_score)
                 
                 
-                first_rec_max_score -=5
                 
+# =============================================================================
+#                 first_rec_max_score -=5
+# =============================================================================
+
+                  
                 output.append(jsonApt)
             
 # =============================================================================
 #         print('* 2nd predict? : ',int(self.optSecond))
 # =============================================================================
+
+
+        # 1차는 300점 만점
+        # 내가 선택한 아이템과 일치한가? 100점
+        # 내가 선택한 아이템의 거리가 가장 작은가? 100점
+        # 내가 선택한 아이템중 가장 많은 주변시설을 가지고 있는가? 100점
+# =============================================================================
+#         print('111 : ', queryDataEqualCounts)
+#         print('222 : ', queryDataNotSelItemCnt)
+#         print('333 : ', queryDataTotalkm)
+# =============================================================================
+        maxQueryDataEqualCounts = 0
+        try:
+            maxQueryDataEqualCounts = max(queryDataEqualCounts)
+        except:
+            pass
         
-        if int(self.optSecond) == 1 and '노원구' in self.guName:
+        minQueryDataTotalkm = 0
+        try:
+            minQueryDataTotalkm = min(queryDataTotalkm)
+        except:
+            pass
+        
+        maxQueryDataNotSelItemCnt = 0
+        try:
+            maxQueryDataNotSelItemCnt = max(queryDataNotSelItemCnt)
+        except:
+            pass
+       
+        p1_max_score = 300
+        
+        if maxQueryDataEqualCounts != 0 and minQueryDataTotalkm != 0:
+            
+            for out in output:
                 
-            # 리스트에 나온 데이터들의 매매가격지수 가져와서 minmaxscaling 돌린다.            
-# =============================================================================
-#             min_max_scaler = MinMaxScaler()
-#             min_max_scaler.fit(np.array(list_all_maemae_jisu).reshape(-1, 1))     
-#                    
-# =============================================================================
-            finalScore = []
+                if maxQueryDataNotSelItemCnt == 0:
+                    
+                    p1_max_score = 200
+    
+                p1_con1 = (out['queryDataEqualCount'] / queryTrueValueCnt) * 100
+                p1_con2 = (out['queryDataTotalkm'] / minQueryDataTotalkm) * 100
+                print(p1_con1, ' ',out['queryDataTotalkm'], ' / ' ,minQueryDataTotalkm)
+                
+                if p1_con2 > 100:
+                   p1_con2 = 200 - p1_con2
+                   
+        
+                p1_con3 = 0            
+                if maxQueryDataNotSelItemCnt != 0:
+                    p1_con3 = (out['queryDataNotSelItemCnt'] / maxQueryDataNotSelItemCnt) * 100
+            
+                if p1_max_score == 300:
+                    p1_score = ((p1_con1 + p1_con3) / 300) * 100                
+                else :
+                    p1_score = ((p1_con1) / 200) * 100                
+                
+                out['score_sim'] = str(round(p1_con1,2))
+                out['score_p1'] = str(int(p1_con1))
+                out['score_sort'] = float(p1_score)
+        else :
+            
+            max_p1_score = 100
+            for out in output:
+                
+                out['score_sim'] = str('-')
+                out['score_p1'] = str(max_p1_score)
+                out['score_sort'] = float(max_p1_score)
+                max_p1_score -= 5
+            
+
+        finalScore = []
+                
+        if int(self.optSecond) == 1 and '노원구' in self.guName:
+                           
             maxjisu = 105.74
             minjisu = 85.28
             
@@ -882,30 +1021,32 @@ class Recommend1:
                     
                 d['score'] = float(d['score_p1']) + float(scorep2) + float(scorep3)
                 
-                score_sim = (float(d['score']) /150) * 100
-                d['score_sim'] = str(round(score_sim,2))
-                
                 finalScore.append(d)
             
-            result = sorted(finalScore, key=(lambda finalScore:finalScore['score']), reverse = True)        
-            
-            return result
-        
+            result = sorted(finalScore, key=(lambda finalScore:(d['score'])))                
+            return result        
         else:
             
-            result =[]
             for d in output:
                 d['score_p2'] = 0
                 d['score_p3'] = 0
-                d['score'] = float(d['score_p1'])
+                d['score'] = d['score_p1']
                 d['score_p3_len'] = 0
-                score_sim = (float(d['score']) /100) * 100
-                d['score_sim'] = str(round(score_sim,2))
-                result.append(d)
+                
+                finalScore.append(d)
             
-           
+            result = sorted(finalScore, key=(lambda finalScore:finalScore['score_sort']), reverse = True)                
             return result
-    
+# =============================================================================
+#         for re in result:
+#             print(re['score'])
+#             
+# =============================================================================
+            
+# =============================================================================
+#         print(result)
+# =============================================================================
+
 
     def getDistanceKmPointToPoint(self, toLat, toLon, fromLat, fromLon):
         toLoc = (float(toLat), float(toLon))
@@ -924,7 +1065,9 @@ class Recommend1:
 
         # 해당 범위 안에 들어오는 아이템들만 추린다. 
         inRangeItems = [] 
-
+        
+        selQueryInRangeItemTotalkm = 0
+        
         for item in selectItems:
             try:
 
@@ -938,6 +1081,7 @@ class Recommend1:
                         item['km'] = km
     
                         if km <= itemLimitKm:   
+                            selQueryInRangeItemTotalkm += km
                             inRangeItems.append(item)
 
             except:
@@ -948,7 +1092,7 @@ class Recommend1:
                  
 
 
-        return inRangeItems
+        return inRangeItems, selQueryInRangeItemTotalkm
     
         
     ######################################
@@ -1310,22 +1454,21 @@ stopword = [
 
 
 
-# =============================================================================
-# multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword,
-# 
-#                                                )),
-#                       ('nbc', MultinomialNB())])
-# =============================================================================
-
-mecab = Mecab()
-
-def tokenizer_mecab_morphs(doc):
-    return mecab.morphs(doc)
-
-
-multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
+multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword,
+                                               )),
                       ('nbc', MultinomialNB())])
 
+# =============================================================================
+# mecab = Mecab()
+# 
+# def tokenizer_mecab_morphs(doc):
+#     return mecab.morphs(doc)
+# 
+# 
+# multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
+#                       ('nbc', MultinomialNB())])
+# 
+# =============================================================================
 
 
 if __name__ == "__main__":
@@ -1365,7 +1508,15 @@ if __name__ == "__main__":
     multi_nbc.fit(train, label)
 
     app.run(host='0.0.0.0',port=5001)
-    
+
+# =============================================================================
+#     recommend.setup('3', '노원구', '0', '1', '1','0','0','0','0','0','0','0','3000000000')
+#     out = recommend.run(multi_nbc)
+#  
+#     data = {}
+#     data['data'] = out
+#     ojson = jsonify(data)
+# =============================================================================
     
     
     
