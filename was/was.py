@@ -961,7 +961,9 @@ class Recommend1:
     
                 p1_con1 = (out['queryDataEqualCount'] / queryTrueValueCnt) * 100
                 p1_con2 = (out['queryDataTotalkm'] / minQueryDataTotalkm) * 100
-                print(p1_con1, ' ',out['queryDataTotalkm'], ' / ' ,minQueryDataTotalkm)
+# =============================================================================
+#                 print(p1_con1, ' ',out['queryDataTotalkm'], ' / ' ,minQueryDataTotalkm)
+# =============================================================================
                 
                 if p1_con2 > 100:
                    p1_con2 = 200 - p1_con2
@@ -1023,7 +1025,11 @@ class Recommend1:
                 
                 finalScore.append(d)
             
-            result = sorted(finalScore, key=(lambda finalScore:(d['score'])))                
+            result = sorted(finalScore, key=(lambda finalScore:(d['score'])), reverse = True)                
+            
+# =============================================================================
+#             
+# =============================================================================
             return result        
         else:
             
@@ -1454,21 +1460,21 @@ stopword = [
 
 
 
-multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword,
-                                               )),
+# =============================================================================
+# multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword,
+#                                                )),
+#                       ('nbc', MultinomialNB())])
+# =============================================================================
+
+mecab = Mecab()
+
+def tokenizer_mecab_morphs(doc):
+    return mecab.morphs(doc)
+
+
+multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
                       ('nbc', MultinomialNB())])
 
-# =============================================================================
-# mecab = Mecab()
-# 
-# def tokenizer_mecab_morphs(doc):
-#     return mecab.morphs(doc)
-# 
-# 
-# multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
-#                       ('nbc', MultinomialNB())])
-# 
-# =============================================================================
 
 
 if __name__ == "__main__":
