@@ -967,8 +967,7 @@ class Recommend1:
                 
                 if p1_con2 > 100:
                    p1_con2 = 200 - p1_con2
-                   
-        
+                           
                 p1_con3 = 0            
                 if maxQueryDataNotSelItemCnt != 0:
                     p1_con3 = (out['queryDataNotSelItemCnt'] / maxQueryDataNotSelItemCnt) * 100
@@ -995,7 +994,7 @@ class Recommend1:
         finalScore = []
                 
         if int(self.optSecond) == 1 and '노원구' in self.guName:
-                           
+            print('여기이이이이이이이잉------------------------------')
             maxjisu = 105.74
             minjisu = 85.28
             
@@ -1005,7 +1004,9 @@ class Recommend1:
                 mmjisu = d['maemae_jisu']
                 lastmmjisu = mmjisu[len(mmjisu) - 1]
                 #'scorep2 매매가격지수 : ', 
-                print(float(lastmmjisu['predict_jisu']))
+# =============================================================================
+#                 print(float(lastmmjisu['predict_jisu']))
+# =============================================================================
                 jisuscale = (float(lastmmjisu['predict_jisu']) - minjisu) / (maxjisu - minjisu)
                 
                 scorep2 = jisuscale * 40
@@ -1022,11 +1023,15 @@ class Recommend1:
 
                     
                 d['score'] = float(d['score_p1']) + float(scorep2) + float(scorep3)
-                
                 finalScore.append(d)
             
-            result = sorted(finalScore, key=(lambda finalScore:(d['score'])), reverse = True)                
+            result = sorted(finalScore, key=(lambda finalScore:(finalScore['score'])), reverse = True)                
+           
+            for re in result:
+                print(re['score'])
             
+
+
 # =============================================================================
 #             
 # =============================================================================
@@ -1460,20 +1465,20 @@ stopword = [
 
 
 
+multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword,
+                                               )),
+                      ('nbc', MultinomialNB())])
+
 # =============================================================================
-# multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword,
-#                                                )),
+# mecab = Mecab()
+# 
+# def tokenizer_mecab_morphs(doc):
+#     return mecab.morphs(doc)
+# 
+# 
+# multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
 #                       ('nbc', MultinomialNB())])
 # =============================================================================
-
-mecab = Mecab()
-
-def tokenizer_mecab_morphs(doc):
-    return mecab.morphs(doc)
-
-
-multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
-                      ('nbc', MultinomialNB())])
 
 
 
