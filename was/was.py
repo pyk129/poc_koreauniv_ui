@@ -959,11 +959,10 @@ class Recommend1:
                     
                     p1_max_score = 200
     
+
                 p1_con1 = (out['queryDataEqualCount'] / queryTrueValueCnt) * 100
+                print(out['queryDataEqualCount'], ' / ', queryTrueValueCnt, )
                 p1_con2 = (out['queryDataTotalkm'] / minQueryDataTotalkm) * 100
-# =============================================================================
-#                 print(p1_con1, ' ',out['queryDataTotalkm'], ' / ' ,minQueryDataTotalkm)
-# =============================================================================
                 
                 if p1_con2 > 100:
                    p1_con2 = 200 - p1_con2
@@ -973,15 +972,15 @@ class Recommend1:
                     p1_con3 = (out['queryDataNotSelItemCnt'] / maxQueryDataNotSelItemCnt) * 100
             
                 if p1_max_score == 300:
-                    p1_score = ((p1_con1 + p1_con2 + p1_con3) / 300) * 100                
+                    sort_score = ((p1_con1 + p1_con2 + p1_con3) / 300) * 100                
                 else :
-                    p1_score = ((p1_con1 + p1_con2) / 200) * 100                
+                    sort_score = ((p1_con1 + p1_con2) / 200) * 100                
                 
-                p1 = ( (p1_con1 + p1_con2) / 200 ) * 100
                 
-                out['score_sim'] = str(round(p1,2))
-                out['score_p1'] = str(int(p1))
-                out['score_sort'] = float(p1_score)
+                out['score_sim'] = str(round(p1_con1,2))
+                out['score_p1'] = str(int(p1_con1))
+                out['score_sort'] = float(sort_score)
+                
         else :
             
             max_p1_score = 100
@@ -1480,8 +1479,8 @@ multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=sto
 # 
 # multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
 #                       ('nbc', MultinomialNB())])
+# 
 # =============================================================================
-
 
 
 if __name__ == "__main__":
