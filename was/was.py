@@ -978,7 +978,7 @@ class Recommend1:
                 
                 # out['score_sim'] = str(round(p1_con1,2))
                 out['score_p1'] = str(int(p1_con1))
-                out['score_sort'] = float(sort_score)
+                out['score_sort'] = float(p1_con1)
                 
         else :
             
