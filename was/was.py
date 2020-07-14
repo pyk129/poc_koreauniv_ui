@@ -1465,21 +1465,21 @@ stopword = [
 
 
 
-multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword,
-                                               )),
-                      ('nbc', MultinomialNB())])
-
 # =============================================================================
-# mecab = Mecab()
-# 
-# def tokenizer_mecab_morphs(doc):
-#     return mecab.morphs(doc)
-# 
-# 
-# multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
+# multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword,
+#                                                )),
 #                       ('nbc', MultinomialNB())])
 # 
 # =============================================================================
+mecab = Mecab()
+
+def tokenizer_mecab_morphs(doc):
+    return mecab.morphs(doc)
+
+
+multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
+                      ('nbc', MultinomialNB())])
+
 
 
 if __name__ == "__main__":
