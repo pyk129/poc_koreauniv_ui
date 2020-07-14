@@ -955,29 +955,28 @@ class Recommend1:
             
             for out in output:
                 
-                if maxQueryDataNotSelItemCnt == 0:
-                    
-                    p1_max_score = 200
-    
-
+                # if maxQueryDataNotSelItemCnt == 0:
+                #     p1_max_score = 200
                 p1_con1 = (out['queryDataEqualCount'] / queryTrueValueCnt) * 100
-                print(out['queryDataEqualCount'], ' / ', queryTrueValueCnt, )
-                p1_con2 = (out['queryDataTotalkm'] / minQueryDataTotalkm) * 100
+                # print(out['queryDataEqualCount'], ' / ', queryTrueValueCnt, )
+                # p1_con2 = (out['queryDataTotalkm'] / minQueryDataTotalkm) * 100
                 
-                if p1_con2 > 100:
-                   p1_con2 = 200 - p1_con2
+                # if p1_con2 > 100:
+                #    p1_con2 = 200 - p1_con2
                            
-                p1_con3 = 0            
-                if maxQueryDataNotSelItemCnt != 0:
-                    p1_con3 = (out['queryDataNotSelItemCnt'] / maxQueryDataNotSelItemCnt) * 100
+                # p1_con3 = 0            
+                # if maxQueryDataNotSelItemCnt != 0:
+                #     p1_con3 = (out['queryDataNotSelItemCnt'] / maxQueryDataNotSelItemCnt) * 100
             
-                if p1_max_score == 300:
-                    sort_score = ((p1_con1 + p1_con2 + p1_con3) / 300) * 100                
-                else :
-                    sort_score = ((p1_con1 + p1_con2) / 200) * 100                
+                # if p1_max_score == 300:
+                    # sort_score = ((p1_con1 + p1_con2 + p1_con3) / 300) * 100                
+                #     sort_score = ((p1_con1 + p1_con2 + p1_con3) / 300) * 100                
+                # else :
+                #     sort_score = p1_con1 * 100                
+                    # sort_score = ((p1_con1 + p1_con2) / 200) * 100                
                 
                 
-                out['score_sim'] = str(round(p1_con1,2))
+                # out['score_sim'] = str(round(p1_con1,2))
                 out['score_p1'] = str(int(p1_con1))
                 out['score_sort'] = float(sort_score)
                 
@@ -986,7 +985,7 @@ class Recommend1:
             max_p1_score = 100
             for out in output:
                 
-                out['score_sim'] = str('-')
+                # out['score_sim'] = str('-')
                 out['score_p1'] = str(max_p1_score)
                 out['score_sort'] = float(max_p1_score)
                 max_p1_score -= 5
@@ -995,7 +994,7 @@ class Recommend1:
         finalScore = []
                 
         if int(self.optSecond) == 1 and '노원구' in self.guName:
-            print('여기이이이이이이이잉------------------------------')
+            # print('여기이이이이이이이잉------------------------------')
             maxjisu = 105.74
             minjisu = 85.28
             
