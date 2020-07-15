@@ -49,7 +49,11 @@
 
 			// 매입가격
 			priceinput = $("#FormControlInput1").val();
-
+		
+			if (priceinput.length == 0){
+				priceinput = inputNumberWithComma(0);
+			}
+			
 			// 부동산 알아보는 이유 
 			checkSel2 = $("input:radio[name='check02']:checked").val();
 
@@ -151,7 +155,7 @@
 			}
 			// 250000000
 			var pricemy = inputNumberWithComma(237000000);
-
+			
 			location.href = 'step2.html?sel1=' + reEle + '&sel2=' + reMid + '&sel3=' + reHigh + '&sel4=' + reEdu + '&sel5=' + reMart + '&sel6=' + reDepartment + '&sel7=' + reSubway + '&sel8=' + reHosp + '&sel9=' + rePark + '&reco2nd=' + sel2차추천여부 + '&priceinput=' + priceinput + '&priceloan=' + priceloan + '&pricemy=' + pricemy;
 
 			// model = TheModelClass(*args, **kwargs)
@@ -232,7 +236,7 @@
 
 		<div class="form-group">
 			<form>
-				<h3>부동산 정보 입력</h3>
+				<h3>산 정보 입력</h3>
 				<div class="form-group mt-4">
 					<label for="FormControlInput1">1. 전 단계에서 선택하신 자산외에 추가로 조달 가능한 금액을 알려주세요</label>
 					<input type="string" class="form-control" id="FormControlInput1" value=""

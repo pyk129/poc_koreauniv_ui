@@ -494,6 +494,7 @@
 					
 
 					kakao.maps.event.addListener(marker, 'mouseover', function () {
+						movePan(item['LAT_WGS'], item['LON_WGS']);
 						displayInfowindow(marker, item);
 						displayAptCircle(item);
 					});
@@ -748,7 +749,6 @@
 				// select7: checkSel7,
 				// select6: checkSel8,
 				// select7: checkSel9
-
 
 				algo: '3',
 				gu: guName,
@@ -1089,7 +1089,7 @@
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link" href="./step1.html" target="_blank" rel="noopener"><i class="material-icons">check_circle_outline</i> 설문조사</a>
+					<a class="nav-link" href="./step1.html" ><i class="material-icons">check_circle_outline</i> 설문조사</a>
 				</li>
 	
 			  <!-- <li class="nav-item">
@@ -1338,9 +1338,10 @@
 			// 이동할 위도 경도 위치를 생성합니다
 			var moveLatLon = new kakao.maps.LatLng(lat, lon);
 
+
 			// 지도 중심을 부드럽게 이동시킵니다
 			// 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
-			map.panTo(moveLatLon);
+			map.setCenter(moveLatLon);
 
 		};
 
