@@ -855,9 +855,7 @@ class Recommend1:
                          jisuItem['jisu'] = str(d['매매가격지수'])
                          jisuItem['realprice'] = str(int(d['거래금액(만원)']))
                          jisuItem['room_size'] = str(d['전용면적(㎡)'])[:2]
-# =============================================================================
-#                          test.append(str(d['전용면적(㎡)'])[:2])
-# =============================================================================
+                         test.append(str(d['전용면적(㎡)'])[:2])
     # =============================================================================
     #                      jisuItem['predict_jisu'] = str(predict[index])
     # =============================================================================
@@ -870,13 +868,14 @@ class Recommend1:
                          jisuItem['realprice'] = str(int(d['거래금액(만원)']))     
                          jisuItem['room_size'] = str(d['전용면적(㎡)'])[:2]                                   
                          maemae_jisu_2020.append(jisuItem)
-# =============================================================================
-#                          test.append(str(d['전용면적(㎡)'])[:2])
-# =============================================================================
-                                    
+                         test.append(str(d['전용면적(㎡)'])[:2])
+                        
+                    print('[',str(d['전용면적(㎡)'])[:2],']  ', jisuItem['realprice'])
 # =============================================================================
 #                 recentRoomSize = str(dfAptInfo.iloc[i]['전용면적(㎡)'])
 # =============================================================================
+                print("1234567 : ", test)
+                
                 maemae_jisu = sorted(maemae_jisu, key=(lambda maemae_jisu:maemae_jisu['date']), reverse = False)   
                 maemae_jisu_2020 = sorted(maemae_jisu_2020, key=(lambda maemae_jisu_2020:maemae_jisu_2020['date']), reverse = False)   
                                 
@@ -1590,8 +1589,8 @@ multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=sto
                       ('nbc', MultinomialNB())])
 
 
-
 # =============================================================================
+# 
 # mecab = Mecab()
 # 
 # def tokenizer_mecab_morphs(doc):
@@ -1600,9 +1599,9 @@ multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=sto
 # 
 # multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
 #                       ('nbc', MultinomialNB())])
+# 
+# 
 # =============================================================================
-
-
 
 if __name__ == "__main__":
        
