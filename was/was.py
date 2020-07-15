@@ -552,7 +552,7 @@ class Recommend1:
         dfcomment = pd.DataFrame(self.openFile(self.path_댓글데이터))
         dfcomment['total'] = dfcomment['content']
    
-        testCommentKey = ['월계풍림아이원','월계그랑빌','공릉풍림아이원','월계삼창','하계극동건영벽산','월계풍림아이원','상계벽산','월계극동','월계유원','월계삼호4차','중계건영2차','월계서광','공릉1동삼익','공릉대주파크빌']
+        testCommentKey = ['월계풍림아이원','월계그랑빌','공릉풍림아이원','월계삼창','하계극동건영벽산','월계풍림아이원','상계벽산','월계극동','월계유원','월계삼호4차','중계건영2차','월계서광','공릉1동삼익','공릉대주파크빌','중계건영2차','중계무지개아파트','수락산벨리체아파트','상계미도','월계한일1차']
         testCommentData = {}
     
         item1 = ['석계역과 광운대역 두개의 역을 사용할 수 있는점, 그리고 석계역과 3분거리 라는 점이 강점이죠.',
@@ -647,6 +647,44 @@ class Recommend1:
                '음식물쓰레기 처리장치가 지을때부터 설치되어있어 진짜편함',
                '공릉시장 매우 가깝고,차타고 10분이면 이마트, 트레이더스',
                '대규모 단지가 아닌 나홀로 아파트지만 관리 잘해주셔서 깨끗하고 가성비 끝판왕 살기 좋은 아파트입니다 굳bb']
+        
+        testCommentData['중계건영2차'] = ['이동네서 초중고 다 나왔지만, 생각해보면 질떨어지는 애들은 죄다 목련에 살았음.',
+           '도로측 동은 시끄러워서 문을 못 열어요, 바퀴벌레 많음, 베란다 냄새, 주차 정말 최악, 쓰레기장 별로, 학군 그다지, 먹거리 별로 없음',
+           '백날천날 무슨짓을 한다해도 주변 영세민 아파트 싹 다 밀어버리지 않는한(탈북자 포함) 집값은 절대 안오름',
+           '역세권,공원,학교,유통점 모두 편리합니다',
+           '지하철역이 가까워서 편리하고 주변에 대학병원 마트 영화관등 편의시설이 좋아요.',
+           '역세권,공원,학교,유통점 모두 편리합니다']
+        testCommentData['중계무지개아파트'] = ['양방향으로 마트가 있어서 너무 좋아용',
+           '여기 부동산들은 실거래 한달 꼭 채우고 올리기로 했는지..옆 단지보다 무지 느려요...',
+           '중계역에서 가깝고, 주변 인프라가 잘 되어있어요.',
+           '노원역도 가깝고 중계역에 붙어있고 이래저래 편리했어요. 그리고 층간소음도 못 겪었구요.',
+           '평지에 있는 아파트여서 좋아요.',
+           '주차가 불편하고, 지하주차장이 없는것 차단기가 없는것은 단점이에요']
+        testCommentData['수락산벨리체아파트'] =['주위환경이 조용하고 깨끗이 관리되고 있어요',
+           '단지가 조용하고 산과 인접해 있어 공기 좋음',
+           '산전망이 좋고 공기는 좋으나 열손실이 많아 굉장히 춥고 관리비가 마니 나와요',
+           '주말에는 등산객이 많지만 시끄러울 정도는 아니에요.',
+           '다만 시내로 나가려면 1시간은 잡아야합니다.']
+        testCommentData['상계미도'] =['평지라서 힘들지 않게 도보 이용이 가능하다',
+           '중계역까지 접근성이 좋으며 노원역, 창동역 등 다양한 역으로의 접근이 가능하다.',
+           '당현천과 중랑천으로의 접근성이 좋아서 운동하기에도 좋다.',
+           '겨울에 정말 너무 추웠어요, 이 부분은 수리를 잘하고 들어오면 된다고들 하시던데 저희는 들어온지 오래된 집이다 보니 겨울에 너무 추웠어요.',
+           '서울 끝이다 보니 어딜 출퇴근하나 너무 멀었어요.']
+        testCommentData['월계한일1차'] =['아직 가격이 그리 높지않다.',
+           '세대수가 적어서 관리비가 싸지 않다는점?',
+           '초역세권이라는 말이 딱 어울리는 곳입니다.',
+           '대체적으로 출퇴근이 용이해 좋습니다!']
+
+# =============================================================================
+#         testCommentData[''] =
+#         testCommentData[''] =
+#         testCommentData[''] =
+#         testCommentData[''] =
+#         testCommentData[''] =
+# =============================================================================
+        
+        
+        
         
         list_all_maemae_jisu = []
 
@@ -848,54 +886,56 @@ class Recommend1:
     # =============================================================================
     #                     if not maemae_jisu_lastItem:
     # =============================================================================
+                maemaelen = len(maemae_jisu)
                 
-                maemae_jisu_lastItem = maemae_jisu[len(maemae_jisu) - 1]
-    
-                # 나중에 minmax사용하기 위해 사용 
-                list_all_maemae_jisu.append(float(maemae_jisu_lastItem['predict_jisu']))
-                
-                jsonApt['max_price_room_size'] = maxRoomSize                  
-                jsonApt['min_price_room_size'] = minRoomSize   
-                
-                if len(maemae_jisu_2020) > 0:
-                    lastitem_2020 = maemae_jisu_2020[len(maemae_jisu_2020) - 1]
-                    jsonApt['recent_price'] = int(lastitem_2020['realprice'])
-                    jsonApt['recent_room_size'] = lastitem_2020['room_size']
+                if maemaelen > 0 :
+                    maemae_jisu_lastItem = maemae_jisu[len(maemae_jisu) - 1]
+        
+                    # 나중에 minmax사용하기 위해 사용 
+                    list_all_maemae_jisu.append(float(maemae_jisu_lastItem['predict_jisu']))
                     
-                else:
-                    jsonApt['recent_price'] = int(maemae_jisu_lastItem['realprice'])    
-                    jsonApt['recent_room_size'] = maemae_jisu_lastItem['room_size']
+                    jsonApt['max_price_room_size'] = maxRoomSize                  
+                    jsonApt['min_price_room_size'] = minRoomSize   
+                    
+                    if len(maemae_jisu_2020) > 0:
+                        lastitem_2020 = maemae_jisu_2020[len(maemae_jisu_2020) - 1]
+                        jsonApt['recent_price'] = int(lastitem_2020['realprice'])
+                        jsonApt['recent_room_size'] = lastitem_2020['room_size']
+                        
+                    else:
+                        jsonApt['recent_price'] = int(maemae_jisu_lastItem['realprice'])    
+                        jsonApt['recent_room_size'] = maemae_jisu_lastItem['room_size']
+                    
+                    # 데이터에서 가장 최근의 날짜를 가져온다.
+                    yyyyMM = maemae_jisu_lastItem['date']
                 
-                # 데이터에서 가장 최근의 날짜를 가져온다.
-                yyyyMM = maemae_jisu_lastItem['date']
-                
-                # 가장 마지막 데이터를 가져온다. 
-                last2NdItem = dfAptInfo2[dfAptInfo2['계약년월'].astype(str).str.contains(yyyyMM)]
-                
-                print("가장 최근의 실거래가 데이터 추출 ", last2NdItem)
+                    # 가장 마지막 데이터를 가져온다. 
+                    last2NdItem = dfAptInfo2[dfAptInfo2['계약년월'].astype(str).str.contains(yyyyMM)]
+                    
+                    print("가장 최근의 실거래가 데이터 추출 ", last2NdItem)
+        
+                    from dateutil.relativedelta import relativedelta
+                                       
+                    def createPredict2NdDataAfterMonth(lastItem, afterMonth):
+                         maemaejisu ={}
     
-                from dateutil.relativedelta import relativedelta
-                                   
-                def createPredict2NdDataAfterMonth(lastItem, afterMonth):
-                     maemaejisu ={}
-
-                     nextMonth = (datetime.strptime(str(int(lastItem['계약년월'].iloc[0])), '%Y%m')+ relativedelta(months=afterMonth)).strftime("%Y%m")
-                     maemaejisu['계약년월'] = nextMonth
-                     
-                     ret = {}
-                     ret['date'] = nextMonth
-
-                     ret['predict_jisu'] = str(self.clf_from_joblib.predict(lastItem)[0])
-
-                     return ret
-                
-                # 1개월 뒤만 표기 
-                predict2ndAfter1MonthData = createPredict2NdDataAfterMonth(last2NdItem, 1)
-                
-                print('*************************************************')
-                print('*           2차 매개가격지수 1달뒤 예측               ', predict2ndAfter1MonthData['predict_jisu'])
-                print('*************************************************')
-                maemae_jisu.append(predict2ndAfter1MonthData)
+                         nextMonth = (datetime.strptime(str(int(lastItem['계약년월'].iloc[0])), '%Y%m')+ relativedelta(months=afterMonth)).strftime("%Y%m")
+                         maemaejisu['계약년월'] = nextMonth
+                         
+                         ret = {}
+                         ret['date'] = nextMonth
+    
+                         ret['predict_jisu'] = str(self.clf_from_joblib.predict(lastItem)[0])
+    
+                         return ret
+                    
+                    # 1개월 뒤만 표기 
+                    predict2ndAfter1MonthData = createPredict2NdDataAfterMonth(last2NdItem, 1)
+                    
+                    print('*************************************************')
+                    print('*           2차 매개가격지수 1달뒤 예측               ', predict2ndAfter1MonthData['predict_jisu'])
+                    print('*************************************************')
+                    maemae_jisu.append(predict2ndAfter1MonthData)
 
                 jsonApt['maemae_jisu'] = maemae_jisu
                 jsonApt['maemae_jisu_2020'] = maemae_jisu_2020
@@ -1086,31 +1126,33 @@ class Recommend1:
             minjisu = 85.28
             
             for i, d in enumerate(output):
-                maemae_jisu[len(maemae_jisu) - 1]
-                
-                mmjisu = d['maemae_jisu']
-                lastmmjisu = mmjisu[len(mmjisu) - 1]
-                #'scorep2 매매가격지수 : ', 
-# =============================================================================
-#                 print(float(lastmmjisu['predict_jisu']))
-# =============================================================================
-                jisuscale = (float(lastmmjisu['predict_jisu']) - minjisu) / (maxjisu - minjisu)
-                
-                scorep2 = jisuscale * 40
-                
-                d['score_p2'] = str(int(scorep2))
-                
-                scorep3 = 0
-                if d['score_p3'] != '0':
-                    scorep3 = d['score_p3']
-                    d['score_p3_len'] = d['score_p3']
+                try:
+                    mmjisu = d['maemae_jisu']
+                    lastmmjisu = mmjisu[len(mmjisu) - 1]
+                    #'scorep2 매매가격지수 : ', 
+    # =============================================================================
+    #                 print(float(lastmmjisu['predict_jisu']))
+    # =============================================================================
+                    jisuscale = (float(lastmmjisu['predict_jisu']) - minjisu) / (maxjisu - minjisu)
                     
-                else :
-                    d['score_p3_len'] = 0
+                    scorep2 = jisuscale * 40
+                    
+                    d['score_p2'] = str(int(scorep2))
+                    
+                    scorep3 = 0
+                    if d['score_p3'] != '0':
+                        scorep3 = d['score_p3']
+                        d['score_p3_len'] = d['score_p3']
+                        
+                    else :
+                        d['score_p3_len'] = 0
+    
+                        
+                    d['score'] = float(d['score_p1']) + float(scorep2) + float(scorep3)
+                    finalScore.append(d)
 
-                    
-                d['score'] = float(d['score_p1']) + float(scorep2) + float(scorep3)
-                finalScore.append(d)
+                except:
+                    pass
             
             result = sorted(finalScore, key=(lambda finalScore:(finalScore['score'])), reverse = True)                
            
@@ -1558,8 +1600,8 @@ multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=sto
 # 
 # multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
 #                       ('nbc', MultinomialNB())])
-# 
 # =============================================================================
+
 
 
 if __name__ == "__main__":

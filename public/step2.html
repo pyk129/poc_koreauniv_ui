@@ -642,11 +642,11 @@
 				itemStr += "<button class=\"btn btn-info mr-2 text-center\" style='width: 30%'>투자성:"+item['score_p2']+"점</button>";
 			}
 			
-			if(parseInt(item['score_p3_len']) == 0){
+			if(item['score_p3_len'] == 0){
 				if(optSecond == 0){
 					itemStr += "<button class=\"btn btn-success text-center mr-2\" style='width: 30%'>평판:"+ item['comment'].length +"건</button>";				
 				} else {
-					itemStr += "<button class=\"btn btn-success text-center mr-2\" style='width: 30%'>내역없음</button>";
+					itemStr += "<button class=\"btn btn-success text-center mr-2\" style='width: 30%'>퍙판:0점</button>";
 				}
 
 			} else {
@@ -732,7 +732,7 @@
 			// sel8 = 0;
 			// sel9 = 0;
 
-			// 'http://127.0.0.1:5001/send_py'
+			// 'http://	.0.0.1:5001/send_py'
 			// 'http://aws.hancy.kr:8802/send_py
 			//
 			// http://aws.hancy.kr:8802/send_py
@@ -924,41 +924,127 @@
 				realpriceDatas59 = [];
 				realPriceLabelDatas59 = [];
 
+				realpriceDatas5984 = [];
+				realPriceLabelDatas5984 = [];
+
 				realpriceDatas84 = [];
 				realPriceLabelDatas84 = [];
 
 				var realPriceDict = {};
 				
+				var yyyymm = '';
+				var tmp_room_size = 0;
 				for (var i = 0; i < item['maemae_jisu'].length; i++) {
 					labelDatas.push(item['maemae_jisu'][i]['date']);;
 					jisuDatas.push(item['maemae_jisu'][i]['jisu']);;
 					predictJisuDatas.push(item['maemae_jisu'][i]['predict_jisu']);	
 
-					var room_size = item['maemae_jisu'][i]['room_size']
-					if (room_size == '59'){
-						realpriceDatas59.push(item['maemae_jisu'][i]['realprice']);
-						realPriceLabelDatas59.push(item['maemae_jisu'][i]['date']);
+					var room_size = parseInt(item['maemae_jisu'][i]['room_size']);
+					var date = item['maemae_jisu'][i]['date'];
 
-					} else {
-						// 84
+					// && (tmp_room_size != 0 && tmp_room_size == room_size)
+					if ((yyyymm != undefined && date == yyyymm) ){
+						continue;
+					}
+
+					if (room_size <= 59){
+						realpriceDatas59.push(item['maemae_jisu'][i]['realprice']);
+						realPriceLabelDatas59.push(date);
+
+					} 
+					// else if(room_size > 59 && room_size <= 84) { 
+					// 	// 84 이하
+					// 	realpriceDatas5984.push(item['maemae_jisu'][i]['realprice']);
+					// 	realPriceLabelDatas5984.push(date);
+
+					// } 
+					else {
+						// 84 이상
 						realpriceDatas84.push(item['maemae_jisu'][i]['realprice']);
-						realPriceLabelDatas84.push(item['maemae_jisu'][i]['date']);
+						realPriceLabelDatas84.push(date);
+					}
+					tmp_room_size = room_size;
+					yyyymm = date;
+
+				}
+				yyyymm = '';
+				tmp_room_size = 0;
+
+				
+				for (var i = 0; i < item['maemae_jisu'].length; i++) {
+
+					var room_size = parseInt(item['maemae_jisu'][i]['room_size']);
+					var date = item['maemae_jisu'][i]['date'];
+
+					// && (tmp_room_size != 0 && tmp_room_size == room_size)
+					if ((yyyymm != undefined && date == yyyymm) ){
+						continue;
+					}
+
+					if (room_size <= 59){
+					} else {
+						realpriceDatas84.push(item['maemae_jisu'][i]['realprice']);
+						realPriceLabelDatas84.push(date);
+
 					}
 				}
+				yyyymm = '';
+				tmp_room_size = 0;
+
 				if (item['maemae_jisu_2020'] != undefined){
 					for (var i = 0; i < item['maemae_jisu_2020'].length; i++) {
+						
+						var room_size = parseInt(item['maemae_jisu_2020'][i]['room_size']);
+						var date = item['maemae_jisu_2020'][i]['date'];
 
-						var room_size = item['maemae_jisu'][i]['room_size']
-						if (room_size == '59'){
-							realpriceDatas59.push(item['maemae_jisu_2020'][i]['realprice']);
-							realPriceLabelDatas59.push(item['maemae_jisu_2020'][i]['date']);
-
-						} else {
-							// 84
-							realpriceDatas84.push(item['maemae_jisu_2020'][i]['realprice']);
-							realPriceLabelDatas84.push(item['maemae_jisu_2020'][i]['date']);
-
+						// && (tmp_room_size != 0 && tmp_room_size == room_size)
+						if ((yyyymm != undefined && date == yyyymm) ){
+							continue;
 						}
+
+						if (room_size <= '59'){
+							realpriceDatas59.push(item['maemae_jisu_2020'][i]['realprice']);
+							realPriceLabelDatas59.push(date);
+
+						} 
+						
+						// else if(room_size > 59 && room_size <= 84) { 
+						// 	// 84 이하
+						// 	realpriceDatas5984.push(item['maemae_jisu_2020'][i]['realprice']);
+						// 	realPriceLabelDatas5984.push(date);
+
+						// } 
+						
+						// else {
+						// 	// 84 이상
+						// 	realpriceDatas84.push(item['maemae_jisu_2020'][i]['realprice']);
+						// 	realPriceLabelDatas84.push(date);
+						// }
+						tmp_room_size = room_size;
+						yyyymm = date;
+					}
+				}
+
+				yyyymm = '';
+				tmp_room_size = 0;
+
+				
+				for (var i = 0; i < item['maemae_jisu_2020'].length; i++) {
+
+					var room_size = parseInt(item['maemae_jisu_2020'][i]['room_size']);
+					var date = item['maemae_jisu_2020'][i]['date'];
+
+					// && (tmp_room_size != 0 && tmp_room_size == room_size)
+					if ((yyyymm != undefined && date == yyyymm) ){
+						continue;
+					}
+
+					
+					if (room_size <= '59'){
+					} else {
+						realpriceDatas84.push(item['maemae_jisu_2020'][i]['realprice']);
+						realPriceLabelDatas84.push(date);
+
 					}
 				}
 
@@ -974,7 +1060,7 @@
 							labels: realPriceLabelDatas59,
 							datasets: [
 								{
-									label: '실거래가(59)', backgroundColor: 'transparent', borderColor: 'purple', data: realpriceDatas59
+									label: '실거래가(59이하)', backgroundColor: 'transparent', borderColor: 'purple', data: realpriceDatas59
 								}
 								
 							]
@@ -986,10 +1072,33 @@
 					$('#realpriceChart').hide();
 				}
 
-				if( realPriceLabelDatas84.length > 0){
-					$('#realpriceChart2').show();
+				// if( realPriceLabelDatas5984.length > 0){
+				// 	$('#realpriceChart2').show();
 
-					var ctx = document.getElementById('realpriceChart2').getContext('2d');
+				// 	var ctx = document.getElementById('realpriceChart2').getContext('2d');
+				// 	var chart2 = new Chart(ctx,
+				// 	{ // 챠트 종류를 선택
+				// 		type: 'line',
+				// 		// 챠트를 그릴 데이타 
+				// 		data: {
+				// 			labels: realPriceLabelDatas5984,
+				// 			datasets: [
+				// 				{
+				// 					label: '실거래가(59이상-84이하)', backgroundColor: 'transparent', borderColor: 'red', data: realpriceDatas5984
+				// 				}
+				// 			]
+				// 		}, // 옵션
+				// 		options: {}
+				// 	});
+				// } else {
+				// 	$('#realpriceChart2').hide();
+				// }
+
+
+				if( realPriceLabelDatas84.length > 0){
+					$('#realpriceChart3').show();
+
+					var ctx = document.getElementById('realpriceChart3').getContext('2d');
 					var chart2 = new Chart(ctx,
 					{ // 챠트 종류를 선택
 						type: 'line',
@@ -998,14 +1107,14 @@
 							labels: realPriceLabelDatas84,
 							datasets: [
 								{
-									label: '실거래가(84)', backgroundColor: 'transparent', borderColor: 'red', data: realpriceDatas84
+									label: '실거래가(59이상)', backgroundColor: 'transparent', borderColor: 'red', data: realpriceDatas84
 								}
 							]
 						}, // 옵션
 						options: {}
 					});
 				} else {
-					$('#realpriceChart2').hide();
+					$('#realpriceChart3').hide();
 				}
 
 				if(predictJisuDatas.length >=0){
@@ -1689,7 +1798,8 @@
 								<div class="tab-pane" id="realprice">
 									<!-- 차트 -->
 									<div class="container"> <canvas id="realpriceChart"></canvas> </div>
-									<div class="container mt-2"> <canvas id="realpriceChart2"></canvas> </div>
+									<!-- <div class="container mt-2"> <canvas id="realpriceChart2"></canvas> </div> -->
+									<div class="container mt-2"> <canvas id="realpriceChart3"></canvas> </div>
 
 								</div>
 
