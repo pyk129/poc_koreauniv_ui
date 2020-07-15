@@ -74,7 +74,7 @@ class Recommend1:
         
 # =============================================================================
 #         self.device = torch.device('cpu') 
-#         self.model = torch.load(self.path_3ndModel, map_location=self.device)
+#         self.model = torch.load(self.path_3ndModel, map_location=self.device)x
 #         self.model.eval()
 # =============================================================================
         
@@ -337,7 +337,7 @@ class Recommend1:
             if d[0] > 0:
                 queryTrueValueCnt += 1
 
-        print("select_queryCount : ", queryTrueValueCnt) 
+        print("선택된 편의시설 개수 : ", queryTrueValueCnt) 
     
            
         # 아파트 별 거리 구함 
@@ -506,9 +506,7 @@ class Recommend1:
             
        
         output = []
-        
-        first_rec_max_score = 100
-        
+                
         predict2nd = []
         
         rnkcnt = 30
@@ -647,7 +645,7 @@ class Recommend1:
             juso_split = jsonApt['doroJuso'].split()
             
         
-         
+            print(jsonApt)
 # =============================================================================
 #             print('주소 :', jsonApt['doroJuso'])
 #             print('주소 split 결과 :', juso_split)
@@ -669,7 +667,9 @@ class Recommend1:
             
             if len(dfAptInfo) <= 0:
                 # 아파트 정보가 없다면 pass
-                print('아파트 정보 없음 ')
+# =============================================================================
+#                 print('아파트 정보 없음 ')
+# =============================================================================
                 continue
             
             queryDataEqualCounts.append(jsonApt['queryDataEqualCount'])
@@ -691,60 +691,48 @@ class Recommend1:
             if '노원구' not in self.guName:
 
                 recentRealPrice = ''
-                
+                recentRoomSize = ''
                 for i, d in dfAptInfo.iterrows():                  
                      jisuItem = {}
                      jisuItem['date'] = str(int(d['계약년월']))
                      jisuItem['realprice'] = str(int(d['거래금액(만원)']))
                      jisuItem['predict_jisu'] = []
+                     
                                     
                      maemae_jisu.append(jisuItem);
                      recentRealPrice = jisuItem['realprice']
+                     recentRoomSize = str(d['전용면적(㎡)'])
                 
                 jsonApt['maemae_jisu'] = maemae_jisu  
                 jsonApt['recent_price'] = recentRealPrice                
-                jsonApt['score_p1'] = str(first_rec_max_score)
-                jsonApt['comment'] = []
+                jsonApt['recent_room_size'] = recentRoomSize                
                 
-                first_rec_max_score -=5
+                jsonApt['comment'] = []
                 
                 output.append(jsonApt)
                 
             else:
                 
-# =============================================================================
-#                 print('*************************************************')
-#                 print('*                     2차 추천                   *')
-#                 print('*************************************************')
-# =============================================================================
+                print('*************************************************')
+                print('*                     2차 추천                   *')
+                print('*************************************************')
                                 
                 predict = 0        
                 
                 testkey = ['계약년월', '거래금액(만원)', '매매가격지수', '통화금융지표', '기준금리']
                 dfAptInfo2 = dfAptInfo[testkey]
                 predict = self.clf_from_joblib.predict(dfAptInfo2)
-# =============================================================================
-#                 print(predict[0])
-# =============================================================================
-# =============================================================================
-#                 print(predict[1])
-# =============================================================================
-# =============================================================================
-#                 print(len(predict))
-# =============================================================================
-# =============================================================================
-#                 print(len(dfAptInfo2))
-# =============================================================================
                 maemae_jisu_lastItem = {}
                 
                 index = 0
+                recentRoomSize = ''
                 
                 for i, d in dfAptInfo2.iterrows():                  
                      jisuItem = {}
                      jisuItem['date'] = str(int(d['계약년월']))
                      jisuItem['jisu'] = str(d['매매가격지수'])
                      jisuItem['realprice'] = str(int(d['거래금액(만원)']))
-                     
+                                      
 # =============================================================================
 #                      jisuItem['predict_jisu'] = str(predict[index])
 # =============================================================================
@@ -753,6 +741,9 @@ class Recommend1:
                      maemae_jisu_lastItem = d
                      index += 1
                                     
+# =============================================================================
+#                 recentRoomSize = str(dfAptInfo.iloc[i]['전용면적(㎡)'])
+# =============================================================================
                 maemae_jisu = sorted(maemae_jisu, key=(lambda maemae_jisu:maemae_jisu['date']), reverse = False)   
                 
     # =============================================================================
@@ -765,16 +756,15 @@ class Recommend1:
                 list_all_maemae_jisu.append(float(maemae_jisu_lastItem['predict_jisu']))
         
                 jsonApt['recent_price'] = int(maemae_jisu_lastItem['realprice'])
-        
+                jsonApt['recent_room_size'] = recentRoomSize
+                
                 # 데이터에서 가장 최근의 날짜를 가져온다.
                 yyyyMM = maemae_jisu_lastItem['date']
                 
                 # 가장 마지막 데이터를 가져온다. 
                 last2NdItem = dfAptInfo2[dfAptInfo2['계약년월'].astype(str).str.contains(yyyyMM)]
                 
-# =============================================================================
-#                 print("가장 최근의 실거래가 데이터 추출 ", last2NdItem)
-# =============================================================================
+                print("가장 최근의 실거래가 데이터 추출 ", last2NdItem)
     
                 from dateutil.relativedelta import relativedelta
                                    
@@ -794,11 +784,9 @@ class Recommend1:
                 # 1개월 뒤만 표기 
                 predict2ndAfter1MonthData = createPredict2NdDataAfterMonth(last2NdItem, 1)
                 
-# =============================================================================
-#                 print('*************************************************')
-#                 print('*           2차 매개가격지수 1달뒤 예측               ', predict2ndAfter1MonthData['predict_jisu'])
-#                 print('*************************************************')
-# =============================================================================
+                print('*************************************************')
+                print('*           2차 매개가격지수 1달뒤 예측               ', predict2ndAfter1MonthData['predict_jisu'])
+                print('*************************************************')
                 maemae_jisu.append(predict2ndAfter1MonthData)
 
                 jsonApt['maemae_jisu'] = maemae_jisu   
@@ -816,11 +804,9 @@ class Recommend1:
 # =============================================================================
 #                 if int(self.optSecond) == 1 and '노원구' in self.guName:
 # =============================================================================
-# =============================================================================
-#                 print('*************************************************')
-#                 print('*                     3차 추천                   *')
-#                 print('*************************************************')
-# =============================================================================
+                print('*************************************************')
+                print('*                     3차 추천                   *')
+                print('*************************************************')
 
                 if aptName in testCommentKey:
                 
@@ -901,18 +887,9 @@ class Recommend1:
 #                 print(score_p3)
 #                 print(max_score_p3)
 # =============================================================================
-                
-                
+                                
                 # score 기본값 할당 
                 jsonApt['score'] = 0
-            
-                
-                
-                
-                
-# =============================================================================
-#                 first_rec_max_score -=5
-# =============================================================================
 
                   
                 output.append(jsonApt)
@@ -995,7 +972,6 @@ class Recommend1:
         finalScore = []
                 
         if int(self.optSecond) == 1 and '노원구' in self.guName:
-            print('여기이이이이이이이잉------------------------------')
             maxjisu = 105.74
             minjisu = 85.28
             
@@ -1028,9 +1004,6 @@ class Recommend1:
             
             result = sorted(finalScore, key=(lambda finalScore:(finalScore['score'])), reverse = True)                
            
-            for re in result:
-                print(re['score'])
-            
 
 
 # =============================================================================
@@ -1047,13 +1020,8 @@ class Recommend1:
                 
                 finalScore.append(d)
             
-            result = sorted(finalScore, key=(lambda finalScore:finalScore['score_sort']), reverse = True)                
+            result = sorted(finalScore, key=(lambda finalScore:(finalScore['score_p1'], finalScore['score_sort'])), reverse = True)                
             return result
-# =============================================================================
-#         for re in result:
-#             print(re['score'])
-#             
-# =============================================================================
             
 # =============================================================================
 #         print(result)
@@ -1412,25 +1380,26 @@ def userLogin():
     print('algo : ', d['algo'])
     print('gu : ', d['gu'])
     print('optSecond : ', d['optSecond'])
-    
-    print('1 : ', d['select1'])
-    print('2 : ', d['select2'])
-    print('3 : ', d['select3'])
-    print('4 : ', d['select4'])
-    print('5 : ', d['select5'])
-    print('6 : ', d['select6'])
-    print('7 : ', d['select7'])
-    print('8 : ', d['select8'])
-    print('9 : ', d['select9'])
-    print('myprice : ', d['myprice'])
-    
+
+
+    print('선택조건 1 초등학교 선택여부 : ', d['select1'])
+    print('선택조건 2 중하교 선택여부 : ', d['select2'])
+    print('선택조건 3 고등학교 선택여부 : ', d['select3'])
+    print('선택조건 4 학원 선택여부 : ', d['select4'])
+    print('선택조건 5 마트 선택여부 : ', d['select5'])
+    print('선택조건 6 백화점 선택여부 : ', d['select6'])
+    print('선택조건 7 지하철 선택여부 : ', d['select7'])
+    print('선택조건 8 병원  선택여부 : ', d['select8'])
+    print('선택조건 9 공원  선택여부 : ', d['select9'])
+    print('최대 자산정보 : ', d['myprice'])
+       
     recommend.setup( d['algo'], d['gu'], d['optSecond'], d['select1'], d['select2'],d['select3'],d['select4'],d['select5'],d['select6'],d['select7'],d['select8'],d['select9'],d['myprice'])
     out = recommend.run(multi_nbc)
     
     data = {}
     data['data'] = out
     ojson = jsonify(data)
-    
+    print('output : ', ojson)
     return ojson
 #     return jsonify(user)# 받아온 데이터를 다시 전송
 # 엑셀파일 불러옴 
