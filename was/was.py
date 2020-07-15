@@ -51,6 +51,14 @@ class Recommend1:
         self.df실거래가_2020['매매가격지수y'] = 0
         
 # =============================================================================
+#         print("-----------------------------------------------")                
+#         maxPrice = str(df실거래가tmp['거래금액(만원)'].astype(int).max())           
+#         maxDf = df실거래가tmp[df실거래가tmp['거래금액(만원)'] >= maxPrice]
+#         print(maxDf.head())
+#         print("-----------------------------------------------")       
+#         
+# =============================================================================
+# =============================================================================
 #         self.df실거래가_2020['거래금액(만원)'] = self.df실거래가_2020['거래금액(만원)']
 # =============================================================================
 # =============================================================================
@@ -706,10 +714,27 @@ class Recommend1:
             queryDataNotSelItemCnt.append(jsonApt['queryDataNotSelItemCnt'])
             queryDataTotalkm.append(jsonApt['queryDataTotalkm'])
 
-                        
+# =============================================================================
+#             print("-----------------------------------------------")            
+#             print(dfAptInfo['거래금액(만원)'].astype(int).idxmax())
+#             print(dfAptInfo.iloc(3289))
+#             print("-----------------------------------------------")            
+#             
+# =============================================================================
+
             maxPrice = str(dfAptInfo['거래금액(만원)'].astype(int).max())
             minPrice = str(dfAptInfo['거래금액(만원)'].astype(int).min())
             
+# =============================================================================
+#             maxDf = dfAptInfo[dfAptInfo['거래금액(만원)'].astype(int) == maxPrice]
+#             minDf = dfAptInfo[dfAptInfo['거래금액(만원)'].astype(int) == minPrice]
+#             
+# =============================================================================
+# =============================================================================
+#             jisuItem['max_room_size'] = str(maxDf['전용면적(㎡)'])[:2]
+#             jisuItem['min_room_size'] = str(minDf['전용면적(㎡)'])[:2]
+#             
+# =============================================================================
             jsonApt['max_price'] = maxPrice
             jsonApt['min_price'] = minPrice
 
@@ -722,19 +747,30 @@ class Recommend1:
 
                 recentRealPrice = ''
                 recentRoomSize = ''
+                maxRoomSize = ''
+                minRoomSize = ''
                 for i, d in dfAptInfo.iterrows():                  
                      jisuItem = {}
                      jisuItem['date'] = str(int(d['계약년월']))
                      jisuItem['realprice'] = str(int(d['거래금액(만원)']))
                      jisuItem['predict_jisu'] = []
+                     jisuItem['room_size'] = str(d['전용면적(㎡)'])[:2]
                      
+                     if int(d['거래금액(만원)']) >= int(maxPrice):
+                         maxRoomSize = str(d['전용면적(㎡)'])[:2]
+                     if int(d['거래금액(만원)']) <= int(minPrice):
+                         minRoomSize = str(d['전용면적(㎡)'])[:2]
+                         
                      maemae_jisu.append(jisuItem);
-                     recentRealPrice = jisuItem['realprice']
-                     recentRoomSize = str(d['전용면적(㎡)'])
+
                 
+                maemae_jisu = sorted(maemae_jisu, key=(lambda maemae_jisu:maemae_jisu['date']), reverse = False)  
+                maemae_jisu_lastItem = maemae_jisu[len(maemae_jisu) - 1]
                 jsonApt['maemae_jisu'] = maemae_jisu  
-                jsonApt['recent_price'] = recentRealPrice                
-                jsonApt['recent_room_size'] = recentRoomSize                
+                jsonApt['recent_price'] = maemae_jisu_lastItem['realprice']                
+                jsonApt['recent_room_size'] = maemae_jisu_lastItem['room_size']                   
+                jsonApt['max_price_room_size'] = maxRoomSize                  
+                jsonApt['min_price_room_size'] = minRoomSize              
                 
                 jsonApt['comment'] = []
                 
@@ -761,28 +797,44 @@ class Recommend1:
                 maemae_jisu_2020 = []
                 index = 0
                 recentRoomSize = ''
+                maxRoomSize = ''
+                minRoomSize = ''
                 
-                for i, d in dfAptInfo2.iterrows():                  
+                test = []
+                for i, d in dfAptInfo.iterrows():                  
                     strYYYY = str(d['계약년월'])[0:4]
                     yyyy = int(strYYYY)
                     
+                    if int(d['거래금액(만원)']) >= int(maxPrice):
+                         maxRoomSize = str(d['전용면적(㎡)'])[:2]
+                         
+                    if int(d['거래금액(만원)']) <= int(minPrice):
+                         minRoomSize = str(d['전용면적(㎡)'])[:2]
+                         
                     if yyyy < 2020:                            
                          jisuItem = {}
                          jisuItem['date'] = str(int(d['계약년월']))
                          jisuItem['jisu'] = str(d['매매가격지수'])
                          jisuItem['realprice'] = str(int(d['거래금액(만원)']))
-                                          
+                         jisuItem['room_size'] = str(d['전용면적(㎡)'])[:2]
+# =============================================================================
+#                          test.append(str(d['전용면적(㎡)'])[:2])
+# =============================================================================
     # =============================================================================
     #                      jisuItem['predict_jisu'] = str(predict[index])
     # =============================================================================
-                         jisuItem['predict_jisu'] = str(self.clf_from_joblib.predict([d])[0])
+                         jisuItem['predict_jisu'] = str(self.clf_from_joblib.predict([[d['계약년월'],d['거래금액(만원)'],d['매매가격지수'],d['통화금융지표'],d['기준금리']]])[0])
                          maemae_jisu.append(jisuItem);
                          maemae_jisu_lastItem = d
                     else :
                          jisuItem = {}
                          jisuItem['date'] = str(int(d['계약년월']))
-                         jisuItem['realprice'] = str(int(d['거래금액(만원)']))                                          
-                         maemae_jisu_2020.append(jisuItem);
+                         jisuItem['realprice'] = str(int(d['거래금액(만원)']))     
+                         jisuItem['room_size'] = str(d['전용면적(㎡)'])[:2]                                   
+                         maemae_jisu_2020.append(jisuItem)
+# =============================================================================
+#                          test.append(str(d['전용면적(㎡)'])[:2])
+# =============================================================================
                                     
 # =============================================================================
 #                 recentRoomSize = str(dfAptInfo.iloc[i]['전용면적(㎡)'])
@@ -790,6 +842,9 @@ class Recommend1:
                 maemae_jisu = sorted(maemae_jisu, key=(lambda maemae_jisu:maemae_jisu['date']), reverse = False)   
                 maemae_jisu_2020 = sorted(maemae_jisu_2020, key=(lambda maemae_jisu_2020:maemae_jisu_2020['date']), reverse = False)   
                                 
+# =============================================================================
+#                 print('* test set :', set(test))
+# =============================================================================
     # =============================================================================
     #                     if not maemae_jisu_lastItem:
     # =============================================================================
@@ -799,15 +854,17 @@ class Recommend1:
                 # 나중에 minmax사용하기 위해 사용 
                 list_all_maemae_jisu.append(float(maemae_jisu_lastItem['predict_jisu']))
                 
+                jsonApt['max_price_room_size'] = maxRoomSize                  
+                jsonApt['min_price_room_size'] = minRoomSize   
                 
                 if len(maemae_jisu_2020) > 0:
                     lastitem_2020 = maemae_jisu_2020[len(maemae_jisu_2020) - 1]
                     jsonApt['recent_price'] = int(lastitem_2020['realprice'])
+                    jsonApt['recent_room_size'] = lastitem_2020['room_size']
                     
                 else:
-                    jsonApt['recent_price'] = int(maemae_jisu_lastItem['realprice'])
-                    
-                jsonApt['recent_room_size'] = recentRoomSize
+                    jsonApt['recent_price'] = int(maemae_jisu_lastItem['realprice'])    
+                    jsonApt['recent_room_size'] = maemae_jisu_lastItem['room_size']
                 
                 # 데이터에서 가장 최근의 날짜를 가져온다.
                 yyyyMM = maemae_jisu_lastItem['date']
@@ -1501,8 +1558,8 @@ multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=sto
 # 
 # multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
 #                       ('nbc', MultinomialNB())])
+# 
 # =============================================================================
-
 
 
 if __name__ == "__main__":
@@ -1542,8 +1599,8 @@ if __name__ == "__main__":
     multi_nbc.fit(train, label)
 
     app.run(host='0.0.0.0',port=5001)
+
 # =============================================================================
-# 
 #     recommend.setup('3', '노원구', '0', '1', '1','0','0','0','0','0','0','0','3000000000')
 #     out = recommend.run(multi_nbc)
 # =============================================================================

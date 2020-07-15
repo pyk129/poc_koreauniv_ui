@@ -629,9 +629,9 @@
 			// 	itemStr += '    <span>' + item['doroJuso'] + '</span>' +
 			// 		'   <span class="jibun gray">' + item['doroJuso'] + '</span>';
 			// } else {
-			itemStr += '<h6 class="text-danger"><b>최근실거래가 : ' +inputNumberWithHangul(item['recent_price']) + '원</b></h6>';
-			itemStr += '<h6 class="text-success">최고실거래가 : ' +inputNumberWithHangul(item['max_price']) + '원</h6>';
-			itemStr += '<h6 class="text-primary">최저실거래가 : ' +inputNumberWithHangul(item['min_price']) + '원</h6>';
+			itemStr += '<h6 class="text-danger"><b>최근실거래가 : ' +inputNumberWithHangul(item['recent_price']) + '원 ['+item['recent_room_size']+'㎡]</b></h6>';
+			itemStr += '<h6 class="text-success">최고실거래가 : ' +inputNumberWithHangul(item['max_price']) + '원 ['+item['max_price_room_size']+'㎡]</h6>';
+			itemStr += '<h6 class="text-primary">최저실거래가 : ' +inputNumberWithHangul(item['min_price']) + '원 ['+item['min_price_room_size']+'㎡]</h6>';
 			// }
 			itemStr += "<div class=\"col-lg col-form-label text-left mt-2\">";
 			itemStr += "<button class=\"btn btn-primary mr-2 text-center\" style='width: 30%'>적합성:"+item['score_p1']+"점</button>";
@@ -921,25 +921,49 @@
 				
 				jisuDatas = [];
 				predictJisuDatas = [];
-				realpriceDatas = [];
-				realPriceLabelDatas = [];
+				realpriceDatas59 = [];
+				realPriceLabelDatas59 = [];
 
+				realpriceDatas84 = [];
+				realPriceLabelDatas84 = [];
+
+				var realPriceDict = {};
+				
 				for (var i = 0; i < item['maemae_jisu'].length; i++) {
 					labelDatas.push(item['maemae_jisu'][i]['date']);;
 					jisuDatas.push(item['maemae_jisu'][i]['jisu']);;
 					predictJisuDatas.push(item['maemae_jisu'][i]['predict_jisu']);	
-					realpriceDatas.push(item['maemae_jisu'][i]['realprice']);
-					realPriceLabelDatas.push(item['maemae_jisu'][i]['date']);
 
+					var room_size = item['maemae_jisu'][i]['room_size']
+					if (room_size == '59'){
+						realpriceDatas59.push(item['maemae_jisu'][i]['realprice']);
+						realPriceLabelDatas59.push(item['maemae_jisu'][i]['date']);
+
+					} else {
+						// 84
+						realpriceDatas84.push(item['maemae_jisu'][i]['realprice']);
+						realPriceLabelDatas84.push(item['maemae_jisu'][i]['date']);
+					}
 				}
 				if (item['maemae_jisu_2020'] != undefined){
 					for (var i = 0; i < item['maemae_jisu_2020'].length; i++) {
-						realPriceLabelDatas.push(item['maemae_jisu_2020'][i]['date']);;					
-						realpriceDatas.push(item['maemae_jisu_2020'][i]['realprice']);
-					}
 
+						var room_size = item['maemae_jisu'][i]['room_size']
+						if (room_size == '59'){
+							realpriceDatas59.push(item['maemae_jisu_2020'][i]['realprice']);
+							realPriceLabelDatas59.push(item['maemae_jisu_2020'][i]['date']);
+
+						} else {
+							// 84
+							realpriceDatas84.push(item['maemae_jisu_2020'][i]['realprice']);
+							realPriceLabelDatas84.push(item['maemae_jisu_2020'][i]['date']);
+
+						}
+					}
 				}
 
+				if( realPriceLabelDatas59.length > 0){
+					$('#realpriceChart').show();
 				// console.log('data : '+ predictJisuDatas);
 				var ctx = document.getElementById('realpriceChart').getContext('2d');
 				var chart2 = new Chart(ctx,
@@ -947,15 +971,42 @@
 						type: 'line',
 						// 챠트를 그릴 데이타 
 						data: {
-							labels: realPriceLabelDatas,
+							labels: realPriceLabelDatas59,
 							datasets: [
 								{
-									label: '실거래가', backgroundColor: 'transparent', borderColor: 'purple', data: realpriceDatas
+									label: '실거래가(59)', backgroundColor: 'transparent', borderColor: 'purple', data: realpriceDatas59
+								}
+								
+							]
+						}, // 옵션
+						options: {}
+					});
+				
+				} else {
+					$('#realpriceChart').hide();
+				}
+
+				if( realPriceLabelDatas84.length > 0){
+					$('#realpriceChart2').show();
+
+					var ctx = document.getElementById('realpriceChart2').getContext('2d');
+					var chart2 = new Chart(ctx,
+					{ // 챠트 종류를 선택
+						type: 'line',
+						// 챠트를 그릴 데이타 
+						data: {
+							labels: realPriceLabelDatas84,
+							datasets: [
+								{
+									label: '실거래가(84)', backgroundColor: 'transparent', borderColor: 'red', data: realpriceDatas84
 								}
 							]
 						}, // 옵션
 						options: {}
 					});
+				} else {
+					$('#realpriceChart2').hide();
+				}
 
 				if(predictJisuDatas.length >=0){
 					var ctx = document.getElementById('myChart').getContext('2d');
@@ -1638,6 +1689,7 @@
 								<div class="tab-pane" id="realprice">
 									<!-- 차트 -->
 									<div class="container"> <canvas id="realpriceChart"></canvas> </div>
+									<div class="container mt-2"> <canvas id="realpriceChart2"></canvas> </div>
 
 								</div>
 
