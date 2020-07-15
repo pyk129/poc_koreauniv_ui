@@ -918,15 +918,26 @@
 				listjisuDate = listjisu['jisu'];
 
 				labelDatas = [];
+				
 				jisuDatas = [];
 				predictJisuDatas = [];
 				realpriceDatas = [];
+				realPriceLabelDatas = [];
+
 				for (var i = 0; i < item['maemae_jisu'].length; i++) {
 					labelDatas.push(item['maemae_jisu'][i]['date']);;
 					jisuDatas.push(item['maemae_jisu'][i]['jisu']);;
 					predictJisuDatas.push(item['maemae_jisu'][i]['predict_jisu']);	
-					
 					realpriceDatas.push(item['maemae_jisu'][i]['realprice']);
+					realPriceLabelDatas.push(item['maemae_jisu'][i]['date']);
+
+				}
+				if (item['maemae_jisu_2020'] != undefined){
+					for (var i = 0; i < item['maemae_jisu_2020'].length; i++) {
+						realPriceLabelDatas.push(item['maemae_jisu_2020'][i]['date']);;					
+						realpriceDatas.push(item['maemae_jisu_2020'][i]['realprice']);
+					}
+
 				}
 
 				// console.log('data : '+ predictJisuDatas);
@@ -936,7 +947,7 @@
 						type: 'line',
 						// 챠트를 그릴 데이타 
 						data: {
-							labels: labelDatas,
+							labels: realPriceLabelDatas,
 							datasets: [
 								{
 									label: '실거래가', backgroundColor: 'transparent', borderColor: 'purple', data: realpriceDatas

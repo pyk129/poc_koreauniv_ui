@@ -32,6 +32,7 @@ class Recommend1:
     path_공원 = 'datas/data_park'
     
     path_실거래가 = 'datas/apt_realprice/dataApt실거래가_노원구_201701_201912.json'
+    path_실거래가_2020 = 'datas/apt_realprice2/dataApt실거래가_노원구_2020.json'
      
     path_2ndModel = 'datas/20200709_recomment2nd.pkl'
     path_3ndModel = 'C:/Users/pyk12/Downloads/recommendModel3rd_model'
@@ -39,7 +40,35 @@ class Recommend1:
     def loadData(self):
         # 노원구 시설 데이터 로드 
         self.json_apt_datas = self.openFile(self.path_아파트)
-        self.df실거래가 = pd.DataFrame(self.openFile(self.path_실거래가))      
+# =============================================================================
+#         self.df실거래가 = pd.DataFrame(self.openFile(self.path_실거래가))      
+# =============================================================================
+        df실거래가tmp = pd.DataFrame(self.openFile(self.path_실거래가)) 
+        self.df실거래가_2020 = pd.DataFrame(self.openFile(self.path_실거래가_2020))      
+        self.df실거래가_2020['매매가격지수'] = 0
+        self.df실거래가_2020['통화금융지표'] = 0
+        self.df실거래가_2020['기준금리'] = 0
+        self.df실거래가_2020['매매가격지수y'] = 0
+        
+# =============================================================================
+#         self.df실거래가_2020['거래금액(만원)'] = self.df실거래가_2020['거래금액(만원)']
+# =============================================================================
+# =============================================================================
+#         self.df실거래가_2020['본번'] = pd.to_numeric(self.df실거래가_2020['본번'])
+#         self.df실거래가_2020['부번'] = pd.to_numeric(self.df실거래가_2020['부번'])
+#         self.df실거래가_2020['전용면적(㎡)'] = pd.to_numeric(self.df실거래가_2020('전용면적(㎡)'])
+#         self.df실거래가_2020['계약년월'] = pd.to_numeric(self.df실거래가_2020['계약년월'])
+#         self.df실거래가_2020['계약일'] = pd.to_numeric(self.df실거래가_2020['계약일'])
+# # =============================================================================
+# #         self.df실거래가_2020['거래금액(만원)'] = pd.to_numeric(self.df실거래가_2020['거래금액(만원)'].str.replace(pat=',', repl='', regex=False))
+# # =============================================================================
+#         self.df실거래가_2020['층'] = pd.to_numeric(self.df실거래가_2020['층'])
+#         self.df실거래가_2020['건축년도'] = pd.to_numeric(self.df실거래가_2020['건축년도'])
+# 
+# =============================================================================
+        self.df실거래가 = pd.concat([df실거래가tmp, self.df실거래가_2020])
+
+        
         
     def createDataFromJson(self, datas):
         ret = []
@@ -224,6 +253,7 @@ class Recommend1:
         self.guName = gu
         self.path_아파트 = 'datas/apt_list_seoul/apt_data_'+gu+'.json'
         self.path_실거래가 = 'datas/apt_realprice/dataApt실거래가_'+gu+'_201701_201912.json'
+        self.path_실거래가_2020 = 'datas/apt_realprice2/dataApt실거래가_'+gu+'_2020.json'
         
         self.optSecond = optSecond
         self.myprice = myprice
@@ -677,8 +707,8 @@ class Recommend1:
             queryDataTotalkm.append(jsonApt['queryDataTotalkm'])
 
                         
-            maxPrice = str(dfAptInfo['거래금액(만원)'].max())
-            minPrice = str(dfAptInfo['거래금액(만원)'].min())
+            maxPrice = str(dfAptInfo['거래금액(만원)'].astype(int).max())
+            minPrice = str(dfAptInfo['거래금액(만원)'].astype(int).min())
             
             jsonApt['max_price'] = maxPrice
             jsonApt['min_price'] = minPrice
@@ -698,7 +728,6 @@ class Recommend1:
                      jisuItem['realprice'] = str(int(d['거래금액(만원)']))
                      jisuItem['predict_jisu'] = []
                      
-                                    
                      maemae_jisu.append(jisuItem);
                      recentRealPrice = jisuItem['realprice']
                      recentRoomSize = str(d['전용면적(㎡)'])
@@ -720,32 +749,47 @@ class Recommend1:
                 predict = 0        
                 
                 testkey = ['계약년월', '거래금액(만원)', '매매가격지수', '통화금융지표', '기준금리']
+# =============================================================================
+#                 dfAptInfo2 = dfAptInfo[dfAptInfo['계약년월'].str.contains("2020") == False]
+# =============================================================================
                 dfAptInfo2 = dfAptInfo[testkey]
-                predict = self.clf_from_joblib.predict(dfAptInfo2)
-                maemae_jisu_lastItem = {}
                 
+# =============================================================================
+#                 predict = self.clf_from_joblib.predict(dfAptInfo2)
+# =============================================================================
+                maemae_jisu_lastItem = {}
+                maemae_jisu_2020 = []
                 index = 0
                 recentRoomSize = ''
                 
                 for i, d in dfAptInfo2.iterrows():                  
-                     jisuItem = {}
-                     jisuItem['date'] = str(int(d['계약년월']))
-                     jisuItem['jisu'] = str(d['매매가격지수'])
-                     jisuItem['realprice'] = str(int(d['거래금액(만원)']))
-                                      
-# =============================================================================
-#                      jisuItem['predict_jisu'] = str(predict[index])
-# =============================================================================
-                     jisuItem['predict_jisu'] = str(self.clf_from_joblib.predict([d])[0])
-                     maemae_jisu.append(jisuItem);
-                     maemae_jisu_lastItem = d
-                     index += 1
+                    strYYYY = str(d['계약년월'])[0:4]
+                    yyyy = int(strYYYY)
+                    
+                    if yyyy < 2020:                            
+                         jisuItem = {}
+                         jisuItem['date'] = str(int(d['계약년월']))
+                         jisuItem['jisu'] = str(d['매매가격지수'])
+                         jisuItem['realprice'] = str(int(d['거래금액(만원)']))
+                                          
+    # =============================================================================
+    #                      jisuItem['predict_jisu'] = str(predict[index])
+    # =============================================================================
+                         jisuItem['predict_jisu'] = str(self.clf_from_joblib.predict([d])[0])
+                         maemae_jisu.append(jisuItem);
+                         maemae_jisu_lastItem = d
+                    else :
+                         jisuItem = {}
+                         jisuItem['date'] = str(int(d['계약년월']))
+                         jisuItem['realprice'] = str(int(d['거래금액(만원)']))                                          
+                         maemae_jisu_2020.append(jisuItem);
                                     
 # =============================================================================
 #                 recentRoomSize = str(dfAptInfo.iloc[i]['전용면적(㎡)'])
 # =============================================================================
                 maemae_jisu = sorted(maemae_jisu, key=(lambda maemae_jisu:maemae_jisu['date']), reverse = False)   
-                
+                maemae_jisu_2020 = sorted(maemae_jisu_2020, key=(lambda maemae_jisu_2020:maemae_jisu_2020['date']), reverse = False)   
+                                
     # =============================================================================
     #                     if not maemae_jisu_lastItem:
     # =============================================================================
@@ -754,8 +798,15 @@ class Recommend1:
     
                 # 나중에 minmax사용하기 위해 사용 
                 list_all_maemae_jisu.append(float(maemae_jisu_lastItem['predict_jisu']))
-        
-                jsonApt['recent_price'] = int(maemae_jisu_lastItem['realprice'])
+                
+                
+                if len(maemae_jisu_2020) > 0:
+                    lastitem_2020 = maemae_jisu_2020[len(maemae_jisu_2020) - 1]
+                    jsonApt['recent_price'] = int(lastitem_2020['realprice'])
+                    
+                else:
+                    jsonApt['recent_price'] = int(maemae_jisu_lastItem['realprice'])
+                    
                 jsonApt['recent_room_size'] = recentRoomSize
                 
                 # 데이터에서 가장 최근의 날짜를 가져온다.
@@ -789,7 +840,9 @@ class Recommend1:
                 print('*************************************************')
                 maemae_jisu.append(predict2ndAfter1MonthData)
 
-                jsonApt['maemae_jisu'] = maemae_jisu   
+                jsonApt['maemae_jisu'] = maemae_jisu
+                jsonApt['maemae_jisu_2020'] = maemae_jisu_2020
+                
     # =============================================================================
     #                     for i in range(1,13):
     #                         maemae_jisu.append(createPredict2NdDataAfterMonth(last2NdItem.iloc[0], i))
@@ -1433,8 +1486,6 @@ stopword = [
 '어서','어요','인데','아서','이제','보이','으면','아직','은데']
 
 
-
-
 multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword,
                                                )),
                       ('nbc', MultinomialNB())])
@@ -1450,8 +1501,8 @@ multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=sto
 # 
 # multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
 #                       ('nbc', MultinomialNB())])
-# 
 # =============================================================================
+
 
 
 if __name__ == "__main__":
@@ -1491,16 +1542,18 @@ if __name__ == "__main__":
     multi_nbc.fit(train, label)
 
     app.run(host='0.0.0.0',port=5001)
-
 # =============================================================================
+# 
 #     recommend.setup('3', '노원구', '0', '1', '1','0','0','0','0','0','0','0','3000000000')
 #     out = recommend.run(multi_nbc)
-#  
+# =============================================================================
+ 
+# =============================================================================
 #     data = {}
 #     data['data'] = out
 #     ojson = jsonify(data)
+#     
 # =============================================================================
-    
     
     
     
