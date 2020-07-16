@@ -381,6 +381,9 @@ class Recommend1:
     
            
         # 아파트 별 거리 구함 
+        print('*************************************************')
+        print('*      아파트 - 편의시설 추천 매트릭스 생성            *')
+        print('*************************************************')
         for i, apt_data in enumerate(self.json_apt_datas):
             
             # 1. 내가 선택한 것의 개수가 똑같게 나왔는지 확인     
@@ -451,7 +454,9 @@ class Recommend1:
 # =============================================================================
 #                 print('!!! : ', self.itemLenKeys[idx] , " data : " , len(ret))
 # =============================================================================
-
+        print('*************************************************')
+        print('*      아파트 - 편의시설 추천 매트릭스 종료            *')
+        print('*************************************************')
         df = pd.DataFrame(self.json_apt_datas, columns = self.itemLenKeys)
     
         print(df.head())
@@ -721,7 +726,6 @@ class Recommend1:
         
         list_all_maemae_jisu = []
 
-        
         # p1 rank1 계산 
         for idx in sim_rank_idx[:rnkcnt]:
            
@@ -752,8 +756,9 @@ class Recommend1:
                     
             # 실거래가 금액 뽑아보자 
             juso_split = jsonApt['doroJuso'].split()
-            
-        
+            print('*************************************************')
+            print('*      1차 추천 아파트 추출                           *')
+            print('*************************************************')
             print(jsonApt)
 # =============================================================================
 #             print('주소 :', jsonApt['doroJuso'])
@@ -1130,7 +1135,8 @@ class Recommend1:
     
 
                 p1_con1 = (out['queryDataEqualCount'] / queryTrueValueCnt) * 100
-                print(out['queryDataEqualCount'], ' / ', queryTrueValueCnt, )
+            
+                print('추천 편의시설 / 선택된 편의시설 : ', out['queryDataEqualCount'], ' / ', queryTrueValueCnt, ' 적합성 : ', p1_con1)
                 p1_con2 = (out['queryDataTotalkm'] / minQueryDataTotalkm) * 100
                 
                 if p1_con2 > 100:
@@ -1139,6 +1145,7 @@ class Recommend1:
                 p1_con3 = 0            
                 if maxQueryDataNotSelItemCnt != 0:
                     p1_con3 = (out['queryDataNotSelItemCnt'] / maxQueryDataNotSelItemCnt) * 100
+                    print('추가로 추천도니 편의시설 / 조건별 최대 선택될 수 있는 편의시설 : ', out['queryDataNotSelItemCnt'], ' / ', maxQueryDataNotSelItemCnt, ' 추가된 정도 % : ', p1_con3)
             
                 if p1_max_score == 300:
                     sort_score = ((p1_con1 + p1_con2 + p1_con3) / 300) * 100                
@@ -1256,6 +1263,7 @@ class Recommend1:
     
                         if km <= itemLimitKm:   
                             selQueryInRangeItemTotalkm += km
+                            print('아파트 추천 범위에 들어옴 [추천 아이템] ', item)
                             inRangeItems.append(item)
 
             except:
