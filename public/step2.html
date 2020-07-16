@@ -629,9 +629,9 @@
 			// 	itemStr += '    <span>' + item['doroJuso'] + '</span>' +
 			// 		'   <span class="jibun gray">' + item['doroJuso'] + '</span>';
 			// } else {
-			itemStr += '<h6 class="text-danger"><b>최근실거래가 : ' +inputNumberWithHangul(item['recent_price']) + '원 ['+item['recent_room_size']+'㎡]</b></h6>';
-			itemStr += '<h6 class="text-success">최고실거래가 : ' +inputNumberWithHangul(item['max_price']) + '원 ['+item['max_price_room_size']+'㎡]</h6>';
-			itemStr += '<h6 class="text-primary">최저실거래가 : ' +inputNumberWithHangul(item['min_price']) + '원 ['+item['min_price_room_size']+'㎡]</h6>';
+			itemStr += '<h6 class="text-danger"><b>최근실거래가 : ' +inputNumberWithHangul(item['recent_price']) + '원 ['+ parseInt(item['recent_room_size'])+'㎡]</b></h6>';
+			itemStr += '<h6 class="text-success">최고실거래가 : ' +inputNumberWithHangul(item['max_price']) + '원 ['+ parseInt(item['max_price_room_size'])+'㎡]</h6>';
+			itemStr += '<h6 class="text-primary">최저실거래가 : ' +inputNumberWithHangul(item['min_price']) + '원 ['+ parseInt(item['min_price_room_size'])+'㎡]</h6>';
 			// }
 			itemStr += "<div class=\"col-lg col-form-label text-left mt-2\">";
 			itemStr += "<button class=\"btn btn-primary mr-2 text-center\" style='width: 30%'>적합성:"+item['score_p1']+"점</button>";
@@ -1082,7 +1082,7 @@
 							labels: chart_realPriceLabelDatas5984,
 							datasets: [
 								{
-									label: '실거래가(59이상-84이하)', backgroundColor: 'transparent', borderColor: 'red', data: chart_realpriceDatas5984
+									label: '실거래가(59초과-84이하)', backgroundColor: 'transparent', borderColor: 'red', data: chart_realpriceDatas5984
 								}
 							]
 						}, // 옵션
@@ -1138,7 +1138,7 @@
 							labels: chart_realPriceLabelDatas84,
 							datasets: [
 								{
-									label: '실거래가(84이상)', backgroundColor: 'transparent', borderColor: 'red', data: chart_realpriceDatas84
+									label: '실거래가(84초과)', backgroundColor: 'transparent', borderColor: 'red', data: chart_realpriceDatas84
 								}
 							]
 						}, // 옵션
@@ -1310,6 +1310,8 @@
 		</div>
 	</div>
 	</nav> -->
+
+	
 	<header class="navbar navbar-expand navbar-dark bg-primary flex-column flex-md-row bd-navbar">
 		<a class="navbar-brand mr-0 mr-md-2 navbar-absolute-logo" onclick="reload();" target="_blank">
 			&nbsp&nbsp&nbsp&nbsp똑똑한AI추천  <B>B</B>est <B>H</B>ouse <B>F</B>or <B>Y</B>ou
@@ -1323,12 +1325,12 @@
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link" href="./step1.html" ><i class="material-icons">check_circle_outline</i> 설문조사</a>
-				</li>
-	
-			  <!-- <li class="nav-item">
-				<a class="nav-link" href="https://www.creative-tim.com/product/material-kit-pro"> <i class="material-icons">place</i> 관심지역선택 </a>
-			  </li> -->
+					<a class="nav-link" href="./step1.html" ><i class="material-icons">check_circle_outline</i>설문조사</a>
+				</li>	
+			  <li class="nav-item">
+				<a class="nav-link" onclick="onclick_recolist();"> <i class="material-icons">list</i>추천목록</a>
+			  </li>
+
 			  <li class="nav-item">
 				<a class="nav-link"></a>
 			  </li>
@@ -1972,7 +1974,21 @@
 
 
 		}
+		var showRecoList = 1;
+		function onclick_recolist(){
+			if($('#menu_wrap2').is(':visible')){
+				alert('관심있는 지역을 지도에서 선택해주세요.');
+				return;
+			}
 
+			if(showRecoList == 1){
+				showRecoList = 0;
+				$('#menu_wrap').hide();
+			} else {
+				showRecoList = 1;
+				$('#menu_wrap').show();
+			}
+		}
 	</script>
 
 
