@@ -104,7 +104,7 @@
 			left: 0;
 			bottom: 0;
 			width: 35%;
-			height: 250px;
+			height: 235px;
 			margin: 10px 0 30px 10px;
 			padding: 20px;
 			text-align: center;
@@ -1031,7 +1031,22 @@
 								
 							]
 						}, // 옵션
-						options: {}
+						options: {
+
+							responsive: true,
+							// scales: {
+							// 	yAxes: [{
+							// 		ticks : {
+							// 			beginAtZero: true,
+							// 		}
+							// 	}]
+							// }
+							zoom: {
+								drag: true,
+								enabled: false,
+								mode: 'xy'
+							}
+						}
 					});
 				
 				} else {
@@ -1071,7 +1086,22 @@
 								}
 							]
 						}, // 옵션
-						options: {}
+						options: {
+
+							responsive: true,
+							// scales: {
+							// 	yAxes: [{
+							// 		ticks : {
+							// 			beginAtZero: true,
+							// 		}
+							// 	}]
+							// }
+							zoom: {
+								drag: true,
+								enabled: false,
+								mode: 'xy'
+							}
+						}
 					});
 				} else {
 					$('#realpriceChart2').hide();
@@ -1086,7 +1116,7 @@
 					var tmp_room_size = 0;
 
 					// 중복제거 해보자 
-					chart_rrealPriceLabelDatas84 = [];
+					chart_realPriceLabelDatas84 = [];
 					chart_realpriceDatas84 = [];
 					for (var i = 0; i < realPriceLabelDatas84.length; i++) {
 						var date = realPriceLabelDatas84[i];
@@ -1108,11 +1138,27 @@
 							labels: chart_realPriceLabelDatas84,
 							datasets: [
 								{
-									label: '실거래가(59이상)', backgroundColor: 'transparent', borderColor: 'red', data: chart_realpriceDatas84
+									label: '실거래가(84이상)', backgroundColor: 'transparent', borderColor: 'red', data: chart_realpriceDatas84
 								}
 							]
 						}, // 옵션
-						options: {}
+						options: {
+
+							responsive: true,
+							// scales: {
+							// 	yAxes: [{
+							// 		ticks : {
+							// 			beginAtZero: true,
+							// 		}
+							// 	}]
+							// }
+							zoom: {
+								drag: true,
+								enabled: false,
+								mode: 'xy'
+							}
+
+						}
 					});
 				} else {
 					$('#realpriceChart3').hide();
@@ -1136,7 +1182,23 @@
 
 								]
 							}, // 옵션
-							options: {}
+							options: {
+
+											responsive: true,
+			// scales: {
+			// 	yAxes: [{
+			// 		ticks: {
+			// 			beginAtZero: true,
+			// 			fontSize : 14,
+			// 		}
+			// 	}]
+			// }
+			zoom: {
+								drag: true,
+								enabled: false,
+								mode: 'xy'
+							}
+							}
 						});
 				}
 			}
@@ -1166,7 +1228,7 @@
 						}
 						table += "<tr>";
 
-						table += "<td>";
+						table += "<td class='text-left'>";
 						table += it['content'];
 						table += "</td>";
 
@@ -1798,9 +1860,9 @@
 								
 								<div class="tab-pane" id="realprice">
 									<!-- 차트 -->
-									<div class="container"> <canvas id="realpriceChart"></canvas> </div>
-									<div class="container mt-2"> <canvas id="realpriceChart2"></canvas> </div>
-									<div class="container mt-2"> <canvas id="realpriceChart3"></canvas> </div>
+									<div class="container"> <canvas id="realpriceChart" style="width: 100%;"></canvas> </div>
+									<div class="container mt-3"> <canvas id="realpriceChart2" style="width: 100%;"></canvas> </div>
+									<div class="container mt-3"> <canvas id="realpriceChart3" style="width: 100%;"></canvas> </div>
 
 								</div>
 

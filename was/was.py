@@ -792,12 +792,16 @@ class Recommend1:
                      jisuItem['date'] = str(int(d['계약년월']))
                      jisuItem['realprice'] = str(int(d['거래금액(만원)']))
                      jisuItem['predict_jisu'] = []
-                     jisuItem['room_size'] = str(d['전용면적(㎡)'])[:2]
+                     
+                     room_size = str(d['전용면적(㎡)'])
+                     room_size_comma_idx = room_size.index('.')
+                     
+                     jisuItem['room_size'] = room_size[:room_size_comma_idx]
                      
                      if int(d['거래금액(만원)']) >= int(maxPrice):
-                         maxRoomSize = str(d['전용면적(㎡)'])[:2]
+                         maxRoomSize = room_size[:room_size_comma_idx]
                      if int(d['거래금액(만원)']) <= int(minPrice):
-                         minRoomSize = str(d['전용면적(㎡)'])[:2]
+                         minRoomSize = room_size[:room_size_comma_idx]
                          
                      maemae_jisu.append(jisuItem);
 
@@ -843,19 +847,23 @@ class Recommend1:
                     strYYYY = str(d['계약년월'])[0:4]
                     yyyy = int(strYYYY)
                     
+                    room_size = str(d['전용면적(㎡)'])
+                    room_size_comma_idx = room_size.index('.')
+                     
+                    
                     if int(d['거래금액(만원)']) >= int(maxPrice):
-                         maxRoomSize = str(d['전용면적(㎡)'])[:2]
+                         maxRoomSize = room_size[:room_size_comma_idx]
                          
                     if int(d['거래금액(만원)']) <= int(minPrice):
-                         minRoomSize = str(d['전용면적(㎡)'])[:2]
+                         minRoomSize = room_size[:room_size_comma_idx]
                          
                     if yyyy < 2020:                            
                          jisuItem = {}
                          jisuItem['date'] = str(int(d['계약년월']))
                          jisuItem['jisu'] = str(d['매매가격지수'])
                          jisuItem['realprice'] = str(int(d['거래금액(만원)']))
-                         jisuItem['room_size'] = str(d['전용면적(㎡)'])[:2]
-                         test.append(str(d['전용면적(㎡)'])[:2])
+                         jisuItem['room_size'] = room_size[:room_size_comma_idx]
+
     # =============================================================================
     #                      jisuItem['predict_jisu'] = str(predict[index])
     # =============================================================================
@@ -866,11 +874,11 @@ class Recommend1:
                          jisuItem = {}
                          jisuItem['date'] = str(int(d['계약년월']))
                          jisuItem['realprice'] = str(int(d['거래금액(만원)']))     
-                         jisuItem['room_size'] = str(d['전용면적(㎡)'])[:2]                                   
+                         jisuItem['room_size'] = room_size[:room_size_comma_idx]                                  
                          maemae_jisu_2020.append(jisuItem)
-                         test.append(str(d['전용면적(㎡)'])[:2])
+
                         
-                    print('[',str(d['전용면적(㎡)'])[:2],']  ', jisuItem['realprice'])
+                    print('[',room_size[:room_size_comma_idx],']  ', jisuItem['realprice'])
 # =============================================================================
 #                 recentRoomSize = str(dfAptInfo.iloc[i]['전용면적(㎡)'])
 # =============================================================================
@@ -1589,8 +1597,8 @@ multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=sto
                       ('nbc', MultinomialNB())])
 
 
+
 # =============================================================================
-# 
 # mecab = Mecab()
 # 
 # def tokenizer_mecab_morphs(doc):
@@ -1600,8 +1608,8 @@ multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=sto
 # multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
 #                       ('nbc', MultinomialNB())])
 # 
-# 
 # =============================================================================
+
 
 if __name__ == "__main__":
        
