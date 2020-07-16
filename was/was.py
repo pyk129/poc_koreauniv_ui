@@ -794,14 +794,14 @@ class Recommend1:
                      jisuItem['predict_jisu'] = []
                      
                      room_size = str(d['전용면적(㎡)'])
-                     room_size_comma_idx = room_size.index('.')
-                     
-                     jisuItem['room_size'] = room_size[:room_size_comma_idx]
+
+
+                     jisuItem['room_size'] = room_size
                      
                      if int(d['거래금액(만원)']) >= int(maxPrice):
-                         maxRoomSize = room_size[:room_size_comma_idx]
+                         maxRoomSize = room_size
                      if int(d['거래금액(만원)']) <= int(minPrice):
-                         minRoomSize = room_size[:room_size_comma_idx]
+                         minRoomSize = room_size
                          
                      maemae_jisu.append(jisuItem);
 

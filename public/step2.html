@@ -933,67 +933,71 @@
 
 				var realPriceDict = {};
 				
-				
-				for (var i = 0; i < item['maemae_jisu'].length; i++) {
-					labelDatas.push(item['maemae_jisu'][i]['date']);;
-					jisuDatas.push(item['maemae_jisu'][i]['jisu']);;
-					predictJisuDatas.push(item['maemae_jisu'][i]['predict_jisu']);	
+				if (item['maemae_jisu'] != undefined){
+					for (var i = 0; i < item['maemae_jisu'].length; i++) {
+						labelDatas.push(item['maemae_jisu'][i]['date']);;
+						jisuDatas.push(item['maemae_jisu'][i]['jisu']);;
+						predictJisuDatas.push(item['maemae_jisu'][i]['predict_jisu']);	
 
-					var room_size = parseInt(item['maemae_jisu'][i]['room_size']);
-					var date = item['maemae_jisu'][i]['date'];
-					var price = item['maemae_jisu'][i]['realprice'];
+						var room_size = parseInt(item['maemae_jisu'][i]['room_size']);
+						var date = item['maemae_jisu'][i]['date'];
+						var price = item['maemae_jisu'][i]['realprice'];
 
-					if(price == undefined){
-							continue;
+						if(price == undefined){
+								continue;
+						}
+
+						if (room_size <= 59){
+							realpriceDatas59.push(price);
+							realPriceLabelDatas59.push(date);
+
+						} 
+						else if(room_size > 59 && room_size <= 84) { 
+							// 84 이하
+							realpriceDatas5984.push(price);
+							realPriceLabelDatas5984.push(date);
+						} 
+						else {
+							// 84 이상
+							// if (price)
+							realpriceDatas84.push(price);
+							realPriceLabelDatas84.push(date);
+							// console.log(price +"  " + date);
+
+						}
 					}
 
-					if (room_size <= 59){
-						realpriceDatas59.push(price);
-						realPriceLabelDatas59.push(date);
-
-					} 
-					else if(room_size > 59 && room_size <= 84) { 
-						// 84 이하
-						realpriceDatas5984.push(price);
-						realPriceLabelDatas5984.push(date);
-					} 
-					else {
-						// 84 이상
-						// if (price)
-						realpriceDatas84.push(price);
-						realPriceLabelDatas84.push(date);
-						// console.log(price +"  " + date);
-
-					}
 				}
 				
+				if(item['maemae_jisu_2020'] != undefined && item['maemae_jisu_2020'].length > 0){
+					for (var i = 0; i < item['maemae_jisu_2020'].length; i++) {
 
-				for (var i = 0; i < item['maemae_jisu_2020'].length; i++) {
+						var room_size = parseInt(item['maemae_jisu_2020'][i]['room_size']);
+						var date = item['maemae_jisu_2020'][i]['date'];
 
-					var room_size = parseInt(item['maemae_jisu_2020'][i]['room_size']);
-					var date = item['maemae_jisu_2020'][i]['date'];
+						if(price == undefined){
+							continue;
+						}
 
-					if(price == undefined){
-						continue;
+						if (room_size <= 59){
+							realpriceDatas59.push(item['maemae_jisu_2020'][i]['realprice']);
+							realPriceLabelDatas59.push(date);
+
+						} 
+						else if(room_size > 59 && room_size <= 84) { 
+							// 84 이하
+							realpriceDatas5984.push(item['maemae_jisu_2020'][i]['realprice']);
+							realPriceLabelDatas5984.push(date);
+						} 
+						else {
+							// 84 이상
+							realpriceDatas84.push(item['maemae_jisu_2020'][i]['realprice']);
+							realPriceLabelDatas84.push(date);
+						}
+						tmp_room_size = room_size;
+						yyyymm = date;
+
 					}
-
-					if (room_size <= 59){
-						realpriceDatas59.push(item['maemae_jisu_2020'][i]['realprice']);
-						realPriceLabelDatas59.push(date);
-
-					} 
-					else if(room_size > 59 && room_size <= 84) { 
-						// 84 이하
-						realpriceDatas5984.push(item['maemae_jisu_2020'][i]['realprice']);
-						realPriceLabelDatas5984.push(date);
-					} 
-					else {
-						// 84 이상
-						realpriceDatas84.push(item['maemae_jisu_2020'][i]['realprice']);
-						realPriceLabelDatas84.push(date);
-					}
-					tmp_room_size = room_size;
-					yyyymm = date;
 
 				}
 
