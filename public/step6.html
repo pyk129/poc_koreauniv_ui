@@ -31,33 +31,7 @@
 		background: white;
 		}
 	</style>
-	<script>
-
-		function getParameterByName(name) {
-			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-				results = regex.exec(location.search);
-			return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-		}
-
-		$(function(){
-			var key = getParameterByName('name');
-			var title = key;
-
-			$('#title').html('');
-			$('#title').html(title);
-		});
-		
-		function confirmBtn(){
-			if (confirm("접수를 하시겠습니까?") == true){    //확인
-				alert('접수를 완료 했습니다.');
-				location.href = './step6.html';
-			}else{   //취소
-				return;
-			}
 	
-		}
-	</script>
 </head>
 
 <body>
@@ -127,89 +101,12 @@
 	  </header>
 
 
-	<main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
-		<div class="title">
-		<h3 id="title">신한 따뜻한 주택 대출 상담</h3> 
-	</div>
 
-	<form>
-	<div class="form-group">
-		<label for="exampleInputEmail1">대상 부동산</label>
-		<input type="text" class="form-control pl-2" id="exampleInputEmail1" placeholder="사용자 이름을 입력하세요" title="계정 이름" value="노원중계아파트" disabled>
-	</div>
-
-	<div class="form-group">
-		<label for="exampleInputEmail1">대출 가능금액</label>
-		<input type="text" class="form-control pl-2" id="exampleInputEmail1" placeholder="사용자 이름을 입력하세요" title="계정 이름" onKeyup="inputNumberAutoComma(this)" value="150,000,000" disabled>
-	</div>
-
-	<div class="form-group">
-		<label for="exampleInputEmail1">대출금리</label>
-		<input type="text" class="form-control pl-2" id="exampleInputEmail1" placeholder="사용자 이름을 입력하세요" title="계정 이름" value="2.9% (금융채 5년)" disabled>
-	</div>
-
-	<div class="form-group">
-		<label for="exampleInputEmail1">최대가능기간</label>
-		<input type="text" class="form-control pl-2" id="exampleInputEmail1" placeholder="사용자 이름을 입력하세요" title="계정 이름" value="30년" disabled>
-	</div>
-
-
-	<div class="float-right">
-			<button type="button" class="btn btn-link" data-dismiss="modal" id='cancel_btn'>뒤로</button>
-			<button type="button" class="btn btn-primary btn-round" id='modal_send' onClick="confirmBtn();"><i class="material-icons mr-1">storage</i> 접수진행</button>
-	</div>
-	</form>
-	</main>
-	<!-- 로딩 -->
-	<div id="loading" class="loading" style="display:none;">
-		<div class="shadow"></div>
-		<img src="./images/loading.gif" class="img" />
-	</div>
-	</div>
-	<!-- 로딩 -->
-	<script>
-		function showLoading() {
-			 $(".loading").show();
-		}
-
-		function closeLoading() {
-			$(".loading").hide();
-		}
+	  
+		<div class="ml-4 mt-4"><h1>http://aws.hancy.kr:8801</h1> </div>
+	  <br><br>
+	  <img src="images/qr.png" style="width:350px; height: auto; overflow: hidden;">
 	
-		$("a#cancel_btn").click(function (event) {
-			history.back();
-		});
-		function inputNumberAutoComma(obj) {
-       
-	   // 콤마( , )의 경우도 문자로 인식되기때문에 콤마를 따로 제거한다.
-	   var deleteComma = obj.value.replace(/\,/g, "");
-
-	   // 콤마( , )를 제외하고 문자가 입력되었는지를 확인한다.
-	   if(isFinite(deleteComma) == false) {
-		   alert("문자는 입력하실 수 없습니다.");
-		   obj.value = "";
-		   return false;
-	   }
-	   
-	   // 기존에 들어가있던 콤마( , )를 제거한 이 후의 입력값에 다시 콤마( , )를 삽입한다.
-	   obj.value = inputNumberWithComma(inputNumberRemoveComma(obj.value));
-   }
-   
-   // 천단위 이상의 숫자에 콤마( , )를 삽입하는 함수
-   function inputNumberWithComma(str) {
-
-	   str = String(str);
-	   return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
-   }
-
-   // 콤마( , )가 들어간 값에 콤마를 제거하는 함수
-   function inputNumberRemoveComma(str) {
-
-	   str = String(str);
-	   return str.replace(/[^\d]+/g, "");
-   }
-
-	</script>
 </body>
 
 </html>
