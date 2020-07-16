@@ -15,7 +15,7 @@ import joblib
 from datetime import datetime
         
 class Recommend1:
-    
+    log = True
     path_아파트 = 'datas/apt_list_seoul/apt_data_노원구.json'
     path_댓글데이터 = 'datas/naver_comments/result_contents_네이버카페_노원구.json'
         
@@ -278,7 +278,8 @@ class Recommend1:
         query.append(self.createQuery(sel9))
         
         self.select_query = query
-        print('select query : ', self.select_query)
+        if log:
+            print('select query : ', self.select_query)
         
 # =============================================================================
 #         self.select_query = [
@@ -368,22 +369,26 @@ class Recommend1:
         
     
     def run(self, multi_nb):
-        print('*************************************************')
-        print('*                  예측 시작                      *')
-        print('*************************************************')
+        if log:
+            print('*************************************************')
+            print('*                  예측 시작                      *')
+            print('*************************************************')
         queryTrueValueCnt = 0
         
         for d in self.select_query:
             if d[0] > 0:
                 queryTrueValueCnt += 1
 
-        print("선택된 편의시설 개수 : ", queryTrueValueCnt) 
+        if log:
+            print("선택된 편의시설 개수 : ", queryTrueValueCnt) 
     
            
         # 아파트 별 거리 구함 
-        print('*************************************************')
-        print('*      아파트 - 편의시설 추천 매트릭스 생성            *')
-        print('*************************************************')
+        if log:
+            print('*************************************************')
+            print('*      아파트 - 편의시설 추천 매트릭스 생성            *')
+            print('*************************************************')
+            
         for i, apt_data in enumerate(self.json_apt_datas):
             
             # 1. 내가 선택한 것의 개수가 똑같게 나왔는지 확인     
@@ -454,12 +459,16 @@ class Recommend1:
 # =============================================================================
 #                 print('!!! : ', self.itemLenKeys[idx] , " data : " , len(ret))
 # =============================================================================
-        print('*************************************************')
-        print('*      아파트 - 편의시설 추천 매트릭스 종료            *')
-        print('*************************************************')
+        if log:
+            print('*************************************************')
+            print('*      아파트 - 편의시설 추천 매트릭스 종료            *')
+            print('*************************************************')
+            
         df = pd.DataFrame(self.json_apt_datas, columns = self.itemLenKeys)
     
-        print(df.head())
+        if log: 
+            print(df.head())
+            
         df = df.fillna(0)
         
         #################################
@@ -473,9 +482,10 @@ class Recommend1:
 # =============================================================================
         
         if self.simirarity == '1':
-            print('*************************************************')
-            print('*      유사도 비교 방법 : 코사인 유사도 비교       *')
-            print('*************************************************')
+            if log:
+                print('*************************************************')
+                print('*      유사도 비교 방법 : 코사인 유사도 비교       *')
+                print('*************************************************')
             #################################
             # 코사인 유사도 
             #################################
@@ -484,54 +494,59 @@ class Recommend1:
             #################################
             # Matrix Factrazation 
             ##################################
-            print('*************************************************')
-            print('       유사도 비교 방법   :  Matrix Factrazation 비교 ')
-            print('*************************************************')
+            if log:
+                print('*************************************************')
+                print('       유사도 비교 방법   :  Matrix Factrazation 비교 ')
+                print('*************************************************')
             factorizer = MatrixFactorization(df_matrix, k=200, learning_rate=0.001, reg_param=0.01, epochs=50, verbose=True)
 #            factorizer = MatrixFactorization(df_matrix_MinMax, k=6, learning_rate=0.21, reg_param=0.01, epochs=200, verbose=True)
             factorizer.fit()
-            print('*************************************************')
-            print(' Matrix Factrazation 전 matrix ')
-            print('*************************************************')
-            print(' ')
-            print(df_matrix)
-            print(' ')  
-            print('*************************************************')
+            if log:
+                print('*************************************************')
+                print(' Matrix Factrazation 전 matrix ')
+                print('*************************************************')
+                print(' ')
+                print(df_matrix)
+                print(' ')  
+                print('*************************************************')
             
             ret_simularity = factorizer.get_complete_matrix()
-            print(' ')
-            print(' ')
-            print('*************************************************')
-            print(' Matrix Factrazation 적용 matrix ')
-            print('*************************************************')
-            print(' ')
-            print(ret_simularity)
-            print(' ')  
-            print('*************************************************')  
+            if log:
+                print(' ')
+                print(' ')
+                print('*************************************************')
+                print(' Matrix Factrazation 적용 matrix ')
+                print('*************************************************')
+                print(' ')
+                print(ret_simularity)
+                print(' ')  
+                print('*************************************************')  
         else :
+            if log:
+                print('*************************************************')
+                print('       유사도 비교 방법   :  Matrix Factrazation (ASL)비교 ')
+                print('*************************************************')
             
-            print('*************************************************')
-            print('       유사도 비교 방법   :  Matrix Factrazation (ASL)비교 ')
-            print('*************************************************')
-            
-            print('*************************************************')
-            print(' Matrix Factrazation 전 matrix ')
-            print('*************************************************')
-            print(' ')
-            print(df_matrix)
-            print(' ')  
-            print('*************************************************')
+                print('*************************************************')
+                print(' Matrix Factrazation 전 matrix ')
+                print('*************************************************')
+                print(' ')
+                print(df_matrix)
+                print(' ')  
+                print('*************************************************')
             als = ALS(df_matrix)
             ret_simularity = als.get_complete_matrix()
-            print(' ')
-            print(' ')
-            print('*************************************************')
-            print(' Matrix Factrazation 적용 matrix ')
-            print('*************************************************')
-            print(' ')
-            print(ret_simularity)
-            print(' ')  
-            print('*************************************************')  
+            
+            if log:
+                print(' ')
+                print(' ')
+                print('*************************************************')
+                print(' Matrix Factrazation 적용 matrix ')
+                print('*************************************************')
+                print(' ')
+                print(ret_simularity)
+                print(' ')  
+                print('*************************************************')  
             
         sel_query = np.array([np.array(self.select_query).T[0]])
 # =============================================================================
@@ -539,15 +554,16 @@ class Recommend1:
 # =============================================================================
         cosine_sim = cosine_similarity(sel_query, df.values).flatten()
         sim_rank_idx = cosine_sim.argsort()[::-1]
-        print(' ')
-        print(' ')
-        print('*************************************************')
-        print(' 유사도 계산 결과 ')
-        print('*************************************************')
-        print(' ')
-        print(sim_rank_idx)
-        print(' ')  
-        print('*************************************************')  
+        if log:
+            print(' ')
+            print(' ')
+            print('*************************************************')
+            print(' 유사도 계산 결과 ')
+            print('*************************************************')
+            print(' ')
+            print(sim_rank_idx)
+            print(' ')  
+            print('*************************************************')  
             
        
         output = []
@@ -756,10 +772,11 @@ class Recommend1:
                     
             # 실거래가 금액 뽑아보자 
             juso_split = jsonApt['doroJuso'].split()
-            print('*************************************************')
-            print('*      1차 추천 아파트 추출                           *')
-            print('*************************************************')
-            print(jsonApt)
+            if log:
+                print('*************************************************')
+                print('*      1차 추천 아파트 추출                           *')
+                print('*************************************************')
+                print(jsonApt)
 # =============================================================================
 #             print('주소 :', jsonApt['doroJuso'])
 #             print('주소 split 결과 :', juso_split)
@@ -857,10 +874,10 @@ class Recommend1:
                 output.append(jsonApt)
                 
             else:
-                
-                print('*************************************************')
-                print('*                     2차 추천                   *')
-                print('*************************************************')
+                if log:
+                    print('*************************************************')
+                    print('*                     2차 추천                   *')
+                    print('*************************************************')
                                 
                 predict = 0        
                 
@@ -922,7 +939,6 @@ class Recommend1:
 # =============================================================================
 #                 recentRoomSize = str(dfAptInfo.iloc[i]['전용면적(㎡)'])
 # =============================================================================
-                print("1234567 : ", test)
                 
                 maemae_jisu = sorted(maemae_jisu, key=(lambda maemae_jisu:maemae_jisu['date']), reverse = False)   
                 maemae_jisu_2020 = sorted(maemae_jisu_2020, key=(lambda maemae_jisu_2020:maemae_jisu_2020['date']), reverse = False)   
@@ -959,7 +975,8 @@ class Recommend1:
                     # 가장 마지막 데이터를 가져온다. 
                     last2NdItem = dfAptInfo2[dfAptInfo2['계약년월'].astype(str).str.contains(yyyyMM)]
                     
-                    print("가장 최근의 실거래가 데이터 추출 ", last2NdItem)
+                    if log:
+                        print("가장 최근의 실거래가 데이터 추출 ", last2NdItem)
         
                     from dateutil.relativedelta import relativedelta
                                        
@@ -978,10 +995,10 @@ class Recommend1:
                     
                     # 1개월 뒤만 표기 
                     predict2ndAfter1MonthData = createPredict2NdDataAfterMonth(last2NdItem, 1)
-                    
-                    print('*************************************************')
-                    print('*           2차 매개가격지수 1달뒤 예측               ', predict2ndAfter1MonthData['predict_jisu'])
-                    print('*************************************************')
+                    if log:                        
+                        print('*************************************************')
+                        print('*           2차 매개가격지수 1달뒤 예측               ', predict2ndAfter1MonthData['predict_jisu'])
+                        print('*************************************************')
                     maemae_jisu.append(predict2ndAfter1MonthData)
 
                 jsonApt['maemae_jisu'] = maemae_jisu
@@ -1001,9 +1018,10 @@ class Recommend1:
 # =============================================================================
 #                 if int(self.optSecond) == 1 and '노원구' in self.guName:
 # =============================================================================
-                print('*************************************************')
-                print('*                     3차 추천                   *')
-                print('*************************************************')
+                if log:
+                    print('*************************************************')
+                    print('*                     3차 추천                   *')
+                    print('*************************************************')
 
                 if aptName in testCommentKey:
                 
@@ -1135,8 +1153,8 @@ class Recommend1:
     
 
                 p1_con1 = (out['queryDataEqualCount'] / queryTrueValueCnt) * 100
-            
-                print('추천 편의시설 / 선택된 편의시설 : ', out['queryDataEqualCount'], ' / ', queryTrueValueCnt, ' 적합성 : ', p1_con1)
+                if log:
+                    print('추천 편의시설 / 선택된 편의시설 : ', out['queryDataEqualCount'], ' / ', queryTrueValueCnt, ' 적합성 : ', p1_con1)
                 p1_con2 = (out['queryDataTotalkm'] / minQueryDataTotalkm) * 100
                 
                 if p1_con2 > 100:
@@ -1145,7 +1163,8 @@ class Recommend1:
                 p1_con3 = 0            
                 if maxQueryDataNotSelItemCnt != 0:
                     p1_con3 = (out['queryDataNotSelItemCnt'] / maxQueryDataNotSelItemCnt) * 100
-                    print('추가로 추천도니 편의시설 / 조건별 최대 선택될 수 있는 편의시설 : ', out['queryDataNotSelItemCnt'], ' / ', maxQueryDataNotSelItemCnt, ' 추가된 정도 % : ', p1_con3)
+                    if log:
+                        print('추가로 추천도니 편의시설 / 조건별 최대 선택될 수 있는 편의시설 : ', out['queryDataNotSelItemCnt'], ' / ', maxQueryDataNotSelItemCnt, ' 추가된 정도 % : ', p1_con3)
             
                 if p1_max_score == 300:
                     sort_score = ((p1_con1 + p1_con2 + p1_con3) / 300) * 100                
@@ -1263,7 +1282,8 @@ class Recommend1:
     
                         if km <= itemLimitKm:   
                             selQueryInRangeItemTotalkm += km
-                            print('아파트 추천 범위에 들어옴 [추천 아이템] ', item)
+                            if log:
+                                print('아파트 추천 범위에 들어옴 [추천 아이템] ', item)
                             inRangeItems.append(item)
 
             except:
@@ -1601,7 +1621,9 @@ def userLogin():
     data = {}
     data['data'] = out
     ojson = jsonify(data)
-    print('output : ', ojson)
+    if log:
+        print('output : ', ojson)
+        
     return ojson
 #     return jsonify(user)# 받아온 데이터를 다시 전송
 # 엑셀파일 불러옴 
