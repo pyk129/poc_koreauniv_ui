@@ -1659,22 +1659,22 @@ stopword = [
 '어서','어요','인데','아서','이제','보이','으면','아직','은데']
 
 
+multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword,
+                                               )),
+                      ('nbc', MultinomialNB())])
+
+
+
 # =============================================================================
-# multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword,
-#                                                )),
+# mecab = Mecab()
+# 
+# def tokenizer_mecab_morphs(doc):
+#     return mecab.morphs(doc)
+# 
+# 
+# multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
 #                       ('nbc', MultinomialNB())])
 # =============================================================================
-
-
-
-mecab = Mecab()
-
-def tokenizer_mecab_morphs(doc):
-    return mecab.morphs(doc)
-
-
-multi_nbc = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2),stop_words=stopword, tokenizer=tokenizer_mecab_morphs)),
-                      ('nbc', MultinomialNB())])
 
 
 
